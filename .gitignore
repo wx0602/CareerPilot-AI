@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.local
+.venv/
+__pycache__/
+*.pyc
+*.sqlite
+*.sqlite3
+*.db
+backend/uploads/*
+knowledge/chroma_store/*
+!backend/uploads/README.md
+!knowledge/chroma_store/README.md

@@ -1,0 +1,280 @@
+:root {
+  color: #1f2a2e;
+  background: #f6f7f4;
+  font-family:
+    Inter, "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 18px;
+  color: #ffffff;
+  background: #176c5f;
+  cursor: pointer;
+}
+
+input {
+  min-height: 42px;
+  border: 1px solid #cfd7d2;
+  border-radius: 6px;
+  padding: 0 12px;
+  background: #ffffff;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: #40504d;
+  font-size: 14px;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-right: 1px solid #dde3de;
+  padding: 24px;
+  background: #ffffff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #176c5f;
+  font-weight: 700;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand small {
+  margin-top: 4px;
+  color: #6d7c78;
+  font-size: 12px;
+}
+
+.nav-list {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-list a {
+  border-radius: 6px;
+  padding: 11px 12px;
+  color: #4c5b57;
+}
+
+.nav-list a.router-link-active {
+  color: #123d36;
+  background: #e1eee9;
+}
+
+.main-area {
+  min-width: 0;
+  padding: 36px;
+}
+
+.page {
+  display: grid;
+  gap: 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.narrow-page {
+  max-width: 560px;
+}
+
+.page-header {
+  display: grid;
+  gap: 6px;
+}
+
+.page-header p {
+  margin: 0;
+  color: #b85f24;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.panel,
+.scenario-tile,
+.upload-slot {
+  border: 1px solid #dde3de;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.panel {
+  padding: 22px;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.scenario-grid,
+.upload-grid,
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.scenario-tile,
+.upload-slot {
+  min-height: 128px;
+  padding: 20px;
+  font-weight: 700;
+}
+
+.scenario-tile {
+  display: flex;
+  align-items: flex-end;
+}
+
+.workspace-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 16px;
+}
+
+.side-panel {
+  min-height: 360px;
+}
+
+.interview-layout {
+  display: grid;
+  grid-template-rows: minmax(360px, 1fr) auto;
+  gap: 16px;
+}
+
+.transcript-panel {
+  min-height: 360px;
+}
+
+.composer-panel {
+  min-height: 120px;
+}
+
+.wide-panel {
+  grid-column: 1 / -1;
+  min-height: 180px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.secondary-button {
+  color: #1f2a2e;
+  background: #e7e0d1;
+}
+
+.avatar-stage {
+  display: grid;
+  min-height: 560px;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e3ede7 0%, #f7efe2 100%);
+}
+
+.avatar-placeholder {
+  display: grid;
+  width: min(320px, 70vw);
+  aspect-ratio: 3 / 4;
+  place-items: center;
+  border: 1px solid #c6d3cd;
+  border-radius: 8px;
+  color: #40504d;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    gap: 16px;
+    border-right: 0;
+    border-bottom: 1px solid #dde3de;
+    padding: 16px;
+  }
+
+  .nav-list {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+  }
+
+  .main-area {
+    padding: 24px 16px;
+  }
+
+  .scenario-grid,
+  .upload-grid,
+  .report-grid,
+  .workspace-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+}

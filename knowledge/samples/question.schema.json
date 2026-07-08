@@ -1,0 +1,16 @@
+{
+  "id": "string",
+  "company": "string",
+  "position": "string",
+  "difficulty": "easy | medium | hard",
+  "type": "choice | judge | short_answer",
+  "stem": "string",
+  "options": [
+    "string"
+  ],
+  "answer": "string",
+  "knowledge_points": [
+    "string"
+  ],
+  "explanation": "string"
+}

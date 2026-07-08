@@ -1,0 +1,15 @@
+{
+  "overall_score": 82,
+  "dimension_scores": {
+    "专业知识": 80,
+    "逻辑表达": 85,
+    "岗位匹配": 78
+  },
+  "weaknesses": [
+    "Redis 缓存机制",
+    "MySQL 索引"
+  ],
+  "suggestions": [
+    "建议复习缓存穿透和索引失效场景"
+  ]
+}

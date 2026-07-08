@@ -1,0 +1,11 @@
+{
+  "material_id": "string",
+  "user_id": "string",
+  "type": "resume | jd | project_intro | business_plan | pitch_deck",
+  "filename": "string",
+  "parsed_text": "string",
+  "metadata": {
+    "source": "string",
+    "created_at": "string"
+  }
+}
