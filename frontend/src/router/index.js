@@ -8,8 +8,9 @@ import ReportPage from '../pages/ReportPage.vue';
 import AvatarPage from '../pages/AvatarPage.vue';
 
 const routes = [
-  { path: '/', name: 'dashboard', component: DashboardPage },
+  { path: '/', redirect: '/login' },
   { path: '/login', name: 'login', component: LoginPage },
+  { path: '/dashboard', name: 'dashboard', component: DashboardPage },
   { path: '/upload', name: 'upload', component: UploadPage },
   { path: '/exam', name: 'exam', component: WrittenExamPage },
   { path: '/interview', name: 'interview', component: TextInterviewPage },
@@ -17,7 +18,4 @@ const routes = [
   { path: '/avatar', name: 'avatar', component: AvatarPage }
 ];
 
-export default createRouter({
-  history: createWebHistory(),
-  routes
-});
+export default createRouter({ history: createWebHistory(), routes });

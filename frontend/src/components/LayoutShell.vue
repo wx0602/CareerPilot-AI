@@ -1,27 +1,29 @@
+<script setup>
+import AppIcon from './AppIcon.vue';
+import BrandLogo from './BrandLogo.vue';
+
+const nav = [
+  { to: '/dashboard', label: '场景选择', icon: 'grid' },
+  { to: '/upload', label: '我的练习', icon: 'practice' },
+  { to: '/exam', label: '学习计划', icon: 'plan' },
+  { to: '/report', label: '我的报告', icon: 'report' },
+  { to: '/avatar', label: '收藏题库', icon: 'star' },
+  { to: '/avatar', label: '数字人展示', icon: 'practice' },
+  { to: '/avatar', label: '设置', icon: 'settings' }
+];
+</script>
+
 <template>
   <div class="app-shell">
     <aside class="sidebar">
-      <RouterLink class="brand" to="/">
-        <span class="brand-mark">CP</span>
-        <span>
-          <strong>CareerPilot AI</strong>
-          <small>智能实训平台</small>
-        </span>
-      </RouterLink>
-
+      <BrandLogo />
       <nav class="nav-list" aria-label="主导航">
-        <RouterLink to="/">场景</RouterLink>
-        <RouterLink to="/login">登录</RouterLink>
-        <RouterLink to="/upload">上传</RouterLink>
-        <RouterLink to="/exam">笔试</RouterLink>
-        <RouterLink to="/interview">面试</RouterLink>
-        <RouterLink to="/report">报告</RouterLink>
-        <RouterLink to="/avatar">数字人</RouterLink>
+        <RouterLink v-for="item in nav" :key="item.label" :to="item.to">
+          <AppIcon :name="item.icon" /><span>{{ item.label }}</span>
+        </RouterLink>
       </nav>
+      <RouterLink class="logout-link" to="/login"><AppIcon name="logout" />退出登录</RouterLink>
     </aside>
-
-    <main class="main-area">
-      <RouterView />
-    </main>
+    <main class="main-area"><slot /></main>
   </div>
 </template>
