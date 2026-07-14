@@ -1,0 +1,156 @@
+from datetime import datetime
+from typing import Annotated, Any, Literal
+
+from pydantic import BaseModel, Field, model_validator
+
+
+InterviewMode = Literal["job", "technical", "pitch"]
+Difficulty = Literal["easy", "medium", "hard"]
+QuestionType = Literal["single_choice", "multiple_choice", "true_false", "short_answer"]
+Score = Annotated[int, Field(ge=0, le=100)]
+
+
+class UserInfo(BaseModel):
+    user_id: str | None = None
+    account: str | None = None
+    is_guest: bool
+
+
+class LoginRequest(BaseModel):
+    account: str = Field(min_length=1, max_length=254)
+    password: str = Field(min_length=1, max_length=128)
+    remember_me: bool = False
+
+
+class AuthResponse(BaseModel):
+    access_token: str
+    token_type: Literal["bearer"] = "bearer"
+    expires_at: datetime
+    user: UserInfo
+
+
+class TrainingSessionCreate(BaseModel):
+    mode: InterviewMode
+    position: str | None = Field(default=None, max_length=120)
+    company: str | None = Field(default=None, max_length=120)
+
+
+class TrainingSessionResponse(BaseModel):
+    session_id: str
+    mode: InterviewMode
+    position: str | None = None
+    company: str | None = None
+    status: str
+    created_at: datetime
+
+
+class MaterialUploadResponse(BaseModel):
+    material_id: str
+    session_id: str
+    material_type: Literal["resume", "jd"]
+    filename: str
+    mime_type: str
+    size_bytes: int
+    parse_status: Literal["parsed", "failed", "pending"]
+    parse_error: str | None = None
+    created_at: datetime
+
+
+class QuestionOption(BaseModel):
+    key: str
+    text: str
+
+
+class ExamQuestion(BaseModel):
+    question_id: str
+    question_type: QuestionType
+    content: str
+    options: list[QuestionOption] = Field(default_factory=list)
+
+
+class GenerateExamRequest(BaseModel):
+    session_id: str
+    position: str = Field(min_length=1, max_length=120)
+    company: str | None = Field(default=None, max_length=120)
+    difficulty: Difficulty = "medium"
+    question_count: int = Field(default=10, ge=1, le=20)
+
+
+class ExamPaperResponse(BaseModel):
+    exam_id: str
+    session_id: str
+    title: str
+    questions: list[ExamQuestion] = Field(default_factory=list)
+
+
+class SubmittedAnswer(BaseModel):
+    question_id: str
+    answer: str | list[str]
+
+
+class ExamSubmissionRequest(BaseModel):
+    session_id: str
+    exam_id: str
+    answers: list[SubmittedAnswer] = Field(default_factory=list)
+
+
+class ExamResultResponse(BaseModel):
+    exam_id: str
+    score: Score
+    question_results: list[dict[str, Any]] = Field(default_factory=list)
+    weaknesses: list[str] = Field(default_factory=list)
+    suggestions: list[str] = Field(default_factory=list)
+
+
+class QuestionResponse(BaseModel):
+    question_id: str
+    question: str
+
+
+class EvaluationResponse(BaseModel):
+    question_id: str
+    score: Score
+    dimension_scores: dict[str, Score] = Field(default_factory=dict)
+    strengths: list[str] = Field(default_factory=list)
+    weaknesses: list[str] = Field(default_factory=list)
+    need_followup: bool = False
+    followup_question: str | None = None
+
+
+class InterviewMessageRequest(BaseModel):
+    session_id: str
+    question_id: str | None = None
+    answer: str | None = Field(default=None, max_length=10000)
+
+    @model_validator(mode="after")
+    def validate_answer_pair(self) -> "InterviewMessageRequest":
+        has_question = self.question_id is not None
+        has_answer = self.answer is not None
+        if has_question != has_answer:
+            raise ValueError("question_id 和 answer 必须同时提供")
+        if self.answer is not None and not self.answer.strip():
+            raise ValueError("answer 不能为空")
+        return self
+
+
+class InterviewMessageResponse(BaseModel):
+    interview_id: str
+    evaluation: EvaluationResponse | None = None
+    next_question: QuestionResponse
+    is_followup: bool = False
+
+
+class ReportGenerateRequest(BaseModel):
+    session_id: str
+
+
+class ReportResponse(BaseModel):
+    session_id: str
+    mode: InterviewMode
+    overall_score: Score
+    dimension_scores: dict[str, Score] = Field(default_factory=dict)
+    strengths: list[str] = Field(default_factory=list)
+    weaknesses: list[str] = Field(default_factory=list)
+    suggestions: list[str] = Field(default_factory=list)
+    charts: dict[str, Any] = Field(default_factory=dict)
+    summary: str
