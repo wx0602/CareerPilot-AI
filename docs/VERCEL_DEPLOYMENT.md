@@ -20,7 +20,7 @@ npm run db:migrate
 
 ## 2. Deploy the backend project
 
-Create a Vercel project with the repository root as its Root Directory. The root `app.py`, `requirements.txt`, and `vercel.json` are the backend entrypoint and deployment configuration.
+Create a Vercel project with the repository root as its Root Directory. Leave the Root Directory field empty; do not set it to `backend`. The root `app.py`, `requirements.txt`, and `vercel.json` are the backend entrypoint and deployment configuration. Using `backend` as the Root Directory omits the sibling `knowledge` and `ai-core` packages and causes `ModuleNotFoundError` during startup.
 
 Add every variable from `backend/.env.vercel.example` under Project Settings -> Environment Variables. At minimum, replace:
 
