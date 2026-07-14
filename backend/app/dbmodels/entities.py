@@ -5,8 +5,8 @@ from uuid import uuid4
 from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.core.security import utc_now
-from app.db.base import Base
+from ..core.security import utc_now
+from ..db.base import Base
 
 
 def uuid_str() -> str:

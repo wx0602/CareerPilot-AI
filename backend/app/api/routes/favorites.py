@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_token, get_db
-from app.dbmodels import AuthToken, FavoriteQuestion
-from app.schemas.api import FavoriteQuestionCreate, FavoriteQuestionResponse
+from ..deps import get_current_token, get_db
+from ...dbmodels import AuthToken, FavoriteQuestion
+from ...schemas.api import FavoriteQuestionCreate, FavoriteQuestionResponse
 
 
 router = APIRouter(prefix="/favorites", tags=["收藏题库"])

@@ -2,19 +2,20 @@ from fastapi import APIRouter, Depends, Request
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_token, get_db, owned_training_session
-from app.core.errors import api_error, conflict, not_found
-from app.core.security import utc_now
-from app.dbmodels import (
+from ..deps import get_current_token, get_db, owned_training_session
+from ...core.errors import api_error, conflict, not_found
+from ...core.security import utc_now
+from ...dbmodels import (
     AuthToken,
     Exam,
     ExamSubmission,
     Interview,
     InterviewTurn,
     Report,
+    TrainingSession,
 )
-from app.schemas.api import ReportGenerateRequest, ReportResponse
-from app.services.providers import ProviderUnavailableError
+from ...schemas.api import ReportGenerateRequest, ReportListItem, ReportResponse
+from ...services.providers import ProviderUnavailableError
 
 
 router = APIRouter(prefix="/reports", tags=["报告"])
@@ -76,6 +77,36 @@ def generate_report(
     db.add(report)
     db.commit()
     return validated
+
+
+@router.get("", response_model=list[ReportListItem])
+def list_reports(
+    token: AuthToken = Depends(get_current_token),
+    db: Session = Depends(get_db),
+) -> list[ReportListItem]:
+    statement = (
+        select(Report, TrainingSession)
+        .join(TrainingSession, TrainingSession.id == Report.session_id)
+        .order_by(Report.generated_at.desc())
+    )
+    if token.is_guest:
+        statement = statement.where(TrainingSession.created_by_token_id == token.id)
+    else:
+        statement = statement.where(TrainingSession.owner_user_id == token.user_id)
+
+    items: list[ReportListItem] = []
+    for report, training in db.execute(statement).all():
+        payload = ReportResponse.model_validate(report.payload_json)
+        items.append(
+            ReportListItem(
+                **payload.model_dump(),
+                generated_at=report.generated_at,
+                position=training.position,
+                company=training.company,
+                learning_module_title=training.learning_module_title,
+            )
+        )
+    return items
 
 
 @router.get("/{session_id}", response_model=ReportResponse)

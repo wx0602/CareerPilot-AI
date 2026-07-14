@@ -129,6 +129,10 @@ def test_report_can_be_generated_from_exam_only(logged_in):
     )
     assert report.status_code == 200
     assert report.json()["overall_score"] == 100
+    saved_reports = client.get("/api/reports", headers=headers)
+    assert saved_reports.status_code == 200
+    assert saved_reports.json()[0]["session_id"] == session_id
+    assert saved_reports.json()[0]["overall_score"] == 100
 
 
 def test_report_can_be_generated_from_interview_only(logged_in):

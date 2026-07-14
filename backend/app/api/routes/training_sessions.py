@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_token, get_db, owned_training_session
-from app.core.errors import conflict
-from app.dbmodels import AuthToken, TrainingSession
-from app.schemas.api import TrainingSessionCreate, TrainingSessionResponse, TrainingSessionUpdate
-from app.services.learning_modules import default_question_mix, get_learning_module
+from ..deps import get_current_token, get_db, owned_training_session
+from ...core.errors import conflict
+from ...dbmodels import AuthToken, TrainingSession
+from ...schemas.api import TrainingSessionCreate, TrainingSessionResponse, TrainingSessionUpdate
+from ...services.learning_modules import default_question_mix, get_learning_module
 
 
 router = APIRouter(prefix="/training-sessions", tags=["训练会话"])

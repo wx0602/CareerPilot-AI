@@ -29,6 +29,7 @@ const typeLabels = {
   true_false: '判断题',
   short_answer: '简答题'
 };
+const questionTypeOrder = ['single_choice', 'multiple_choice', 'true_false', 'short_answer'];
 
 const questionGroups = computed(() => {
   const groups = {
@@ -64,7 +65,7 @@ async function loadExam() {
   loading.value = true;
   error.value = '';
   try {
-    paper.value = await api.generateExam({
+    const generated = await api.generateExam({
       session_id: session.value.session_id,
       position: session.value.position || moduleInfo.value?.position || '技术岗位',
       company: session.value.company,
@@ -74,6 +75,14 @@ async function loadExam() {
       learning_module_title: session.value.learning_module_title || moduleInfo.value?.title,
       question_mix: questionMix.value
     });
+    paper.value = {
+      ...generated,
+      questions: [...generated.questions].sort(
+        (left, right) =>
+          questionTypeOrder.indexOf(left.question_type) -
+          questionTypeOrder.indexOf(right.question_type)
+      )
+    };
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -156,8 +165,8 @@ async function submit() {
     <div class="exam-summary">
       <span>{{ session?.learning_module_title || '未命名模块' }}</span>
       <b>{{ questionMix.single_choice }} 单选</b>
-      <b>{{ questionMix.true_false }} 判断</b>
       <b>{{ questionMix.multiple_choice }} 多选</b>
+      <b>{{ questionMix.true_false }} 判断</b>
       <b>{{ questionMix.short_answer }} 简答</b>
     </div>
 

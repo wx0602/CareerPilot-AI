@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import random
 import sys
 from pathlib import Path
 from typing import Any, Protocol
 from uuid import uuid4
 
-from app.services.learning_modules import default_question_mix, get_learning_module
+from .learning_modules import default_question_mix, get_learning_module
 
 
 class ProviderUnavailableError(RuntimeError):
@@ -388,6 +389,89 @@ class RealAIProvider:
             return sum(int(value) for value in mix.values())
         return int(request.get("question_count", default_question_mix().total()))
 
+    @staticmethod
+    def _deduplicate_questions(*groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        selected: list[dict[str, Any]] = []
+        seen_ids: set[str] = set()
+        seen_contents: set[str] = set()
+        for group in groups:
+            for question in group:
+                question_id = str(question["question_id"])
+                normalized_content = " ".join(str(question["content"]).split()).casefold()
+                if question_id in seen_ids or normalized_content in seen_contents:
+                    continue
+                seen_ids.add(question_id)
+                seen_contents.add(normalized_content)
+                selected.append(question)
+        return selected
+
+    @staticmethod
+    def _shuffled(
+        questions: list[dict[str, Any]],
+        *,
+        seed: str,
+    ) -> list[dict[str, Any]]:
+        shuffled = questions[:]
+        random.Random(seed).shuffle(shuffled)
+        return shuffled
+
+    def _select_questions(
+        self,
+        request: dict[str, Any],
+        preferred: list[dict[str, Any]],
+        candidates: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        seed = (
+            f"{request['session_id']}:{request.get('learning_module') or ''}:"
+            f"{request.get('position') or ''}:{request.get('difficulty') or ''}"
+        )
+        mix = request.get("question_mix")
+        if not mix:
+            count = self._question_target_count(request)
+            preferred_ids = {item["question_id"] for item in preferred}
+            fallback = [item for item in candidates if item["question_id"] not in preferred_ids]
+            ordered = self._shuffled(preferred, seed=f"{seed}:preferred")
+            ordered.extend(self._shuffled(fallback, seed=f"{seed}:fallback"))
+            if len(ordered) < count:
+                raise ValueError(f"题库需要 {count} 道题，当前只有 {len(ordered)} 道")
+            return ordered[:count]
+
+        selected: list[dict[str, Any]] = []
+        shortages: list[str] = []
+        for question_type, raw_count in mix.items():
+            count = int(raw_count)
+            if count <= 0:
+                continue
+            preferred_bucket = [
+                item for item in preferred if item["question_type"] == question_type
+            ]
+            preferred_ids = {item["question_id"] for item in preferred_bucket}
+            fallback_bucket = [
+                item
+                for item in candidates
+                if item["question_type"] == question_type
+                and item["question_id"] not in preferred_ids
+            ]
+            ordered = self._shuffled(
+                preferred_bucket,
+                seed=f"{seed}:{question_type}:preferred",
+            )
+            ordered.extend(
+                self._shuffled(
+                    fallback_bucket,
+                    seed=f"{seed}:{question_type}:fallback",
+                )
+            )
+            if len(ordered) < count:
+                shortages.append(f"{question_type} 需要 {count} 道，当前只有 {len(ordered)} 道")
+                continue
+            selected.extend(ordered[:count])
+
+        if shortages:
+            module_name = request.get("learning_module_title") or request.get("position") or "当前模块"
+            raise ValueError(f"{module_name} 模块题库不足：{'; '.join(shortages)}")
+        return selected
+
     def _search_question_bank(self, request: dict[str, Any]) -> list[dict[str, Any]]:
         module = get_learning_module(request.get("learning_module"))
         if module and not module.available:
@@ -395,48 +479,54 @@ class RealAIProvider:
 
         search_position = module.search_position if module else request.get("position")
         search_points = list(module.search_knowledge_points) if module and module.search_knowledge_points else None
-        query_parts = [
-            request.get("learning_module_title"),
-            request.get("position"),
-            request.get("company"),
-            request.get("difficulty"),
-        ]
-        query = " ".join(str(item) for item in query_parts if item)
         requested_count = self._question_target_count(request)
         top_k = max(requested_count * 8, 100)
 
-        result = self.knowledge.search_questions(
-            query,
+        preferred_result = self.knowledge.search_questions(
+            "",
             position=search_position,
             difficulty=request.get("difficulty"),
             knowledge_points=search_points,
             top_k=top_k,
             include_answer=True,
         )
-        questions = result.get("questions", [])
-        if questions:
-            return questions
+        all_difficulties_result = self.knowledge.search_questions(
+            "",
+            position=search_position,
+            knowledge_points=search_points,
+            top_k=top_k,
+            include_answer=True,
+        )
+        preferred = self._deduplicate_questions(preferred_result.get("questions", []))
+        candidates = self._deduplicate_questions(
+            preferred,
+            all_difficulties_result.get("questions", []),
+        )
 
-        if not module and search_position and not search_points:
-            fallback_by_query = self.knowledge.search_questions(
-                query,
+        if not candidates and module:
+            module_name = request.get("learning_module_title") or request.get("position") or "当前模块"
+            raise ValueError(f"{module_name} 模块暂无可用题目，请先补充题库。")
+
+        if not candidates:
+            global_preferred = self.knowledge.search_questions(
+                "",
                 difficulty=request.get("difficulty"),
                 top_k=top_k,
                 include_answer=True,
             )
-            questions = fallback_by_query.get("questions", [])
-            if questions:
-                return questions
-
-        if module or (search_position and module is not None) or search_points:
-            module_name = request.get("learning_module_title") or request.get("position") or "当前模块"
-            raise ValueError(f"{module_name} 模块暂无可用题目，请先补充题库。")
-
-        fallback = self.knowledge.search_questions("", top_k=top_k, include_answer=True)
-        questions = fallback.get("questions", [])
-        if not questions:
+            global_fallback = self.knowledge.search_questions(
+                "",
+                top_k=top_k,
+                include_answer=True,
+            )
+            preferred = self._deduplicate_questions(global_preferred.get("questions", []))
+            candidates = self._deduplicate_questions(
+                preferred,
+                global_fallback.get("questions", []),
+            )
+        if not candidates:
             raise ProviderUnavailableError("题库检索结果为空，无法生成笔试。")
-        return questions
+        return self._select_questions(request, preferred, candidates)
 
     def generate_exam(self, request: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
         from agents import generate_exam

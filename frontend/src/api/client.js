@@ -32,13 +32,34 @@ async function request(path, options = {}) {
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...(options.headers || {})
   };
-  const response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+
+  let response;
+  try {
+    response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+  } catch {
+    throw new Error(`无法连接后端服务，请确认 ${API_BASE} 已启动`);
+  }
+
   const text = await response.text();
-  const data = text ? JSON.parse(text) : null;
+  let data = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = text;
+    }
+  }
+
   if (!response.ok) {
     const detail = data?.detail;
-    throw new Error(detail?.message || detail?.code || `请求失败：${response.status}`);
+    throw new Error(
+      detail?.message ||
+      detail?.code ||
+      (typeof data === 'string' && data.trim()) ||
+      `请求失败：${response.status}`
+    );
   }
+
   return data;
 }
 
@@ -79,6 +100,9 @@ export const api = {
   },
   generateReport(payload) {
     return request('/api/reports/generate', { method: 'POST', body: JSON.stringify(payload) });
+  },
+  listReports() {
+    return request('/api/reports');
   },
   getReport(sessionId) {
     return request(`/api/reports/${sessionId}`);

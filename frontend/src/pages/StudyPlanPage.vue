@@ -42,7 +42,7 @@ async function confirmAndNext() {
     });
     setSession(updated);
     session.value = updated;
-    router.push('/upload');
+    router.push('/exam');
   } catch (err) {
     error.value = err.message;
   } finally {

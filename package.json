@@ -7,8 +7,14 @@
     "frontend"
   ],
   "scripts": {
-    "dev": "npm --workspace frontend run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "dev:backend": "python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir backend/app",
+    "db:migrate": "python -m alembic -c backend/alembic.ini upgrade head",
     "build": "npm --workspace frontend run build",
     "preview": "npm --workspace frontend run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

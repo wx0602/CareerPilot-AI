@@ -1,20 +1,56 @@
+import os
 from pathlib import Path
 
+from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BACKEND_DIR = Path(__file__).resolve().parents[2]
+REPO_ROOT = BACKEND_DIR.parent
+IS_VERCEL = bool(os.environ.get("VERCEL"))
+RUNTIME_DIR = Path("/tmp/careerpilot") if IS_VERCEL else BACKEND_DIR
+
+
+def _resolve_backend_relative_path(value: str | Path) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else (BACKEND_DIR / path).resolve()
+
+
+def _normalize_database_url(value: str) -> str:
+    if value.startswith("postgres://"):
+        return value.replace("postgres://", "postgresql+psycopg://", 1)
+    if value.startswith("postgresql://"):
+        return value.replace("postgresql://", "postgresql+psycopg://", 1)
+
+    prefix = "sqlite:///"
+    if not value.startswith(prefix):
+        return value
+    raw_path = value.removeprefix(prefix)
+    if raw_path in {":memory:", ""}:
+        return value
+    return f"{prefix}{_resolve_backend_relative_path(raw_path).as_posix()}"
 
 
 class Settings(BaseSettings):
     app_name: str = "CareerPilot AI API"
     app_env: str = "development"
-    database_url: str = "sqlite:///./careerpilot.db"
-    upload_dir: Path = Path("./uploads")
+    database_url: str = f"sqlite:///{(BACKEND_DIR / 'careerpilot.db').as_posix()}"
+    upload_dir: Path = RUNTIME_DIR / "uploads"
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
+    cors_origin_regex: str | None = None
     max_upload_bytes: int = 10 * 1024 * 1024
-    provider_mode: str = "stub"
-    knowledge_database_path: str = "knowledge/question_bank/questions.sqlite3"
-    knowledge_chroma_dir: str = "knowledge/chroma_store"
-    knowledge_raw_dir: str = "knowledge/question_bank/raw"
-    ai_core_path: str = "ai-core"
+    provider_mode: str = "real"
+    knowledge_database_path: str = str(
+        RUNTIME_DIR / "questions.sqlite3"
+        if IS_VERCEL
+        else REPO_ROOT / "knowledge" / "question_bank" / "questions.sqlite3"
+    )
+    knowledge_chroma_dir: str = str(
+        RUNTIME_DIR / "chroma_store"
+        if IS_VERCEL
+        else REPO_ROOT / "knowledge" / "chroma_store"
+    )
+    knowledge_raw_dir: str = str(REPO_ROOT / "knowledge" / "question_bank" / "raw")
+    ai_core_path: str = str(REPO_ROOT / "ai-core")
 
     demo_account: str = "demo@careerpilot.local"
     demo_password: str = "Demo123!"
@@ -23,10 +59,34 @@ class Settings(BaseSettings):
     guest_token_ttl_hours: int = 2
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(BACKEND_DIR / ".env"),
         env_file_encoding="utf-8",
         extra="ignore",
     )
+
+    @field_validator("database_url", mode="after")
+    @classmethod
+    def normalize_database_url(cls, value: str) -> str:
+        return _normalize_database_url(value)
+
+    @field_validator(
+        "upload_dir",
+        "knowledge_database_path",
+        "knowledge_chroma_dir",
+        "knowledge_raw_dir",
+        "ai_core_path",
+        mode="after",
+    )
+    @classmethod
+    def normalize_paths(cls, value: str | Path) -> Path | str:
+        resolved = _resolve_backend_relative_path(value)
+        return resolved if isinstance(value, Path) else str(resolved)
+
+    @model_validator(mode="after")
+    def validate_production_database(self) -> "Settings":
+        if self.app_env == "production" and self.database_url.startswith("sqlite"):
+            raise ValueError("生产环境不能使用 SQLite，请配置 DATABASE_URL 为 Postgres 连接串")
+        return self
 
     @property
     def cors_origin_list(self) -> list[str]:

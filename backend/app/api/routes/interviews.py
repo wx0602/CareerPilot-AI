@@ -4,17 +4,17 @@ from fastapi import APIRouter, Depends, Request
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_token, get_db, owned_training_session
-from app.core.errors import api_error, conflict, not_found
-from app.core.security import utc_now
-from app.dbmodels import AuthToken, Interview, InterviewTurn, Material
-from app.schemas.api import (
+from ..deps import get_current_token, get_db, owned_training_session
+from ...core.errors import api_error, conflict, not_found
+from ...core.security import utc_now
+from ...dbmodels import AuthToken, Interview, InterviewTurn, Material
+from ...schemas.api import (
     EvaluationResponse,
     InterviewMessageRequest,
     InterviewMessageResponse,
     QuestionResponse,
 )
-from app.services.providers import ProviderUnavailableError
+from ...services.providers import ProviderUnavailableError
 
 
 router = APIRouter(prefix="/interviews", tags=["文本面试"])

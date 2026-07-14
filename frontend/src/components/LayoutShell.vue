@@ -4,7 +4,7 @@ import BrandLogo from './BrandLogo.vue';
 
 const nav = [
   { to: '/dashboard', label: '场景选择', icon: 'grid' },
-  { to: '/upload', label: '我的练习', icon: 'practice' },
+  { to: { path: '/upload', query: { new: '1' } }, label: '上传简历', icon: 'practice' },
   { to: '/study-plan', label: '学习计划', icon: 'plan' },
   { to: '/report', label: '我的报告', icon: 'report' },
   { to: '/favorites', label: '收藏题库', icon: 'star' },

@@ -5,11 +5,11 @@ from zipfile import BadZipFile, ZipFile
 from fastapi import APIRouter, Depends, File, Form, Request, UploadFile, status
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_token, get_db, owned_training_session
-from app.core.errors import api_error
-from app.dbmodels import AuthToken, Material
-from app.schemas.api import MaterialUploadResponse
-from app.services.providers import ProviderUnavailableError
+from ..deps import get_current_token, get_db, owned_training_session
+from ...core.errors import api_error
+from ...dbmodels import AuthToken, Material
+from ...schemas.api import MaterialUploadResponse
+from ...services.providers import ProviderUnavailableError
 
 
 router = APIRouter(prefix="/materials", tags=["材料"])

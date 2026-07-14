@@ -21,6 +21,14 @@ from scoring.summary import average_score, build_suggestions, collect_weaknesses
 from skills.definitions import get_skill, skill_to_payload
 
 
+QUESTION_TYPE_ORDER = (
+    "single_choice",
+    "multiple_choice",
+    "true_false",
+    "short_answer",
+)
+
+
 class ShortAnswerGrade(BaseModel):
     question_id: str
     score: int = Field(ge=0, le=100)
@@ -74,10 +82,14 @@ class ExamAgent:
             selected = bank[:]
             random.Random(seed).shuffle(selected)
             selected = selected[: req.question_count]
+            type_rank = {question_type: index for index, question_type in enumerate(QUESTION_TYPE_ORDER)}
+            selected.sort(key=lambda item: type_rank.get(item.question_type, len(type_rank)))
         else:
             selected = []
             shortages: list[str] = []
-            for question_type, count in req.question_mix.model_dump().items():
+            mix = req.question_mix.model_dump()
+            for question_type in QUESTION_TYPE_ORDER:
+                count = mix[question_type]
                 bucket = [item for item in bank if item.question_type == question_type]
                 random.Random(f"{seed}:{question_type}").shuffle(bucket)
                 if len(bucket) < count:
@@ -87,7 +99,6 @@ class ExamAgent:
             if shortages:
                 module_name = req.learning_module_title or req.position
                 raise ValueError(f"{module_name} 模块题库不足：{'; '.join(shortages)}")
-            random.Random(f"{seed}:final").shuffle(selected)
 
         questions = [
             ExamQuestion(

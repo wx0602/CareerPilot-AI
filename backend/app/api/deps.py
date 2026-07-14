@@ -6,9 +6,9 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.core.errors import forbidden, not_found, unauthorized
-from app.core.security import hash_access_token, utc_now
-from app.dbmodels import AuthToken, TrainingSession
+from ..core.errors import forbidden, not_found, unauthorized
+from ..core.security import hash_access_token, utc_now
+from ..dbmodels import AuthToken, TrainingSession
 
 
 bearer_scheme = HTTPBearer(auto_error=False)

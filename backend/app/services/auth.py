@@ -1,9 +1,9 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.core.config import Settings
-from app.core.security import hash_password
-from app.dbmodels import User
+from ..core.config import Settings
+from ..core.security import hash_password
+from ..dbmodels import User
 
 
 def ensure_demo_user(db: Session, settings: Settings) -> User:

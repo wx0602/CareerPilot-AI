@@ -1,11 +1,11 @@
 export const QUESTION_MIX = {
   single_choice: 5,
-  true_false: 5,
   multiple_choice: 2,
+  true_false: 5,
   short_answer: 3
 };
 
-export const QUESTION_MIX_LABEL = '5 单选 + 5 判断 + 2 多选 + 3 简答';
+export const QUESTION_MIX_LABEL = '5 单选 + 2 多选 + 5 判断 + 3 简答';
 
 export const learningModules = [
   {

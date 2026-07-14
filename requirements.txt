@@ -1,0 +1,8 @@
+-r backend/requirements.txt
+-r ai-core/requirements.txt
+
+# Runtime document parsers. Chroma is intentionally omitted from the serverless
+# bundle; production question selection currently uses deterministic SQL filters.
+python-docx>=1.1,<2.0
+pypdf>=5.0,<7.0
+python-pptx>=1.0,<2.0

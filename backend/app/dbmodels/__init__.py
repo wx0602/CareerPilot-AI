@@ -1,4 +1,4 @@
-from app.dbmodels.entities import (
+from .entities import (
     AuthToken,
     Exam,
     ExamQuestion,

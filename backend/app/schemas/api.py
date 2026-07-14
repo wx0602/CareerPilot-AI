@@ -197,6 +197,13 @@ class ReportResponse(BaseModel):
     summary: str
 
 
+class ReportListItem(ReportResponse):
+    generated_at: datetime
+    position: str | None = None
+    company: str | None = None
+    learning_module_title: str | None = None
+
+
 class FavoriteQuestionCreate(BaseModel):
     question: ExamQuestion
 

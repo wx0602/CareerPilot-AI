@@ -21,11 +21,11 @@ const scenarios = [
   {
     icon: '◎',
     tone: 'green',
-    mode: 'technical',
+    mode: 'job',
     title: '文本面试',
     desc: 'AI 模拟面试 · 实时对话',
     note: '适合各类岗位',
-    route: '/interview'
+    route: '/upload'
   },
   {
     icon: '◍',
@@ -61,11 +61,16 @@ const scenarios = [
     title: '职业规划',
     desc: '职业发展 · 方向探索',
     note: '适合求职规划',
-    route: '/interview'
+    route: '/career-assessment',
+    requiresSession: false
   }
 ];
 
 async function start(item) {
+  if (item.requiresSession === false) {
+    router.push(item.route);
+    return;
+  }
   loading.value = item.title;
   error.value = '';
   try {

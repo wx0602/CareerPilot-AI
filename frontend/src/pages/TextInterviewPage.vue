@@ -68,6 +68,20 @@ async function send() {
     loading.value = false;
   }
 }
+
+async function finishInterview() {
+  if (!session.value || loading.value) return;
+  loading.value = true;
+  error.value = '';
+  try {
+    await api.generateReport({ session_id: session.value.session_id });
+    await router.push('/report');
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    loading.value = false;
+  }
+}
 </script>
 
 <template>
@@ -79,7 +93,7 @@ async function send() {
       </button>
       <h1>模拟面试 · {{ interviewTitle }}</h1>
       <span>训练中</span>
-      <button class="outline-button" @click="router.push('/report')">结束面试</button>
+      <button class="outline-button" :disabled="loading" @click="finishInterview">结束面试并保存报告</button>
     </header>
 
     <p v-if="error" class="form-error">{{ error }}</p>

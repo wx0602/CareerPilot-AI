@@ -4,17 +4,17 @@ from fastapi import APIRouter, Depends, Request, Response, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_current_token, get_db
-from app.core.errors import conflict, unauthorized
-from app.core.security import (
+from ..deps import get_current_token, get_db
+from ...core.errors import conflict, unauthorized
+from ...core.security import (
     hash_access_token,
     hash_password,
     new_access_token,
     utc_now,
     verify_password,
 )
-from app.dbmodels import AuthToken, User
-from app.schemas.api import AuthResponse, LoginRequest, RegisterRequest, UserInfo
+from ...dbmodels import AuthToken, User
+from ...schemas.api import AuthResponse, LoginRequest, RegisterRequest, UserInfo
 
 
 router = APIRouter(prefix="/auth", tags=["认证"])

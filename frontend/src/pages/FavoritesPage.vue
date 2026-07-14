@@ -42,7 +42,7 @@ async function remove(questionId) {
       <p v-if="error" class="form-error">{{ error }}</p>
       <div class="scenario-grid">
         <article v-for="item in favorites" :key="item.favorite_id" class="scenario-card">
-          <span class="scenario-icon blue">★</span>
+          <span class="scenario-icon favorite-star">★</span>
           <h2>{{ item.content }}</h2>
           <p>{{ item.question_type }}</p>
           <small>{{ item.question_id }}</small>

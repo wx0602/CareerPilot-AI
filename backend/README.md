@@ -81,7 +81,7 @@ B 只维护 `app/services/providers.py` 中的适配协议：
 - C：`parse_material(path, material_type) -> list[ContextChunk]`
 - D：`generate_exam`、`grade_exam`、`generate_question`、`evaluate_answer`、`generate_report`
 
-`.env` 中 `PROVIDER_MODE=stub` 时使用固定开发数据跑通流程；`PROVIDER_MODE=real` 时，在真实函数尚未接入的接口上返回明确的未就绪状态。开发桩不代表 C 的解析/RAG 或 D 的 AI/评分实现。
+`.env` 默认使用 `PROVIDER_MODE=real`，笔试会从 `knowledge/question_bank/questions.sqlite3` 检索真实题目，并在所选难度题量不足时从同一学习模块的其他难度补足。`PROVIDER_MODE=stub` 仅用于后端自动化测试和接口联调，不应作为本地体验配置。
 
 ## 当前未完成项
 

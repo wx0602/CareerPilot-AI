@@ -7,11 +7,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import inspect, text
 
-from app.api.routes import auth, exams, favorites, interviews, materials, reports, training_sessions
-from app.core.config import Settings, get_settings
-from app.db.session import create_database_engine, create_session_factory
-from app.services.auth import ensure_demo_user
-from app.services.providers import AIProvider, KnowledgeProvider, build_providers
+from .api.routes import auth, exams, favorites, interviews, materials, reports, training_sessions
+from .core.config import Settings, get_settings
+from .db.session import create_database_engine, create_session_factory
+from .services.auth import ensure_demo_user
+from .services.providers import AIProvider, KnowledgeProvider, build_providers
 
 
 def create_app(
@@ -52,6 +52,7 @@ def create_app(
     application.add_middleware(
         CORSMiddleware,
         allow_origins=app_settings.cors_origin_list,
+        allow_origin_regex=app_settings.cors_origin_regex or None,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
