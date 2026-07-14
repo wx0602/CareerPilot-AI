@@ -1,0 +1,570 @@
+[
+  {
+    "question_id": "general_001",
+    "question_type": "single_choice",
+    "content": "在团队协作中发现需求描述存在歧义时，最合适的第一步是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "直接按自己的理解开发"
+      },
+      {
+        "key": "B",
+        "text": "暂停所有工作等待"
+      },
+      {
+        "key": "C",
+        "text": "与需求方确认目标、边界和验收标准"
+      },
+      {
+        "key": "D",
+        "text": "把问题交给其他成员"
+      }
+    ],
+    "answer": "C",
+    "explanation": "先确认目标、边界和验收标准可以减少返工，并让后续工作有共同依据。",
+    "knowledge_points": [
+      "沟通协作",
+      "需求澄清"
+    ],
+    "company": "通用",
+    "position": "general",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "general_002",
+    "question_type": "true_false",
+    "content": "遇到无法按期完成的任务时，应尽早说明风险、影响和可选方案。",
+    "options": [],
+    "answer": "true",
+    "explanation": "尽早透明沟通有利于团队调整范围、资源或时间安排。",
+    "knowledge_points": [
+      "项目管理",
+      "风险沟通"
+    ],
+    "company": "通用",
+    "position": "general",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "general_003",
+    "question_type": "short_answer",
+    "content": "请简述STAR法则在回答行为面试题时的四个部分。",
+    "options": [],
+    "answer": "情境、任务、行动、结果。",
+    "explanation": "STAR分别对应Situation、Task、Action和Result，用于清晰呈现经历及个人贡献。",
+    "knowledge_points": [
+      "行为面试",
+      "结构化表达"
+    ],
+    "company": "通用",
+    "position": "general",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "seed_java_001",
+    "question_type": "single_choice",
+    "content": "关于Java String，下列说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "String对象内容可原地修改"
+      },
+      {
+        "key": "B",
+        "text": "String是不可变类"
+      },
+      {
+        "key": "C",
+        "text": "String不是引用类型"
+      },
+      {
+        "key": "D",
+        "text": "String不能作为Map的键"
+      }
+    ],
+    "answer": "B",
+    "explanation": "String是不可变类，创建后其表示的字符序列不能被原地修改。",
+    "knowledge_points": [
+      "Java基础",
+      "String"
+    ],
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "seed_java_002",
+    "question_type": "true_false",
+    "content": "volatile能够保证i++复合操作的原子性。",
+    "options": [],
+    "answer": "false",
+    "explanation": "volatile保证可见性和一定的有序性，但i++包含读取、计算和写入多个步骤。",
+    "knowledge_points": [
+      "Java并发",
+      "volatile"
+    ],
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "seed_java_003",
+    "question_type": "short_answer",
+    "content": "请说明缓存穿透的含义，并给出两种常见治理方式。",
+    "options": [],
+    "answer": "缓存穿透是持续查询不存在的数据，导致请求绕过缓存访问数据库；可采用缓存空值、布隆过滤器、参数校验或限流。",
+    "explanation": "治理目标是阻止对确定不存在数据的请求持续落到数据库。",
+    "knowledge_points": [
+      "Redis",
+      "缓存穿透"
+    ],
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "python_001",
+    "question_type": "single_choice",
+    "content": "Python中哪一种内置类型是不可变的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "list"
+      },
+      {
+        "key": "B",
+        "text": "dict"
+      },
+      {
+        "key": "C",
+        "text": "set"
+      },
+      {
+        "key": "D",
+        "text": "tuple"
+      }
+    ],
+    "answer": "D",
+    "explanation": "tuple是不可变序列；list、dict和set均可修改。",
+    "knowledge_points": [
+      "Python基础",
+      "数据类型"
+    ],
+    "company": "通用",
+    "position": "python_backend",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "python_002",
+    "question_type": "true_false",
+    "content": "在Python函数定义中使用可变对象作为默认参数，可能导致多次调用共享同一个对象。",
+    "options": [],
+    "answer": "true",
+    "explanation": "默认参数在函数定义时创建，后续调用会复用，因此通常用None作为默认值。",
+    "knowledge_points": [
+      "Python函数",
+      "默认参数"
+    ],
+    "company": "通用",
+    "position": "python_backend",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "python_003",
+    "question_type": "short_answer",
+    "content": "FastAPI中为什么常使用Pydantic模型定义请求体？",
+    "options": [],
+    "answer": "用于声明字段类型、执行数据校验、生成序列化结果并自动生成接口文档。",
+    "explanation": "明确的数据模型能减少接口歧义并让校验和文档保持一致。",
+    "knowledge_points": [
+      "FastAPI",
+      "Pydantic"
+    ],
+    "company": "通用",
+    "position": "python_backend",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "frontend_001",
+    "question_type": "single_choice",
+    "content": "在Vue 3组合式API中，通常使用哪个函数创建基本类型的响应式引用？",
+    "options": [
+      {
+        "key": "A",
+        "text": "computed"
+      },
+      {
+        "key": "B",
+        "text": "ref"
+      },
+      {
+        "key": "C",
+        "text": "watch"
+      },
+      {
+        "key": "D",
+        "text": "provide"
+      }
+    ],
+    "answer": "B",
+    "explanation": "ref可包装基本类型或对象，并通过value访问其值。",
+    "knowledge_points": [
+      "Vue 3",
+      "响应式"
+    ],
+    "company": "通用",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "frontend_002",
+    "question_type": "true_false",
+    "content": "浏览器的同源策略会比较协议、域名和端口。",
+    "options": [],
+    "answer": "true",
+    "explanation": "协议、域名和端口任一不同，通常就不属于同源。",
+    "knowledge_points": [
+      "浏览器",
+      "同源策略"
+    ],
+    "company": "通用",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "frontend_003",
+    "question_type": "short_answer",
+    "content": "请说明防抖和节流的主要区别。",
+    "options": [],
+    "answer": "防抖在连续触发停止一段时间后执行；节流限制函数在固定时间窗口内最多执行一定次数。",
+    "explanation": "防抖适合搜索输入等场景，节流适合滚动或拖动等高频事件。",
+    "knowledge_points": [
+      "JavaScript",
+      "性能优化"
+    ],
+    "company": "通用",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "test_001",
+    "question_type": "single_choice",
+    "content": "边界值分析最关注哪一类输入？",
+    "options": [
+      {
+        "key": "A",
+        "text": "随机输入"
+      },
+      {
+        "key": "B",
+        "text": "输入范围边界及其附近值"
+      },
+      {
+        "key": "C",
+        "text": "只关注正常值"
+      },
+      {
+        "key": "D",
+        "text": "仅关注空值"
+      }
+    ],
+    "answer": "B",
+    "explanation": "缺陷常出现在输入范围边界，因此要覆盖边界值及边界两侧的值。",
+    "knowledge_points": [
+      "测试用例设计",
+      "边界值"
+    ],
+    "company": "通用",
+    "position": "software_testing",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "test_002",
+    "question_type": "true_false",
+    "content": "接口返回HTTP 200就能证明业务功能一定正确。",
+    "options": [],
+    "answer": "false",
+    "explanation": "还需要校验响应体、业务状态、数据变化、性能以及异常处理等。",
+    "knowledge_points": [
+      "接口测试",
+      "HTTP"
+    ],
+    "company": "通用",
+    "position": "software_testing",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "test_003",
+    "question_type": "short_answer",
+    "content": "一个完整缺陷报告通常应包含哪些核心信息？",
+    "options": [],
+    "answer": "标题、环境、前置条件、复现步骤、实际结果、期望结果、严重程度及必要的日志或截图。",
+    "explanation": "这些信息帮助开发人员稳定复现、定位并评估缺陷。",
+    "knowledge_points": [
+      "缺陷管理",
+      "质量保障"
+    ],
+    "company": "通用",
+    "position": "software_testing",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "data_ai_001",
+    "question_type": "single_choice",
+    "content": "二分类任务中，精确率Precision的定义是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "TP/(TP+FP)"
+      },
+      {
+        "key": "B",
+        "text": "TP/(TP+FN)"
+      },
+      {
+        "key": "C",
+        "text": "(TP+TN)/全部样本"
+      },
+      {
+        "key": "D",
+        "text": "TN/(TN+FP)"
+      }
+    ],
+    "answer": "A",
+    "explanation": "精确率衡量预测为正的样本中实际为正的比例。",
+    "knowledge_points": [
+      "机器学习",
+      "评估指标"
+    ],
+    "company": "通用",
+    "position": "data_ai",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "data_ai_002",
+    "question_type": "true_false",
+    "content": "训练集表现很好而验证集表现明显较差，可能是过拟合。",
+    "options": [],
+    "answer": "true",
+    "explanation": "模型可能记住训练数据中的细节或噪声，导致泛化能力不足。",
+    "knowledge_points": [
+      "机器学习",
+      "过拟合"
+    ],
+    "company": "通用",
+    "position": "data_ai",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "data_ai_003",
+    "question_type": "short_answer",
+    "content": "RAG系统中为什么需要对文档进行分块？",
+    "options": [],
+    "answer": "分块使文本满足模型上下文限制，并以更细粒度建立向量、召回相关段落，减少无关信息。",
+    "explanation": "块过大可能稀释相关信息，块过小则可能破坏语义，需要结合重叠窗口调节。",
+    "knowledge_points": [
+      "RAG",
+      "文本分块"
+    ],
+    "company": "通用",
+    "position": "data_ai",
+    "difficulty": "hard",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "devops_001",
+    "question_type": "single_choice",
+    "content": "Docker镜像和容器的关系，哪项描述正确？",
+    "options": [
+      {
+        "key": "A",
+        "text": "镜像是运行中的进程"
+      },
+      {
+        "key": "B",
+        "text": "容器是镜像的运行实例"
+      },
+      {
+        "key": "C",
+        "text": "容器不能写入数据"
+      },
+      {
+        "key": "D",
+        "text": "镜像只能创建一个容器"
+      }
+    ],
+    "answer": "B",
+    "explanation": "镜像是只读模板，容器是由镜像创建的运行实例。",
+    "knowledge_points": [
+      "Docker",
+      "容器"
+    ],
+    "company": "通用",
+    "position": "devops",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "devops_002",
+    "question_type": "true_false",
+    "content": "Linux中的SIGKILL信号可以被目标进程捕获并自行忽略。",
+    "options": [],
+    "answer": "false",
+    "explanation": "SIGKILL由内核直接处理，目标进程不能捕获、阻塞或忽略。",
+    "knowledge_points": [
+      "Linux",
+      "进程"
+    ],
+    "company": "通用",
+    "position": "devops",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "devops_003",
+    "question_type": "short_answer",
+    "content": "线上服务CPU使用率持续升高时，应优先收集哪些信息？",
+    "options": [],
+    "answer": "主机负载、进程和线程CPU占用、近期发布或流量变化、应用日志、调用链及性能剖析信息。",
+    "explanation": "先保留现场并从系统、进程和应用多个层次定位高消耗来源。",
+    "knowledge_points": [
+      "故障排查",
+      "监控"
+    ],
+    "company": "通用",
+    "position": "devops",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "product_001",
+    "question_type": "single_choice",
+    "content": "产品需求的验收标准主要用于什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "增加文档长度"
+      },
+      {
+        "key": "B",
+        "text": "明确功能完成和通过的判断条件"
+      },
+      {
+        "key": "C",
+        "text": "替代用户调研"
+      },
+      {
+        "key": "D",
+        "text": "决定开发语言"
+      }
+    ],
+    "answer": "B",
+    "explanation": "可验证的验收标准让产品、开发和测试对完成条件形成一致理解。",
+    "knowledge_points": [
+      "需求分析",
+      "验收标准"
+    ],
+    "company": "通用",
+    "position": "product_operation",
+    "difficulty": "easy",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "product_002",
+    "question_type": "true_false",
+    "content": "只看总注册用户数就足以判断产品当前的用户活跃情况。",
+    "options": [],
+    "answer": "false",
+    "explanation": "累计注册量不能反映当前活跃，需要结合DAU、MAU、留存率和使用频次等指标。",
+    "knowledge_points": [
+      "数据指标",
+      "用户活跃"
+    ],
+    "company": "通用",
+    "position": "product_operation",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "product_003",
+    "question_type": "short_answer",
+    "content": "发现新用户次日留存下降时，可以从哪些方面分析原因？",
+    "options": [],
+    "answer": "可按渠道、版本、用户群和使用路径分层，检查注册与首日关键行为漏斗、产品故障、内容质量及触达策略。",
+    "explanation": "分层与漏斗分析有助于区分流量质量、产品体验和运营触达问题。",
+    "knowledge_points": [
+      "用户留存",
+      "数据分析"
+    ],
+    "company": "通用",
+    "position": "product_operation",
+    "difficulty": "medium",
+    "source": "CareerPilot AI 团队原创",
+    "source_url": "",
+    "license": "original"
+  }
+]

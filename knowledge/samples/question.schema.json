@@ -1,16 +1,39 @@
 {
-  "id": "string",
-  "company": "string",
-  "position": "string",
-  "difficulty": "easy | medium | hard",
-  "type": "choice | judge | short_answer",
-  "stem": "string",
-  "options": [
-    "string"
-  ],
-  "answer": "string",
-  "knowledge_points": [
-    "string"
-  ],
-  "explanation": "string"
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CareerPilot AI Question",
+  "type": "object",
+  "required": ["question_id", "company", "position", "difficulty", "question_type", "content", "options", "answer", "knowledge_points", "explanation"],
+  "properties": {
+    "question_id": {"type": "string", "minLength": 1},
+    "company": {"type": "string", "minLength": 1},
+    "position": {"type": "string", "minLength": 1},
+    "difficulty": {"enum": ["easy", "medium", "hard"]},
+    "question_type": {"enum": ["single_choice", "multiple_choice", "true_false", "short_answer"]},
+    "content": {"type": "string", "minLength": 1},
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "text"],
+        "properties": {
+          "key": {"type": "string", "minLength": 1},
+          "text": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "answer": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "array", "items": {"type": "string"}},
+        {"type": "null"}
+      ]
+    },
+    "knowledge_points": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "explanation": {"type": "string", "minLength": 1},
+    "source": {"type": "string"},
+    "source_url": {"type": "string"},
+    "license": {"type": "string"}
+  },
+  "additionalProperties": false
 }

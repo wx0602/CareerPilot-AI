@@ -11,5 +11,6 @@ __pycache__/
 *.db
 backend/uploads/*
 knowledge/chroma_store/*
+knowledge/question_bank/materials.jsonl
 !backend/uploads/README.md
 !knowledge/chroma_store/README.md

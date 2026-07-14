@@ -1,0 +1,12 @@
+张三
+邮箱：zhangsan@example.com
+电话：13800138000
+
+教育经历
+某某大学 软件工程 本科
+
+技能
+Java、Spring Boot、MySQL、Redis、Git、Docker
+
+项目经历
+CareerPilot AI：参与 FastAPI 接口与知识库模块开发，使用 SQLite 保存结构化数据。

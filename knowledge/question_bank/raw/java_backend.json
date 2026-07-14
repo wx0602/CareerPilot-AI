@@ -1,0 +1,1371 @@
+[
+  {
+    "question_id": "java_001",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于Java中的String类，下列说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "String对象创建后可以直接修改内部字符数组"
+      },
+      {
+        "key": "B",
+        "text": "String是不可变类，修改字符串会产生新的对象"
+      },
+      {
+        "key": "C",
+        "text": "String不能使用==进行比较"
+      },
+      {
+        "key": "D",
+        "text": "String不是Java中的引用类型"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Java基础",
+      "String"
+    ],
+    "explanation": "String设计为不可变对象，可以保证字符串常量池安全，同时方便缓存hashCode，提高线程安全性。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/basis/java-basic-questions.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_002",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Java中==和equals()方法的主要区别是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "==比较对象内容，equals比较对象地址"
+      },
+      {
+        "key": "B",
+        "text": "==比较引用是否相同，equals通常用于比较对象内容"
+      },
+      {
+        "key": "C",
+        "text": "二者完全没有区别"
+      },
+      {
+        "key": "D",
+        "text": "equals只能比较基本数据类型"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Java基础",
+      "Object"
+    ],
+    "explanation": "==用于判断两个引用是否指向同一个对象，equals默认也是地址比较，但很多类会重写该方法实现内容比较。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/basis/object.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_003",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "为什么重写equals方法时通常需要同时重写hashCode方法？",
+    "options": [],
+    "answer": "因为Java规定如果两个对象equals返回true，则它们必须具有相同的hashCode，否则会导致HashMap、HashSet等集合无法正确工作。",
+    "knowledge_points": [
+      "Java基础",
+      "Object",
+      "hashCode"
+    ],
+    "explanation": "哈希集合首先根据hashCode定位桶，再使用equals判断对象是否相等。如果违反约定，会导致重复元素或者查询失败。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/basis/object.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_004",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Java中final关键字不能修饰的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "类"
+      },
+      {
+        "key": "B",
+        "text": "方法"
+      },
+      {
+        "key": "C",
+        "text": "变量"
+      },
+      {
+        "key": "D",
+        "text": "包"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "Java基础",
+      "final"
+    ],
+    "explanation": "final可以修饰类、方法和变量，但不能修饰package。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/basis/final.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_005",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Java接口和抽象类的区别包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "抽象类可以包含普通方法"
+      },
+      {
+        "key": "B",
+        "text": "接口支持多实现"
+      },
+      {
+        "key": "C",
+        "text": "一个类只能继承一个抽象类"
+      },
+      {
+        "key": "D",
+        "text": "接口不能定义任何方法"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Java基础",
+      "面向对象"
+    ],
+    "explanation": "抽象类适合描述具有共同属性的对象，接口用于定义能力规范，Java支持一个类实现多个接口。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/basis/interface.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_006",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Java8中HashMap底层主要采用的数据结构是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "数组+链表+红黑树"
+      },
+      {
+        "key": "B",
+        "text": "链表"
+      },
+      {
+        "key": "C",
+        "text": "二叉树"
+      },
+      {
+        "key": "D",
+        "text": "队列"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "集合",
+      "HashMap"
+    ],
+    "explanation": "Java8 HashMap采用数组作为主体，链表解决冲突，当链表长度超过阈值时转换为红黑树。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/hashmap.html",
+    "license": "Apache-2.0"
+  },
+    {
+    "question_id": "java_007",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "ArrayList和LinkedList的主要区别是什么？",
+    "options": [],
+    "answer": "ArrayList基于动态数组实现，查询速度快，随机访问效率高；LinkedList基于双向链表实现，插入和删除中间节点效率较高，但随机访问较慢。",
+    "knowledge_points": [
+      "集合",
+      "List",
+      "ArrayList",
+      "LinkedList"
+    ],
+    "explanation": "ArrayList底层是数组结构，通过索引访问元素时间复杂度接近O(1)，但是扩容和中间插入需要移动元素。LinkedList节点之间通过指针连接，插入删除只需要修改指针，但查找元素需要遍历链表。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/arraylist.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_008",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "关于HashMap扩容机制，下列说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "HashMap容量永远不会发生变化"
+      },
+      {
+        "key": "B",
+        "text": "HashMap元素数量超过阈值时会进行扩容"
+      },
+      {
+        "key": "C",
+        "text": "HashMap扩容只会删除旧数据"
+      },
+      {
+        "key": "D",
+        "text": "HashMap容量只能增加1"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "集合",
+      "HashMap",
+      "扩容机制"
+    ],
+    "explanation": "HashMap通过负载因子计算扩容阈值，当元素数量超过阈值时，会创建更大的数组并重新调整元素位置。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/hashmap.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_009",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "HashMap使用红黑树优化链表结构的原因有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "降低极端情况下查询时间复杂度"
+      },
+      {
+        "key": "B",
+        "text": "避免大量哈希冲突导致链表过长"
+      },
+      {
+        "key": "C",
+        "text": "保证所有查询时间复杂度一定为O(1)"
+      },
+      {
+        "key": "D",
+        "text": "提高大量数据情况下的查询性能"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "集合",
+      "HashMap",
+      "红黑树"
+    ],
+    "explanation": "Java8中HashMap在链表长度超过阈值后转换为红黑树，将查询复杂度由链表情况下的O(n)降低到接近O(log n)。但HashMap并不能保证所有情况都是O(1)。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/hashmap.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_010",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "HashSet底层是通过HashMap实现的，因此HashSet中的元素唯一性依赖于hashCode()和equals()方法。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "集合",
+      "HashSet"
+    ],
+    "explanation": "HashSet内部维护一个HashMap，元素作为HashMap的key存储。HashMap通过hashCode定位位置，并通过equals判断是否重复。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/hashset.html",
+    "license": "Apache-2.0"
+  },
+    {
+    "question_id": "java_011",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "HashMap为什么线程不安全？",
+    "options": [],
+    "answer": "HashMap在多线程环境下进行并发修改时，可能出现数据覆盖、数据丢失等问题。在扩容过程中，多个线程同时操作可能导致链表结构异常。",
+    "knowledge_points": [
+      "集合",
+      "HashMap",
+      "线程安全"
+    ],
+    "explanation": "HashMap没有提供同步机制。多个线程同时put时，可能导致同一个位置的数据覆盖；在扩容过程中，Java7甚至可能产生链表环导致死循环。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/hashmap.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_012",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "ConcurrentHashMap相比HashMap主要解决了什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提高单线程查询速度"
+      },
+      {
+        "key": "B",
+        "text": "提供线程安全的并发访问能力"
+      },
+      {
+        "key": "C",
+        "text": "自动保存数据到磁盘"
+      },
+      {
+        "key": "D",
+        "text": "替代所有集合类型"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "集合",
+      "ConcurrentHashMap",
+      "并发"
+    ],
+    "explanation": "ConcurrentHashMap通过并发控制机制保证多个线程访问时的数据安全，同时尽量降低锁竞争，提高并发性能。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/collection/concurrenthashmap.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_013",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "volatile关键字可以保证变量操作的原子性。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "并发编程",
+      "volatile"
+    ],
+    "explanation": "volatile只能保证变量的可见性和禁止部分指令重排序，不能保证复合操作的原子性，例如i++操作。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/volatile.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_014",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "volatile关键字可以保证哪些特性？",
+    "options": [
+      {
+        "key": "A",
+        "text": "保证变量修改后的立即可见性"
+      },
+      {
+        "key": "B",
+        "text": "禁止特定情况下的指令重排序"
+      },
+      {
+        "key": "C",
+        "text": "保证所有操作都是原子的"
+      },
+      {
+        "key": "D",
+        "text": "保证多个线程执行顺序一致"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "knowledge_points": [
+      "并发编程",
+      "volatile"
+    ],
+    "explanation": "volatile通过内存屏障保证可见性和有序性，但不提供互斥访问，因此不能保证原子性。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/volatile.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_015",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "synchronized关键字主要用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "网络通信问题"
+      },
+      {
+        "key": "B",
+        "text": "线程之间的数据同步问题"
+      },
+      {
+        "key": "C",
+        "text": "数据库事务问题"
+      },
+      {
+        "key": "D",
+        "text": "对象创建问题"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "并发编程",
+      "synchronized"
+    ],
+    "explanation": "synchronized通过互斥锁机制保证同一时间只有一个线程执行临界区代码，从而避免多线程数据竞争。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/synchronized.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_016",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "synchronized和ReentrantLock有什么区别？",
+    "options": [],
+    "answer": "synchronized是Java关键字，由JVM实现；ReentrantLock是Java类，提供更加灵活的锁操作，例如公平锁、可中断获取锁和多个Condition条件队列。",
+    "knowledge_points": [
+      "并发编程",
+      "锁机制"
+    ],
+    "explanation": "两者都可以实现线程同步，但ReentrantLock提供更多高级功能，而synchronized使用更加简单，异常情况下会自动释放锁。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/lock.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_017",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "CAS操作的核心思想是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "通过数据库事务实现同步"
+      },
+      {
+        "key": "B",
+        "text": "比较当前值是否符合预期，如果符合则更新"
+      },
+      {
+        "key": "C",
+        "text": "强制停止其他线程"
+      },
+      {
+        "key": "D",
+        "text": "使用重量级互斥锁"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "并发编程",
+      "CAS"
+    ],
+    "explanation": "CAS通过比较内存中的旧值是否与预期值一致，如果一致则执行更新，是实现无锁并发的重要机制。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/cas.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_018",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "ThreadLocal有什么作用？",
+    "options": [],
+    "answer": "ThreadLocal可以为每个线程提供独立变量副本，实现线程之间的数据隔离。",
+    "knowledge_points": [
+      "并发编程",
+      "ThreadLocal"
+    ],
+    "explanation": "ThreadLocal常用于保存线程上下文信息，例如数据库连接、用户信息等，避免多个线程共享同一个变量。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/threadlocal.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_019",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Java线程池ThreadPoolExecutor的重要参数包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "核心线程数"
+      },
+      {
+        "key": "B",
+        "text": "最大线程数"
+      },
+      {
+        "key": "C",
+        "text": "任务队列"
+      },
+      {
+        "key": "D",
+        "text": "数据库连接地址"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "并发编程",
+      "线程池"
+    ],
+    "explanation": "ThreadPoolExecutor核心参数包括corePoolSize、maximumPoolSize、workQueue、keepAliveTime、threadFactory和handler等。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/thread-pool.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_020",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "死锁发生的必要条件包括互斥、占有且等待、不可抢占以及循环等待。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "并发编程",
+      "死锁"
+    ],
+    "explanation": "死锁需要同时满足四个条件，破坏其中任意一个条件即可避免死锁。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/deadlock.html",
+    "license": "Apache-2.0"
+  },
+    {
+    "question_id": "java_021",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "AQS（AbstractQueuedSynchronizer）的作用是什么？",
+    "options": [],
+    "answer": "AQS是Java并发包中实现锁和同步器的基础框架，通过维护共享资源状态和线程等待队列，实现线程同步。",
+    "knowledge_points": [
+      "并发编程",
+      "AQS"
+    ],
+    "explanation": "ReentrantLock、CountDownLatch、Semaphore等并发工具都基于AQS实现。AQS通过state变量表示同步状态，并使用CLH队列管理等待线程。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/aqs.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_022",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Java中的AtomicInteger主要依赖什么机制实现线程安全？",
+    "options": [
+      {
+        "key": "A",
+        "text": "synchronized重量级锁"
+      },
+      {
+        "key": "B",
+        "text": "CAS无锁机制"
+      },
+      {
+        "key": "C",
+        "text": "数据库事务"
+      },
+      {
+        "key": "D",
+        "text": "文件锁"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "并发编程",
+      "原子类",
+      "CAS"
+    ],
+    "explanation": "AtomicInteger内部使用CAS机制实现原子更新，相比传统锁方式减少线程阻塞，提高并发性能。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/atomic.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_023",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "CompletableFuture可以用于实现Java中的异步任务编排。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "并发编程",
+      "CompletableFuture"
+    ],
+    "explanation": "CompletableFuture提供异步执行、任务组合、异常处理等能力，可以简化复杂异步流程开发。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/concurrent/completablefuture.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_024",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "JVM运行时数据区域中，不属于线程私有区域的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "程序计数器"
+      },
+      {
+        "key": "B",
+        "text": "虚拟机栈"
+      },
+      {
+        "key": "C",
+        "text": "堆"
+      },
+      {
+        "key": "D",
+        "text": "本地方法栈"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "JVM",
+      "内存结构"
+    ],
+    "explanation": "JVM内存区域中，程序计数器、虚拟机栈、本地方法栈属于线程私有区域，而堆和方法区属于线程共享区域。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/jvm-memory-structure.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_025",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "JVM中的堆和栈有什么区别？",
+    "options": [],
+    "answer": "堆主要用于存储对象实例，由垃圾回收器管理；栈用于存储方法调用、局部变量等，每个线程拥有独立的虚拟机栈。",
+    "knowledge_points": [
+      "JVM",
+      "内存结构"
+    ],
+    "explanation": "对象通常创建在堆中，方法执行时会创建对应栈帧。堆空间不足可能导致OutOfMemoryError，栈空间不足可能导致StackOverflowError。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/jvm-memory-structure.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_026",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "常见的垃圾回收算法包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "标记-清除算法"
+      },
+      {
+        "key": "B",
+        "text": "复制算法"
+      },
+      {
+        "key": "C",
+        "text": "标记-整理算法"
+      },
+      {
+        "key": "D",
+        "text": "快速排序算法"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "JVM",
+      "垃圾回收"
+    ],
+    "explanation": "JVM常见垃圾回收算法包括标记清除、复制、标记整理等，不同垃圾收集器会根据场景组合使用这些算法。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/jvm-garbage-collection.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_027",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Java类加载机制中的双亲委派模型主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提高对象创建速度"
+      },
+      {
+        "key": "B",
+        "text": "保证核心类库不会被随意替换"
+      },
+      {
+        "key": "C",
+        "text": "减少垃圾回收次数"
+      },
+      {
+        "key": "D",
+        "text": "提高数据库访问速度"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JVM",
+      "类加载"
+    ],
+    "explanation": "双亲委派模型要求类加载器优先请求父加载器加载类，可以避免核心Java类被恶意替换。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/class-loading.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_028",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "G1垃圾收集器相比传统垃圾收集器有什么特点？",
+    "options": [],
+    "answer": "G1将堆划分为多个Region，通过预测停顿时间选择回收收益较高的Region进行垃圾回收，适合大内存应用。",
+    "knowledge_points": [
+      "JVM",
+      "G1"
+    ],
+    "explanation": "G1采用Region化设计和可预测停顿模型，可以在较大堆内存环境下提供更稳定的垃圾回收暂停时间。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/jvm-garbage-collection.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_029",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "Java对象创建时一定会立即分配在堆内存中。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "JVM",
+      "对象创建"
+    ],
+    "explanation": "通常Java对象分配在堆中，但JVM经过逃逸分析和优化后，部分对象可能进行栈上分配或标量替换。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/object-creation.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_030",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Java应用出现OutOfMemoryError时，应该如何排查？",
+    "options": [],
+    "answer": "可以通过查看GC日志、分析堆转储文件、使用MAT等工具定位是否存在内存泄漏，并结合业务代码优化对象生命周期。",
+    "knowledge_points": [
+      "JVM",
+      "性能调优"
+    ],
+    "explanation": "OOM排查通常包括确认异常类型、分析内存占用、定位大对象或泄漏对象，并调整代码或JVM参数。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/java/jvm/jvm-tuning.html",
+    "license": "Apache-2.0"
+  },
+    {
+    "question_id": "java_031",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Spring IOC（控制反转）的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提高数据库查询速度"
+      },
+      {
+        "key": "B",
+        "text": "降低对象之间的耦合关系"
+      },
+      {
+        "key": "C",
+        "text": "替代Java虚拟机"
+      },
+      {
+        "key": "D",
+        "text": "自动生成数据库表"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Spring",
+      "IOC"
+    ],
+    "explanation": "IOC通过将对象创建和依赖关系管理交给Spring容器，实现对象之间的解耦，提高代码可维护性。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/system-design/framework/spring/spring-ioc.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_032",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "Spring AOP是什么？它的主要应用场景有哪些？",
+    "options": [],
+    "answer": "Spring AOP是一种面向切面编程技术，通过动态代理实现横向关注点与业务代码分离，常用于日志记录、事务管理、权限控制等场景。",
+    "knowledge_points": [
+      "Spring",
+      "AOP"
+    ],
+    "explanation": "AOP通过切面、切点和通知机制，在不修改业务代码的情况下增加额外功能。Spring AOP主要基于JDK动态代理和CGLIB代理实现。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/system-design/framework/spring/spring-aop.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_033",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Spring Bean生命周期通常包含哪些阶段？",
+    "options": [
+      {
+        "key": "A",
+        "text": "实例化Bean对象"
+      },
+      {
+        "key": "B",
+        "text": "依赖注入"
+      },
+      {
+        "key": "C",
+        "text": "执行初始化方法"
+      },
+      {
+        "key": "D",
+        "text": "数据库自动备份"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Spring",
+      "Bean生命周期"
+    ],
+    "explanation": "Spring Bean创建过程包括实例化、属性填充、初始化等阶段，容器关闭时还可能执行销毁方法。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/system-design/framework/spring/spring-bean.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_034",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Spring事务@Transactional注解为什么可能失效？",
+    "options": [],
+    "answer": "常见原因包括方法不是public、同类方法内部调用绕过代理、异常被捕获未抛出、事务配置错误等。",
+    "knowledge_points": [
+      "Spring",
+      "事务管理"
+    ],
+    "explanation": "Spring事务基于代理机制实现，只有经过Spring代理对象调用的方法才能触发事务增强。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/system-design/framework/spring/spring-transaction.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_035",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "Spring Boot自动配置的核心思想是根据classpath中的依赖和配置自动创建相关Bean。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Spring Boot",
+      "自动配置"
+    ],
+    "explanation": "Spring Boot通过条件注解和自动配置机制，根据项目环境自动装配常用组件，减少手动配置。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/system-design/framework/springboot.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_036",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "MySQL索引底层通常采用哪种数据结构？",
+    "options": [
+      {
+        "key": "A",
+        "text": "数组"
+      },
+      {
+        "key": "B",
+        "text": "B+树"
+      },
+      {
+        "key": "C",
+        "text": "栈"
+      },
+      {
+        "key": "D",
+        "text": "哈希表"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "MySQL",
+      "索引"
+    ],
+    "explanation": "MySQL InnoDB存储引擎主要使用B+树作为索引结构，具有高度低、范围查询效率高等特点。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/mysql/mysql-index.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_037",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "MySQL为什么选择B+树作为索引结构？",
+    "options": [],
+    "answer": "B+树高度较低，可以减少磁盘IO次数；叶子节点通过链表连接，方便范围查询，同时非叶子节点只存储索引信息，可以存储更多索引数据。",
+    "knowledge_points": [
+      "MySQL",
+      "B+树",
+      "索引"
+    ],
+    "explanation": "相比二叉树，B+树更加适合磁盘存储场景；相比B树，B+树范围查询效率更高。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/mysql/mysql-index.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_038",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "数据库事务ACID中的I代表什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "原子性"
+      },
+      {
+        "key": "B",
+        "text": "一致性"
+      },
+      {
+        "key": "C",
+        "text": "隔离性"
+      },
+      {
+        "key": "D",
+        "text": "持久性"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "MySQL",
+      "事务"
+    ],
+    "explanation": "ACID分别表示原子性、一致性、隔离性和持久性，其中I表示Isolation，即隔离性。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/mysql/mysql-transaction.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_039",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "MySQL事务隔离级别包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "读未提交"
+      },
+      {
+        "key": "B",
+        "text": "读已提交"
+      },
+      {
+        "key": "C",
+        "text": "可重复读"
+      },
+      {
+        "key": "D",
+        "text": "串行化"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "MySQL",
+      "事务隔离级别"
+    ],
+    "explanation": "SQL标准定义了四种事务隔离级别，不同级别解决不同程度的数据一致性问题。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/mysql/mysql-transaction.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_040",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "MySQL中的MVCC是什么？它有什么作用？",
+    "options": [],
+    "answer": "MVCC（多版本并发控制）通过保存数据多个版本，使读操作不需要加锁即可读取符合条件的数据，从而提高数据库并发性能。",
+    "knowledge_points": [
+      "MySQL",
+      "MVCC",
+      "事务"
+    ],
+    "explanation": "InnoDB通过undo log和Read View实现MVCC，在保证事务隔离性的同时减少读写冲突。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/mysql/mysql-transaction.html",
+    "license": "Apache-2.0"
+  },
+    {
+    "question_id": "java_041",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Redis中常用的数据结构包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "String、Hash、List、Set、ZSet"
+      },
+      {
+        "key": "B",
+        "text": "数组、链表、栈、队列"
+      },
+      {
+        "key": "C",
+        "text": "文件、数据库、缓存"
+      },
+      {
+        "key": "D",
+        "text": "线程、进程、协程"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Redis",
+      "数据结构"
+    ],
+    "explanation": "Redis提供多种内置数据结构，包括String、Hash、List、Set、Sorted Set等，用于满足不同业务场景。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/redis/redis-data-structures.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_042",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "什么是Redis缓存穿透？如何解决？",
+    "options": [],
+    "answer": "缓存穿透是指查询一个不存在的数据，由于缓存中不存在，请求直接访问数据库。常见解决方案包括缓存空对象、布隆过滤器等。",
+    "knowledge_points": [
+      "Redis",
+      "缓存穿透"
+    ],
+    "explanation": "缓存穿透会导致大量无效请求直接访问数据库，可能造成数据库压力过大。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/redis/redis-cache-problem.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_043",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "什么是Redis缓存击穿？如何解决？",
+    "options": [],
+    "answer": "缓存击穿是指某个热点数据过期后，大量请求同时访问数据库。解决方法包括互斥锁更新缓存、热点数据永不过期等。",
+    "knowledge_points": [
+      "Redis",
+      "缓存击穿"
+    ],
+    "explanation": "缓存击穿主要针对热点key失效导致大量请求同时穿透缓存访问数据库的问题。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/redis/redis-cache-problem.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_044",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Redis缓存雪崩可能产生的原因有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "大量缓存数据同时过期"
+      },
+      {
+        "key": "B",
+        "text": "Redis服务不可用"
+      },
+      {
+        "key": "C",
+        "text": "大量缓存使用相同或接近的过期时间"
+      },
+      {
+        "key": "D",
+        "text": "Java对象无法创建"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Redis",
+      "缓存雪崩"
+    ],
+    "explanation": "缓存雪崩通常由于大量缓存同时失效或者缓存服务异常导致请求压力集中到数据库。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/redis/redis-cache-problem.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_045",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "Redis支持RDB和AOF两种主要持久化方式。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Redis",
+      "持久化"
+    ],
+    "explanation": "RDB通过生成数据快照保存数据，AOF通过记录写命令实现数据恢复，两者可以结合使用。",
+    "source": "JavaGuide改编",
+    "source_url": "https://javaguide.cn/database/redis/redis-persistence.html",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_046",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Kafka能够实现高吞吐量的主要原因之一是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "完全依赖数据库存储消息"
+      },
+      {
+        "key": "B",
+        "text": "采用顺序写磁盘和批量处理机制"
+      },
+      {
+        "key": "C",
+        "text": "每条消息都创建一个线程"
+      },
+      {
+        "key": "D",
+        "text": "不保存任何消息"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "消息队列",
+      "Kafka"
+    ],
+    "explanation": "Kafka利用顺序写磁盘、批量发送、零拷贝等机制提升消息处理性能。",
+    "source": "Kafka官方文档整理",
+    "source_url": "https://kafka.apache.org/documentation/",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_047",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "消息队列中如何保证消息不被重复消费？",
+    "options": [],
+    "answer": "通常通过消费者幂等设计实现，例如唯一业务ID去重、数据库唯一约束、状态表记录等方式。",
+    "knowledge_points": [
+      "消息队列",
+      "幂等性"
+    ],
+    "explanation": "多数消息系统无法完全避免重复投递，因此消费者需要保证业务处理具有幂等性。",
+    "source": "消息队列最佳实践整理",
+    "source_url": "https://kafka.apache.org/documentation/",
+    "license": "Apache-2.0"
+  },
+  {
+    "question_id": "java_048",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "TCP协议通过什么机制保证可靠传输？",
+    "options": [
+      {
+        "key": "A",
+        "text": "确认机制、重传机制和流量控制"
+      },
+      {
+        "key": "B",
+        "text": "只依赖UDP协议"
+      },
+      {
+        "key": "C",
+        "text": "不进行数据校验"
+      },
+      {
+        "key": "D",
+        "text": "只保证发送速度"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "计算机网络",
+      "TCP"
+    ],
+    "explanation": "TCP通过序列号、确认应答、超时重传、流量控制等机制保证可靠传输。",
+    "source": "CareerPilot AI团队原创",
+    "source_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+    "license": "original"
+  },
+  {
+    "question_id": "java_049",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "HTTP和HTTPS有什么区别？",
+    "options": [],
+    "answer": "HTTPS是在HTTP基础上增加TLS/SSL加密协议，通过加密、身份认证和完整性校验提高通信安全性。",
+    "knowledge_points": [
+      "计算机网络",
+      "HTTP",
+      "HTTPS"
+    ],
+    "explanation": "HTTP数据明文传输，HTTPS通过TLS协议保护客户端和服务器之间的数据传输安全。",
+    "source": "CareerPilot AI团队原创",
+    "source_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview",
+    "license": "original"
+  },
+  {
+    "question_id": "java_050",
+    "company": "通用",
+    "position": "java_backend",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "一个进程可以包含多个线程，而线程是操作系统调度执行的基本单位。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "操作系统",
+      "进程",
+      "线程"
+    ],
+    "explanation": "进程是资源分配的基本单位，线程是CPU调度和执行的基本单位，同一进程中的线程共享进程资源。",
+    "source": "CareerPilot AI团队原创",
+    "source_url": "https://docs.oracle.com/javase/",
+    "license": "original"
+  }
+]
