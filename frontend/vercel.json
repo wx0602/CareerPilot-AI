@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm install",
+  "installCommand": "npm install --include=optional",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
