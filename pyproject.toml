@@ -1,0 +1,21 @@
+[project]
+name = "careerpilot-ai-api"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115,<1.0",
+    "uvicorn[standard]>=0.30,<1.0",
+    "pydantic>=2.8,<3.0",
+    "pydantic-settings>=2.4,<3.0",
+    "python-multipart>=0.0.9,<1.0",
+    "sqlalchemy>=2.0,<3.0",
+    "psycopg[binary]>=3.2,<4.0",
+    "alembic>=1.13,<2.0",
+    "pwdlib[argon2]>=0.2,<1.0",
+    "langchain-core>=0.3",
+    "langchain-openai>=0.3",
+    "langgraph>=0.2",
+    "python-docx>=1.1,<2.0",
+    "pypdf>=5.0,<7.0",
+    "python-pptx>=1.0,<2.0",
+]
