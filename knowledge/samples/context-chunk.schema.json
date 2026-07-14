@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CareerPilot AI ContextChunk",
+  "type": "object",
+  "required": ["chunk_id", "source_type", "text", "metadata"],
+  "properties": {
+    "chunk_id": {"type": "string"},
+    "source_type": {"type": "string"},
+    "text": {"type": "string"},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

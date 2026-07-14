@@ -1,11 +1,16 @@
 {
-  "material_id": "string",
-  "user_id": "string",
-  "type": "resume | jd | project_intro | business_plan | pitch_deck",
-  "filename": "string",
-  "parsed_text": "string",
-  "metadata": {
-    "source": "string",
-    "created_at": "string"
-  }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CareerPilot AI Parsed Material",
+  "type": "object",
+  "required": ["material_id", "user_id", "type", "filename", "parsed_text", "metadata", "structured_data"],
+  "properties": {
+    "material_id": {"type": "string", "minLength": 1},
+    "user_id": {"type": "string", "minLength": 1},
+    "type": {"enum": ["resume", "jd", "project_intro", "business_plan", "pitch_ppt"]},
+    "filename": {"type": "string", "minLength": 1},
+    "parsed_text": {"type": "string", "minLength": 1},
+    "metadata": {"type": "object"},
+    "structured_data": {"type": "object"}
+  },
+  "additionalProperties": false
 }
