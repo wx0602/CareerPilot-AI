@@ -10,6 +10,16 @@ QuestionType = Literal["single_choice", "multiple_choice", "true_false", "short_
 Score = Annotated[int, Field(ge=0, le=100)]
 
 
+class QuestionMix(BaseModel):
+    single_choice: int = Field(default=5, ge=0, le=50)
+    true_false: int = Field(default=5, ge=0, le=50)
+    multiple_choice: int = Field(default=2, ge=0, le=50)
+    short_answer: int = Field(default=3, ge=0, le=50)
+
+    def total(self) -> int:
+        return self.single_choice + self.true_false + self.multiple_choice + self.short_answer
+
+
 class UserInfo(BaseModel):
     user_id: str | None = None
     account: str | None = None
@@ -20,6 +30,11 @@ class LoginRequest(BaseModel):
     account: str = Field(min_length=1, max_length=254)
     password: str = Field(min_length=1, max_length=128)
     remember_me: bool = False
+
+
+class RegisterRequest(BaseModel):
+    account: str = Field(min_length=1, max_length=254)
+    password: str = Field(min_length=6, max_length=128)
 
 
 class AuthResponse(BaseModel):
@@ -33,6 +48,9 @@ class TrainingSessionCreate(BaseModel):
     mode: InterviewMode
     position: str | None = Field(default=None, max_length=120)
     company: str | None = Field(default=None, max_length=120)
+    learning_module: str | None = Field(default=None, max_length=80)
+    learning_module_title: str | None = Field(default=None, max_length=120)
+    question_mix: QuestionMix | None = None
 
 
 class TrainingSessionResponse(BaseModel):
@@ -40,8 +58,19 @@ class TrainingSessionResponse(BaseModel):
     mode: InterviewMode
     position: str | None = None
     company: str | None = None
+    learning_module: str | None = None
+    learning_module_title: str | None = None
+    question_mix: QuestionMix | None = None
     status: str
     created_at: datetime
+
+
+class TrainingSessionUpdate(BaseModel):
+    position: str | None = Field(default=None, max_length=120)
+    company: str | None = Field(default=None, max_length=120)
+    learning_module: str | None = Field(default=None, max_length=80)
+    learning_module_title: str | None = Field(default=None, max_length=120)
+    question_mix: QuestionMix | None = None
 
 
 class MaterialUploadResponse(BaseModel):
@@ -74,6 +103,18 @@ class GenerateExamRequest(BaseModel):
     company: str | None = Field(default=None, max_length=120)
     difficulty: Difficulty = "medium"
     question_count: int = Field(default=10, ge=1, le=20)
+    learning_module: str | None = Field(default=None, max_length=80)
+    learning_module_title: str | None = Field(default=None, max_length=120)
+    question_mix: QuestionMix | None = None
+
+    @model_validator(mode="after")
+    def validate_mix(self) -> "GenerateExamRequest":
+        if self.question_mix is not None:
+            total = self.question_mix.total()
+            if total <= 0:
+                raise ValueError("question_mix 至少需要包含一道题")
+            self.question_count = total
+        return self
 
 
 class ExamPaperResponse(BaseModel):
@@ -154,3 +195,16 @@ class ReportResponse(BaseModel):
     suggestions: list[str] = Field(default_factory=list)
     charts: dict[str, Any] = Field(default_factory=dict)
     summary: str
+
+
+class FavoriteQuestionCreate(BaseModel):
+    question: ExamQuestion
+
+
+class FavoriteQuestionResponse(BaseModel):
+    favorite_id: str
+    question_id: str
+    question_type: QuestionType
+    content: str
+    question: ExamQuestion
+    created_at: datetime

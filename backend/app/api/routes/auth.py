@@ -5,15 +5,16 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_current_token, get_db
-from app.core.errors import unauthorized
+from app.core.errors import conflict, unauthorized
 from app.core.security import (
     hash_access_token,
+    hash_password,
     new_access_token,
     utc_now,
     verify_password,
 )
 from app.dbmodels import AuthToken, User
-from app.schemas.api import AuthResponse, LoginRequest, UserInfo
+from app.schemas.api import AuthResponse, LoginRequest, RegisterRequest, UserInfo
 
 
 router = APIRouter(prefix="/auth", tags=["认证"])
@@ -59,6 +60,22 @@ def login(payload: LoginRequest, request: Request, db: Session = Depends(get_db)
         else timedelta(hours=settings.auth_token_ttl_hours)
     )
     return _issue_token(db, user=user, is_guest=False, expires_at=utc_now() + duration)
+
+
+@router.post("/register", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
+def register(payload: RegisterRequest, request: Request, db: Session = Depends(get_db)) -> AuthResponse:
+    account = payload.account.strip().lower()
+    if db.scalar(select(User).where(User.account == account)) is not None:
+        raise conflict("account_exists", "该账号已注册")
+    user = User(account=account, password_hash=hash_password(payload.password))
+    db.add(user)
+    db.flush()
+    return _issue_token(
+        db,
+        user=user,
+        is_guest=False,
+        expires_at=utc_now() + timedelta(hours=request.app.state.settings.auth_token_ttl_hours),
+    )
 
 
 @router.post("/guest", response_model=AuthResponse)

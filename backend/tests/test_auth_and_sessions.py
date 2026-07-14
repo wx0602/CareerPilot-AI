@@ -3,6 +3,28 @@ from starlette.testclient import TestClient
 from tests.conftest import auth_headers
 
 
+def test_register_login_and_duplicate_account(client: TestClient):
+    registered = client.post(
+        "/api/auth/register",
+        json={"account": "new-user@test.local", "password": "Secret123!"},
+    )
+    assert registered.status_code == 201
+    assert registered.json()["user"]["account"] == "new-user@test.local"
+
+    duplicate = client.post(
+        "/api/auth/register",
+        json={"account": "NEW-USER@test.local", "password": "Secret123!"},
+    )
+    assert duplicate.status_code == 409
+    assert duplicate.json()["detail"]["code"] == "account_exists"
+
+    login = client.post(
+        "/api/auth/login",
+        json={"account": "new-user@test.local", "password": "Secret123!"},
+    )
+    assert login.status_code == 200
+
+
 def test_login_logout_and_invalid_password(client: TestClient):
     invalid = client.post(
         "/api/auth/login",
@@ -45,6 +67,32 @@ def test_guest_can_create_only_one_training_session(client: TestClient):
     )
     assert second.status_code == 409
     assert second.json()["detail"]["code"] == "guest_session_limit"
+
+
+def test_favorite_questions_are_persisted(client: TestClient):
+    guest = client.post("/api/auth/guest").json()
+    headers = auth_headers(guest["access_token"])
+    question = {
+        "question_id": "fav-q1",
+        "question_type": "single_choice",
+        "content": "下面哪个选项是缓存组件？",
+        "options": [{"key": "A", "text": "Redis"}, {"key": "B", "text": "HTML"}],
+    }
+    created = client.post("/api/favorites", headers=headers, json={"question": question})
+    assert created.status_code == 201
+    assert created.json()["question_id"] == "fav-q1"
+
+    repeated = client.post("/api/favorites", headers=headers, json={"question": question})
+    assert repeated.status_code == 201
+    assert repeated.json()["favorite_id"] == created.json()["favorite_id"]
+
+    listed = client.get("/api/favorites", headers=headers)
+    assert listed.status_code == 200
+    assert [item["question_id"] for item in listed.json()] == ["fav-q1"]
+
+    removed = client.delete("/api/favorites/fav-q1", headers=headers)
+    assert removed.status_code == 204
+    assert client.get("/api/favorites", headers=headers).json() == []
 
 
 def test_training_session_ownership_is_enforced(client: TestClient):

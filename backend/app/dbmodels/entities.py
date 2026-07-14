@@ -45,6 +45,9 @@ class TrainingSession(Base):
     mode: Mapped[str] = mapped_column(String(20), index=True)
     position: Mapped[str | None] = mapped_column(String(120), nullable=True)
     company: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    learning_module: Mapped[str | None] = mapped_column(String(80), nullable=True, index=True)
+    learning_module_title: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    question_mix: Mapped[dict[str, Any] | None] = mapped_column(JSON, nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="created")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now, onupdate=utc_now)
@@ -147,3 +150,18 @@ class Report(Base):
     session_id: Mapped[str] = mapped_column(ForeignKey("training_sessions.id"), index=True)
     payload_json: Mapped[dict[str, Any]] = mapped_column(JSON)
     generated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
+
+
+class FavoriteQuestion(Base):
+    __tablename__ = "favorite_questions"
+    __table_args__ = (
+        UniqueConstraint("owner_key", "question_id", name="uq_favorite_owner_question"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
+    owner_key: Mapped[str] = mapped_column(String(80), index=True)
+    question_id: Mapped[str] = mapped_column(String(100), index=True)
+    question_type: Mapped[str] = mapped_column(String(30))
+    content: Mapped[str] = mapped_column(Text)
+    payload_json: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)

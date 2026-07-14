@@ -5,7 +5,7 @@ from app.main import create_app
 from tests.conftest import auth_headers
 
 
-def test_real_mode_reports_missing_c_and_d_providers(settings):
+def test_real_mode_connects_c_and_d_providers(settings):
     real_settings = settings.model_copy(update={"provider_mode": "real"})
     application = create_app(settings=real_settings)
     Base.metadata.create_all(application.state.engine)
@@ -25,15 +25,17 @@ def test_real_mode_reports_missing_c_and_d_providers(settings):
             "/api/materials/upload",
             headers=headers,
             data={"session_id": session_id, "material_type": "resume"},
-            files={"file": ("resume.txt", "后端开发", "text/plain")},
+            files={"file": ("resume.txt", "后端开发，熟悉 Redis 和 Java。", "text/plain")},
         )
         assert upload.status_code == 201
-        assert upload.json()["parse_status"] == "failed"
+        assert upload.json()["parse_status"] == "parsed"
 
         exam = client.post(
             "/api/exams/generate",
             headers=headers,
-            json={"session_id": session_id, "position": "后端工程师", "question_count": 1},
+            json={"session_id": session_id, "position": "Java 后端工程师", "question_count": 1},
         )
-        assert exam.status_code == 503
-        assert exam.json()["detail"]["code"] == "ai_provider_unavailable"
+        assert exam.status_code == 200
+        serialized = str(exam.json()).lower()
+        assert "correct_answer" not in serialized
+        assert "explanation" not in serialized

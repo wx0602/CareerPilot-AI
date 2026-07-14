@@ -11,6 +11,10 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"
     max_upload_bytes: int = 10 * 1024 * 1024
     provider_mode: str = "stub"
+    knowledge_database_path: str = "knowledge/question_bank/questions.sqlite3"
+    knowledge_chroma_dir: str = "knowledge/chroma_store"
+    knowledge_raw_dir: str = "knowledge/question_bank/raw"
+    ai_core_path: str = "ai-core"
 
     demo_account: str = "demo@careerpilot.local"
     demo_password: str = "Demo123!"

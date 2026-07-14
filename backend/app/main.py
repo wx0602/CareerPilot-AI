@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import inspect, text
 
-from app.api.routes import auth, exams, interviews, materials, reports, training_sessions
+from app.api.routes import auth, exams, favorites, interviews, materials, reports, training_sessions
 from app.core.config import Settings, get_settings
 from app.db.session import create_database_engine, create_session_factory
 from app.services.auth import ensure_demo_user
@@ -88,6 +88,7 @@ def create_app(
         training_sessions.router,
         materials.router,
         exams.router,
+        favorites.router,
         interviews.router,
         reports.router,
     ):

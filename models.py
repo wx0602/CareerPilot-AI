@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 # ============================================================
@@ -61,6 +61,20 @@ Score = Annotated[
     int,
     Field(ge=0, le=100),
 ]
+
+
+class QuestionMix(BaseModel):
+    """
+    固定组卷的题型配比。
+    """
+
+    single_choice: int = Field(default=5, ge=0, le=50)
+    true_false: int = Field(default=5, ge=0, le=50)
+    multiple_choice: int = Field(default=2, ge=0, le=50)
+    short_answer: int = Field(default=3, ge=0, le=50)
+
+    def total(self) -> int:
+        return self.single_choice + self.true_false + self.multiple_choice + self.short_answer
 
 
 # ============================================================
@@ -259,6 +273,24 @@ class GenerateExamRequest(BaseModel):
         default=10,
         gt=0,
     )
+
+    # 学习模块标识，例如 "java_backend"。
+    learning_module: str | None = None
+
+    # 学习模块标题，例如 “Java 后端”。
+    learning_module_title: str | None = None
+
+    # 固定题型配比；如果提供，则 question_count 以其总数为准。
+    question_mix: QuestionMix | None = None
+
+    @model_validator(mode="after")
+    def validate_mix(self) -> "GenerateExamRequest":
+        if self.question_mix is not None:
+            total = self.question_mix.total()
+            if total <= 0:
+                raise ValueError("question_mix 至少需要包含一道题")
+            self.question_count = total
+        return self
 
 
 class ExamQuestion(BaseModel):

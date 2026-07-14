@@ -11,6 +11,7 @@ from app.core.security import utc_now
 from app.dbmodels import AuthToken, Exam, ExamQuestion, ExamSubmission
 from app.schemas.api import (
     ExamPaperResponse,
+    QuestionMix,
     ExamResultResponse,
     ExamSubmissionRequest,
     GenerateExamRequest,
@@ -47,6 +48,16 @@ def generate_exam(
     db: Session = Depends(get_db),
 ) -> ExamPaperResponse:
     training = owned_training_session(payload.session_id, db, token)
+    if not payload.learning_module and training.learning_module:
+        payload.learning_module = training.learning_module
+    if not payload.learning_module_title and training.learning_module_title:
+        payload.learning_module_title = training.learning_module_title
+    if payload.question_mix is None and training.question_mix:
+        payload.question_mix = QuestionMix.model_validate(training.question_mix)
+    if training.position and not payload.position:
+        payload.position = training.position
+    if training.company and payload.company is None:
+        payload.company = training.company
     existing = db.scalar(
         select(Exam)
         .options(selectinload(Exam.questions))
@@ -58,6 +69,8 @@ def generate_exam(
         paper, grading_items = request.app.state.ai_provider.generate_exam(payload.model_dump())
     except ProviderUnavailableError as exc:
         raise api_error(503, "ai_provider_unavailable", str(exc)) from exc
+    except ValueError as exc:
+        raise conflict("question_bank_insufficient", str(exc)) from exc
     validated = ExamPaperResponse.model_validate(paper)
     if validated.session_id != payload.session_id:
         raise api_error(502, "invalid_provider_response", "D 返回的 session_id 与请求不一致")
