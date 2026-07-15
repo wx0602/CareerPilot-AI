@@ -1,0 +1,896 @@
+[
+  {
+    "question_id": "typescript_001",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "TypeScript相比JavaScript最大的特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "运行速度一定比JavaScript快"
+      },
+      {
+        "key": "B",
+        "text": "增加静态类型检查能力"
+      },
+      {
+        "key": "C",
+        "text": "完全替代HTML和CSS"
+      },
+      {
+        "key": "D",
+        "text": "只能运行在服务器端"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "TypeScript基础",
+      "类型系统"
+    ],
+    "explanation": "TypeScript是JavaScript的超集，核心优势是在开发阶段提供静态类型检查，提高代码可靠性和可维护性。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_002",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "TypeScript中表示任意类型通常使用哪个类型？",
+    "options": [
+      {
+        "key": "A",
+        "text": "string"
+      },
+      {
+        "key": "B",
+        "text": "number"
+      },
+      {
+        "key": "C",
+        "text": "any"
+      },
+      {
+        "key": "D",
+        "text": "boolean"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "TypeScript",
+      "基础类型"
+    ],
+    "explanation": "any表示任意类型，会关闭部分类型检查能力，因此应谨慎使用。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_003",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "TypeScript中的unknown类型相比any的主要优势是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "unknown可以避免所有类型检查"
+      },
+      {
+        "key": "B",
+        "text": "unknown需要进行类型判断后才能使用"
+      },
+      {
+        "key": "C",
+        "text": "unknown只能存储数字"
+      },
+      {
+        "key": "D",
+        "text": "unknown不能表示未知数据"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "TypeScript",
+      "unknown"
+    ],
+    "explanation": "unknown表示未知类型，但相比any更加安全，使用前必须通过类型缩小或类型判断。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_004",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中interface主要用于描述什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "对象的结构类型"
+      },
+      {
+        "key": "B",
+        "text": "数据库连接"
+      },
+      {
+        "key": "C",
+        "text": "浏览器渲染流程"
+      },
+      {
+        "key": "D",
+        "text": "JavaScript运行环境"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "interface"
+    ],
+    "explanation": "interface主要用于定义对象结构，包括属性、方法以及类实现的约束。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_005",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中type别名的作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "给已有类型创建新的名称"
+      },
+      {
+        "key": "B",
+        "text": "替代JavaScript解释器"
+      },
+      {
+        "key": "C",
+        "text": "自动生成数据库"
+      },
+      {
+        "key": "D",
+        "text": "修改浏览器API"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "type"
+    ],
+    "explanation": "type可以为已有类型创建别名，也支持联合类型、交叉类型等复杂类型组合。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_006",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "TypeScript中的基础类型包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "string"
+      },
+      {
+        "key": "B",
+        "text": "number"
+      },
+      {
+        "key": "C",
+        "text": "boolean"
+      },
+      {
+        "key": "D",
+        "text": "class"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "TypeScript",
+      "基础类型"
+    ],
+    "explanation": "TypeScript支持string、number、boolean等基础类型，同时还包括数组、元组、枚举、联合类型等。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_007",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "TypeScript联合类型有哪些特点？",
+    "options": [
+      {
+        "key": "A",
+        "text": "一个变量可以具有多个可能类型"
+      },
+      {
+        "key": "B",
+        "text": "使用|符号表示"
+      },
+      {
+        "key": "C",
+        "text": "一定会关闭类型检查"
+      },
+      {
+        "key": "D",
+        "text": "通常需要类型缩小确定具体类型"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "TypeScript",
+      "联合类型"
+    ],
+    "explanation": "联合类型允许变量属于多个类型之一，在使用具体属性和方法时通常需要进行类型缩小。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_008",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "TypeScript代码最终需要编译转换为JavaScript才能在浏览器中执行。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "编译"
+    ],
+    "explanation": "浏览器通常不能直接执行TypeScript，需要通过tsc或构建工具转换为JavaScript。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_009",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "TypeScript的类型检查主要发生在编译阶段，而不是运行阶段。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "类型检查"
+    ],
+    "explanation": "TypeScript属于静态类型系统，类型错误通常在开发和编译阶段被发现。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_010",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "TypeScript中的类型推断可以在变量没有显式声明类型时自动推断其类型。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "类型推断"
+    ],
+    "explanation": "TypeScript编译器可以根据变量初始化值、上下文等信息自动推断类型，减少显式类型声明。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/type-inference.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_011",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的泛型（Generic）主要用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让代码支持多种类型，同时保持类型安全"
+      },
+      {
+        "key": "B",
+        "text": "替代JavaScript运行环境"
+      },
+      {
+        "key": "C",
+        "text": "提高浏览器网络速度"
+      },
+      {
+        "key": "D",
+        "text": "自动生成HTML页面"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "泛型"
+    ],
+    "explanation": "泛型允许在定义函数、接口、类时不提前指定具体类型，在使用时传入具体类型，同时保持类型检查能力。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_012",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的keyof操作符返回的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "对象所有属性名组成的联合类型"
+      },
+      {
+        "key": "B",
+        "text": "对象所有属性值"
+      },
+      {
+        "key": "C",
+        "text": "对象实例"
+      },
+      {
+        "key": "D",
+        "text": "函数返回结果"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "keyof",
+      "高级类型"
+    ],
+    "explanation": "keyof可以获取对象类型的所有键，并生成字符串或数字字面量联合类型。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_013",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的typeof类型操作符主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "获取变量的类型信息"
+      },
+      {
+        "key": "B",
+        "text": "删除对象属性"
+      },
+      {
+        "key": "C",
+        "text": "创建新的JavaScript对象"
+      },
+      {
+        "key": "D",
+        "text": "执行类型转换"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "typeof"
+    ],
+    "explanation": "TypeScript中的typeof可以在类型位置获取变量或对象的类型，用于类型复用。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/typeof-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_014",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "TypeScript泛型约束可以实现哪些功能？",
+    "options": [
+      {
+        "key": "A",
+        "text": "限制泛型参数必须满足某种结构"
+      },
+      {
+        "key": "B",
+        "text": "保证使用泛型时具有必要属性"
+      },
+      {
+        "key": "C",
+        "text": "完全取消类型检查"
+      },
+      {
+        "key": "D",
+        "text": "提高代码复用性"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "TypeScript",
+      "泛型约束"
+    ],
+    "explanation": "extends关键字可以限制泛型必须满足某个接口或类型结构，在保证灵活性的同时维持类型安全。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_015",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "TypeScript类型守卫的常见方式有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "typeof判断"
+      },
+      {
+        "key": "B",
+        "text": "instanceof判断"
+      },
+      {
+        "key": "C",
+        "text": "in操作符判断"
+      },
+      {
+        "key": "D",
+        "text": "随机修改类型"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "TypeScript",
+      "类型守卫"
+    ],
+    "explanation": "类型守卫用于在运行时判断类型，使TypeScript能够进行类型缩小。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_016",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "TypeScript中的类型断言不会改变运行时的数据类型。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "类型断言"
+    ],
+    "explanation": "类型断言只影响编译阶段的类型检查，编译后的JavaScript不会保留类型信息。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_017",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "TypeScript函数可以明确指定参数类型和返回值类型。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "函数类型"
+    ],
+    "explanation": "TypeScript允许为函数参数和返回值添加类型注解，提高代码可读性和安全性。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_018",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "TypeScript函数重载允许同一个函数根据不同参数类型提供多个调用方式。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "函数重载"
+    ],
+    "explanation": "函数重载可以定义多个函数签名，然后提供统一实现，常用于需要不同参数组合的API设计。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_019",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "请解释TypeScript中的interface和type有什么区别。",
+    "options": [],
+    "answer": "interface主要用于描述对象结构，可以通过extends和声明合并扩展；type是类型别名，支持联合类型、交叉类型等更复杂类型组合。",
+    "knowledge_points": [
+      "TypeScript",
+      "interface",
+      "type"
+    ],
+    "explanation": "二者都可以描述对象结构，但type表达能力更广，interface更适合面向对象设计中的契约定义。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_020",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "什么是TypeScript类型缩小（Type Narrowing）？",
+    "options": [],
+    "answer": "类型缩小是TypeScript根据条件判断语句推断变量更具体类型的过程，例如通过typeof、instanceof或自定义类型守卫缩小联合类型范围。",
+    "knowledge_points": [
+      "TypeScript",
+      "类型缩小",
+      "类型守卫"
+    ],
+    "explanation": "类型缩小能够让开发者在安全情况下访问特定类型的方法和属性，是TypeScript类型系统的重要能力。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_021",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的Partial<T>工具类型有什么作用？",
+    "options": [
+      {
+        "key": "A",
+        "text": "将类型中的所有属性变为可选"
+      },
+      {
+        "key": "B",
+        "text": "删除类型中的所有属性"
+      },
+      {
+        "key": "C",
+        "text": "将所有属性变为只读"
+      },
+      {
+        "key": "D",
+        "text": "转换为数组类型"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "Utility Types",
+      "Partial"
+    ],
+    "explanation": "Partial<T>会基于已有类型生成一个新类型，并将所有属性设置为可选，常用于更新对象参数。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_022",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的Pick<T,K>主要用于实现什么功能？",
+    "options": [
+      {
+        "key": "A",
+        "text": "从已有类型中选择指定属性生成新类型"
+      },
+      {
+        "key": "B",
+        "text": "删除对象全部属性"
+      },
+      {
+        "key": "C",
+        "text": "复制运行时对象"
+      },
+      {
+        "key": "D",
+        "text": "自动转换JavaScript代码"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "Utility Types",
+      "Pick"
+    ],
+    "explanation": "Pick用于从一个类型中选取部分属性构造新的类型。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_023",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的Omit<T,K>作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "创建一个去除指定属性的新类型"
+      },
+      {
+        "key": "B",
+        "text": "增加新的属性"
+      },
+      {
+        "key": "C",
+        "text": "转换为接口"
+      },
+      {
+        "key": "D",
+        "text": "执行类型检查"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "Omit"
+    ],
+    "explanation": "Omit与Pick相反，用于从已有类型中删除指定属性。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_024",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "TypeScript中的Record<K,T>通常用于描述什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "具有指定键和值类型的对象结构"
+      },
+      {
+        "key": "B",
+        "text": "函数调用栈"
+      },
+      {
+        "key": "C",
+        "text": "数据库记录"
+      },
+      {
+        "key": "D",
+        "text": "类继承关系"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "Record"
+    ],
+    "explanation": "Record<K,T>用于创建对象类型，要求指定键集合对应指定值类型。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_025",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "TypeScript中的Readonly<T>主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "限制对象属性不可修改"
+      },
+      {
+        "key": "B",
+        "text": "删除对象属性"
+      },
+      {
+        "key": "C",
+        "text": "自动深拷贝对象"
+      },
+      {
+        "key": "D",
+        "text": "增加对象方法"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "TypeScript",
+      "Readonly"
+    ],
+    "explanation": "Readonly<T>会将类型所有属性设置为只读，防止重新赋值。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_026",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "TypeScript常见Utility Types包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Partial"
+      },
+      {
+        "key": "B",
+        "text": "Pick"
+      },
+      {
+        "key": "C",
+        "text": "Omit"
+      },
+      {
+        "key": "D",
+        "text": "Compile"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "TypeScript",
+      "Utility Types"
+    ],
+    "explanation": "TypeScript内置了大量工具类型，包括Partial、Pick、Omit、Record、Readonly等。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_027",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "TypeScript中的声明文件.d.ts可以用于哪些场景？",
+    "options": [
+      {
+        "key": "A",
+        "text": "为JavaScript库提供类型描述"
+      },
+      {
+        "key": "B",
+        "text": "声明全局变量类型"
+      },
+      {
+        "key": "C",
+        "text": "提供编辑器类型提示"
+      },
+      {
+        "key": "D",
+        "text": "直接执行TypeScript代码"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "TypeScript",
+      "声明文件"
+    ],
+    "explanation": ".d.ts文件只包含类型声明信息，不包含具体运行逻辑，常用于第三方JavaScript库类型支持。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_028",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "TypeScript中的enum可以用于定义一组命名常量。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "enum"
+    ],
+    "explanation": "enum用于定义命名常量集合，可以提高代码可读性。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/handbook/enums.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_029",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "tsconfig.json用于配置TypeScript编译行为。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "TypeScript",
+      "tsconfig"
+    ],
+    "explanation": "tsconfig.json可以配置编译目标、模块系统、严格模式、路径别名等项目编译选项。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/tsconfig",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "typescript_030",
+    "company": "通用",
+    "position": "frontend_typescript",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "在Vue或React项目中使用TypeScript有哪些优势？",
+    "options": [],
+    "answer": "TypeScript可以为组件Props、State、接口数据等添加类型约束，提高代码提示能力，减少运行时错误，并提升大型项目维护效率。",
+    "knowledge_points": [
+      "TypeScript",
+      "前端工程化",
+      "Vue",
+      "React"
+    ],
+    "explanation": "大型前端项目中，TypeScript能够通过静态检查提前发现类型错误，同时改善IDE开发体验，提高团队协作效率。",
+    "source": "TypeScript官方文档整理",
+    "source_url": "https://www.typescriptlang.org/docs/",
+    "license": "reference-only"
+  }
+]

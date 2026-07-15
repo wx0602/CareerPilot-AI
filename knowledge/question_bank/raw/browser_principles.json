@@ -1,0 +1,875 @@
+[
+  {
+    "question_id": "browser_001",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "现代浏览器采用多进程架构的主要目的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提高页面字体大小"
+      },
+      {
+        "key": "B",
+        "text": "提高稳定性和安全性"
+      },
+      {
+        "key": "C",
+        "text": "减少HTML代码"
+      },
+      {
+        "key": "D",
+        "text": "替代JavaScript"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "浏览器架构",
+      "多进程模型"
+    ],
+    "explanation": "现代浏览器采用多进程设计，例如渲染进程、浏览器主进程、GPU进程等，可以提高稳定性、安全性，并避免单个页面崩溃影响整个浏览器。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.chrome.com/docs",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_002",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "浏览器解析HTML后首先生成的结构是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "DOM树"
+      },
+      {
+        "key": "B",
+        "text": "CSSOM树"
+      },
+      {
+        "key": "C",
+        "text": "Render Layer"
+      },
+      {
+        "key": "D",
+        "text": "GPU纹理"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "浏览器渲染流程",
+      "DOM"
+    ],
+    "explanation": "浏览器解析HTML标签生成DOM树，DOM描述页面文档结构，是后续渲染流程的重要基础。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_003",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "浏览器渲染页面时，DOM树和CSSOM树结合后形成什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Render Tree"
+      },
+      {
+        "key": "B",
+        "text": "JavaScript Heap"
+      },
+      {
+        "key": "C",
+        "text": "HTTP缓存"
+      },
+      {
+        "key": "D",
+        "text": "事件队列"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "浏览器渲染",
+      "Render Tree"
+    ],
+    "explanation": "浏览器会将DOM和CSSOM结合生成渲染树(Render Tree)，用于后续布局和绘制。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Performance",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_004",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "浏览器中的重排(Reflow)主要影响什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "页面布局计算"
+      },
+      {
+        "key": "B",
+        "text": "JavaScript语法检查"
+      },
+      {
+        "key": "C",
+        "text": "网络请求"
+      },
+      {
+        "key": "D",
+        "text": "Cookie存储"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "浏览器渲染",
+      "重排"
+    ],
+    "explanation": "重排是浏览器重新计算元素几何信息的过程，例如位置、大小变化通常会触发布局计算。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Glossary/Reflow",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_005",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "以下哪种操作更容易触发浏览器重排？",
+    "options": [
+      {
+        "key": "A",
+        "text": "修改元素width属性"
+      },
+      {
+        "key": "B",
+        "text": "修改color属性"
+      },
+      {
+        "key": "C",
+        "text": "修改background-color属性"
+      },
+      {
+        "key": "D",
+        "text": "修改opacity属性"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "浏览器性能",
+      "重排重绘"
+    ],
+    "explanation": "改变元素尺寸、位置等几何属性会触发布局重新计算，而颜色变化通常只会触发重绘。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Performance",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_006",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "浏览器页面渲染流程通常包括哪些步骤？",
+    "options": [
+      {
+        "key": "A",
+        "text": "解析HTML生成DOM"
+      },
+      {
+        "key": "B",
+        "text": "解析CSS生成CSSOM"
+      },
+      {
+        "key": "C",
+        "text": "布局和绘制"
+      },
+      {
+        "key": "D",
+        "text": "直接执行数据库查询"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "浏览器渲染流程"
+    ],
+    "explanation": "浏览器渲染主要包括HTML解析、CSS解析、生成渲染树、布局、绘制和合成等阶段。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Performance",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_007",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "浏览器渲染优化可以采用哪些方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少频繁DOM操作"
+      },
+      {
+        "key": "B",
+        "text": "批量修改DOM"
+      },
+      {
+        "key": "C",
+        "text": "避免不必要的重排"
+      },
+      {
+        "key": "D",
+        "text": "无限增加动画效果"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "浏览器性能优化"
+    ],
+    "explanation": "减少DOM操作次数、批量更新以及降低布局计算频率可以提升页面性能。",
+    "source": "浏览器性能优化整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Performance",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_008",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "CSSOM表示浏览器解析CSS后形成的对象模型。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "CSSOM",
+      "浏览器渲染"
+    ],
+    "explanation": "CSSOM是浏览器根据CSS规则构建的对象模型，用于计算页面样式。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Glossary/CSSOM",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_009",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "重绘(Repaint)一定会导致重排(Reflow)。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "浏览器渲染",
+      "重排重绘"
+    ],
+    "explanation": "重绘只涉及视觉样式变化，例如颜色变化，不一定需要重新计算布局；而重排通常会导致后续重绘。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Glossary/Repaint",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_010",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "浏览器中的JavaScript执行通常运行在渲染进程中。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "浏览器架构",
+      "JavaScript执行"
+    ],
+    "explanation": "现代浏览器通常在渲染进程中执行页面JavaScript，由JavaScript引擎（如V8）负责解释和执行代码。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.chrome.com/docs",
+    "license": "reference-only"
+  }
+  ,
+  {
+    "question_id": "browser_011",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "浏览器事件循环中，Promise.then回调属于哪一类任务？",
+    "options": [
+      {
+        "key": "A",
+        "text": "宏任务"
+      },
+      {
+        "key": "B",
+        "text": "微任务"
+      },
+      {
+        "key": "C",
+        "text": "同步任务"
+      },
+      {
+        "key": "D",
+        "text": "网络线程任务"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript执行",
+      "Event Loop",
+      "微任务"
+    ],
+    "explanation": "Promise.then、MutationObserver等属于微任务。每轮事件循环中，当前宏任务执行结束后，会优先清空微任务队列，再执行下一个宏任务。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_012",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "在浏览器事件循环中，setTimeout回调通常属于哪一类任务？",
+    "options": [
+      {
+        "key": "A",
+        "text": "微任务"
+      },
+      {
+        "key": "B",
+        "text": "宏任务"
+      },
+      {
+        "key": "C",
+        "text": "同步任务"
+      },
+      {
+        "key": "D",
+        "text": "渲染任务"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript执行",
+      "宏任务"
+    ],
+    "explanation": "setTimeout、setInterval等定时器回调属于宏任务，需要等待当前执行栈和微任务队列完成后执行。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_013",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "HTTPS相比HTTP增加的主要安全机制是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "TLS/SSL加密"
+      },
+      {
+        "key": "B",
+        "text": "更大的HTML文件"
+      },
+      {
+        "key": "C",
+        "text": "更快的CPU"
+      },
+      {
+        "key": "D",
+        "text": "更多DOM节点"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络协议",
+      "HTTPS"
+    ],
+    "explanation": "HTTPS在HTTP基础上加入TLS协议，通过加密、身份认证和完整性校验保护通信安全。",
+    "source": "网络协议整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_014",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "浏览器访问域名时，负责将域名转换为IP地址的过程称为什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "DNS解析"
+      },
+      {
+        "key": "B",
+        "text": "DOM解析"
+      },
+      {
+        "key": "C",
+        "text": "CSS解析"
+      },
+      {
+        "key": "D",
+        "text": "垃圾回收"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络",
+      "DNS"
+    ],
+    "explanation": "DNS负责将用户输入的域名解析为服务器IP地址，是浏览器建立网络连接的重要步骤。",
+    "source": "网络协议整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Glossary/DNS",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_015",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "HTTP请求过程通常包含哪些步骤？",
+    "options": [
+      {
+        "key": "A",
+        "text": "建立网络连接"
+      },
+      {
+        "key": "B",
+        "text": "发送HTTP请求"
+      },
+      {
+        "key": "C",
+        "text": "服务器返回响应"
+      },
+      {
+        "key": "D",
+        "text": "直接修改本地DOM"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "HTTP",
+      "网络请求"
+    ],
+    "explanation": "浏览器请求资源通常包括建立连接、发送请求、服务器处理并返回响应等过程。",
+    "source": "网络协议整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_016",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "浏览器可能使用的缓存策略或存储方式包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "强缓存"
+      },
+      {
+        "key": "B",
+        "text": "协商缓存"
+      },
+      {
+        "key": "C",
+        "text": "内存缓存"
+      },
+      {
+        "key": "D",
+        "text": "数据库事务缓存"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "浏览器缓存",
+      "HTTP缓存"
+    ],
+    "explanation": "浏览器缓存既包括HTTP层面的强缓存和协商缓存，也包括浏览器运行过程中使用的内存缓存等实现方式。强缓存和协商缓存主要由HTTP缓存头控制。",
+    "source": "HTTP缓存整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_017",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "浏览器执行JavaScript代码时通常采用单线程模型。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript执行",
+      "浏览器模型"
+    ],
+    "explanation": "JavaScript主线程通常是单线程执行，但浏览器通过Web Worker、网络线程等机制支持并发任务处理。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_018",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "浏览器缓存可以减少重复资源请求，提高页面加载速度。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "浏览器缓存",
+      "性能优化"
+    ],
+    "explanation": "缓存可以直接复用已经下载的资源，减少网络请求次数和服务器压力。",
+    "source": "HTTP缓存整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_019",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述浏览器从输入URL到页面展示的大致过程。",
+    "options": [],
+    "answer": "浏览器首先解析URL并进行DNS查询获取服务器地址，然后建立传输连接。对于HTTP/1.1和HTTP/2的HTTPS请求通常使用TCP和TLS连接，而HTTP/3使用基于UDP的QUIC协议。随后浏览器发送HTTP请求，接收服务器响应，并解析HTML生成DOM、解析CSS生成CSSOM，构建渲染树，经过布局、绘制和合成后展示页面。",
+    "knowledge_points": [
+      "浏览器原理",
+      "页面加载流程",
+      "HTTP协议"
+    ],
+    "explanation": "页面加载过程涉及网络通信和浏览器渲染流水线。不同HTTP版本底层传输协议有所区别：HTTP/1.1和HTTP/2主要基于TCP，HTTP/3基于QUIC。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.chrome.com/docs",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_020",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "什么是强缓存和协商缓存？二者有什么区别？",
+    "options": [],
+    "answer": "强缓存是在缓存有效期内直接使用本地资源，不向服务器发送请求；协商缓存会向服务器发送请求，通过Etag或Last-Modified判断资源是否更新。",
+    "knowledge_points": [
+      "浏览器缓存",
+      "HTTP缓存"
+    ],
+    "explanation": "强缓存关注资源是否过期，协商缓存关注资源内容是否发生变化。合理配置缓存策略可以提升前端性能。",
+    "source": "HTTP缓存整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching",
+    "license": "reference-only"
+  }
+  ,
+  {
+    "question_id": "browser_021",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Cookie在浏览器中的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "保存客户端状态信息"
+      },
+      {
+        "key": "B",
+        "text": "替代HTML解析"
+      },
+      {
+        "key": "C",
+        "text": "提高CPU计算速度"
+      },
+      {
+        "key": "D",
+        "text": "直接修改服务器代码"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "浏览器存储",
+      "Cookie"
+    ],
+    "explanation": "Cookie用于在客户端保存少量状态信息，常用于用户身份标识、登录状态维护等场景。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_022",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "以下哪种浏览器存储方式容量通常更大，并适合保存大量结构化数据？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Cookie"
+      },
+      {
+        "key": "B",
+        "text": "IndexedDB"
+      },
+      {
+        "key": "C",
+        "text": "URL参数"
+      },
+      {
+        "key": "D",
+        "text": "HTTP Header"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "浏览器存储",
+      "IndexedDB"
+    ],
+    "explanation": "IndexedDB是浏览器提供的客户端数据库，适合存储大量结构化数据，而Cookie主要用于少量状态信息传递。",
+    "source": "浏览器原理整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_023",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "浏览器同源策略主要限制什么行为？",
+    "options": [
+      {
+        "key": "A",
+        "text": "不同源页面之间的敏感数据读取、DOM访问和部分资源交互"
+      },
+      {
+        "key": "B",
+        "text": "所有跨域资源加载"
+      },
+      {
+        "key": "C",
+        "text": "JavaScript变量声明"
+      },
+      {
+        "key": "D",
+        "text": "CSS样式数量"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "浏览器安全",
+      "同源策略"
+    ],
+    "explanation": "同源策略主要用于限制不同源之间的数据读取、DOM访问以及部分浏览器存储访问，并不是禁止所有跨源资源加载。",
+    "source": "浏览器安全整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_024",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "解决跨域请求问题的常见方式有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "CORS"
+      },
+      {
+        "key": "B",
+        "text": "JSONP（部分场景）"
+      },
+      {
+        "key": "C",
+        "text": "服务器代理转发"
+      },
+      {
+        "key": "D",
+        "text": "关闭JavaScript引擎"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "浏览器安全",
+      "跨域"
+    ],
+    "explanation": "现代应用通常使用CORS解决跨域，开发环境也常通过代理转发请求；JSONP只适用于GET请求等有限场景。",
+    "source": "浏览器安全整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_025",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "前端防御XSS攻击可以采取哪些措施？",
+    "options": [
+      {
+        "key": "A",
+        "text": "对用户输入进行过滤和转义"
+      },
+      {
+        "key": "B",
+        "text": "避免直接插入未经处理的HTML"
+      },
+      {
+        "key": "C",
+        "text": "使用Content Security Policy"
+      },
+      {
+        "key": "D",
+        "text": "关闭浏览器缓存"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "浏览器安全",
+      "XSS"
+    ],
+    "explanation": "XSS防护核心是避免恶意脚本进入页面执行，包括输入过滤、输出编码、CSP策略等。",
+    "source": "浏览器安全整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Security/Attacks/XSS",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_026",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "localStorage中的数据会自动随着HTTP请求发送到服务器。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "浏览器存储",
+      "localStorage"
+    ],
+    "explanation": "localStorage只保存在浏览器本地，不会像Cookie一样自动附加到HTTP请求中。",
+    "source": "浏览器存储整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_027",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "CORS是一种浏览器允许跨域访问资源的机制。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "浏览器安全",
+      "CORS"
+    ],
+    "explanation": "CORS通过服务器返回特定HTTP响应头，告诉浏览器允许哪些跨域请求。",
+    "source": "浏览器安全整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_028",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "CSRF攻击通常利用用户已登录状态下浏览器自动携带Cookie的特点。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "浏览器安全",
+      "CSRF"
+    ],
+    "explanation": "CSRF攻击利用浏览器自动携带身份凭证的特点诱导用户执行非预期操作，常通过Token校验、SameSite Cookie等方式防护。",
+    "source": "浏览器安全整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Glossary/CSRF",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "browser_029",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "什么是XSS攻击？前端如何防御？",
+    "options": [],
+    "answer": "XSS攻击是攻击者将恶意脚本注入网页并在其他用户浏览器执行的攻击方式。防御方式包括输入过滤、输出转义、避免危险HTML插入、使用CSP等。",
+    "knowledge_points": [
+      "浏览器安全",
+      "XSS"
+    ],
+    "explanation": "XSS主要利用页面对用户输入处理不严格的问题，使攻击者能够执行任意脚本。",
+    "source": "浏览器安全整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Security/Attacks/XSS",
+    "license": "reference-only"
+  },
+  {
+  "question_id": "browser_030",
+    "company": "通用",
+    "position": "browser_principles",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "前端页面性能优化有哪些常见方法？",
+    "options": [],
+    "answer": "常见方法包括资源压缩、代码分割、懒加载、合理利用缓存、优化图片资源、减少不必要的DOM操作、降低重排重绘成本以及根据HTTP协议版本合理设计资源加载策略。在HTTP/2和HTTP/3环境下，还需要结合多路复用、缓存策略和资源大小综合判断是否减少请求数量。",
+    "knowledge_points": [
+      "浏览器性能",
+      "前端优化",
+      "HTTP协议"
+    ],
+    "explanation": "性能优化需要综合考虑网络协议、资源大小、缓存命中率和浏览器渲染成本，不能简单认为请求数量越少性能一定越好。",
+    "source": "浏览器性能优化整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Performance",
+    "license": "reference-only"
+  }
+]

@@ -1,0 +1,843 @@
+[
+  {
+    "question_id": "devops_001",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在Linux中，使用哪个命令可以显示当前工作目录的完整路径？",
+    "options": [
+      {
+        "key": "A",
+        "text": "pwd"
+      },
+      {
+        "key": "B",
+        "text": "cd"
+      },
+      {
+        "key": "C",
+        "text": "mkdir"
+      },
+      {
+        "key": "D",
+        "text": "touch"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux基础",
+      "文件系统",
+      "常用命令"
+    ],
+    "explanation": "pwd用于输出当前工作目录的完整路径；cd用于切换目录，mkdir用于创建目录，touch通常用于创建空文件或更新时间戳。",
+    "source": "GNU Coreutils文档整理",
+    "source_url": "https://www.gnu.org/software/coreutils/manual/html_node/pwd-invocation.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_002",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Linux文件权限字符串-rwxr-xr--中，文件所有者具有什么权限？",
+    "options": [
+      {
+        "key": "A",
+        "text": "读、写、执行"
+      },
+      {
+        "key": "B",
+        "text": "只读"
+      },
+      {
+        "key": "C",
+        "text": "读和执行"
+      },
+      {
+        "key": "D",
+        "text": "写和执行"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux",
+      "文件权限",
+      "chmod"
+    ],
+    "explanation": "权限字符串中第一组三位rwx表示文件所有者拥有读取、写入和执行权限；第二组三位r-x属于用户组；第三组三位r--属于其他用户。",
+    "source": "GNU Coreutils文档整理",
+    "source_url": "https://www.gnu.org/software/coreutils/manual/html_node/Mode-Structure.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_003",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在使用systemd的Linux系统中，查看某个服务当前运行状态通常使用哪个命令？",
+    "options": [
+      {
+        "key": "A",
+        "text": "systemctl status 服务名"
+      },
+      {
+        "key": "B",
+        "text": "chmod status 服务名"
+      },
+      {
+        "key": "C",
+        "text": "mkdir status 服务名"
+      },
+      {
+        "key": "D",
+        "text": "grep start 服务名"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux",
+      "systemd",
+      "服务管理"
+    ],
+    "explanation": "systemctl status可以查看服务是否运行、主进程信息、最近日志和失败状态。启动、停止和重启服务通常分别使用start、stop和restart子命令。",
+    "source": "systemd官方文档整理",
+    "source_url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_004",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Linux中用于查看文件系统磁盘空间使用情况的常用命令是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "df"
+      },
+      {
+        "key": "B",
+        "text": "ps"
+      },
+      {
+        "key": "C",
+        "text": "kill"
+      },
+      {
+        "key": "D",
+        "text": "whoami"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux",
+      "磁盘管理",
+      "df"
+    ],
+    "explanation": "df用于查看已挂载文件系统的总容量、已用空间和可用空间，常配合-h参数以便按易读单位显示。du则更适合统计目录或文件占用空间。",
+    "source": "GNU Coreutils文档整理",
+    "source_url": "https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_005",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在Linux中，哪个命令通常用于查看系统内存和Swap的总体使用情况？",
+    "options": [
+      {
+        "key": "A",
+        "text": "free"
+      },
+      {
+        "key": "B",
+        "text": "cp"
+      },
+      {
+        "key": "C",
+        "text": "hostname"
+      },
+      {
+        "key": "D",
+        "text": "passwd"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux",
+      "内存监控",
+      "Swap"
+    ],
+    "explanation": "free可以查看物理内存和Swap的总量、已用量、空闲量及可用量，常使用free -h获得易读格式。排查内存问题时还需结合top、vmstat和进程指标分析。",
+    "source": "procps-ng文档整理",
+    "source_url": "https://man7.org/linux/man-pages/man1/free.1.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_006",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "排查Linux服务器磁盘空间不足时，通常可以采取哪些操作？",
+    "options": [
+      {
+        "key": "A",
+        "text": "使用df查看各文件系统空间使用情况"
+      },
+      {
+        "key": "B",
+        "text": "使用du定位占用空间较大的目录或文件"
+      },
+      {
+        "key": "C",
+        "text": "检查日志、缓存和临时文件是否异常增长"
+      },
+      {
+        "key": "D",
+        "text": "不检查原因，直接随机删除系统文件"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Linux",
+      "磁盘排查",
+      "df",
+      "du",
+      "日志管理"
+    ],
+    "explanation": "磁盘告警应先确认哪个文件系统已满，再通过du、日志目录和应用数据定位增长来源。删除文件前应确认用途，并注意已删除但仍被进程打开的文件可能继续占用空间。",
+    "source": "Linux运维实践整理",
+    "source_url": "https://www.gnu.org/software/coreutils/manual/html_node/df-invocation.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_007",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "排查Linux进程CPU占用过高时，通常可以收集哪些信息？",
+    "options": [
+      {
+        "key": "A",
+        "text": "使用top或类似工具确认高CPU进程和线程"
+      },
+      {
+        "key": "B",
+        "text": "检查应用日志、调用量和近期变更"
+      },
+      {
+        "key": "C",
+        "text": "结合进程监控、性能分析或调用栈进一步定位"
+      },
+      {
+        "key": "D",
+        "text": "看到CPU升高后立即删除所有日志"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Linux",
+      "CPU排查",
+      "进程监控",
+      "故障定位"
+    ],
+    "explanation": "CPU故障排查需要先确认时间范围、进程和线程，再关联请求量、日志、发布变更及性能分析结果。直接重启或删除证据可能暂时恢复服务，但不利于定位根因。",
+    "source": "Linux性能分析实践整理",
+    "source_url": "https://man7.org/linux/man-pages/man1/top.1.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_008",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "chmod 755 file表示所有者拥有读、写、执行权限，用户组和其他用户拥有读、执行权限。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Linux",
+      "文件权限",
+      "chmod"
+    ],
+    "explanation": "数字权限中7等于4加2加1，即读、写、执行；5等于4加1，即读和执行。因此755对应rwxr-xr-x。",
+    "source": "GNU Coreutils文档整理",
+    "source_url": "https://www.gnu.org/software/coreutils/manual/html_node/Numeric-Modes.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_009",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "向进程发送SIGKILL后，进程可以捕获该信号并自行执行完整的资源清理逻辑。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "Linux",
+      "进程管理",
+      "信号",
+      "SIGKILL"
+    ],
+    "explanation": "SIGKILL不能被捕获、阻塞或忽略，内核会直接终止进程，因此应用通常没有机会执行正常退出和清理逻辑。日常停止服务时一般应先使用SIGTERM或服务管理命令。",
+    "source": "Linux信号文档整理",
+    "source_url": "https://man7.org/linux/man-pages/man7/signal.7.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_010",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Linux服务器上的某个服务突然无法访问，应如何进行初步排查？",
+    "options": [],
+    "answer": "首先确认故障范围、发生时间和近期变更，并检查域名、网络和端口是否可达。随后使用systemctl或进程工具确认服务状态，检查监听端口、应用日志和系统日志，再查看CPU、内存、磁盘、文件描述符及连接数是否异常。还应检查依赖的数据库、缓存和上游服务。如果需要重启或回滚，应先保留日志、时间点和监控证据，并在恢复后继续分析根因。",
+    "knowledge_points": [
+      "故障处理",
+      "Linux",
+      "服务排查",
+      "日志分析",
+      "网络排查"
+    ],
+    "explanation": "故障排查应从现象和影响范围开始，按照网络、进程、端口、日志、资源和依赖逐层定位。恢复服务与查明根因是两个阶段，不能只以重启成功作为问题结束。",
+    "source": "Linux运维故障处理实践整理",
+    "source_url": "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_011",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "DNS在网络通信中的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "将域名解析为IP地址等资源记录"
+      },
+      {
+        "key": "B",
+        "text": "自动修复服务器磁盘故障"
+      },
+      {
+        "key": "C",
+        "text": "替代HTTP协议传输网页"
+      },
+      {
+        "key": "D",
+        "text": "管理Linux文件权限"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络基础",
+      "DNS",
+      "域名解析"
+    ],
+    "explanation": "DNS用于查询域名对应的IP地址以及其他资源记录，使客户端能够根据域名找到目标服务。DNS还包括缓存、递归查询和权威解析等机制。",
+    "source": "DNS协议文档整理",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc1034",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_012",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在Linux中，查看当前监听的TCP端口及相关进程，通常可以使用哪个命令？",
+    "options": [
+      {
+        "key": "A",
+        "text": "ss -lntp"
+      },
+      {
+        "key": "B",
+        "text": "pwd -lntp"
+      },
+      {
+        "key": "C",
+        "text": "mkdir -lntp"
+      },
+      {
+        "key": "D",
+        "text": "chmod -lntp"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux",
+      "网络排查",
+      "端口",
+      "ss"
+    ],
+    "explanation": "ss -lntp用于查看监听状态的TCP套接字、数字形式的地址与端口以及关联进程。查看其他用户进程信息时通常需要相应权限。",
+    "source": "Linux网络工具文档整理",
+    "source_url": "https://man7.org/linux/man-pages/man8/ss.8.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_013",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Nginx作为反向代理时，主要承担什么作用？",
+    "options": [
+      {
+        "key": "A",
+        "text": "接收客户端请求并转发给后端服务，再将响应返回给客户端"
+      },
+      {
+        "key": "B",
+        "text": "直接替代所有后端业务逻辑"
+      },
+      {
+        "key": "C",
+        "text": "永久保存全部数据库数据"
+      },
+      {
+        "key": "D",
+        "text": "自动编译应用源代码"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Nginx",
+      "反向代理",
+      "负载均衡"
+    ],
+    "explanation": "Nginx可以作为统一入口接收客户端请求，并将请求代理到一个或多个后端服务，同时支持负载均衡、TLS终止、缓存和访问控制等功能。",
+    "source": "Nginx官方文档整理",
+    "source_url": "https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_014",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "建设服务可观测性体系时，通常需要包含哪些信息？",
+    "options": [
+      {
+        "key": "A",
+        "text": "指标，例如请求量、错误率、延迟和资源利用率"
+      },
+      {
+        "key": "B",
+        "text": "日志，包括错误信息、关键事件和关联标识"
+      },
+      {
+        "key": "C",
+        "text": "调用链或分布式追踪信息"
+      },
+      {
+        "key": "D",
+        "text": "只监控服务器是否能够开机"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "监控",
+      "可观测性",
+      "日志",
+      "分布式追踪"
+    ],
+    "explanation": "完整的可观测性通常结合指标、日志和调用链。指标用于发现趋势和异常，日志提供事件细节，调用链用于分析跨服务请求路径和延迟。",
+    "source": "可观测性工程实践整理",
+    "source_url": "https://opentelemetry.io/docs/concepts/observability-primer/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_015",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "TCP在正常建立连接时通常需要经过三次握手。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "网络基础",
+      "TCP",
+      "三次握手"
+    ],
+    "explanation": "TCP连接建立通常通过SYN、SYN-ACK和ACK完成，使通信双方确认彼此的发送和接收能力并同步初始序列号。",
+    "source": "TCP协议文档整理",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9293",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_016",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Docker镜像通常是用于创建容器的只读模板，而容器是镜像的运行实例。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Docker",
+      "镜像",
+      "容器"
+    ],
+    "explanation": "镜像包含应用及其依赖和文件系统层，容器则是在镜像基础上创建的隔离运行实例，并具有自己的可写层和运行状态。",
+    "source": "Docker官方文档整理",
+    "source_url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_017",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "Nginx返回HTTP 502时，通常表示它作为网关或代理未能从上游服务获得有效响应。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Nginx",
+      "HTTP状态码",
+      "502",
+      "上游服务"
+    ],
+    "explanation": "502 Bad Gateway通常表示代理或网关从上游获得了无效响应。可能原因包括上游进程未启动、端口配置错误、连接被拒绝、网络故障、协议不匹配或上游异常退出。",
+    "source": "HTTP状态码文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/502",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_018",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "监控指标只要出现一次短暂波动，就应该立即触发最高级别告警并通知所有人员。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "监控告警",
+      "告警策略",
+      "告警噪声"
+    ],
+    "explanation": "告警应结合持续时间、业务影响、历史基线和严重程度设置。对所有短暂波动都触发高级告警会造成告警疲劳，使真正重要的故障被忽略。",
+    "source": "Prometheus告警实践整理",
+    "source_url": "https://prometheus.io/docs/practices/alerting/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_019",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "用户反馈域名无法访问，但通过服务器IP可以访问服务，应如何排查？",
+    "options": [],
+    "answer": "首先使用dig、nslookup或host检查域名解析结果，确认记录类型、目标IP、TTL和权威DNS是否正确。然后检查本机DNS配置、运营商或递归DNS缓存以及hosts文件是否存在异常。还应确认域名是否过期、DNS变更是否已经传播、IPv4和IPv6记录是否一致。解析正常后，再检查TLS证书、Nginx虚拟主机配置、Host请求头以及防火墙和负载均衡配置。",
+    "knowledge_points": [
+      "DNS",
+      "域名故障",
+      "网络排查",
+      "Nginx"
+    ],
+    "explanation": "能够通过IP访问并不代表域名链路正常。排查时应区分DNS解析、TLS证书、虚拟主机匹配和网络入口等不同阶段。",
+    "source": "DNS故障排查实践整理",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc1034",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_020",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Nginx突然大量返回502错误，应如何定位和处理？",
+    "options": [],
+    "answer": "首先确认502出现的时间、范围、请求路径和近期发布变更，并查看Nginx访问日志和错误日志。随后检查上游服务是否存活、监听地址和端口是否正确，以及从Nginx所在节点能否连接上游。还应检查上游日志、CPU、内存、文件描述符、连接池、线程池和超时配置，并排查网络、防火墙、DNS和协议配置。若故障影响较大，可根据预案执行流量切换、扩容或回滚，但应先保留日志、监控和调用链证据，恢复后继续进行根因分析。",
+    "knowledge_points": [
+      "Nginx",
+      "502",
+      "故障处理",
+      "日志分析",
+      "上游服务"
+    ],
+    "explanation": "502只是代理层观察到的故障现象，根因可能位于上游进程、网络、容量、配置或发布变更。应先恢复服务，再完成根因分析和预防措施。",
+    "source": "Nginx故障排查实践整理",
+    "source_url": "https://docs.nginx.com/nginx/admin-guide/monitoring/logging/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_021",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "蓝绿发布的主要特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "同时维护新旧两套环境，验证新环境后切换流量"
+      },
+      {
+        "key": "B",
+        "text": "直接在生产环境中手工修改全部文件"
+      },
+      {
+        "key": "C",
+        "text": "每次发布都必须停止所有服务器"
+      },
+      {
+        "key": "D",
+        "text": "只发布数据库，不发布应用"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "发布部署",
+      "蓝绿发布",
+      "流量切换"
+    ],
+    "explanation": "蓝绿发布通常维护两套相对独立的生产环境，一套运行当前版本，另一套部署新版本。完成验证后将流量切换到新环境，出现问题时可以切回旧环境。",
+    "source": "发布策略文档整理",
+    "source_url": "https://argo-rollouts.readthedocs.io/en/stable/features/bluegreen/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_022",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "灾难恢复中的RPO主要表示什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "以时间衡量的最大可接受数据丢失范围"
+      },
+      {
+        "key": "B",
+        "text": "服务恢复所需的最长可接受时间"
+      },
+      {
+        "key": "C",
+        "text": "服务器CPU的最大使用率"
+      },
+      {
+        "key": "D",
+        "text": "单次发布允许修改的文件数量"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "灾难恢复",
+      "RPO",
+      "备份策略"
+    ],
+    "explanation": "RPO表示恢复后最多可以接受丢失多长时间范围内的数据；RTO表示发生故障后，业务恢复到可用状态的目标时间。",
+    "source": "灾难恢复实践整理",
+    "source_url": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/recovery-objectives.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_023",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "为了降低生产发布风险，通常可以采取哪些措施？",
+    "options": [
+      {
+        "key": "A",
+        "text": "采用灰度、金丝雀或分批发布控制影响范围"
+      },
+      {
+        "key": "B",
+        "text": "设置健康检查、监控指标和自动化告警"
+      },
+      {
+        "key": "C",
+        "text": "准备回滚方案，并考虑数据库变更的前后兼容性"
+      },
+      {
+        "key": "D",
+        "text": "不经过验证直接全量发布，并删除旧版本"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "发布部署",
+      "灰度发布",
+      "回滚",
+      "数据库兼容"
+    ],
+    "explanation": "安全发布需要控制流量范围、持续观察关键指标，并提前准备回滚方案。数据库结构和接口变更还应考虑新旧版本同时运行期间的兼容性。",
+    "source": "Kubernetes发布实践整理",
+    "source_url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_024",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "只要使用滚动发布，就一定能够保证业务零中断且不会出现任何错误。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "滚动发布",
+      "高可用",
+      "发布风险"
+    ],
+    "explanation": "滚动发布可以减少停机时间，但能否实现业务不中断还取决于副本数量、资源容量、健康检查、连接处理、应用启动时间以及新旧版本兼容性。",
+    "source": "Kubernetes发布文档整理",
+    "source_url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_025",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "只要定期生成了备份文件，就可以保证发生故障时一定能够成功恢复业务。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "备份恢复",
+      "恢复演练",
+      "灾难恢复"
+    ],
+    "explanation": "备份文件可能存在损坏、缺失、权限错误、版本不兼容或恢复步骤不可用等问题，因此需要定期检查备份完整性并进行恢复演练。",
+    "source": "备份恢复实践整理",
+    "source_url": "https://www.postgresql.org/docs/current/backup.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_026",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "负载均衡器可以通过健康检查识别异常实例，并停止向不健康实例转发新的请求。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "负载均衡",
+      "健康检查",
+      "高可用"
+    ],
+    "explanation": "健康检查用于判断后端实例是否能够正常提供服务。实例检查失败后，负载均衡器通常会暂时将其从可用节点列表中移除。",
+    "source": "Kubernetes健康检查文档整理",
+    "source_url": "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_027",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "故障复盘应重点分析系统和流程问题，记录直接原因、促成因素以及改进措施，而不应只寻找个人进行追责。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "故障复盘",
+      "根因分析",
+      "无责复盘"
+    ],
+    "explanation": "高质量复盘关注系统为什么允许故障发生或扩大，包括监控、流程、权限、设计和沟通等因素，并形成明确负责人和完成时间的改进任务。",
+    "source": "Google SRE故障复盘实践整理",
+    "source_url": "https://sre.google/sre-book/postmortem-culture/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_028",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "线上发生大面积服务不可用时，应如何开展应急故障处理？",
+    "options": [],
+    "answer": "首先确认影响范围、故障时间和用户影响，按预案升级事件等级并明确现场负责人。随后冻结高风险变更，查看监控、日志和调用链，定位异常服务和近期发布。在信息充分的前提下优先采取流量切换、降级、扩容、回滚或隔离故障节点等措施恢复核心业务。处理过程中应持续记录时间线、操作和结果，并向相关人员同步状态。服务恢复后还需要验证数据一致性、清理临时措施并组织根因分析和故障复盘。",
+    "knowledge_points": [
+      "故障处理",
+      "应急响应",
+      "服务恢复",
+      "故障复盘"
+    ],
+    "explanation": "重大故障处理中，应优先控制影响和恢复核心业务，同时保留日志和监控证据。恢复服务并不代表故障处理结束，还需要完成根因分析和预防措施。",
+    "source": "Google SRE事件响应实践整理",
+    "source_url": "https://sre.google/workbook/incident-response/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_029",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何为关键业务系统设计备份与恢复方案？",
+    "options": [],
+    "answer": "首先根据业务影响确定RPO和RTO，再识别需要保护的数据库、文件、配置、密钥和基础设施信息。根据目标选择全量、增量、快照或日志备份方式，并设置合理的备份频率和保留周期。备份应尽量与生产环境隔离，重要数据可采用异地或跨区域副本，并进行加密和权限控制。还需要监控备份任务是否成功、定期校验数据完整性，并通过恢复演练确认恢复步骤、时间和人员分工满足要求。",
+    "knowledge_points": [
+      "备份恢复",
+      "RPO",
+      "RTO",
+      "容灾"
+    ],
+    "explanation": "备份方案的目标不是生成文件，而是在真实故障中按业务要求恢复。没有监控、校验和恢复演练的备份不能被视为可靠恢复能力。",
+    "source": "灾难恢复实践整理",
+    "source_url": "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "devops_030",
+    "company": "通用",
+    "position": "devops_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何设计一次安全、可观察并且可回滚的生产发布？",
+    "options": [],
+    "answer": "发布前应明确变更范围、依赖关系、验证项、负责人和回滚条件，并完成自动化测试、配置检查和容量评估。数据库变更应优先采用向前兼容方式，避免新旧版本并存期间产生不兼容。发布时可以使用灰度、金丝雀、滚动或蓝绿策略逐步扩大流量，并持续观察错误率、延迟、吞吐量和业务指标。若指标超过阈值，应停止扩大发布范围并执行自动或人工回滚。发布后还需要完成业务验证、记录发布结果并清理临时资源。",
+    "knowledge_points": [
+      "发布部署",
+      "灰度发布",
+      "回滚",
+      "监控",
+      "变更管理"
+    ],
+    "explanation": "安全发布需要同时具备变更可控、指标可见和故障可恢复三项能力。仅准备旧版本程序并不等于具备完整回滚能力，还要考虑配置、数据库和外部依赖。",
+    "source": "持续交付实践整理",
+    "source_url": "https://www.atlassian.com/continuous-delivery/principles/release-management",
+    "license": "reference-only"
+  }
+]
