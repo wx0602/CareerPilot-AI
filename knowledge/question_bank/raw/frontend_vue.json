@@ -1,0 +1,861 @@
+[
+  {
+    "question_id": "vue_001",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Vue框架的核心特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只能用于后端开发"
+      },
+      {
+        "key": "B",
+        "text": "基于组件化和响应式的数据驱动"
+      },
+      {
+        "key": "C",
+        "text": "完全替代JavaScript"
+      },
+      {
+        "key": "D",
+        "text": "必须依赖jQuery运行"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Vue基础",
+      "组件化",
+      "响应式"
+    ],
+    "explanation": "Vue采用数据驱动视图的思想，通过响应式系统自动追踪数据变化，并结合组件化方式构建用户界面。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/introduction.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_002",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Vue中用于实现数据双向绑定的常用指令是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "v-if"
+      },
+      {
+        "key": "B",
+        "text": "v-for"
+      },
+      {
+        "key": "C",
+        "text": "v-model"
+      },
+      {
+        "key": "D",
+        "text": "v-bind"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "Vue基础",
+      "指令",
+      "v-model"
+    ],
+    "explanation": "v-model用于在表单元素上实现双向数据绑定，本质上是value绑定和事件监听的语法糖。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/forms.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_003",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Vue模板中用于动态绑定HTML属性的指令是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "v-bind"
+      },
+      {
+        "key": "B",
+        "text": "v-show"
+      },
+      {
+        "key": "C",
+        "text": "v-model"
+      },
+      {
+        "key": "D",
+        "text": "v-slot"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Vue基础",
+      "模板语法"
+    ],
+    "explanation": "v-bind用于将Vue中的数据绑定到HTML属性，也可以使用简写形式 :attr。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/template-syntax.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_004",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Vue中的computed计算属性相比普通方法的主要优势是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "computed具有缓存机制"
+      },
+      {
+        "key": "B",
+        "text": "computed只能执行一次"
+      },
+      {
+        "key": "C",
+        "text": "computed不能依赖响应式数据"
+      },
+      {
+        "key": "D",
+        "text": "computed不会返回结果"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Vue",
+      "computed",
+      "响应式"
+    ],
+    "explanation": "computed基于响应式依赖进行缓存，只有依赖数据变化时才会重新计算。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/computed.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_005",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Vue3 Composition API中用于创建响应式基本类型数据的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "ref"
+      },
+      {
+        "key": "B",
+        "text": "router"
+      },
+      {
+        "key": "C",
+        "text": "component"
+      },
+      {
+        "key": "D",
+        "text": "slot"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Vue3",
+      "Composition API",
+      "ref"
+    ],
+    "explanation": "ref用于创建响应式引用，通常用于基本类型数据，在模板中可以自动解包。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/api/reactivity-core.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_006",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Vue3中的reactive和ref有哪些特点？",
+    "options": [
+      {
+        "key": "A",
+        "text": "reactive通常用于创建对象响应式数据"
+      },
+      {
+        "key": "B",
+        "text": "ref可以用于基本类型响应式数据"
+      },
+      {
+        "key": "C",
+        "text": "二者都可以触发视图更新"
+      },
+      {
+        "key": "D",
+        "text": "二者都无法监听数据变化"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Vue3",
+      "reactive",
+      "ref"
+    ],
+    "explanation": "reactive主要代理对象类型数据，ref通过.value保存响应式值，两者都会触发依赖更新。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/reactivity-fundamentals.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_007",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Vue中的watch可以用于哪些场景？",
+    "options": [
+      {
+        "key": "A",
+        "text": "监听响应式数据变化"
+      },
+      {
+        "key": "B",
+        "text": "执行异步操作"
+      },
+      {
+        "key": "C",
+        "text": "响应数据变化执行副作用逻辑"
+      },
+      {
+        "key": "D",
+        "text": "替代所有组件通信"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Vue",
+      "watch",
+      "响应式"
+    ],
+    "explanation": "watch适合监听数据变化并执行副作用，例如发送请求、修改外部状态等。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/watchers.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_008",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "Vue中的v-if和v-show都可以控制元素显示隐藏，但实现机制不同。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "条件渲染"
+    ],
+    "explanation": "v-if会根据条件动态创建或销毁DOM，v-show通过CSS display属性控制显示隐藏。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/conditional.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_009",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue组件中的data在组件实例之间应该保持独立。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "组件"
+    ],
+    "explanation": "Vue组件复用时，每个实例需要独立的数据状态，因此组件中的data通常需要返回对象。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/scaling-up/state-management.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_010",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue中的key属性可以帮助虚拟DOM算法更准确地识别节点变化。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "虚拟DOM",
+      "key"
+    ],
+    "explanation": "key用于标识节点身份，使Vue在更新列表时能够进行更准确的diff比较，提高更新效率。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/list.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_011",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Vue组件生命周期中，组件挂载完成后执行的生命周期钩子是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "beforeCreate"
+      },
+      {
+        "key": "B",
+        "text": "created"
+      },
+      {
+        "key": "C",
+        "text": "mounted"
+      },
+      {
+        "key": "D",
+        "text": "beforeUnmount"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "Vue",
+      "生命周期"
+    ],
+    "explanation": "mounted表示组件已经完成DOM挂载，可以访问真实DOM元素，常用于初始化需要操作DOM的逻辑。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/essentials/lifecycle.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_012",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Vue父组件向子组件传递数据通常使用什么方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "props"
+      },
+      {
+        "key": "B",
+        "text": "emit"
+      },
+      {
+        "key": "C",
+        "text": "router"
+      },
+      {
+        "key": "D",
+        "text": "watch"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Vue",
+      "组件通信",
+      "props"
+    ],
+    "explanation": "props用于父组件向子组件传递数据，是Vue组件通信中最基础的方式。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/props.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_013",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Vue子组件向父组件传递消息通常使用什么方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "props"
+      },
+      {
+        "key": "B",
+        "text": "$emit"
+      },
+      {
+        "key": "C",
+        "text": "computed"
+      },
+      {
+        "key": "D",
+        "text": "provide"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Vue",
+      "组件通信",
+      "emit"
+    ],
+    "explanation": "子组件通过emit触发自定义事件，父组件监听事件完成数据传递。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/events.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_014",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Vue常见组件通信方式包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "props和emit"
+      },
+      {
+        "key": "B",
+        "text": "provide/inject"
+      },
+      {
+        "key": "C",
+        "text": "状态管理库Pinia或Vuex"
+      },
+      {
+        "key": "D",
+        "text": "修改浏览器内核"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Vue",
+      "组件通信"
+    ],
+    "explanation": "Vue提供多种组件通信方式，不同场景可以选择props、emit、provide/inject或状态管理方案。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/provide-inject.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_015",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Vue中的slot插槽可以解决哪些问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "提高组件复用能力"
+      },
+      {
+        "key": "B",
+        "text": "允许父组件向子组件传递模板内容"
+      },
+      {
+        "key": "C",
+        "text": "实现组件结构的灵活定制"
+      },
+      {
+        "key": "D",
+        "text": "替代所有状态管理"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Vue",
+      "插槽",
+      "slot"
+    ],
+    "explanation": "slot允许组件接收外部传入的模板内容，提高组件封装性和复用能力。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/slots.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_016",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue Router用于管理Vue应用中的页面路由。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "Vue Router"
+    ],
+    "explanation": "Vue Router是Vue官方路由解决方案，用于实现单页面应用中的路径映射和页面切换。",
+    "source": "Vue Router官方文档整理",
+    "source_url": "https://router.vuejs.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_017",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue Router中的导航守卫可以用于控制路由跳转逻辑。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "Vue Router",
+      "导航守卫"
+    ],
+    "explanation": "导航守卫常用于登录权限验证、页面访问控制和路由跳转前后的逻辑处理。",
+    "source": "Vue Router官方文档整理",
+    "source_url": "https://router.vuejs.org/guide/advanced/navigation-guards.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_018",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Pinia和Vuex都是Vue生态中用于集中式状态管理的工具。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "状态管理",
+      "Pinia",
+      "Vuex"
+    ],
+    "explanation": "Pinia是Vue3官方推荐的状态管理方案，Vuex是Vue2时代广泛使用的状态管理库。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://pinia.vuejs.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_019",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Vue组件中props为什么不建议直接修改？",
+    "options": [],
+    "answer": "props属于父组件传递给子组件的数据，直接修改会破坏单向数据流设计，导致数据来源不清晰。通常应该通过事件通知父组件修改数据，或者在子组件中创建本地状态副本。",
+    "knowledge_points": [
+      "Vue",
+      "组件通信",
+      "单向数据流"
+    ],
+    "explanation": "Vue遵循单向数据流原则，父组件负责维护状态，子组件通过props接收数据，通过emit通知变化。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/props.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_020",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Vue中的provide/inject适用于什么场景？",
+    "options": [],
+    "answer": "provide/inject用于跨层级组件传递数据，可以避免多层组件逐层通过props传递数据，常用于插件、主题配置和全局共享状态等场景。",
+    "knowledge_points": [
+      "Vue",
+      "provide/inject",
+      "组件通信"
+    ],
+    "explanation": "provide/inject适合祖先组件向深层后代组件传递依赖，但复杂状态管理通常更推荐Pinia等方案。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/provide-inject.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_021",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "Vue3响应式系统相比Vue2主要使用什么技术实现？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Object.defineProperty"
+      },
+      {
+        "key": "B",
+        "text": "Proxy"
+      },
+      {
+        "key": "C",
+        "text": "jQuery事件机制"
+      },
+      {
+        "key": "D",
+        "text": "WebSocket"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Vue3",
+      "响应式原理",
+      "Proxy"
+    ],
+    "explanation": "Vue3使用Proxy代理对象实现响应式，相比Vue2的Object.defineProperty可以更方便地监听对象新增属性和删除属性。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/extras/reactivity-in-depth.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_022",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "Vue中的nextTick主要用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "等待DOM更新完成后执行代码"
+      },
+      {
+        "key": "B",
+        "text": "创建新的Vue实例"
+      },
+      {
+        "key": "C",
+        "text": "替代组件通信"
+      },
+      {
+        "key": "D",
+        "text": "关闭响应式系统"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Vue",
+      "nextTick",
+      "异步更新"
+    ],
+    "explanation": "Vue更新DOM是异步批量执行的，nextTick可以等待下一次DOM更新完成后执行回调。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/api/general.html#nexttick",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_023",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Vue虚拟DOM相比直接操作真实DOM的优势包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少频繁DOM操作"
+      },
+      {
+        "key": "B",
+        "text": "通过diff算法比较节点变化"
+      },
+      {
+        "key": "C",
+        "text": "提高更新效率"
+      },
+      {
+        "key": "D",
+        "text": "完全不需要真实DOM"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Vue",
+      "虚拟DOM",
+      "diff算法"
+    ],
+    "explanation": "虚拟DOM通过JavaScript对象描述页面结构，在更新时通过diff算法计算最小变化，再更新真实DOM。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/extras/rendering-mechanism.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_024",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Vue项目中常见性能优化方式有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "组件懒加载"
+      },
+      {
+        "key": "B",
+        "text": "合理使用keep-alive缓存组件"
+      },
+      {
+        "key": "C",
+        "text": "减少不必要的响应式数据"
+      },
+      {
+        "key": "D",
+        "text": "无限增加组件层级"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Vue",
+      "性能优化"
+    ],
+    "explanation": "Vue性能优化包括代码分割、组件缓存、减少无效更新、优化响应式数据等。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/best-practices/performance.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_025",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue3中的setup函数是在组件创建之前执行的组合式API入口。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue3",
+      "Composition API",
+      "setup"
+    ],
+    "explanation": "setup是Vue3 Composition API的入口，在组件初始化阶段执行，用于定义响应式数据、方法和生命周期逻辑。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/api/composition-api-setup.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_026",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue中的keep-alive可以缓存组件实例，避免组件重复创建。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "keep-alive"
+    ],
+    "explanation": "keep-alive用于缓存动态组件或路由组件状态，提高页面切换体验。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/built-ins/keep-alive.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_027",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Vue中的异步组件可以实现组件代码按需加载。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Vue",
+      "异步组件",
+      "性能优化"
+    ],
+    "explanation": "异步组件允许在需要时才加载组件代码，常用于大型应用的代码分割。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/components/async.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_028",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Vue3为什么使用Proxy替代Vue2中的Object.defineProperty实现响应式？",
+    "options": [],
+    "answer": "Proxy可以直接代理整个对象，能够监听属性新增、删除等操作，同时减少递归遍历对象带来的性能问题。",
+    "knowledge_points": [
+      "Vue3",
+      "响应式原理",
+      "Proxy"
+    ],
+    "explanation": "Vue2通过Object.defineProperty劫持已有属性，需要递归处理对象；Vue3通过Proxy代理对象整体，响应式能力更强。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/extras/reactivity-in-depth.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_029",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述Vue虚拟DOM的diff算法作用。",
+    "options": [],
+    "answer": "diff算法用于比较新旧虚拟DOM树的差异，找出需要更新的部分，并尽可能减少真实DOM操作，提高渲染效率。",
+    "knowledge_points": [
+      "Vue",
+      "虚拟DOM",
+      "diff算法"
+    ],
+    "explanation": "Vue通过key帮助diff算法识别节点身份，在列表更新时减少不必要的节点创建和销毁。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/extras/rendering-mechanism.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "vue_030",
+    "company": "通用",
+    "position": "frontend_vue",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Vue项目中结合TypeScript有什么优势？",
+    "options": [],
+    "answer": "Vue结合TypeScript可以为组件Props、响应式数据、接口返回值等提供类型约束，提高代码提示能力，减少运行时错误，并提升大型项目维护效率。",
+    "knowledge_points": [
+      "Vue",
+      "TypeScript",
+      "工程化"
+    ],
+    "explanation": "Vue3天然支持TypeScript，通过类型系统可以提升组件开发体验和团队协作效率。",
+    "source": "Vue官方文档整理",
+    "source_url": "https://vuejs.org/guide/typescript/overview.html",
+    "license": "reference-only"
+  }
+]

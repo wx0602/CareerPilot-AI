@@ -30,7 +30,7 @@ export const learningModules = [
     category: '前端基础',
     summary: '语言基础、闭包、原型、异步模型',
     position: '前端工程师',
-    available: false
+    available: true
   },
   {
     id: 'frontend_typescript',
@@ -38,7 +38,7 @@ export const learningModules = [
     category: '前端基础',
     summary: '类型系统、泛型、声明文件、工程约束',
     position: '前端工程师',
-    available: false
+    available: true
   },
   {
     id: 'frontend_vue',
@@ -46,7 +46,7 @@ export const learningModules = [
     category: '前端基础',
     summary: '响应式、组件通信、路由、状态管理',
     position: '前端工程师',
-    available: false
+    available: true
   },
   {
     id: 'browser_principles',
@@ -54,7 +54,7 @@ export const learningModules = [
     category: '前端基础',
     summary: '渲染流程、事件循环、缓存、同源策略',
     position: '前端工程师',
-    available: false
+    available: true
   },
   {
     id: 'go_backend',
@@ -62,7 +62,7 @@ export const learningModules = [
     category: '语言方向',
     summary: 'goroutine、channel、内存模型、服务开发',
     position: 'Go 后端工程师',
-    available: false
+    available: true
   },
   {
     id: 'cpp_basic',
@@ -70,7 +70,7 @@ export const learningModules = [
     category: '语言方向',
     summary: '对象模型、STL、内存管理、现代 C++',
     position: 'C++ 工程师',
-    available: false
+    available: true
   },
   {
     id: 'ai_llm_engineering',
@@ -78,7 +78,7 @@ export const learningModules = [
     category: 'AI 方向',
     summary: 'Prompt、RAG、向量检索、Agent、评测',
     position: 'AI 工程师',
-    available: false
+    available: true
   },
   {
     id: 'product_manager',
@@ -86,7 +86,7 @@ export const learningModules = [
     category: '通用岗位',
     summary: '需求分析、优先级、指标、方案表达',
     position: '产品经理',
-    available: false
+    available: true
   },
   {
     id: 'testing_engineering',
@@ -94,7 +94,7 @@ export const learningModules = [
     category: '通用岗位',
     summary: '测试设计、接口测试、自动化、缺陷分析',
     position: '测试工程师',
-    available: false
+    available: true
   },
   {
     id: 'devops_engineering',
@@ -102,7 +102,7 @@ export const learningModules = [
     category: '通用岗位',
     summary: 'Linux、网络、监控、发布、故障处理',
     position: '运维工程师',
-    available: false
+    available: true
   }
 ];
 

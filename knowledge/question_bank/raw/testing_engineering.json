@@ -1,0 +1,838 @@
+[
+  {
+    "question_id": "testing_001",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "软件测试的主要目的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "发现缺陷、评估质量并降低软件风险"
+      },
+      {
+        "key": "B",
+        "text": "证明软件绝对不存在缺陷"
+      },
+      {
+        "key": "C",
+        "text": "完全替代需求分析和软件开发"
+      },
+      {
+        "key": "D",
+        "text": "只检查页面颜色是否正确"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "测试基础",
+      "测试目标",
+      "质量风险"
+    ],
+    "explanation": "软件测试用于发现缺陷、验证需求、评估产品质量并向项目决策提供信息，但有限的测试不能证明软件绝对没有缺陷。",
+    "source": "ISTQB测试基础整理",
+    "source_url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_002",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "等价类划分方法的主要思想是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "将输入划分为若干具有相似处理结果的集合，并从每个集合选择代表数据"
+      },
+      {
+        "key": "B",
+        "text": "测试所有可能的输入组合"
+      },
+      {
+        "key": "C",
+        "text": "只测试输入范围的最大值"
+      },
+      {
+        "key": "D",
+        "text": "只根据开发人员的代码编写测试"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "测试设计",
+      "等价类划分",
+      "黑盒测试"
+    ],
+    "explanation": "等价类划分将输入域划分为有效等价类和无效等价类，从每类选择代表值进行测试，以减少重复用例。",
+    "source": "ISTQB测试设计技术整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_003",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "某输入框只允许输入1到100之间的整数。使用边界值分析时，以下哪组测试数据更合适？",
+    "options": [
+      {
+        "key": "A",
+        "text": "0、1、2、99、100、101"
+      },
+      {
+        "key": "B",
+        "text": "20、40、60、80"
+      },
+      {
+        "key": "C",
+        "text": "1、50、100"
+      },
+      {
+        "key": "D",
+        "text": "10、20、30"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "测试设计",
+      "边界值分析",
+      "输入校验"
+    ],
+    "explanation": "边界值分析通常检查边界本身、边界附近以及边界之外的数据。对于1到100，应重点测试0、1、2和99、100、101。",
+    "source": "ISTQB测试设计技术整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_004",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "软件功能修改完成后，重新执行已有测试以确认原有功能未被破坏，这属于什么测试？",
+    "options": [
+      {
+        "key": "A",
+        "text": "回归测试"
+      },
+      {
+        "key": "B",
+        "text": "探索性测试"
+      },
+      {
+        "key": "C",
+        "text": "安装测试"
+      },
+      {
+        "key": "D",
+        "text": "可用性测试"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "回归测试",
+      "软件变更",
+      "测试类型"
+    ],
+    "explanation": "回归测试用于确认代码、配置或环境发生变化后，之前正常工作的功能没有受到意外影响。",
+    "source": "ISTQB测试基础整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_005",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "黑盒测试最主要关注什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "系统输入、输出和外部行为是否符合需求"
+      },
+      {
+        "key": "B",
+        "text": "代码内部每一行的具体实现"
+      },
+      {
+        "key": "C",
+        "text": "开发人员使用的编辑器"
+      },
+      {
+        "key": "D",
+        "text": "服务器机房的装修情况"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "黑盒测试",
+      "功能测试",
+      "需求验证"
+    ],
+    "explanation": "黑盒测试根据需求和接口验证系统外部行为，不要求测试人员了解内部代码实现。等价类、边界值和判定表都是常见黑盒测试技术。",
+    "source": "ISTQB测试设计技术整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_006",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "一条较完整的测试用例通常应包含哪些内容？",
+    "options": [
+      {
+        "key": "A",
+        "text": "测试前置条件和测试数据"
+      },
+      {
+        "key": "B",
+        "text": "操作步骤"
+      },
+      {
+        "key": "C",
+        "text": "预期结果"
+      },
+      {
+        "key": "D",
+        "text": "只写测试用例标题，不需要其他信息"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "测试用例",
+      "测试步骤",
+      "预期结果"
+    ],
+    "explanation": "测试用例通常需要明确前置条件、输入数据、执行步骤和预期结果，以便执行人员能够重复测试并准确判断是否通过。",
+    "source": "软件测试工程实践整理",
+    "source_url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_007",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "以下哪些属于常见的黑盒测试设计方法？",
+    "options": [
+      {
+        "key": "A",
+        "text": "等价类划分"
+      },
+      {
+        "key": "B",
+        "text": "边界值分析"
+      },
+      {
+        "key": "C",
+        "text": "判定表测试"
+      },
+      {
+        "key": "D",
+        "text": "统计代码行数"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "黑盒测试",
+      "等价类",
+      "边界值",
+      "判定表"
+    ],
+    "explanation": "等价类、边界值和判定表都属于基于规格说明的黑盒测试技术，分别适用于输入分类、边界缺陷和复杂条件组合等场景。",
+    "source": "ISTQB测试设计技术整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_008",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "由于输入和执行路径组合通常非常多，对复杂软件进行穷尽测试一般是不现实的。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "测试原则",
+      "穷尽测试",
+      "风险测试"
+    ],
+    "explanation": "除非常简单的系统外，测试所有输入、状态和执行路径通常需要不可接受的时间和成本，因此应基于风险和优先级选择测试范围。",
+    "source": "ISTQB测试原则整理",
+    "source_url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_009",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "只要现有测试用例全部通过，就能够证明软件中不存在任何缺陷。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "测试原则",
+      "缺陷",
+      "测试覆盖"
+    ],
+    "explanation": "测试通过只能说明在当前测试数据、环境和覆盖范围内没有发现对应问题，不能证明未覆盖区域或未知场景中不存在缺陷。",
+    "source": "ISTQB测试原则整理",
+    "source_url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_010",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "缺陷严重程度和缺陷优先级有什么区别？",
+    "options": [],
+    "answer": "严重程度描述缺陷对系统功能、数据、安全或用户使用造成的影响大小，通常从技术和质量角度判断；优先级表示缺陷应当多快被修复，通常结合严重程度、用户范围、业务价值、发布时间和修复成本确定。严重缺陷通常具有较高优先级，但二者并不总是完全一致。",
+    "knowledge_points": [
+      "缺陷管理",
+      "严重程度",
+      "优先级"
+    ],
+    "explanation": "例如首页文字错误的技术影响较小，但在重大活动前可能需要优先修复；而某个极少触发的严重问题，也可能因为暂无发布风险而安排在后续版本处理。",
+    "source": "缺陷管理实践整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_011",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "接口返回HTTP状态码401通常表示什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "请求缺少有效的身份认证信息"
+      },
+      {
+        "key": "B",
+        "text": "服务器永久删除了资源"
+      },
+      {
+        "key": "C",
+        "text": "请求一定已经成功执行"
+      },
+      {
+        "key": "D",
+        "text": "服务器发生数据库死锁"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "接口测试",
+      "HTTP状态码",
+      "身份认证"
+    ],
+    "explanation": "401表示请求缺少有效的身份认证凭证，或者凭证无效。403通常表示服务器理解请求，但拒绝授权访问。",
+    "source": "HTTP接口测试资料整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_012",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "按照HTTP语义，以下哪种请求方法通常是幂等的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "GET"
+      },
+      {
+        "key": "B",
+        "text": "POST"
+      },
+      {
+        "key": "C",
+        "text": "CONNECT"
+      },
+      {
+        "key": "D",
+        "text": "PATCH一定幂等"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "接口测试",
+      "HTTP方法",
+      "幂等性"
+    ],
+    "explanation": "GET在HTTP语义上是安全且幂等的方法，多次执行相同GET请求不应产生额外业务副作用。POST通常不保证幂等，PATCH是否幂等取决于具体实现。",
+    "source": "HTTP规范整理",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_013",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "以下哪类测试场景通常更适合优先进行自动化？",
+    "options": [
+      {
+        "key": "A",
+        "text": "执行频率高、步骤稳定、结果可明确断言的回归测试"
+      },
+      {
+        "key": "B",
+        "text": "需求每天大幅变化且无法确定预期结果的测试"
+      },
+      {
+        "key": "C",
+        "text": "只执行一次且自动化成本远高于人工成本的测试"
+      },
+      {
+        "key": "D",
+        "text": "完全依赖主观感受的界面美观评价"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "自动化测试",
+      "回归测试",
+      "自动化适用场景"
+    ],
+    "explanation": "稳定、重复执行频率高、业务价值高且结果容易断言的测试更适合自动化。变化频繁或高度依赖主观判断的场景通常需要谨慎评估。",
+    "source": "自动化测试实践整理",
+    "source_url": "https://www.selenium.dev/documentation/test_practices/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_014",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "设计接口测试用例时，通常需要检查哪些内容？",
+    "options": [
+      {
+        "key": "A",
+        "text": "请求方法、参数类型、必填项和边界值"
+      },
+      {
+        "key": "B",
+        "text": "身份认证、权限控制和越权访问"
+      },
+      {
+        "key": "C",
+        "text": "响应状态码、响应体、响应头和业务结果"
+      },
+      {
+        "key": "D",
+        "text": "只验证接口是否返回200，不检查实际业务结果"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "接口测试",
+      "参数校验",
+      "鉴权",
+      "响应验证"
+    ],
+    "explanation": "接口测试需要同时验证输入、身份和权限、协议层响应以及最终业务结果。仅检查HTTP状态码不足以证明接口功能正确。",
+    "source": "接口测试工程实践整理",
+    "source_url": "https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-examples/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_015",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "接口返回HTTP 200，就能够证明接口的业务处理结果一定正确。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "接口测试",
+      "HTTP状态码",
+      "业务断言"
+    ],
+    "explanation": "HTTP 200只表示请求在协议层被成功处理，仍需验证响应字段、业务状态、数据库变化和其他副作用是否符合预期。",
+    "source": "接口测试工程实践整理",
+    "source_url": "https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-examples/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_016",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "接口幂等性通常要求同一个请求重复执行多次后，服务器最终状态与只执行一次时保持一致。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "接口测试",
+      "幂等性",
+      "重复请求"
+    ],
+    "explanation": "幂等性关注重复执行对服务器最终状态的影响。不同请求的响应内容或时间信息可能存在差异，但不应重复产生不符合预期的业务副作用。",
+    "source": "HTTP规范整理",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_017",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "自动化测试可以提高重复回归效率，但不能完全替代探索性测试和人工判断。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "自动化测试",
+      "探索性测试",
+      "测试策略"
+    ],
+    "explanation": "自动化适合执行稳定、重复的检查，但对于新功能探索、复杂用户体验和未知风险，仍需要测试人员进行分析和探索。",
+    "source": "自动化测试实践整理",
+    "source_url": "https://www.selenium.dev/documentation/test_practices/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_018",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "数据库测试只需要验证应用是否能够连接数据库，不需要检查事务、约束和数据一致性。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "数据库测试",
+      "事务",
+      "数据一致性",
+      "数据约束"
+    ],
+    "explanation": "数据库测试还应验证增删改查结果、字段约束、事务提交与回滚、并发操作以及接口与数据库之间的数据一致性。",
+    "source": "数据库测试工程实践整理",
+    "source_url": "https://www.postgresql.org/docs/current/tutorial-transactions.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_019",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何为一个新增用户接口设计较完整的接口测试？",
+    "options": [],
+    "answer": "首先根据接口文档明确请求方法、URL、参数规则、鉴权方式和预期响应；然后设计正常新增、必填参数缺失、类型错误、长度边界、非法格式和特殊字符等用例。还应验证未登录、权限不足和越权场景，检查重复提交与幂等策略、并发请求、响应时间以及数据库写入结果。测试完成后需要清理测试数据，并确认日志中没有泄露密码等敏感信息。",
+    "knowledge_points": [
+      "接口测试",
+      "参数校验",
+      "鉴权",
+      "幂等性",
+      "数据验证"
+    ],
+    "explanation": "完整接口测试不能只覆盖正常路径，还应验证输入边界、权限、安全、重复请求、并发、数据库副作用和异常处理。",
+    "source": "接口测试工程实践整理",
+    "source_url": "https://learning.postman.com/docs/tests-and-scripts/write-scripts/test-examples/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_020",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何提高自动化测试用例的稳定性和可维护性？",
+    "options": [],
+    "answer": "应选择稳定且有长期回归价值的场景进行自动化，合理分层并避免所有测试都依赖完整界面。测试数据应相互隔离并能够创建和清理，断言应验证关键业务结果而不是依赖易变细节。还应减少固定时间等待，使用显式条件等待，封装重复操作，统一配置和日志，并对失败用例保留请求、响应、截图或运行记录。对于不稳定测试，应定位根因而不是简单重复执行。",
+    "knowledge_points": [
+      "自动化测试",
+      "测试稳定性",
+      "测试数据",
+      "可维护性"
+    ],
+    "explanation": "自动化测试的价值不仅取决于数量，还取决于可信度和维护成本。环境依赖、共享数据、脆弱定位和固定等待都是常见不稳定因素。",
+    "source": "自动化测试实践整理",
+    "source_url": "https://www.selenium.dev/documentation/test_practices/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_021",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "性能测试中的吞吐量主要表示什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "系统在单位时间内处理的请求、事务或数据量"
+      },
+      {
+        "key": "B",
+        "text": "单个用户登录所使用的密码长度"
+      },
+      {
+        "key": "C",
+        "text": "测试用例文档的总页数"
+      },
+      {
+        "key": "D",
+        "text": "服务器磁盘的总容量"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "性能测试",
+      "吞吐量",
+      "系统性能"
+    ],
+    "explanation": "吞吐量反映系统在单位时间内完成的请求数、事务数或数据处理量，通常需要结合响应时间、错误率和资源利用率共同分析。",
+    "source": "性能测试实践整理",
+    "source_url": "https://grafana.com/docs/k6/latest/testing-guides/test-types/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_022",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "压力测试与负载测试的主要区别是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "压力测试通常持续增加负载以寻找系统极限和失效表现，负载测试主要验证预期负载下的性能"
+      },
+      {
+        "key": "B",
+        "text": "压力测试只检查页面颜色，负载测试只检查数据库字段"
+      },
+      {
+        "key": "C",
+        "text": "二者完全相同，没有任何区别"
+      },
+      {
+        "key": "D",
+        "text": "负载测试不需要收集任何性能指标"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "性能测试",
+      "压力测试",
+      "负载测试"
+    ],
+    "explanation": "负载测试通常验证系统在预期或峰值业务负载下是否满足性能目标；压力测试则逐步提高负载，观察系统极限、故障模式和恢复能力。",
+    "source": "性能测试实践整理",
+    "source_url": "https://grafana.com/docs/k6/latest/testing-guides/test-types/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_023",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "执行性能测试时，通常需要重点监控哪些指标？",
+    "options": [
+      {
+        "key": "A",
+        "text": "平均响应时间以及P95、P99等尾延迟"
+      },
+      {
+        "key": "B",
+        "text": "吞吐量、并发量和错误率"
+      },
+      {
+        "key": "C",
+        "text": "CPU、内存、磁盘、网络和连接池使用情况"
+      },
+      {
+        "key": "D",
+        "text": "只查看平均响应时间，忽略错误和资源瓶颈"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "性能测试",
+      "响应时间",
+      "错误率",
+      "资源监控"
+    ],
+    "explanation": "性能分析需要同时观察延迟分布、吞吐量、错误率和系统资源。仅看平均响应时间可能掩盖少量请求严重变慢等问题。",
+    "source": "性能测试实践整理",
+    "source_url": "https://grafana.com/docs/k6/latest/using-k6/metrics/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_024",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "性能测试中的并发用户数不一定等于系统每秒处理的请求数量。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "性能测试",
+      "并发用户",
+      "吞吐量"
+    ],
+    "explanation": "并发用户数表示同时处于系统中的用户或虚拟用户数量，而每秒请求数还受到用户思考时间、请求频率、业务流程和响应时间等因素影响。",
+    "source": "性能测试实践整理",
+    "source_url": "https://grafana.com/docs/k6/latest/testing-guides/test-types/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_025",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "权限测试不仅要验证未登录访问，还应检查水平越权和垂直越权场景。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "安全测试",
+      "权限测试",
+      "水平越权",
+      "垂直越权"
+    ],
+    "explanation": "水平越权是用户访问其他同级用户的数据或功能，垂直越权是低权限用户访问高权限功能。接口和页面都应验证服务端授权控制。",
+    "source": "OWASP安全测试指南整理",
+    "source_url": "https://owasp.org/www-project-web-security-testing-guide/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_026",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "测试人员暂时无法稳定复现一个缺陷时，可以不记录任何信息并直接认定该问题不存在。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "缺陷管理",
+      "缺陷复现",
+      "问题分析"
+    ],
+    "explanation": "无法稳定复现不等于问题不存在。应记录发生时间、环境、版本、账号、操作路径、日志、截图、请求数据和出现频率，并尝试分析网络、并发、数据和环境差异。",
+    "source": "缺陷管理实践整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_027",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "在CI流水线中自动执行测试可以提供快速反馈，但测试全部通过仍不能证明系统不存在其他缺陷。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "CI/CD",
+      "自动化测试",
+      "测试覆盖"
+    ],
+    "explanation": "持续集成可以在代码变更后自动执行单元测试、接口测试和静态检查，但结果只覆盖已有测试范围，仍可能存在未覆盖场景、环境问题和未知缺陷。",
+    "source": "持续集成实践整理",
+    "source_url": "https://docs.github.com/en/actions",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_028",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何设计并执行一次较完整的性能测试？",
+    "options": [],
+    "answer": "首先根据业务场景明确性能目标，例如并发用户数、吞吐量、P95响应时间和错误率；然后准备接近生产的数据、环境和负载模型，并设计基准、负载、压力或稳定性测试。执行过程中逐步增加负载，同时监控应用、数据库、缓存、连接池、CPU、内存、磁盘和网络。测试后应关联客户端指标、服务日志和资源监控定位瓶颈，完成优化后使用相同场景重新验证，并记录容量边界和风险。",
+    "knowledge_points": [
+      "性能测试",
+      "负载模型",
+      "性能指标",
+      "瓶颈分析"
+    ],
+    "explanation": "性能测试不是单纯向系统发送大量请求，而是需要明确目标、模拟真实业务比例、监控完整技术链路，并通过重复测试验证优化效果。",
+    "source": "性能测试实践整理",
+    "source_url": "https://grafana.com/docs/k6/latest/testing-guides/test-types/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_029",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "一份高质量的缺陷报告应包含哪些内容？如何协助定位根因？",
+    "options": [],
+    "answer": "缺陷报告应包含清晰标题、环境和版本、前置条件、测试数据、复现步骤、实际结果、预期结果、发生频率、严重程度以及截图、日志、请求响应等证据。协助定位时应缩小最小复现路径，对比正常和异常环境，检查数据、配置、网络、并发和版本差异，并提供准确时间点和关联标识，帮助研发查询服务日志和调用链。缺陷现象、根因和解决方案应分别记录，避免把未经验证的猜测当成结论。",
+    "knowledge_points": [
+      "缺陷管理",
+      "缺陷报告",
+      "根因分析",
+      "日志分析"
+    ],
+    "explanation": "高质量缺陷报告的目标是让其他人员能够理解、复现和定位问题。根因分析还可以使用5 Why、时间线和故障链路等方法。",
+    "source": "缺陷管理实践整理",
+    "source_url": "https://glossary.istqb.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "testing_030",
+    "company": "通用",
+    "position": "testing_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "测试工程师在CI/CD和产品发布过程中应承担哪些质量保障工作？",
+    "options": [],
+    "answer": "测试工程师应参与制定分层测试策略，将稳定的单元测试、接口测试、关键UI回归、静态检查和安全扫描接入流水线，并设置合理的质量门禁。发布前需要评估需求覆盖、缺陷状态、性能和安全风险，确认测试数据、监控、告警、灰度及回滚方案。发布后还应关注错误率、核心业务指标、日志和用户反馈，并对线上问题进行复盘，将有效用例补充到自动化回归中。",
+    "knowledge_points": [
+      "CI/CD",
+      "质量门禁",
+      "发布测试",
+      "上线监控",
+      "测试复盘"
+    ],
+    "explanation": "CI/CD中的质量保障不是单一测试阶段，而是将测试和风险控制前移并持续贯穿开发、构建、发布和运行过程。",
+    "source": "持续交付实践整理",
+    "source_url": "https://www.atlassian.com/continuous-delivery",
+    "license": "reference-only"
+  }
+]

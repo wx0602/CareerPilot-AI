@@ -1,0 +1,834 @@
+[
+  {
+    "question_id": "product_001",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "产品经理开展需求分析时，首先应该明确什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "需要解决的用户问题和业务目标"
+      },
+      {
+        "key": "B",
+        "text": "页面按钮使用什么颜色"
+      },
+      {
+        "key": "C",
+        "text": "开发人员使用什么编程语言"
+      },
+      {
+        "key": "D",
+        "text": "立即确定最终上线日期"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "需求分析",
+      "用户问题",
+      "业务目标"
+    ],
+    "explanation": "需求分析应先明确目标用户、使用场景、真实问题和业务目标，再进一步设计产品功能和解决方案。",
+    "source": "产品管理实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/requirements",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_002",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "产品需求文档PRD的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "描述产品目标、需求范围、功能方案和验收要求"
+      },
+      {
+        "key": "B",
+        "text": "替代所有技术设计文档"
+      },
+      {
+        "key": "C",
+        "text": "只记录产品界面的颜色"
+      },
+      {
+        "key": "D",
+        "text": "只用于向管理层汇报"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "PRD",
+      "产品文档",
+      "需求表达"
+    ],
+    "explanation": "PRD用于向研发、设计、测试和业务人员说明产品目标、用户场景、功能范围、业务规则和验收标准，但不能替代技术设计文档。",
+    "source": "产品需求管理实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/requirements",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_003",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "以下哪一项最符合常见的用户故事表达方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "作为某类用户，我希望完成某个目标，从而获得某种价值"
+      },
+      {
+        "key": "B",
+        "text": "系统必须使用某种数据库"
+      },
+      {
+        "key": "C",
+        "text": "开发人员需要在三天内完成全部功能"
+      },
+      {
+        "key": "D",
+        "text": "页面应该看起来更加高级"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "用户故事",
+      "需求表达",
+      "用户价值"
+    ],
+    "explanation": "用户故事通常按照“作为某类用户，我希望完成某件事，从而获得某种价值”的方式描述，强调用户、目标和价值。",
+    "source": "敏捷产品管理实践整理",
+    "source_url": "https://www.atlassian.com/agile/project-management/user-stories",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_004",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "产品开发中构建MVP的主要目的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "用最小可行方案验证核心价值和关键假设"
+      },
+      {
+        "key": "B",
+        "text": "一次性实现所有规划功能"
+      },
+      {
+        "key": "C",
+        "text": "省略用户研究和数据分析"
+      },
+      {
+        "key": "D",
+        "text": "保证产品上线后一定成功"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "MVP",
+      "产品验证",
+      "假设验证"
+    ],
+    "explanation": "MVP不是简单粗糙的产品，而是在保证核心价值可被用户感知的前提下，以较小成本验证关键需求和商业假设。",
+    "source": "产品管理实践整理",
+    "source_url": "https://www.productplan.com/glossary/minimum-viable-product/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_005",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "进行用户访谈时，以下哪种提问方式通常更合适？",
+    "options": [
+      {
+        "key": "A",
+        "text": "请描述一下你最近一次完成这项任务的过程"
+      },
+      {
+        "key": "B",
+        "text": "你是不是非常喜欢我们设计的新功能"
+      },
+      {
+        "key": "C",
+        "text": "你以后一定会每天使用这个产品，对吗"
+      },
+      {
+        "key": "D",
+        "text": "你认为我们的方案是不是行业最好"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "用户研究",
+      "用户访谈",
+      "开放式问题"
+    ],
+    "explanation": "用户访谈应尽量使用开放式、非诱导性问题，并关注用户已经发生的真实行为和具体场景，而不是引导用户认可预设方案。",
+    "source": "用户研究实践整理",
+    "source_url": "https://www.nngroup.com/articles/user-interviews/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_006",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "完整的需求分析通常需要考虑哪些内容？",
+    "options": [
+      {
+        "key": "A",
+        "text": "目标用户和使用场景"
+      },
+      {
+        "key": "B",
+        "text": "用户问题和业务目标"
+      },
+      {
+        "key": "C",
+        "text": "约束条件、风险和成功指标"
+      },
+      {
+        "key": "D",
+        "text": "不做分析，直接按照提出者给出的功能方案开发"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "需求分析",
+      "用户场景",
+      "业务目标",
+      "约束条件"
+    ],
+    "explanation": "需求分析不仅要描述功能，还应明确用户、场景、问题、目标、约束、风险和衡量标准。提出者给出的功能方案可能只是解决问题的一种方式。",
+    "source": "产品需求管理实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/requirements",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_007",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "高质量的需求验收标准通常应具备哪些特点？",
+    "options": [
+      {
+        "key": "A",
+        "text": "表述清晰，避免模糊词语"
+      },
+      {
+        "key": "B",
+        "text": "能够被测试和验证"
+      },
+      {
+        "key": "C",
+        "text": "覆盖关键正常流程和异常场景"
+      },
+      {
+        "key": "D",
+        "text": "只写“用户体验良好”即可"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "验收标准",
+      "需求质量",
+      "测试验证"
+    ],
+    "explanation": "验收标准应明确、可验证，并覆盖核心业务流程和必要的异常情况。“体验良好”等表述缺少可操作的判断依据。",
+    "source": "敏捷项目管理实践整理",
+    "source_url": "https://www.atlassian.com/work-management/project-management/acceptance-criteria",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_008",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "用户提出的具体功能方案可以直接等同于其真实需求，无需进一步分析。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "需求分析",
+      "用户需求",
+      "解决方案"
+    ],
+    "explanation": "用户表达的通常是表面诉求或具体方案。产品经理还需要分析其使用场景、目标和根本问题，并判断是否存在更合适的解决方式。",
+    "source": "产品管理实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/requirements",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_009",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "用户画像应尽可能基于用户研究和真实数据，而不是完全依靠产品经理的主观想象。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "用户画像",
+      "用户研究",
+      "数据分析"
+    ],
+    "explanation": "用户画像是对目标用户特征和行为模式的抽象，应以访谈、问卷、行为数据和业务数据为依据，避免构造缺乏证据支持的虚假画像。",
+    "source": "用户体验研究实践整理",
+    "source_url": "https://www.nngroup.com/articles/persona/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_010",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "产品经理应如何区分用户需求和用户提出的解决方案？",
+    "options": [],
+    "answer": "用户需求描述的是用户在特定场景下希望完成的目标、遇到的问题或需要获得的价值；解决方案则是实现目标的一种具体方式。产品经理应通过追问使用场景、现有流程、问题原因、发生频率和预期结果，识别用户真正需要解决的问题，再比较不同方案的价值、成本和风险。",
+    "knowledge_points": [
+      "需求分析",
+      "用户需求",
+      "解决方案",
+      "问题定义"
+    ],
+    "explanation": "产品经理不应直接把用户提出的功能当作最终需求，而应先确认问题是否真实、是否普遍、是否值得解决，并评估是否存在成本更低或效果更好的方案。",
+    "source": "产品管理实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/requirements",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_011",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "RICE需求优先级模型中的四个主要因素是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Reach、Impact、Confidence、Effort"
+      },
+      {
+        "key": "B",
+        "text": "Risk、Income、Cost、Experience"
+      },
+      {
+        "key": "C",
+        "text": "Research、Iteration、Customer、Execution"
+      },
+      {
+        "key": "D",
+        "text": "Requirement、Interface、Code、Evaluation"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "需求优先级",
+      "RICE",
+      "产品规划"
+    ],
+    "explanation": "RICE模型通常综合考虑覆盖用户数量Reach、影响程度Impact、判断置信度Confidence和实施成本Effort，常见计算方式为Reach乘以Impact乘以Confidence后除以Effort。",
+    "source": "产品优先级实践整理",
+    "source_url": "https://www.productplan.com/glossary/rice-scoring-model/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_012",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "北极星指标最主要的作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "反映产品持续为用户创造的核心价值，并统一团队方向"
+      },
+      {
+        "key": "B",
+        "text": "代替所有业务指标和过程指标"
+      },
+      {
+        "key": "C",
+        "text": "只用于统计产品页面数量"
+      },
+      {
+        "key": "D",
+        "text": "保证公司收入持续增长"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "北极星指标",
+      "产品指标",
+      "用户价值"
+    ],
+    "explanation": "北极星指标应尽量体现用户获得核心价值的程度，并能与产品长期增长相关联，但通常还需要配合收入、质量和过程指标进行分析。",
+    "source": "产品指标实践整理",
+    "source_url": "https://amplitude.com/blog/north-star-metric",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_013",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在注册转化漏斗中，共有1000名用户访问注册页面，其中400名开始填写，最终200名完成注册。页面访问到完成注册的总体转化率是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "20%"
+      },
+      {
+        "key": "B",
+        "text": "40%"
+      },
+      {
+        "key": "C",
+        "text": "50%"
+      },
+      {
+        "key": "D",
+        "text": "80%"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "漏斗分析",
+      "转化率",
+      "数据指标"
+    ],
+    "explanation": "总体转化率等于最终完成注册人数除以进入漏斗的访问人数，即200除以1000，结果为20%。",
+    "source": "产品数据分析实践整理",
+    "source_url": "https://amplitude.com/blog/funnel-analysis",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_014",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "产品经理进行需求优先级排序时，通常应综合考虑哪些因素？",
+    "options": [
+      {
+        "key": "A",
+        "text": "用户价值和业务价值"
+      },
+      {
+        "key": "B",
+        "text": "覆盖范围、紧迫程度和战略匹配度"
+      },
+      {
+        "key": "C",
+        "text": "开发成本、技术风险和依赖关系"
+      },
+      {
+        "key": "D",
+        "text": "只根据需求提出者的职位高低决定"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "需求优先级",
+      "价值评估",
+      "成本评估",
+      "风险分析"
+    ],
+    "explanation": "需求优先级不应只由单一人员或单一指标决定，而应综合分析用户价值、业务价值、战略目标、影响范围、紧迫性、成本、风险和依赖关系。",
+    "source": "产品优先级实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/prioritization-framework",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_015",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "MoSCoW优先级方法中的Must have表示当前范围内不可缺少的核心需求。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "需求优先级",
+      "MoSCoW"
+    ],
+    "explanation": "MoSCoW通常将需求分为Must have、Should have、Could have和Won't have。Must have表示当前交付范围内缺少该需求会导致方案无法成立或无法满足核心目标。",
+    "source": "产品优先级实践整理",
+    "source_url": "https://www.productplan.com/glossary/moscow-prioritization/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_016",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "页面浏览量增长就一定能够证明产品为用户创造了更多核心价值。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "产品指标",
+      "虚荣指标",
+      "用户价值"
+    ],
+    "explanation": "页面浏览量可能受到营销活动、重复刷新或流量结构变化影响，不能单独证明用户获得了更多价值。应结合任务完成率、留存、转化和用户满意度等指标判断。",
+    "source": "产品数据分析实践整理",
+    "source_url": "https://amplitude.com/blog/product-metrics",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_017",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "设计A/B测试时，应尽量保证实验组和对照组除待验证变量外的其他条件一致。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "A/B测试",
+      "实验设计",
+      "变量控制"
+    ],
+    "explanation": "控制其他条件有助于将指标变化归因于待验证方案。实际实验中还需要关注随机分组、样本量、实验周期、统计显著性和外部干扰。",
+    "source": "产品实验实践整理",
+    "source_url": "https://www.optimizely.com/optimization-glossary/ab-testing/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_018",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "留存率通常用于衡量一批用户在首次使用后，经过一段时间仍然继续使用产品或完成核心行为的比例。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "留存率",
+      "用户行为",
+      "产品指标"
+    ],
+    "explanation": "留存率关注用户是否在后续时间继续使用产品或完成指定行为，常见指标包括次日留存、7日留存和30日留存，但具体定义需要结合产品业务特点。",
+    "source": "产品数据分析实践整理",
+    "source_url": "https://amplitude.com/blog/retention-analysis",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_019",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "产品经理应如何使用RICE模型进行需求优先级评估？",
+    "options": [],
+    "answer": "首先明确统一的评估周期和评分标准，然后分别估算需求可覆盖的用户数量Reach、对用户或业务目标的影响程度Impact、现有证据的置信度Confidence，以及实现需求所需的人力和时间成本Effort。根据RICE得分形成初步排序，再结合战略目标、合规要求、技术依赖、风险和紧急事项进行调整。RICE用于辅助决策，不能替代产品判断和团队讨论。",
+    "knowledge_points": [
+      "RICE",
+      "需求优先级",
+      "产品决策"
+    ],
+    "explanation": "RICE的价值在于让优先级判断更加透明和可比较，但评分本身仍可能存在主观性，因此需要统一口径、记录依据并持续复盘。",
+    "source": "产品优先级实践整理",
+    "source_url": "https://www.productplan.com/glossary/rice-scoring-model/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_020",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何为一款产品选择合适的北极星指标？",
+    "options": [],
+    "answer": "应先明确产品为目标用户提供的核心价值和用户获得该价值的关键行为，再选择能够反映价值交付频率或深度、可持续跟踪并与长期业务增长相关的指标。同时检查该指标是否容易被刷高、是否可能诱导错误行为，并配套收入、质量、留存和风险等护栏指标。北极星指标应随产品阶段和商业模式变化进行复审。",
+    "knowledge_points": [
+      "北极星指标",
+      "产品指标",
+      "核心价值",
+      "护栏指标"
+    ],
+    "explanation": "北极星指标不是简单选择访问量或收入，而是要连接用户价值与长期增长。单一指标可能产生偏差，因此需要设置护栏指标防止局部优化损害整体体验。",
+    "source": "产品指标实践整理",
+    "source_url": "https://amplitude.com/blog/north-star-metric",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_021",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "设计A/B测试时，产品经理通常应在实验开始前优先明确什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "实验假设、核心指标和判断标准"
+      },
+      {
+        "key": "B",
+        "text": "实验结果必须支持新方案"
+      },
+      {
+        "key": "C",
+        "text": "每天根据结果修改实验目标"
+      },
+      {
+        "key": "D",
+        "text": "只关注实验组用户反馈"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "A/B测试",
+      "实验设计",
+      "产品指标"
+    ],
+    "explanation": "实验开始前应明确待验证假设、实验对象、核心指标、护栏指标和判断标准，避免看到结果后再选择有利指标。",
+    "source": "产品实验实践整理",
+    "source_url": "https://www.optimizely.com/optimization-glossary/ab-testing/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_022",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "产品原型在方案表达中的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "展示页面结构、交互流程和关键功能，帮助团队理解方案"
+      },
+      {
+        "key": "B",
+        "text": "完全替代PRD、业务规则和验收标准"
+      },
+      {
+        "key": "C",
+        "text": "直接生成可上线的后端服务"
+      },
+      {
+        "key": "D",
+        "text": "只用于确定视觉颜色"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "产品原型",
+      "方案表达",
+      "交互流程"
+    ],
+    "explanation": "原型可以帮助产品、设计、研发和测试理解页面结构与交互过程，但不能完全替代业务规则、异常场景和验收标准等文字说明。",
+    "source": "产品设计实践整理",
+    "source_url": "https://www.nngroup.com/articles/ux-prototype-hi-lo-fidelity/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_023",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "产品功能上线前，通常需要确认哪些内容？",
+    "options": [
+      {
+        "key": "A",
+        "text": "核心流程和验收标准是否通过验证"
+      },
+      {
+        "key": "B",
+        "text": "埋点、监控、告警和数据看板是否准备完成"
+      },
+      {
+        "key": "C",
+        "text": "灰度发布、回滚方案和风险预案是否明确"
+      },
+      {
+        "key": "D",
+        "text": "只要开发完成即可直接全量上线"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "产品上线",
+      "风险管理",
+      "数据监控",
+      "灰度发布"
+    ],
+    "explanation": "上线前不仅要确认功能实现，还应检查测试结果、数据埋点、监控告警、发布范围、回滚机制、客服支持和风险预案。",
+    "source": "产品上线管理实践整理",
+    "source_url": "https://www.atlassian.com/continuous-delivery/principles/release-management",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_024",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "A/B测试结果具有统计显著性，就一定说明新方案具有足够的业务价值。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "A/B测试",
+      "统计显著性",
+      "业务价值"
+    ],
+    "explanation": "统计显著性表示观察到的差异较难由随机波动解释，但不代表差异幅度一定具有实际业务价值，还需要评估效应大小、成本、风险和护栏指标。",
+    "source": "产品实验实践整理",
+    "source_url": "https://www.optimizely.com/optimization-glossary/statistical-significance/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_025",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "A/B测试运行过程中，一旦核心指标短暂出现预期方向，就应该立即停止实验并宣布成功。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "A/B测试",
+      "实验周期",
+      "提前停止"
+    ],
+    "explanation": "实验初期结果可能存在较大波动。应按照预先设定的样本量、实验周期和停止规则执行，避免频繁查看并在有利时提前停止造成错误判断。",
+    "source": "产品实验实践整理",
+    "source_url": "https://www.optimizely.com/optimization-glossary/ab-testing/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_026",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "产品经理需要明确产品目标、业务规则和验收要求，但通常不需要代替研发人员完成全部技术实现设计。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "产品协作",
+      "职责边界",
+      "需求沟通"
+    ],
+    "explanation": "产品经理需要理解技术约束并与研发共同评估方案，但详细架构、接口实现和工程设计通常由研发团队负责，双方需要保持充分协作。",
+    "source": "产品协作实践整理",
+    "source_url": "https://www.atlassian.com/agile/product-management/product-manager",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_027",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "产品上线后的效果评估应同时关注核心指标、护栏指标、用户反馈和系统异常情况。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "上线评估",
+      "护栏指标",
+      "用户反馈",
+      "产品监控"
+    ],
+    "explanation": "核心指标改善并不代表产品整体表现一定良好，还需要检查错误率、投诉率、性能、留存和其他护栏指标，防止局部优化带来负面影响。",
+    "source": "产品数据分析实践整理",
+    "source_url": "https://amplitude.com/blog/product-metrics",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_028",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "产品经理应如何设计一次完整的A/B测试？",
+    "options": [],
+    "answer": "首先根据用户问题和数据提出可验证的实验假设，明确实验组、对照组和唯一主要变量；然后预先确定核心指标、护栏指标、样本范围、实验周期和停止规则。实验过程中应保证随机分组并减少其他活动干扰。实验结束后分析统计显著性、效应大小、用户分层和异常指标，并结合业务价值、实施成本和长期影响决定是否推广。",
+    "knowledge_points": [
+      "A/B测试",
+      "实验假设",
+      "指标设计",
+      "实验分析"
+    ],
+    "explanation": "完整实验不只是比较两个方案的数字，还需要控制变量、避免样本污染和提前停止，并区分统计显著性与实际业务价值。",
+    "source": "产品实验实践整理",
+    "source_url": "https://www.optimizely.com/optimization-glossary/ab-testing/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_029",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "当业务、研发和设计对产品方案存在分歧时，产品经理应如何推进决策？",
+    "options": [],
+    "answer": "产品经理应先统一要解决的问题、用户价值、业务目标和约束条件，再分别梳理各方关注点及其证据。对于可以量化的问题，可比较收益、成本、风险和交付周期；对于不确定性较高的问题，可通过原型、用户测试、技术验证或小范围实验降低风险。最终应明确决策人、结论、取舍原因和后续验证方式，避免只依靠职位或个人偏好决策。",
+    "knowledge_points": [
+      "跨团队协作",
+      "方案评审",
+      "冲突处理",
+      "产品决策"
+    ],
+    "explanation": "高质量协作不是简单让所有人同意，而是围绕共同目标充分暴露信息，在明确的决策机制下形成可执行结论。",
+    "source": "产品协作实践整理",
+    "source_url": "https://www.atlassian.com/team-playbook/plays/daci",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "product_030",
+    "company": "通用",
+    "position": "product_manager",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "产品功能上线后应如何进行效果评估和复盘？",
+    "options": [],
+    "answer": "上线后应先确认功能可用性、系统稳定性和埋点数据是否正常，再对比上线前设定的核心指标和护栏指标，分析不同用户群体、渠道和使用场景的变化。同时收集客服记录、用户反馈和异常案例，判断结果是否符合原始假设。复盘时应总结目标完成情况、有效做法、失败原因和意外影响，并形成继续推广、调整方案、回滚或开展下一轮实验的行动计划。",
+    "knowledge_points": [
+      "产品复盘",
+      "上线评估",
+      "数据分析",
+      "持续迭代"
+    ],
+    "explanation": "产品复盘应基于上线前明确的目标和指标，不应只总结项目是否按时完成，还要评估是否真正解决用户问题并创造业务价值。",
+    "source": "产品复盘实践整理",
+    "source_url": "https://www.atlassian.com/team-playbook/plays/retrospective",
+    "license": "reference-only"
+  }
+]

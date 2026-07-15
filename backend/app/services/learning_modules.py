@@ -40,7 +40,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="前端基础",
         default_position="前端工程师",
         search_position="frontend_javascript",
-        available=False,
     ),
     "frontend_typescript": LearningModuleSpec(
         module_id="frontend_typescript",
@@ -48,7 +47,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="前端基础",
         default_position="前端工程师",
         search_position="frontend_typescript",
-        available=False,
     ),
     "frontend_vue": LearningModuleSpec(
         module_id="frontend_vue",
@@ -56,7 +54,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="前端基础",
         default_position="前端工程师",
         search_position="frontend_vue",
-        available=False,
     ),
     "browser_principles": LearningModuleSpec(
         module_id="browser_principles",
@@ -64,7 +61,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="前端基础",
         default_position="前端工程师",
         search_position="browser_principles",
-        available=False,
     ),
     "go_backend": LearningModuleSpec(
         module_id="go_backend",
@@ -72,7 +68,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="语言方向",
         default_position="Go 后端工程师",
         search_position="go_backend",
-        available=False,
     ),
     "cpp_basic": LearningModuleSpec(
         module_id="cpp_basic",
@@ -80,7 +75,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="语言方向",
         default_position="C++ 工程师",
         search_position="cpp_basic",
-        available=False,
     ),
     "ai_llm_engineering": LearningModuleSpec(
         module_id="ai_llm_engineering",
@@ -88,7 +82,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="AI 方向",
         default_position="AI 工程师",
         search_position="ai_llm_engineering",
-        available=False,
     ),
     "product_manager": LearningModuleSpec(
         module_id="product_manager",
@@ -96,7 +89,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="通用岗位",
         default_position="产品经理",
         search_position="product_manager",
-        available=False,
     ),
     "testing_engineering": LearningModuleSpec(
         module_id="testing_engineering",
@@ -104,7 +96,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="通用岗位",
         default_position="测试工程师",
         search_position="testing_engineering",
-        available=False,
     ),
     "devops_engineering": LearningModuleSpec(
         module_id="devops_engineering",
@@ -112,7 +103,6 @@ LEARNING_MODULES: dict[str, LearningModuleSpec] = {
         category="通用岗位",
         default_position="运维工程师",
         search_position="devops_engineering",
-        available=False,
     ),
 }
 

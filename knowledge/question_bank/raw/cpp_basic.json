@@ -1,0 +1,892 @@
+[
+  {
+    "question_id": "cpp_001",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "C++相比C语言最大的特点之一是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "支持面向对象编程"
+      },
+      {
+        "key": "B",
+        "text": "只能进行过程式编程"
+      },
+      {
+        "key": "C",
+        "text": "不支持指针"
+      },
+      {
+        "key": "D",
+        "text": "不能进行内存管理"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++基础",
+      "面向对象"
+    ],
+    "explanation": "C++在C语言基础上增加了面向对象特性，包括类、继承、多态等机制。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_002",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "C++中用于动态申请内存的关键字是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "malloc"
+      },
+      {
+        "key": "B",
+        "text": "new"
+      },
+      {
+        "key": "C",
+        "text": "alloc"
+      },
+      {
+        "key": "D",
+        "text": "create"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "C++基础",
+      "内存管理"
+    ],
+    "explanation": "C++使用new进行动态内存申请，并通过delete释放对应资源。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/new",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_003",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "C++中引用(reference)的本质特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "变量的别名"
+      },
+      {
+        "key": "B",
+        "text": "新的独立对象"
+      },
+      {
+        "key": "C",
+        "text": "动态数组"
+      },
+      {
+        "key": "D",
+        "text": "函数对象"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++基础",
+      "引用"
+    ],
+    "explanation": "引用是已有变量的别名，与原变量共享同一块数据，常用于函数参数传递和返回值优化。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/reference",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_004",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "C++中const修饰变量表示什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "变量不可修改"
+      },
+      {
+        "key": "B",
+        "text": "变量一定存储在栈上"
+      },
+      {
+        "key": "C",
+        "text": "变量自动释放"
+      },
+      {
+        "key": "D",
+        "text": "变量一定是全局变量"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++基础",
+      "const"
+    ],
+    "explanation": "const用于声明只读对象，防止程序通过该变量修改数据。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/cv",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_005",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "C++类中负责初始化对象状态的特殊函数是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "构造函数"
+      },
+      {
+        "key": "B",
+        "text": "析构函数"
+      },
+      {
+        "key": "C",
+        "text": "普通成员函数"
+      },
+      {
+        "key": "D",
+        "text": "模板函数"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++面向对象",
+      "构造函数"
+    ],
+    "explanation": "构造函数在对象创建时自动调用，用于初始化成员变量和建立对象状态。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/constructor",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_006",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "C++面向对象编程的主要特征包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "封装"
+      },
+      {
+        "key": "B",
+        "text": "继承"
+      },
+      {
+        "key": "C",
+        "text": "多态"
+      },
+      {
+        "key": "D",
+        "text": "垃圾自动回收"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "C++",
+      "面向对象"
+    ],
+    "explanation": "C++面向对象核心特性包括封装、继承和多态，垃圾回收不是C++语言特性。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_007",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于C++指针，下列说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "指针保存对象的地址"
+      },
+      {
+        "key": "B",
+        "text": "可以通过指针访问对象"
+      },
+      {
+        "key": "C",
+        "text": "指针必须初始化"
+      },
+      {
+        "key": "D",
+        "text": "指针一定不会造成内存问题"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "knowledge_points": [
+      "C++",
+      "指针",
+      "内存管理"
+    ],
+    "explanation": "指针可以保存对象地址，并通过解引用或成员访问运算符访问对象。C++语法不强制指针在声明时初始化，但未初始化指针具有不确定值，读取或解引用它可能导致未定义行为，因此工程中通常应初始化为有效地址或nullptr。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/pointer",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_008",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "C++中的析构函数通常用于释放对象占用的资源。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "C++",
+      "析构函数"
+    ],
+    "explanation": "析构函数在对象生命周期结束时自动调用，常用于释放内存、关闭文件等资源。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/destructor",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_009",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "C++中的引用可以在定义后重新绑定到另一个对象。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "C++",
+      "引用"
+    ],
+    "explanation": "引用必须在定义时绑定对象，之后不能改变引用关系。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/reference",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_010",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "C++中指针和引用有什么区别？",
+    "options": [],
+    "answer": "指针保存对象地址，可以为空，可以改变指向；引用是对象的别名，必须初始化且不能重新绑定。指针需要显式解引用，而引用使用方式类似普通变量。",
+    "knowledge_points": [
+      "C++",
+      "指针",
+      "引用"
+    ],
+    "explanation": "指针更加灵活但容易产生内存安全问题，引用语法更安全，常用于函数参数传递和接口设计。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/",
+    "license": "reference-only"
+  }
+  ,
+  {
+    "question_id": "cpp_011",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "C++ STL中的vector底层通常采用什么数据结构实现？",
+    "options": [
+      {
+        "key": "A",
+        "text": "动态数组"
+      },
+      {
+        "key": "B",
+        "text": "链表"
+      },
+      {
+        "key": "C",
+        "text": "哈希表"
+      },
+      {
+        "key": "D",
+        "text": "二叉树"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++",
+      "STL",
+      "vector"
+    ],
+    "explanation": "vector底层采用连续内存的动态数组实现，支持随机访问，扩容时会重新分配更大的连续空间。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/container/vector",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_012",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "std::unordered_map相比std::map最大的特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "基于哈希表实现，平均查找复杂度更低"
+      },
+      {
+        "key": "B",
+        "text": "一定保证元素有序"
+      },
+      {
+        "key": "C",
+        "text": "不能存储键值对"
+      },
+      {
+        "key": "D",
+        "text": "不支持插入操作"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++",
+      "STL",
+      "unordered_map"
+    ],
+    "explanation": "unordered_map基于哈希表实现，平均情况下查找复杂度接近O(1)，但不保证元素顺序。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/container/unordered_map",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_013",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "C++智能指针unique_ptr的主要特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "独占所有权，不允许多个unique_ptr管理同一资源"
+      },
+      {
+        "key": "B",
+        "text": "自动复制资源"
+      },
+      {
+        "key": "C",
+        "text": "没有自动释放功能"
+      },
+      {
+        "key": "D",
+        "text": "只能管理数组"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++",
+      "智能指针",
+      "unique_ptr"
+    ],
+    "explanation": "unique_ptr表示独占所有权，不能复制，只能通过移动转移所有权。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/memory/unique_ptr",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_014",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "shared_ptr通过什么机制管理共享资源生命周期？",
+    "options": [
+      {
+        "key": "A",
+        "text": "引用计数"
+      },
+      {
+        "key": "B",
+        "text": "垃圾回收器"
+      },
+      {
+        "key": "C",
+        "text": "线程池"
+      },
+      {
+        "key": "D",
+        "text": "编译器优化"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++",
+      "智能指针",
+      "shared_ptr"
+    ],
+    "explanation": "shared_ptr通过控制块中的引用计数管理资源，当最后一个shared_ptr释放时自动销毁对象。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/memory/shared_ptr",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_015",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "C++ STL中常见容器包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "vector"
+      },
+      {
+        "key": "B",
+        "text": "list"
+      },
+      {
+        "key": "C",
+        "text": "map"
+      },
+      {
+        "key": "D",
+        "text": "ThreadPool"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "C++",
+      "STL"
+    ],
+    "explanation": "STL提供多种数据结构容器，包括vector、list、deque、map、set等，ThreadPool不是STL容器。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/container",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_016",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "C++智能指针相比裸指针有哪些优势？",
+    "options": [
+      {
+        "key": "A",
+        "text": "自动管理资源释放"
+      },
+      {
+        "key": "B",
+        "text": "减少内存泄漏风险"
+      },
+      {
+        "key": "C",
+        "text": "支持RAII思想"
+      },
+      {
+        "key": "D",
+        "text": "完全避免所有内存错误"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "C++",
+      "智能指针",
+      "RAII"
+    ],
+    "explanation": "智能指针通过对象生命周期自动管理资源，可以降低内存泄漏风险，但不能完全避免所有错误。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/memory",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_017",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "vector在尾部插入元素通常具有较高效率。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "C++",
+      "vector",
+      "STL"
+    ],
+    "explanation": "vector尾部插入通常为均摊O(1)，但扩容时可能发生内存重新分配和元素移动。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/container/vector",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_018",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "map中的元素默认按照key进行排序。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "C++",
+      "STL",
+      "map"
+    ],
+    "explanation": "std::map通常基于红黑树实现，元素按照key进行有序存储。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/container/map",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_019",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "什么是RAII(Resource Acquisition Is Initialization)？",
+    "options": [],
+    "answer": "RAII是一种C++资源管理思想，将资源生命周期绑定到对象生命周期，在对象构造时获取资源，在析构时自动释放资源。",
+    "knowledge_points": [
+      "C++",
+      "RAII",
+      "资源管理"
+    ],
+    "explanation": "RAII是C++管理资源的重要方式，例如智能指针、锁管理类等都基于该思想。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/raii",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_020",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "vector和list有什么区别？应该如何选择？",
+    "options": [],
+    "answer": "vector使用连续内存，支持O(1)随机访问，缓存局部性较好，尾部插入通常为均摊O(1)，但中间插入或删除通常需要移动元素。list是双向链表，不支持随机访问；在已经获得目标位置迭代器的前提下，插入和删除通常为O(1)，但查找目标位置仍需要O(n)。通常优先选择vector，只有在确实需要稳定迭代器或频繁在已知位置插入删除时再考虑list。",
+    "knowledge_points": [
+      "C++",
+      "STL",
+      "vector",
+      "list"
+    ],
+    "explanation": "不能只根据插入删除复杂度选择容器，还要考虑查找目标位置的成本、缓存局部性、内存开销和迭代器稳定性。list节点分散存储，通常有额外指针开销，实际性能未必优于vector。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/container",
+    "license": "reference-only"
+  }
+  ,
+  {
+    "question_id": "cpp_021",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "C++中实现运行时多态的关键机制是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "虚函数"
+      },
+      {
+        "key": "B",
+        "text": "宏定义"
+      },
+      {
+        "key": "C",
+        "text": "模板实例化"
+      },
+      {
+        "key": "D",
+        "text": "命名空间"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++",
+      "多态",
+      "虚函数"
+    ],
+    "explanation": "C++通过虚函数机制实现运行时多态，使基类指针或引用可以调用实际对象对应的派生类函数。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/virtual",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_022",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "C++中基类析构函数通常声明为virtual的主要原因是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "保证通过基类指针删除派生类对象时正确调用析构函数"
+      },
+      {
+        "key": "B",
+        "text": "提高程序运行速度"
+      },
+      {
+        "key": "C",
+        "text": "避免所有内存分配"
+      },
+      {
+        "key": "D",
+        "text": "禁止类继承"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++",
+      "虚函数",
+      "析构函数"
+    ],
+    "explanation": "如果基类析构函数不是virtual，通过基类指针delete实际的派生类对象会产生未定义行为。将基类析构函数声明为virtual，可以使析构调用根据对象的实际类型进行动态分派，先正确执行派生类析构函数，再执行基类析构函数。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/destructor",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_023",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "C++11中移动语义主要用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少不必要的数据拷贝，提高性能"
+      },
+      {
+        "key": "B",
+        "text": "增加对象数量"
+      },
+      {
+        "key": "C",
+        "text": "替代所有指针"
+      },
+      {
+        "key": "D",
+        "text": "自动进行垃圾回收"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "C++11",
+      "移动语义",
+      "右值引用"
+    ],
+    "explanation": "移动语义通过转移资源所有权避免深拷贝，尤其适用于临时对象和大型资源对象。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/move_constructor",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_024",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "C++11及以后版本新增的重要特性包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "auto类型推导"
+      },
+      {
+        "key": "B",
+        "text": "lambda表达式"
+      },
+      {
+        "key": "C",
+        "text": "智能指针"
+      },
+      {
+        "key": "D",
+        "text": "垃圾回收机制"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "C++11",
+      "现代C++"
+    ],
+    "explanation": "C++11引入了auto、lambda、智能指针、移动语义、线程库等现代编程特性，但C++没有内置垃圾回收。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/11",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_025",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "C++并发编程中常用的同步机制包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "std::mutex"
+      },
+      {
+        "key": "B",
+        "text": "std::atomic"
+      },
+      {
+        "key": "C",
+        "text": "std::condition_variable"
+      },
+      {
+        "key": "D",
+        "text": "printf"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "C++",
+      "并发编程"
+    ],
+    "explanation": "现代C++提供mutex、atomic、condition_variable等并发工具，用于线程同步和数据保护。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/thread",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_026",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "C++中的lambda表达式可以用于创建匿名函数对象。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "C++11",
+      "lambda"
+    ],
+    "explanation": "lambda允许在代码中直接定义匿名函数，常用于算法库回调和局部逻辑封装。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/lambda",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_027",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "C++右值引用使用&&表示，主要用于支持移动语义。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "C++11",
+      "右值引用"
+    ],
+    "explanation": "右值引用可以绑定临时对象，是实现移动构造函数和移动赋值的重要基础。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/reference",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_028",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "虚函数机制通常通过虚函数表(vtable)实现动态绑定。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "C++",
+      "虚函数",
+      "对象模型"
+    ],
+    "explanation": "多数C++实现通过虚函数表和虚表指针支持运行时多态，但具体实现属于编译器实现细节。",
+    "source": "C++对象模型整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/virtual",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_029",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "什么是C++中的移动构造函数？为什么需要它？",
+    "options": [],
+    "answer": "移动构造函数用于使用右值对象资源初始化新对象，通过转移资源所有权避免深拷贝，提高程序性能。",
+    "knowledge_points": [
+      "C++11",
+      "移动语义",
+      "右值引用"
+    ],
+    "explanation": "对于包含动态资源的对象，传统拷贝可能产生大量内存复制，移动构造可以直接接管资源。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/language/move_constructor",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "cpp_030",
+    "company": "通用",
+    "position": "cpp_basic",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述C++如何进行资源管理以及如何避免内存泄漏。",
+    "options": [],
+    "answer": "C++通常通过RAII思想管理资源，将资源生命周期绑定到对象生命周期，并使用智能指针、容器等方式自动释放资源，减少手动new/delete导致的内存泄漏。",
+    "knowledge_points": [
+      "C++",
+      "内存管理",
+      "RAII",
+      "智能指针"
+    ],
+    "explanation": "现代C++推荐优先使用RAII和智能指针管理资源，避免裸指针手动管理造成的资源泄漏和异常安全问题。",
+    "source": "C++官方文档整理",
+    "source_url": "https://en.cppreference.com/w/cpp/memory",
+    "license": "reference-only"
+  }
+]
