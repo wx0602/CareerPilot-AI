@@ -1,3 +1,4 @@
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -74,7 +75,9 @@ class QuestionBankTests(unittest.TestCase):
     def test_import_and_filter_search(self):
         questions, _ = load_and_clean_questions(SEED)
         with tempfile.TemporaryDirectory() as directory:
-            service = KnowledgeService(database_path=Path(directory) / "questions.sqlite3")
+            database_path = Path(directory) / "questions.sqlite3"
+            sqlite3.connect(database_path).close()
+            service = KnowledgeService(database_path=database_path)
             result = service.import_questions(questions)
             self.assertEqual(result["imported"], 24)
             search = service.search_questions("缓存", position="java_backend", top_k=5)

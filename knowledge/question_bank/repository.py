@@ -21,6 +21,8 @@ class QuestionRepository:
     def __init__(self, database_path: str | Path):
         self.database_path = Path(database_path)
         self.database_path.parent.mkdir(parents=True, exist_ok=True)
+        if not self.database_path.is_file():
+            raise FileNotFoundError(f"题库数据库不存在：{self.database_path}")
         self._create_schema()
 
     def _connect(self) -> sqlite3.Connection:

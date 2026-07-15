@@ -1,3 +1,4 @@
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -34,8 +35,10 @@ class ParserTests(unittest.TestCase):
             source = root / "project.txt"
             source.write_text("项目使用FastAPI和SQLite，实现简历解析与题库检索。", encoding="utf-8")
             material = parse_material(source, material_type="project_intro", user_id="u1")
+            database_path = root / "questions.sqlite3"
+            sqlite3.connect(database_path).close()
             service = KnowledgeService(
-                database_path=root / "questions.sqlite3",
+                database_path=database_path,
                 material_store_path=root / "materials.jsonl",
             )
             service.index_material(material)

@@ -12,6 +12,7 @@ htmlcov/
 *.sqlite
 *.sqlite3
 *.db
+!knowledge/question_bank/questions.sqlite3
 backend/uploads/*
 knowledge/chroma_store/*
 knowledge/question_bank/materials.jsonl

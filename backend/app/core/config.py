@@ -52,9 +52,7 @@ class Settings(BaseSettings):
     max_upload_bytes: int = 10 * 1024 * 1024
     provider_mode: str = "real"
     knowledge_database_path: str = str(
-        RUNTIME_DIR / "questions.sqlite3"
-        if IS_SERVERLESS
-        else REPO_ROOT / "knowledge" / "question_bank" / "questions.sqlite3"
+        REPO_ROOT / "knowledge" / "question_bank" / "questions.sqlite3"
     )
     knowledge_chroma_dir: str = str(
         RUNTIME_DIR / "chroma_store"

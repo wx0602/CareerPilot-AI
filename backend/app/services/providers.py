@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import random
+import shutil
 import sys
 from pathlib import Path
 from typing import Any, Protocol
 from uuid import uuid4
 
+from ..core.config import IS_SERVERLESS, RUNTIME_DIR
 from .learning_modules import default_question_mix, get_learning_module
 
 
@@ -307,6 +309,33 @@ def _ensure_import_paths() -> None:
             sys.path.insert(0, text)
 
 
+def _prepare_question_database(
+    database_path: str | Path,
+    *,
+    serverless: bool = IS_SERVERLESS,
+    runtime_dir: Path = RUNTIME_DIR,
+) -> Path:
+    source_path = _resolve_project_path(database_path)
+    if serverless:
+        try:
+            source_path.relative_to(runtime_dir)
+        except ValueError:
+            pass
+        else:
+            source_path = _project_root() / "knowledge" / "question_bank" / source_path.name
+
+    if not source_path.is_file():
+        raise ProviderUnavailableError(f"题库源数据库不存在：{source_path}")
+    if not serverless:
+        return source_path
+
+    target_path = runtime_dir / source_path.name
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    if not target_path.exists():
+        shutil.copy2(source_path, target_path)
+    return target_path
+
+
 class RealKnowledgeProvider:
     """真实题库和材料解析入口。"""
 
@@ -320,7 +349,7 @@ class RealKnowledgeProvider:
         _ensure_import_paths()
         from knowledge.rag import KnowledgeService
 
-        self.database_path = _resolve_project_path(database_path)
+        self.database_path = _prepare_question_database(database_path)
         self.chroma_directory = _resolve_project_path(chroma_directory) if chroma_directory else None
         self.raw_question_dir = _resolve_project_path(raw_question_dir)
         self.service = KnowledgeService(
@@ -378,7 +407,7 @@ class RealAIProvider:
         from knowledge.rag import KnowledgeService
 
         self.knowledge = KnowledgeService(
-            database_path=_resolve_project_path(database_path),
+            database_path=_prepare_question_database(database_path),
             chroma_directory=_resolve_project_path(chroma_directory) if chroma_directory else None,
         )
 
