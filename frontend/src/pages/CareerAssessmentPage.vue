@@ -18,7 +18,7 @@ import { careerAssessments } from '../data/careerAssessments';
 
       <div class="assessment-note">
         <strong>从了解自己开始</strong>
-        <p>测评结果用于职业探索与自我认识，不作为医学或招聘诊断。</p>
+        <p>将打开第三方中文测评；基础结果免费，部分平台可能提供可选的付费进阶服务。</p>
       </div>
 
       <div class="assessment-grid">
@@ -35,13 +35,32 @@ import { careerAssessments } from '../data/careerAssessments';
           <h2>{{ item.title }}</h2>
           <p>{{ item.description }}</p>
           <div class="assessment-card-footer">
-            <small>{{ item.meta }}</small>
-            <RouterLink :to="`/career-assessment/${item.id}`">
+            <div class="assessment-card-meta">
+              <small>{{ item.meta }}</small>
+              <small>{{ item.provider }} · {{ item.freeLabel }}</small>
+            </div>
+            <a
+              :href="item.externalUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`在新标签页打开${item.title}`"
+            >
               开始测试<AppIcon name="arrow" />
-            </RouterLink>
+            </a>
           </div>
         </article>
       </div>
     </section>
   </LayoutShell>
 </template>
+
+<style scoped>
+.assessment-card-meta {
+  display: grid;
+  gap: 5px;
+}
+
+.assessment-card-meta small:last-child {
+  color: #718097;
+}
+</style>
