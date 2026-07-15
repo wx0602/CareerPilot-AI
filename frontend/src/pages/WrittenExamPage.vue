@@ -124,9 +124,10 @@ async function favoriteCurrent() {
 }
 
 async function submit() {
-  if (!paper.value) return;
+  if (!paper.value || loading.value) return;
   loading.value = true;
   error.value = '';
+  notice.value = '';
   try {
     const payloadAnswers = paper.value.questions.map((q) => ({
       question_id: q.question_id,
@@ -137,7 +138,9 @@ async function submit() {
       exam_id: paper.value.exam_id,
       answers: payloadAnswers
     });
-    router.push('/interview');
+    notice.value = '笔试已提交，正在生成报告...';
+    await api.generateReport({ session_id: paper.value.session_id });
+    await router.push('/report');
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -158,7 +161,7 @@ async function submit() {
         <AppIcon name="clock" />固定配比 {{ questionCount }} 题
       </span>
       <button class="primary-button submit-small" :disabled="loading || !paper" @click="submit">
-        交卷
+        {{ loading ? '正在生成报告...' : '交卷并生成报告' }}
       </button>
     </header>
 
