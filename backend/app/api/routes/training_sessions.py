@@ -1,15 +1,26 @@
 from fastapi import APIRouter, Depends, status
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 from ..deps import get_current_token, get_db, owned_training_session
 from ...core.errors import conflict
-from ...dbmodels import AuthToken, TrainingSession
+from ...dbmodels import AuthToken, Exam, ExamQuestion, ExamSubmission, TrainingSession
 from ...schemas.api import TrainingSessionCreate, TrainingSessionResponse, TrainingSessionUpdate
 from ...services.learning_modules import default_question_mix, get_learning_module
 
 
 router = APIRouter(prefix="/training-sessions", tags=["训练会话"])
+
+
+def _delete_existing_exam(db: Session, session_id: str) -> None:
+    """A module confirmation starts a fresh practice paper for this session."""
+
+    exam_id = db.scalar(select(Exam.id).where(Exam.session_id == session_id))
+    if exam_id is None:
+        return
+    db.execute(delete(ExamSubmission).where(ExamSubmission.exam_id == exam_id))
+    db.execute(delete(ExamQuestion).where(ExamQuestion.exam_id == exam_id))
+    db.execute(delete(Exam).where(Exam.id == exam_id))
 
 
 @router.post("", response_model=TrainingSessionResponse, status_code=status.HTTP_201_CREATED)
@@ -70,6 +81,9 @@ def update_training_session(
 ) -> TrainingSessionResponse:
     training = owned_training_session(session_id, db, token)
     module = get_learning_module(payload.learning_module) if payload.learning_module else None
+    if payload.learning_module is not None:
+        _delete_existing_exam(db, training.id)
+        training.status = "created"
     if payload.position is not None:
         training.position = payload.position.strip() if payload.position else None
     elif module and not training.position:

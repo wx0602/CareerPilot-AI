@@ -111,3 +111,76 @@ def test_training_session_ownership_is_enforced(client: TestClient):
         json={"session_id": session_id, "position": "后端工程师", "question_count": 1},
     )
     assert denied.status_code == 403
+
+
+def test_confirming_a_module_starts_a_fresh_exam_and_refresh_keeps_it(logged_in):
+    client, headers = logged_in
+    question_mix = {
+        "single_choice": 1,
+        "multiple_choice": 0,
+        "true_false": 0,
+        "short_answer": 0,
+    }
+    session = client.post(
+        "/api/training-sessions",
+        headers=headers,
+        json={
+            "mode": "technical",
+            "learning_module": "java_backend",
+            "learning_module_title": "Java 后端",
+            "question_mix": question_mix,
+        },
+    ).json()
+
+    first = client.post(
+        "/api/exams/generate",
+        headers=headers,
+        json={
+            "session_id": session["session_id"],
+            "position": session["position"],
+            "learning_module": session["learning_module"],
+            "learning_module_title": session["learning_module_title"],
+            "question_mix": question_mix,
+        },
+    ).json()
+
+    updated = client.patch(
+        f"/api/training-sessions/{session['session_id']}",
+        headers=headers,
+        json={
+            "position": "Python 后端工程师",
+            "learning_module": "python_backend",
+            "learning_module_title": "Python 后端",
+            "question_mix": question_mix,
+        },
+    ).json()
+    second_response = client.post(
+        "/api/exams/generate",
+        headers=headers,
+        json={
+            "session_id": updated["session_id"],
+            "position": updated["position"],
+            "learning_module": updated["learning_module"],
+            "learning_module_title": updated["learning_module_title"],
+            "question_mix": question_mix,
+        },
+    )
+    assert second_response.status_code == 200
+    second = second_response.json()
+    assert second["exam_id"] != first["exam_id"]
+    assert second["session_id"] == first["session_id"]
+    assert "Python" in second["title"]
+    assert all("Python" in item["content"] for item in second["questions"])
+
+    refreshed = client.post(
+        "/api/exams/generate",
+        headers=headers,
+        json={
+            "session_id": updated["session_id"],
+            "position": updated["position"],
+            "learning_module": updated["learning_module"],
+            "learning_module_title": updated["learning_module_title"],
+            "question_mix": question_mix,
+        },
+    ).json()
+    assert refreshed["exam_id"] == second["exam_id"]
