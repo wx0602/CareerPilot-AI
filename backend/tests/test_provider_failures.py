@@ -2,6 +2,7 @@ from starlette.testclient import TestClient
 
 from app.db.base import Base
 from app.main import create_app
+from app.services.providers import RealAIProvider
 from tests.conftest import auth_headers
 
 
@@ -11,6 +12,15 @@ DEFAULT_MIX = {
     "multiple_choice": 2,
     "short_answer": 3,
 }
+
+
+def test_real_question_shuffle_varies_between_draws():
+    questions = [{"question_id": f"q-{index}"} for index in range(10)]
+    draws = {
+        tuple(item["question_id"] for item in RealAIProvider._shuffled(questions))
+        for _ in range(6)
+    }
+    assert len(draws) > 1
 
 
 def test_real_mode_connects_c_and_d_providers(settings):

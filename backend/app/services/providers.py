@@ -437,11 +437,9 @@ class RealAIProvider:
     @staticmethod
     def _shuffled(
         questions: list[dict[str, Any]],
-        *,
-        seed: str,
     ) -> list[dict[str, Any]]:
         shuffled = questions[:]
-        random.Random(seed).shuffle(shuffled)
+        random.shuffle(shuffled)
         return shuffled
 
     def _select_questions(
@@ -450,17 +448,13 @@ class RealAIProvider:
         preferred: list[dict[str, Any]],
         candidates: list[dict[str, Any]],
     ) -> list[dict[str, Any]]:
-        seed = (
-            f"{request['session_id']}:{request.get('learning_module') or ''}:"
-            f"{request.get('position') or ''}:{request.get('difficulty') or ''}"
-        )
         mix = request.get("question_mix")
         if not mix:
             count = self._question_target_count(request)
             preferred_ids = {item["question_id"] for item in preferred}
             fallback = [item for item in candidates if item["question_id"] not in preferred_ids]
-            ordered = self._shuffled(preferred, seed=f"{seed}:preferred")
-            ordered.extend(self._shuffled(fallback, seed=f"{seed}:fallback"))
+            ordered = self._shuffled(preferred)
+            ordered.extend(self._shuffled(fallback))
             if len(ordered) < count:
                 raise ValueError(f"题库需要 {count} 道题，当前只有 {len(ordered)} 道")
             return ordered[:count]
@@ -481,15 +475,9 @@ class RealAIProvider:
                 if item["question_type"] == question_type
                 and item["question_id"] not in preferred_ids
             ]
-            ordered = self._shuffled(
-                preferred_bucket,
-                seed=f"{seed}:{question_type}:preferred",
-            )
+            ordered = self._shuffled(preferred_bucket)
             ordered.extend(
-                self._shuffled(
-                    fallback_bucket,
-                    seed=f"{seed}:{question_type}:fallback",
-                )
+                self._shuffled(fallback_bucket)
             )
             if len(ordered) < count:
                 shortages.append(f"{question_type} 需要 {count} 道，当前只有 {len(ordered)} 道")

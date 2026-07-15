@@ -74,13 +74,9 @@ class ExamAgent:
         if not bank:
             raise ValueError("题库为空，无法生成试卷。")
 
-        seed = (
-            f"{req.session_id}:{req.learning_module or ''}:{req.position}:"
-            f"{req.company or ''}:{req.difficulty}"
-        )
         if req.question_mix is None:
             selected = bank[:]
-            random.Random(seed).shuffle(selected)
+            random.shuffle(selected)
             selected = selected[: req.question_count]
             type_rank = {question_type: index for index, question_type in enumerate(QUESTION_TYPE_ORDER)}
             selected.sort(key=lambda item: type_rank.get(item.question_type, len(type_rank)))
@@ -91,7 +87,7 @@ class ExamAgent:
             for question_type in QUESTION_TYPE_ORDER:
                 count = mix[question_type]
                 bucket = [item for item in bank if item.question_type == question_type]
-                random.Random(f"{seed}:{question_type}").shuffle(bucket)
+                random.shuffle(bucket)
                 if len(bucket) < count:
                     shortages.append(f"{question_type} 需要 {count} 道，当前只有 {len(bucket)} 道")
                     continue
