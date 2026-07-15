@@ -10,7 +10,6 @@ import AvatarPage from '../pages/AvatarPage.vue';
 import FavoritesPage from '../pages/FavoritesPage.vue';
 import SettingsPage from '../pages/SettingsPage.vue';
 import CareerAssessmentPage from '../pages/CareerAssessmentPage.vue';
-import AssessmentPlaceholderPage from '../pages/AssessmentPlaceholderPage.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -27,8 +26,8 @@ const routes = [
   { path: '/career-assessment', name: 'career-assessment', component: CareerAssessmentPage },
   {
     path: '/career-assessment/:assessmentId',
-    name: 'assessment-placeholder',
-    component: AssessmentPlaceholderPage
+    name: 'assessment-legacy',
+    redirect: '/career-assessment'
   }
 ];
 
