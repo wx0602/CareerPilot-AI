@@ -1,0 +1,891 @@
+[
+  {
+    "question_id": "go_001",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Go语言最核心的并发模型是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "线程池模型"
+      },
+      {
+        "key": "B",
+        "text": "goroutine和channel模型"
+      },
+      {
+        "key": "C",
+        "text": "进程复制模型"
+      },
+      {
+        "key": "D",
+        "text": "数据库事务模型"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Go基础",
+      "并发模型"
+    ],
+    "explanation": "Go通过轻量级goroutine实现并发，通过channel实现goroutine之间的数据通信。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_002",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Go语言中声明变量常用的关键字是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "var"
+      },
+      {
+        "key": "B",
+        "text": "let"
+      },
+      {
+        "key": "C",
+        "text": "define"
+      },
+      {
+        "key": "D",
+        "text": "variable"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go基础",
+      "变量"
+    ],
+    "explanation": "Go使用var声明变量，也支持使用:=进行短变量声明。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_003",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Go语言中用于定义结构体类型的关键字是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "class"
+      },
+      {
+        "key": "B",
+        "text": "struct"
+      },
+      {
+        "key": "C",
+        "text": "object"
+      },
+      {
+        "key": "D",
+        "text": "typeclass"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Go基础",
+      "struct"
+    ],
+    "explanation": "Go没有传统面向对象语言中的class，而是通过struct定义数据结构。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/tour/moretypes/2",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_004",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go语言中interface的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "定义行为规范，实现多态"
+      },
+      {
+        "key": "B",
+        "text": "存储数据库连接"
+      },
+      {
+        "key": "C",
+        "text": "替代所有struct"
+      },
+      {
+        "key": "D",
+        "text": "管理操作系统进程"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "interface"
+    ],
+    "explanation": "Go接口通过方法集合描述行为，不需要显式声明实现关系，实现了灵活的多态机制。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/tour/methods/9",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_005",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go语言中的指针主要用于什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "保存变量内存地址"
+      },
+      {
+        "key": "B",
+        "text": "替代所有数据类型"
+      },
+      {
+        "key": "C",
+        "text": "实现自动垃圾回收"
+      },
+      {
+        "key": "D",
+        "text": "创建线程"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go基础",
+      "指针"
+    ],
+    "explanation": "Go支持指针类型，可以保存变量地址并通过指针修改对应数据。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/tour/moretypes/1",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_006",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Go语言interface具有哪些特点？",
+    "options": [
+      {
+        "key": "A",
+        "text": "通过方法集合描述行为"
+      },
+      {
+        "key": "B",
+        "text": "实现接口不需要显式声明"
+      },
+      {
+        "key": "C",
+        "text": "支持多态"
+      },
+      {
+        "key": "D",
+        "text": "必须继承某个父类"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Go",
+      "interface"
+    ],
+    "explanation": "Go采用隐式接口实现方式，只要类型满足接口方法集合即可认为实现该接口。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/tour/methods/9",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_007",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "Go语言中的defer具有哪些特点？",
+    "options": [
+      {
+        "key": "A",
+        "text": "延迟执行函数调用"
+      },
+      {
+        "key": "B",
+        "text": "通常用于资源释放"
+      },
+      {
+        "key": "C",
+        "text": "多个defer按照后进先出执行"
+      },
+      {
+        "key": "D",
+        "text": "一定立即执行"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Go基础",
+      "defer"
+    ],
+    "explanation": "defer会在函数返回前执行，常用于关闭文件、释放锁等资源管理场景，多个defer遵循LIFO顺序。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/blog/defer-panic-and-recover",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_008",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Go语言中的goroutine相比操作系统线程更加轻量。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "goroutine"
+    ],
+    "explanation": "goroutine由Go运行时调度，占用资源较少，可以创建大量并发任务。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/effective_go",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_009",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Go语言中的panic可以通过recover进行捕获处理。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "panic",
+      "recover"
+    ],
+    "explanation": "recover只有在发生panic的同一goroutine中，并且在延迟执行的defer函数内调用时才能阻止panic继续传播。recover成功后不会回到panic发生位置继续执行，而是在defer函数执行完成后从发生panic的函数返回。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/blog/defer-panic-and-recover",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_010",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Go语言为什么适合开发高并发后端服务？",
+    "options": [],
+    "answer": "Go提供轻量级goroutine、channel通信机制、高效运行时调度和内置网络库，使开发者可以方便地构建高并发服务器。",
+    "knowledge_points": [
+      "Go",
+      "并发模型",
+      "后端开发"
+    ],
+    "explanation": "Go的并发模型降低了线程管理复杂度，同时结合垃圾回收、标准库和编译性能，使其适合云服务、微服务和网络程序开发。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/",
+    "license": "reference-only"
+  }
+  ,
+  {
+    "question_id": "go_011",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go语言中用于goroutine之间通信的主要机制是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "channel"
+      },
+      {
+        "key": "B",
+        "text": "class"
+      },
+      {
+        "key": "C",
+        "text": "inherit"
+      },
+      {
+        "key": "D",
+        "text": "pointer"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "channel",
+      "并发"
+    ],
+    "explanation": "Go推荐通过channel实现goroutine之间的数据通信，通过通信来共享数据，而不是直接共享内存。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/effective_go#channels",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_012",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go语言中select语句主要用于什么场景？",
+    "options": [
+      {
+        "key": "A",
+        "text": "同时等待多个channel操作"
+      },
+      {
+        "key": "B",
+        "text": "定义结构体"
+      },
+      {
+        "key": "C",
+        "text": "创建数据库连接"
+      },
+      {
+        "key": "D",
+        "text": "替代for循环"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "select",
+      "channel"
+    ],
+    "explanation": "select可以同时监听多个channel，当某个channel准备好时执行对应分支，常用于并发控制。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/tour/concurrency/5",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_013",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "Go运行时调度模型GMP中的P代表什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Processor，调度上下文"
+      },
+      {
+        "key": "B",
+        "text": "Process，操作系统进程"
+      },
+      {
+        "key": "C",
+        "text": "Pointer，指针"
+      },
+      {
+        "key": "D",
+        "text": "Package，代码包"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "GMP调度模型"
+    ],
+    "explanation": "GMP模型中G表示goroutine，M表示操作系统线程，P表示调度器上下文，负责连接G和M。",
+    "source": "Go运行时原理整理",
+    "source_url": "https://go.dev/src/runtime/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_014",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go语言垃圾回收（GC）的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "自动管理内存释放"
+      },
+      {
+        "key": "B",
+        "text": "替代数据库"
+      },
+      {
+        "key": "C",
+        "text": "提高网络带宽"
+      },
+      {
+        "key": "D",
+        "text": "管理HTTP请求"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "GC",
+      "内存管理"
+    ],
+    "explanation": "Go提供自动垃圾回收机制，负责回收不再使用的堆内存，减少手动内存管理负担。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/gc-guide",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_015",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Go语言中的channel有哪些特点？",
+    "options": [
+      {
+        "key": "A",
+        "text": "用于goroutine之间通信"
+      },
+      {
+        "key": "B",
+        "text": "支持阻塞式读写"
+      },
+      {
+        "key": "C",
+        "text": "可以创建有缓冲channel"
+      },
+      {
+        "key": "D",
+        "text": "只能用于单线程程序"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Go",
+      "channel",
+      "并发"
+    ],
+    "explanation": "channel是Go并发模型的重要组成部分，用于goroutine之间通信。channel分为有缓冲和无缓冲两种形式：无缓冲channel要求发送和接收同步配合，有缓冲channel在缓冲区未满时允许发送继续执行，但缓冲区满后仍可能阻塞。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/effective_go#channels",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_016",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Go语言性能优化可以采用哪些方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少不必要的内存分配"
+      },
+      {
+        "key": "B",
+        "text": "合理使用goroutine"
+      },
+      {
+        "key": "C",
+        "text": "使用pprof分析性能"
+      },
+      {
+        "key": "D",
+        "text": "无限创建goroutine"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Go",
+      "性能优化"
+    ],
+    "explanation": "Go性能优化包括减少内存分配、控制并发数量、使用pprof定位CPU和内存问题等。",
+    "source": "Go性能优化整理",
+    "source_url": "https://go.dev/blog/pprof",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_017",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Go中的channel关闭后不能继续发送数据。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "channel"
+    ],
+    "explanation": "关闭后的channel不能继续发送数据，否则会触发panic，但仍可以读取已经存在的数据。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/effective_go#channels",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_018",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "Go语言中的逃逸分析用于判断变量应该分配在栈上还是堆上。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "逃逸分析",
+      "内存管理"
+    ],
+    "explanation": "Go编译器通过逃逸分析判断变量生命周期，如果变量可能被函数外部引用，则可能分配到堆上。",
+    "source": "Go编译器原理整理",
+    "source_url": "https://go.dev/doc/gc-guide",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_019",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述Go语言GMP调度模型。",
+    "options": [],
+    "answer": "GMP模型由G（goroutine）、M（操作系统线程）和P（调度上下文）组成。P负责调度可运行的G，M负责执行G，Go运行时通过调度机制实现大量goroutine在少量线程上的高效运行。",
+    "knowledge_points": [
+      "Go",
+      "GMP",
+      "调度模型"
+    ],
+    "explanation": "GMP模型是Go高并发能力的重要基础，通过用户态调度降低线程切换成本。",
+    "source": "Go运行时原理整理",
+    "source_url": "https://go.dev/src/runtime/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_020",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "使用Go开发Web后端服务通常会采用哪些技术？",
+    "options": [],
+    "answer": "Go Web开发通常使用标准库net/http或Gin、Echo等框架处理HTTP请求，并结合数据库、Redis、消息队列等组件构建后端服务。",
+    "knowledge_points": [
+      "Go",
+      "Web开发",
+      "Gin"
+    ],
+    "explanation": "Go具有高性能网络库和丰富生态，常用于API服务、微服务和云原生应用开发。",
+    "source": "Go Web开发整理",
+    "source_url": "https://go.dev/doc/articles/wiki/",
+    "license": "reference-only"
+  }
+  ,
+  {
+    "question_id": "go_021",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go后端开发中访问MySQL数据库通常使用哪个标准库包？",
+    "options": [
+      {
+        "key": "A",
+        "text": "database/sql"
+      },
+      {
+        "key": "B",
+        "text": "net/http"
+      },
+      {
+        "key": "C",
+        "text": "os/file"
+      },
+      {
+        "key": "D",
+        "text": "runtime/sql"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "MySQL",
+      "database/sql"
+    ],
+    "explanation": "database/sql是Go标准库提供的数据库访问接口，通过驱动程序可以连接MySQL等关系型数据库。",
+    "source": "Go官方文档整理",
+    "source_url": "https://pkg.go.dev/database/sql",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_022",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Go后端服务中使用Redis通常用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "缓存热点数据，提高访问速度"
+      },
+      {
+        "key": "B",
+        "text": "替代Go编译器"
+      },
+      {
+        "key": "C",
+        "text": "解析HTML页面"
+      },
+      {
+        "key": "D",
+        "text": "管理操作系统进程"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "Redis",
+      "缓存"
+    ],
+    "explanation": "Redis常用于缓存热点数据、分布式锁、计数器等场景，可以降低数据库压力。",
+    "source": "Redis官方文档整理",
+    "source_url": "https://redis.io/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_023",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "gRPC默认使用哪种协议进行通信？",
+    "options": [
+      {
+        "key": "A",
+        "text": "HTTP/2"
+      },
+      {
+        "key": "B",
+        "text": "FTP"
+      },
+      {
+        "key": "C",
+        "text": "SMTP"
+      },
+      {
+        "key": "D",
+        "text": "Telnet"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Go",
+      "gRPC",
+      "微服务"
+    ],
+    "explanation": "gRPC基于HTTP/2协议通信，支持双向流、二进制序列化和高性能RPC调用。",
+    "source": "gRPC官方文档整理",
+    "source_url": "https://grpc.io/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_024",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Go微服务开发中常见的组件包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "服务注册与发现"
+      },
+      {
+        "key": "B",
+        "text": "API网关"
+      },
+      {
+        "key": "C",
+        "text": "配置中心"
+      },
+      {
+        "key": "D",
+        "text": "HTML解析器"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Go",
+      "微服务"
+    ],
+    "explanation": "微服务架构通常包含服务发现、网关、配置管理、日志监控等基础设施。",
+    "source": "微服务架构整理",
+    "source_url": "https://grpc.io/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_025",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "Go程序中检测和避免并发数据竞争，可以采用哪些方式？",
+    "options": [
+      {
+       "key": "A",
+       "text": "使用go test -race进行竞态检测"
+      },
+      {
+        "key": "B",
+        "text": "合理使用sync.Mutex等同步机制"
+      },
+      {
+        "key": "C",
+        "text": "使用sync/atomic实现原子操作"
+      },
+      {
+        "key": "D",
+        "text": "无限增加goroutine数量"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Go",
+      "并发安全",
+      "竞态检测"
+    ],
+    "explanation": "Go提供-race工具检测数据竞争问题，同时可以通过互斥锁、原子操作等机制保证共享数据访问安全。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/doc/articles/race_detector",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_026",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Docker可以用于打包Go应用及其运行环境，提高部署一致性。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "Docker",
+      "部署"
+    ],
+    "explanation": "Docker通过容器技术封装应用和依赖环境，使Go服务可以在不同环境中保持一致运行。",
+    "source": "Docker官方文档整理",
+    "source_url": "https://docs.docker.com/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_027",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Go Module是Go官方用于管理项目依赖的机制。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "Go Module"
+    ],
+    "explanation": "Go Module通过go.mod和go.sum文件管理项目依赖版本，是现代Go项目推荐方式。",
+    "source": "Go官方文档整理",
+    "source_url": "https://go.dev/ref/mod",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_028",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "gRPC相比传统HTTP JSON接口更适合高性能微服务内部通信场景。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Go",
+      "gRPC",
+      "微服务"
+    ],
+    "explanation": "gRPC采用HTTP/2和Protocol Buffers进行通信，相比文本JSON通常具有更高性能和更低传输开销。",
+    "source": "gRPC官方文档整理",
+    "source_url": "https://grpc.io/docs/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_029",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Go后端服务如何设计高并发API接口？",
+    "options": [],
+    "answer": "高并发API设计需要合理控制并发边界。可以使用context实现请求超时和取消，限制goroutine数量，配置数据库和HTTP连接池，并结合限流、熔断、背压和监控机制保证系统稳定性。Go的net/http本身已经支持并发请求处理，不应无限创建goroutine。",
+    "knowledge_points": [
+      "Go",
+      "高并发",
+      "服务设计"
+    ],
+    "explanation": "高并发系统不仅关注并发能力，还需要关注资源控制、故障隔离和服务稳定性。无限创建goroutine可能导致内存压力和系统雪崩。",
+    "source": "Go后端工程实践整理",
+    "source_url": "https://go.dev/doc/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "go_030",
+    "company": "通用",
+    "position": "go_backend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述Go语言在云原生和微服务开发中的优势。",
+    "options": [],
+    "answer": "Go具有编译速度快、运行效率高、部署简单、原生支持并发以及丰富的网络开发生态，非常适合容器化、微服务和云原生应用开发。",
+    "knowledge_points": [
+      "Go",
+      "云原生",
+      "微服务"
+    ],
+    "explanation": "Docker、Kubernetes等云原生基础设施大量使用Go开发，Go语言与云计算生态结合紧密。",
+    "source": "Go生态整理",
+    "source_url": "https://go.dev/",
+    "license": "reference-only"
+  }
+]

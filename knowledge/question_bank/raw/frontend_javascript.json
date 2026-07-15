@@ -1,0 +1,828 @@
+[
+  {
+    "question_id": "javascript_001",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "JavaScript中用于声明变量的关键字包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "var、let、const"
+      },
+      {
+        "key": "B",
+        "text": "int、string、float"
+      },
+      {
+        "key": "C",
+        "text": "define、variable"
+      },
+      {
+        "key": "D",
+        "text": "class、object"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "JavaScript基础",
+      "变量声明"
+    ],
+    "explanation": "JavaScript支持var、let和const三种变量声明方式，其中let和const是ES6引入的块级作用域声明方式。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_002",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "JavaScript中typeof null的返回结果是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "null"
+      },
+      {
+        "key": "B",
+        "text": "object"
+      },
+      {
+        "key": "C",
+        "text": "undefined"
+      },
+      {
+        "key": "D",
+        "text": "number"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript基础",
+      "类型判断"
+    ],
+    "explanation": "由于历史原因，typeof null返回object，这是JavaScript中的一个特殊行为。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_003",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "JavaScript中===运算符相比==运算符的主要区别是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "===只比较值，不比较类型"
+      },
+      {
+        "key": "B",
+        "text": "===比较值和类型，不进行隐式类型转换"
+      },
+      {
+        "key": "C",
+        "text": "==不能比较对象"
+      },
+      {
+        "key": "D",
+        "text": "二者完全相同"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript基础",
+      "类型转换"
+    ],
+    "explanation": "===称为严格相等，会同时比较数据类型和值，而==会进行隐式类型转换。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_004",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "JavaScript中闭包的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "修改浏览器内核"
+      },
+      {
+        "key": "B",
+        "text": "访问函数外部作用域中的变量"
+      },
+      {
+        "key": "C",
+        "text": "提高CPU运行频率"
+      },
+      {
+        "key": "D",
+        "text": "替代所有对象"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript",
+      "闭包"
+    ],
+    "explanation": "闭包允许函数访问其定义环境中的变量，常用于数据封装、函数工厂和模块化开发。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_005",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "JavaScript事件循环(Event Loop)主要用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "实现同步阻塞执行"
+      },
+      {
+        "key": "B",
+        "text": "管理异步任务执行顺序"
+      },
+      {
+        "key": "C",
+        "text": "替代JavaScript解释器"
+      },
+      {
+        "key": "D",
+        "text": "提高变量存储空间"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript",
+      "事件循环"
+    ],
+    "explanation": "事件循环负责协调调用栈、任务队列和异步任务，使JavaScript能够实现非阻塞执行。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_006",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "JavaScript中的基本数据类型包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "String"
+      },
+      {
+        "key": "B",
+        "text": "Number"
+      },
+      {
+        "key": "C",
+        "text": "Object"
+      },
+      {
+        "key": "D",
+        "text": "Boolean"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "JavaScript基础",
+      "数据类型"
+    ],
+    "explanation": "JavaScript基本类型包括String、Number、Boolean、Undefined、Null、Symbol和BigInt，Object属于引用类型。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_007",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于Promise，下列说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Promise用于处理异步操作"
+      },
+      {
+        "key": "B",
+        "text": "Promise具有pending、fulfilled、rejected状态"
+      },
+      {
+        "key": "C",
+        "text": "Promise可以同步返回异步结果"
+      },
+      {
+        "key": "D",
+        "text": "Promise可以通过then处理成功结果"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "Promise",
+      "异步编程"
+    ],
+    "explanation": "Promise用于描述异步操作结果，通过then、catch等方法处理成功和失败情况。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_008",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "let声明的变量具有块级作用域。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "作用域"
+    ],
+    "explanation": "let和const声明的变量只在所在代码块中有效，而var不存在块级作用域。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_009",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "JavaScript中的数组本质上是一种特殊的对象。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "数组"
+    ],
+    "explanation": "JavaScript数组继承自Array对象，本质上属于对象类型。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_010",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "async函数一定会返回一个Promise对象。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "async/await"
+    ],
+    "explanation": "async函数的返回值会自动被包装为Promise对象，即使函数内部返回普通值。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_011",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "JavaScript中箭头函数没有自己的this，它会继承定义时所在作用域的this。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "this",
+      "箭头函数"
+    ],
+    "explanation": "箭头函数不会创建自己的this，而是从外层作用域继承this值，因此不能通过call、apply、bind改变箭头函数的this。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_012",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "JavaScript对象可以通过原型链实现属性和方法的继承。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "原型链"
+    ],
+    "explanation": "JavaScript对象通过prototype机制连接形成原型链，当访问对象不存在的属性时会沿原型链查找。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_013",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "easy",
+    "question_type": "true_false",
+    "content": "事件冒泡表示事件会从目标元素向祖先元素传播。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "DOM事件"
+    ],
+    "explanation": "DOM事件传播包含捕获阶段、目标阶段和冒泡阶段，冒泡阶段会从目标元素向父级元素传播。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_014",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "JavaScript中的map方法本身不会修改原数组。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "数组方法"
+    ],
+    "explanation": "map方法会返回一个新的数组，默认不会改变原数组结构。但是需要注意，如果回调函数内部主动修改了外部变量或数组元素引用对象，仍可能产生副作用。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_015",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "什么是JavaScript闭包？闭包有什么应用场景？",
+    "options": [],
+    "answer": "闭包是指函数能够访问其定义时所在作用域中的变量，即使该函数在外部执行。常用于数据封装、模块化开发、函数柯里化等场景。",
+    "knowledge_points": [
+      "JavaScript",
+      "闭包"
+    ],
+    "explanation": "闭包依赖JavaScript词法作用域特性，可以让内部函数持续访问外部变量，但不合理使用可能造成内存无法释放。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_016",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "请解释JavaScript事件循环(Event Loop)的执行过程。",
+    "options": [],
+    "answer": "JavaScript首先执行调用栈中的同步任务。当同步任务执行完成后，事件循环会检查任务队列。每轮事件循环中，会优先清空微任务队列（如Promise.then、MutationObserver），然后再执行宏任务（如setTimeout、setInterval），进入下一轮循环。",
+    "knowledge_points": [
+      "JavaScript",
+      "事件循环",
+      "异步"
+    ],
+    "explanation": "JavaScript采用单线程模型，通过事件循环实现异步执行。执行顺序通常为：同步任务 → 微任务队列 → 宏任务队列。理解微任务优先级是分析异步执行顺序的关键。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Event_loop",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_017",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "Promise相比传统回调函数有什么优势？",
+    "options": [],
+    "answer": "Promise通过统一的状态管理和链式调用方式解决回调嵌套问题，使异步代码结构更加清晰，并支持统一错误处理。",
+    "knowledge_points": [
+      "JavaScript",
+      "Promise",
+      "异步编程"
+    ],
+    "explanation": "Promise具有pending、fulfilled、rejected三种状态，通过then、catch、finally组织异步流程。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_018",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "async/await为什么可以简化异步代码？",
+    "options": [],
+    "answer": "async/await基于Promise实现，通过类似同步代码的写法处理异步流程，提高代码可读性，并可以使用try/catch处理异常。",
+    "knowledge_points": [
+      "JavaScript",
+      "async/await"
+    ],
+    "explanation": "async函数返回Promise，await用于等待Promise结果，使复杂异步逻辑更容易维护。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_019",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "JavaScript深拷贝和浅拷贝有什么区别？",
+    "options": [],
+    "answer": "浅拷贝只复制对象第一层属性，嵌套对象仍可能共享引用；深拷贝会递归复制对象内部结构，使复制后的对象尽量避免引用共享。常见深拷贝方式包括structuredClone和JSON序列化，但二者都有适用限制。",
+    "knowledge_points": [
+      "JavaScript",
+      "对象",
+      "拷贝"
+    ],
+    "explanation": "Object.assign和展开运算符通常属于浅拷贝。structuredClone支持更多数据类型，但无法复制函数等内容；JSON.parse(JSON.stringify())简单但会丢失undefined、函数、Symbol等信息。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_020",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "关于JavaScript模块化，下列说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "ES Module使用import和export管理模块"
+      },
+      {
+        "key": "B",
+        "text": "CommonJS通常使用require和module.exports"
+      },
+      {
+        "key": "C",
+        "text": "模块化可以减少全局变量污染"
+      },
+      {
+        "key": "D",
+        "text": "JavaScript完全不支持模块化"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "模块化",
+      "ES6"
+    ],
+    "explanation": "现代JavaScript支持ES Module规范，Node.js中常见CommonJS模块规范，模块化可以提高代码组织能力。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_021",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "JavaScript中实现函数防抖（debounce）的主要目的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让函数立即执行多次"
+      },
+      {
+        "key": "B",
+        "text": "减少高频事件触发造成的函数执行次数"
+      },
+      {
+        "key": "C",
+        "text": "提高浏览器渲染分辨率"
+      },
+      {
+        "key": "D",
+        "text": "阻止所有异步任务执行"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript",
+      "性能优化",
+      "防抖"
+    ],
+    "explanation": "防抖通过延迟执行函数，在连续触发事件时只执行最后一次，常用于搜索框输入、窗口resize等场景。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_022",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "JavaScript中实现函数节流（throttle）的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "限制函数在一定时间内的执行频率"
+      },
+      {
+        "key": "B",
+        "text": "删除函数定义"
+      },
+      {
+        "key": "C",
+        "text": "增加事件触发次数"
+      },
+      {
+        "key": "D",
+        "text": "改变变量作用域"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "JavaScript",
+      "性能优化",
+      "节流"
+    ],
+    "explanation": "节流保证函数按照固定频率执行，适用于滚动监听、鼠标移动等高频事件。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_023",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "localStorage和sessionStorage的主要区别是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "localStorage只能存数字"
+      },
+      {
+        "key": "B",
+        "text": "sessionStorage关闭浏览器后数据一定永久保存"
+      },
+      {
+        "key": "C",
+        "text": "localStorage数据通常长期保存，sessionStorage生命周期与页面会话相关"
+      },
+      {
+        "key": "D",
+        "text": "二者只能保存对象类型数据"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "JavaScript",
+      "Web Storage"
+    ],
+    "explanation": "localStorage数据会长期保存，除非主动删除；sessionStorage通常只在当前浏览器标签页会话期间有效。",
+    "source": "Web API官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_024",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "JavaScript垃圾回收机制的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "自动释放不再使用的内存"
+      },
+      {
+        "key": "B",
+        "text": "自动优化所有算法"
+      },
+      {
+        "key": "C",
+        "text": "提高网络传输速度"
+      },
+      {
+        "key": "D",
+        "text": "替代数据库缓存"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "JavaScript",
+      "内存管理"
+    ],
+    "explanation": "JavaScript具有自动垃圾回收机制，会检测不可达对象并释放其占用的内存。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_management",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_025",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "JavaScript中的Web Worker主要用于解决什么问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "在后台线程执行耗时任务，避免阻塞主线程"
+      },
+      {
+        "key": "B",
+        "text": "替代HTML结构"
+      },
+      {
+        "key": "C",
+        "text": "修改CSS样式"
+      },
+      {
+        "key": "D",
+        "text": "直接操作DOM节点"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "JavaScript",
+      "Web Worker",
+      "性能优化"
+    ],
+    "explanation": "Web Worker允许JavaScript创建后台线程执行计算任务，提高页面响应能力，但Worker不能直接操作DOM。",
+    "source": "Web API官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_026",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "JavaScript ES6新增的重要特性包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "let和const"
+      },
+      {
+        "key": "B",
+        "text": "箭头函数"
+      },
+      {
+        "key": "C",
+        "text": "Promise"
+      },
+      {
+        "key": "D",
+        "text": "JVM垃圾回收"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "ES6"
+    ],
+    "explanation": "ES6引入了大量语言增强特性，包括块级作用域变量、箭头函数、Promise、模块化等。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_027",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "前端JavaScript性能优化可以采用哪些方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少不必要的DOM操作"
+      },
+      {
+        "key": "B",
+        "text": "合理使用防抖和节流"
+      },
+      {
+        "key": "C",
+        "text": "无限增加全局变量"
+      },
+      {
+        "key": "D",
+        "text": "代码拆分和按需加载"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "性能优化"
+    ],
+    "explanation": "性能优化通常包括减少渲染成本、控制事件频率、优化资源加载和减少无效计算等。",
+    "source": "前端工程实践整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/Performance",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_028",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "JavaScript中的函数声明和var变量声明存在提升行为，而let和const声明存在暂时性死区。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "变量提升",
+      "作用域"
+    ],
+    "explanation": "函数声明会在执行上下文创建阶段完成初始化，var变量会被提升但初始值为undefined。let和const虽然也会进入作用域，但在声明之前处于暂时性死区（Temporal Dead Zone），不能访问。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_029",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "JavaScript中的addEventListener可以为同一个元素绑定多个事件处理函数。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "JavaScript",
+      "DOM事件"
+    ],
+    "explanation": "addEventListener允许注册多个监听器，而传统DOM0事件属性通常只能保存一个处理函数。",
+    "source": "Web API官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "javascript_030",
+    "company": "通用",
+    "position": "frontend_javascript",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "解释JavaScript原型链机制以及它如何实现继承。",
+    "options": [],
+    "answer": "JavaScript对象通过内部[[Prototype]]属性连接到另一个对象形成原型链。当访问对象属性不存在时，会沿着原型链逐级查找，从而实现属性和方法共享。",
+    "knowledge_points": [
+      "JavaScript",
+      "原型链",
+      "继承"
+    ],
+    "explanation": "JavaScript采用基于原型的继承模型。ES6中的class语法本质上也是基于原型机制实现的语法糖。",
+    "source": "JavaScript官方文档整理",
+    "source_url": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+    "license": "reference-only"
+  }
+]

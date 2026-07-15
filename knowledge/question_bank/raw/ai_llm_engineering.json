@@ -1,0 +1,834 @@
+[
+  {
+    "question_id": "ai_llm_001",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在大语言模型处理中，token最准确的描述是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "文本经过分词后供模型处理的基本单位"
+      },
+      {
+        "key": "B",
+        "text": "一定等同于一个完整单词"
+      },
+      {
+        "key": "C",
+        "text": "一条完整的自然语言句子"
+      },
+      {
+        "key": "D",
+        "text": "向量数据库中的一条记录"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "LLM基础",
+      "Token",
+      "分词"
+    ],
+    "explanation": "token是分词器将文本转换后得到的模型处理单位，可能是一个单词、子词、字符或标点，并不一定等同于完整单词。",
+    "source": "Hugging Face文档整理",
+    "source_url": "https://huggingface.co/docs/transformers/main/en/tokenizer_summary",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_002",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "Transformer中的自注意力机制主要用于做什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "计算序列中不同token之间的关联并聚合上下文信息"
+      },
+      {
+        "key": "B",
+        "text": "将所有文本永久存入数据库"
+      },
+      {
+        "key": "C",
+        "text": "直接检查生成内容的事实真实性"
+      },
+      {
+        "key": "D",
+        "text": "替代所有模型训练过程"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Transformer",
+      "Self-Attention",
+      "LLM基础"
+    ],
+    "explanation": "自注意力机制通过计算序列中各token之间的相关性，使模型能够根据上下文动态聚合信息。",
+    "source": "Transformer论文整理",
+    "source_url": "https://arxiv.org/abs/1706.03762",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_003",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "文本Embedding在LLM应用中的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "将文本映射为稠密向量，以支持语义相似度计算和检索"
+      },
+      {
+        "key": "B",
+        "text": "直接生成完整的数据库表结构"
+      },
+      {
+        "key": "C",
+        "text": "保证模型生成内容完全正确"
+      },
+      {
+        "key": "D",
+        "text": "将文本转换为可执行程序"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Embedding",
+      "向量表示",
+      "语义检索"
+    ],
+    "explanation": "Embedding将文本表示为高维稠密向量，语义接近的文本通常在向量空间中距离更近，可用于搜索、聚类和推荐等任务。",
+    "source": "Sentence Transformers文档整理",
+    "source_url": "https://www.sbert.net/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_004",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在其他参数保持不变时，降低大语言模型生成参数temperature通常会产生什么影响？",
+    "options": [
+      {
+        "key": "A",
+        "text": "输出通常更加稳定，随机性降低"
+      },
+      {
+        "key": "B",
+        "text": "上下文窗口一定变大"
+      },
+      {
+        "key": "C",
+        "text": "模型参数数量自动增加"
+      },
+      {
+        "key": "D",
+        "text": "向量维度自动降低"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "LLM推理",
+      "Temperature",
+      "采样参数"
+    ],
+    "explanation": "降低temperature通常会使概率分布更加集中，模型更倾向于选择高概率token，因此输出随机性降低，但这并不能保证答案一定正确。",
+    "source": "Hugging Face生成文档整理",
+    "source_url": "https://huggingface.co/docs/transformers/main_classes/text_generation",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_005",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "大语言模型的上下文窗口通常指什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "模型单次推理能够处理的上下文token数量上限"
+      },
+      {
+        "key": "B",
+        "text": "模型可以永久记忆的全部用户信息"
+      },
+      {
+        "key": "C",
+        "text": "向量数据库中最多可以存储的文档数量"
+      },
+      {
+        "key": "D",
+        "text": "模型训练时使用的GPU数量"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "LLM基础",
+      "上下文窗口",
+      "Token"
+    ],
+    "explanation": "上下文窗口表示模型一次推理能够接收和处理的token预算上限，通常涉及系统提示词、用户输入、历史消息、检索内容和生成内容。",
+    "source": "LLM基础文档整理",
+    "source_url": "https://huggingface.co/docs/transformers/main/en/llm_tutorial",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_006",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "设计高质量Prompt时，通常可以采用哪些方法？",
+    "options": [
+      {
+        "key": "A",
+        "text": "明确描述任务目标"
+      },
+      {
+        "key": "B",
+        "text": "规定输出格式和约束条件"
+      },
+      {
+        "key": "C",
+        "text": "提供必要的上下文或示例"
+      },
+      {
+        "key": "D",
+        "text": "同时加入大量相互矛盾的要求"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Prompt工程",
+      "指令设计",
+      "Few-shot"
+    ],
+    "explanation": "有效Prompt通常需要明确目标、上下文、约束和输出格式。在复杂任务中，还可以提供示例帮助模型理解预期结果。",
+    "source": "Prompt工程实践整理",
+    "source_url": "https://www.promptingguide.ai/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_007",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "为了提高LLM结构化输出的可靠性，可以采用哪些方法？",
+    "options": [
+      {
+        "key": "A",
+        "text": "使用JSON Schema或其他结构约束"
+      },
+      {
+        "key": "B",
+        "text": "对模型输出进行解析、校验和必要的重试"
+      },
+      {
+        "key": "C",
+        "text": "使用工具调用或函数调用机制"
+      },
+      {
+        "key": "D",
+        "text": "默认模型第一次输出永远符合格式"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Prompt工程",
+      "结构化输出",
+      "输出校验"
+    ],
+    "explanation": "生产环境不能仅依赖自然语言提示保证格式正确。通常需要结合结构约束、程序校验、错误处理和重试机制。",
+    "source": "结构化输出工程实践整理",
+    "source_url": "https://json-schema.org/learn/getting-started-step-by-step",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_008",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "将temperature设置为0可以完全消除大语言模型的幻觉问题。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "LLM推理",
+      "Temperature",
+      "幻觉"
+    ],
+    "explanation": "较低temperature可以减少采样随机性，但模型仍可能因为训练数据、上下文不足或推理错误而生成不准确内容，因此不能完全消除幻觉。",
+    "source": "LLM推理实践整理",
+    "source_url": "https://huggingface.co/docs/transformers/main_classes/text_generation",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_009",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "两个文本的Embedding相似度较高，就能够证明它们表达的事实一定正确且完全一致。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "Embedding",
+      "语义相似度",
+      "事实性"
+    ],
+    "explanation": "Embedding相似度主要反映语义或表达上的接近程度，不能直接验证文本事实是否正确，也不能保证两个文本在细节和立场上完全一致。",
+    "source": "语义检索文档整理",
+    "source_url": "https://www.sbert.net/examples/applications/semantic-search/README.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_010",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述Zero-shot Prompt和Few-shot Prompt的区别。",
+    "options": [],
+    "answer": "Zero-shot Prompt只提供任务指令，不提供示例，适用于模型容易理解或规则较明确的任务。Few-shot Prompt会提供少量输入输出示例，帮助模型学习预期格式、分类边界或处理方式，适用于要求复杂、格式严格或存在歧义的任务。",
+    "knowledge_points": [
+      "Prompt工程",
+      "Zero-shot",
+      "Few-shot"
+    ],
+    "explanation": "Few-shot通过上下文示例引导模型，但会占用更多上下文token。实际应用中应根据任务复杂度、成本和输出稳定性选择。",
+    "source": "Prompt工程实践整理",
+    "source_url": "https://www.promptingguide.ai/techniques/fewshot",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_011",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "RAG（检索增强生成）的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "在生成回答前检索外部知识，并将相关内容提供给模型"
+      },
+      {
+        "key": "B",
+        "text": "永久修改大语言模型的参数"
+      },
+      {
+        "key": "C",
+        "text": "完全替代大语言模型"
+      },
+      {
+        "key": "D",
+        "text": "自动保证所有回答都绝对正确"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "RAG",
+      "检索增强生成",
+      "外部知识"
+    ],
+    "explanation": "RAG通常先根据用户问题检索相关文档，再将检索结果作为上下文交给大语言模型生成回答，从而补充模型参数中缺失或过时的知识。",
+    "source": "RAG论文与工程实践整理",
+    "source_url": "https://arxiv.org/abs/2005.11401",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_012",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在RAG系统中，为文档分块设置适当重叠区域的主要目的是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少重要语义在分块边界处被截断的风险"
+      },
+      {
+        "key": "B",
+        "text": "保证所有文档块内容完全相同"
+      },
+      {
+        "key": "C",
+        "text": "直接提升大语言模型参数数量"
+      },
+      {
+        "key": "D",
+        "text": "避免生成任何Embedding"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "RAG",
+      "文档分块",
+      "Chunk Overlap"
+    ],
+    "explanation": "适当的chunk overlap可以保留跨越分块边界的上下文信息，但重叠过大也会增加索引规模、重复召回和推理成本。",
+    "source": "LangChain文档整理",
+    "source_url": "https://python.langchain.com/docs/concepts/text_splitters/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_013",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "在向量检索中，余弦相似度主要衡量什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "两个向量方向之间的相似程度"
+      },
+      {
+        "key": "B",
+        "text": "两个文档的字符数量是否相同"
+      },
+      {
+        "key": "C",
+        "text": "数据库中记录的物理存储地址"
+      },
+      {
+        "key": "D",
+        "text": "模型生成答案的事实正确率"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "向量检索",
+      "余弦相似度",
+      "Embedding"
+    ],
+    "explanation": "余弦相似度通过向量夹角衡量方向上的接近程度，常用于比较文本Embedding的语义相似性，但相似度高并不等于事实完全一致。",
+    "source": "向量检索文档整理",
+    "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_014",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "影响RAG系统检索质量的因素通常包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "文档分块策略"
+      },
+      {
+        "key": "B",
+        "text": "Embedding模型的领域适配程度"
+      },
+      {
+        "key": "C",
+        "text": "元数据过滤和重排序策略"
+      },
+      {
+        "key": "D",
+        "text": "单纯提高生成模型的temperature"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "RAG",
+      "检索质量",
+      "Embedding",
+      "重排序"
+    ],
+    "explanation": "RAG检索质量受到数据清洗、分块、Embedding模型、检索算法、元数据过滤和重排序等因素影响。temperature主要影响生成采样，不会直接提高检索准确率。",
+    "source": "RAG工程实践整理",
+    "source_url": "https://python.langchain.com/docs/concepts/retrieval/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_015",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "向量数据库通常可以存储向量及其关联的文档内容或元数据，并支持相似向量检索。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "向量数据库",
+      "向量检索",
+      "元数据"
+    ],
+    "explanation": "向量数据库通常将Embedding与原始文本、文档编号、来源和标签等元数据关联，并提供近似最近邻搜索和元数据过滤能力。",
+    "source": "向量检索文档整理",
+    "source_url": "https://faiss.ai/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_016",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "RAG中的文档分块越大，检索和生成效果就一定越好。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "RAG",
+      "文档分块",
+      "上下文管理"
+    ],
+    "explanation": "分块过小可能丢失上下文，分块过大则可能混入无关内容、降低检索精度并占用更多上下文token。分块大小需要结合文档结构、Embedding模型和任务进行评测。",
+    "source": "LangChain文档整理",
+    "source_url": "https://python.langchain.com/docs/concepts/text_splitters/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_017",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "在RAG系统中，将召回数量top-k设置得越大，最终回答质量就一定越高。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "RAG",
+      "Top-K",
+      "检索参数"
+    ],
+    "explanation": "增大top-k可能提高相关文档被召回的概率，但也可能引入更多噪声、增加token成本并干扰生成模型。应通过离线评测和真实查询测试选择合适参数。",
+    "source": "RAG工程实践整理",
+    "source_url": "https://python.langchain.com/docs/concepts/retrievers/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_018",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "RAG中的重排序模型可以对初步召回的候选文档重新计算相关性并调整顺序。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "RAG",
+      "Reranker",
+      "重排序"
+    ],
+    "explanation": "常见流程是先用向量检索快速召回候选文档，再使用Cross-Encoder等重排序模型进行更精细的相关性判断。",
+    "source": "Sentence Transformers文档整理",
+    "source_url": "https://www.sbert.net/examples/applications/cross-encoder/README.html",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_019",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "简述一个典型RAG系统从知识库构建到回答用户问题的完整流程。",
+    "options": [],
+    "answer": "离线阶段通常先采集和清洗文档，按照语义或结构进行分块，为每个文档块生成Embedding，并将向量、文本和元数据写入向量索引。在线阶段对用户问题生成查询向量，召回相关文档，必要时进行过滤和重排序，再将选出的上下文与问题组合成Prompt交给大语言模型生成答案，并记录引用、延迟和评测结果。",
+    "knowledge_points": [
+      "RAG",
+      "知识库构建",
+      "向量检索",
+      "生成流程"
+    ],
+    "explanation": "RAG不是单独一次向量搜索，而是包含数据处理、索引构建、召回、重排序、上下文组装、生成和评测的完整工程流程。",
+    "source": "RAG论文与工程实践整理",
+    "source_url": "https://arxiv.org/abs/2005.11401",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_020",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "在RAG系统中，Vector Store和Retriever有什么区别？",
+    "options": [],
+    "answer": "Vector Store主要负责保存向量、文本和元数据，并提供相似度搜索等底层能力；Retriever是面向查询的检索接口，负责根据问题返回相关文档。Retriever可以基于Vector Store实现，也可以结合关键词检索、混合检索、元数据过滤、查询改写或重排序等策略。",
+    "knowledge_points": [
+      "RAG",
+      "Vector Store",
+      "Retriever",
+      "LangChain"
+    ],
+    "explanation": "Vector Store更偏向数据存储和向量搜索基础设施，Retriever更偏向应用层检索逻辑，两者不能简单视为同一个概念。",
+    "source": "LangChain文档整理",
+    "source_url": "https://python.langchain.com/docs/concepts/retrievers/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_021",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "LLM应用中的Tool Calling主要用于什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "让模型生成结构化的工具调用请求，由应用程序校验并执行外部工具"
+      },
+      {
+        "key": "B",
+        "text": "让模型永久修改自身参数"
+      },
+      {
+        "key": "C",
+        "text": "让模型直接获得不受限制的操作系统权限"
+      },
+      {
+        "key": "D",
+        "text": "完全替代身份认证和权限控制"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Agent",
+      "Tool Calling",
+      "结构化输出"
+    ],
+    "explanation": "Tool Calling通常由模型根据工具描述生成结构化参数，应用程序负责校验参数、检查权限、执行工具并把结果返回给模型。模型本身不应被视为直接拥有外部系统权限。",
+    "source": "LLM工具调用工程实践整理",
+    "source_url": "https://python.langchain.com/docs/concepts/tool_calling/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_022",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "当Agent准备执行转账、删除数据等高风险且难以撤销的操作时，最合理的工程措施是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "执行权限检查，并要求用户或人工明确确认"
+      },
+      {
+        "key": "B",
+        "text": "提高temperature后直接执行"
+      },
+      {
+        "key": "C",
+        "text": "关闭日志记录以减少延迟"
+      },
+      {
+        "key": "D",
+        "text": "允许Agent无限次自动重试"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Agent",
+      "Human-in-the-loop",
+      "权限控制",
+      "AI安全"
+    ],
+    "explanation": "高风险操作应采用最小权限、参数校验、显式确认和审计日志等措施。不能仅依赖模型判断，也不应允许高风险工具无限重试。",
+    "source": "OWASP大语言模型安全实践整理",
+    "source_url": "https://genai.owasp.org/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_023",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "提高生产环境Agent工具调用可靠性和安全性的措施包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "使用Schema校验工具名称和参数"
+      },
+      {
+        "key": "B",
+        "text": "对工具设置最小权限、超时和调用次数限制"
+      },
+      {
+        "key": "C",
+        "text": "对可能重复执行的操作考虑幂等性和重试策略"
+      },
+      {
+        "key": "D",
+        "text": "不经检查直接执行模型生成的所有调用"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "Agent",
+      "Tool Calling",
+      "参数校验",
+      "幂等性"
+    ],
+    "explanation": "生产环境应把模型输出视为不可信输入，进行Schema校验、权限控制、超时限制和异常处理。对于重试可能产生副作用的操作，还需要考虑幂等设计。",
+    "source": "Agent工程实践整理",
+    "source_url": "https://python.langchain.com/docs/concepts/tools/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_024",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "Agent系统中的会话记忆通常属于应用层状态管理，不会因为保存了一段对话就自动修改基础模型参数。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Agent",
+      "Memory",
+      "会话状态"
+    ],
+    "explanation": "会话记忆通常通过历史消息、数据库、摘要或向量存储实现，并在推理时作为上下文提供给模型，这与微调或继续训练模型参数不同。",
+    "source": "Agent Memory工程实践整理",
+    "source_url": "https://python.langchain.com/docs/concepts/memory/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_025",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "medium",
+    "question_type": "true_false",
+    "content": "只要使用了RAG，就可以完全消除大语言模型的幻觉。",
+    "options": [],
+    "answer": "false",
+    "knowledge_points": [
+      "RAG",
+      "幻觉",
+      "事实性"
+    ],
+    "explanation": "RAG可以为模型提供外部证据并降低部分幻觉，但检索错误、上下文噪声、模型错误理解或忽略证据等问题仍可能导致不准确回答。",
+    "source": "RAG工程实践整理",
+    "source_url": "https://arxiv.org/abs/2005.11401",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_026",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "模型量化通常可以降低显存占用和推理成本，但也可能带来一定的精度损失。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "模型部署",
+      "量化",
+      "推理优化"
+    ],
+    "explanation": "量化使用更低精度的数据格式表示权重或激活值，可以减少内存和计算开销，但量化方式、模型结构和任务不同，可能产生不同程度的精度变化。",
+    "source": "Hugging Face量化文档整理",
+    "source_url": "https://huggingface.co/docs/transformers/main/en/quantization/overview",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_027",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "true_false",
+    "content": "RAG检索到的文档和外部工具返回的内容也应被视为不可信输入，因为其中可能包含Prompt Injection指令。",
+    "options": [],
+    "answer": "true",
+    "knowledge_points": [
+      "Prompt Injection",
+      "RAG安全",
+      "Agent安全"
+    ],
+    "explanation": "间接Prompt Injection可能隐藏在网页、文档、邮件或工具返回值中。系统应区分数据与指令，对外部内容进行隔离、过滤、权限控制和结果校验。",
+    "source": "OWASP大语言模型安全实践整理",
+    "source_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_028",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "Agent与固定Workflow或Chain有什么区别？",
+    "options": [],
+    "answer": "固定Workflow或Chain通常由开发者预先规定执行步骤、分支和工具调用顺序，行为相对确定、容易测试。Agent则由模型根据目标和当前状态动态决定下一步操作、选择工具并处理结果，灵活性更高，但也带来更高的不确定性、成本和安全风险。对于流程明确的任务通常优先使用固定Workflow，只有确实需要动态决策时再使用Agent。",
+    "knowledge_points": [
+      "Agent",
+      "Workflow",
+      "Chain",
+      "系统设计"
+    ],
+    "explanation": "并非所有LLM任务都需要Agent。固定流程通常更可控、更容易评测；Agent适合步骤无法完全预定义、需要根据环境反馈动态调整的任务。",
+    "source": "Agent工程实践整理",
+    "source_url": "https://python.langchain.com/docs/concepts/agents/",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_029",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "LLM或RAG应用应从哪些维度进行评测？",
+    "options": [],
+    "answer": "评测通常包括任务正确率或成功率、回答相关性、事实正确性、对检索证据的忠实度、检索召回率和精确率、安全性、鲁棒性、延迟以及Token和调用成本。对于Agent还应评估工具选择正确率、参数正确率、任务完成率和异常恢复能力。评测应结合自动指标、固定测试集、人工审核和线上监控。",
+    "knowledge_points": [
+      "LLM评测",
+      "RAG评测",
+      "Agent评测",
+      "事实性"
+    ],
+    "explanation": "单一指标通常无法完整反映LLM应用质量。生产系统需要同时评估效果、性能、成本和安全，并通过版本化测试集进行回归测试。",
+    "source": "RAG评测论文与工程实践整理",
+    "source_url": "https://arxiv.org/abs/2309.15217",
+    "license": "reference-only"
+  },
+  {
+    "question_id": "ai_llm_030",
+    "company": "通用",
+    "position": "ai_llm_engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "如何降低LLM应用的推理延迟和运行成本？",
+    "options": [],
+    "answer": "可以根据任务复杂度选择合适大小的模型，压缩Prompt和历史上下文，缓存重复请求或Embedding结果，采用批处理、流式输出、量化和高效推理引擎，并通过模型路由让简单任务使用成本较低的模型。还应限制最大输出长度、减少不必要的工具调用和检索内容，并持续监控首Token延迟、总延迟、Token消耗和调用成本。",
+    "knowledge_points": [
+      "模型部署",
+      "推理优化",
+      "成本控制",
+      "模型路由"
+    ],
+    "explanation": "推理优化需要在质量、延迟和成本之间权衡。不能只降低模型规模，还应从上下文管理、缓存、并发、检索和系统架构等多个层面优化。",
+    "source": "LLM部署工程实践整理",
+    "source_url": "https://huggingface.co/docs/text-generation-inference/",
+    "license": "reference-only"
+  }
+]
