@@ -8,6 +8,7 @@ import interviewerImage from '../assets/ai-interviewer-lin.png';
 const router = useRouter();
 const stageRef = ref(null);
 const messageListRef = ref(null);
+const videoRef = ref(null);
 const session = ref(getSession());
 const messages = ref([]);
 const currentQuestion = ref(null);
@@ -25,7 +26,37 @@ const recognitionSupported = ref(false);
 const voices = ref([]);
 const selectedVoice = ref('');
 const speechRate = ref(1);
+const simulationTurn = ref(null);
+const simulationStatus = ref('active');
+const stressLevel = ref('medium');
+const cameraActive = ref(false);
+const cameraReady = ref(false);
+const cameraError = ref('');
+const cameraDevices = ref([]);
+const selectedCamera = ref('');
+const cameraResolution = ref('');
 let recognition = null;
+let cameraStream = null;
+
+const isSimulation = computed(() =>
+  ['group_interview', 'stress_interview'].includes(session.value?.mode)
+);
+const isGroupInterview = computed(() => session.value?.mode === 'group_interview');
+const isStressInterview = computed(() => session.value?.mode === 'stress_interview');
+
+const stageLabels = {
+  case_intro: '案例介绍',
+  individual_statement: '个人陈述',
+  free_discussion: '自由讨论',
+  disagreement_resolution: '分歧处理',
+  consensus: '形成共识',
+  summary: '总结',
+  opening: '开场',
+  probing: '连续追问',
+  paused: '已暂停',
+  closing: '结束',
+  scoring: '评分'
+};
 
 const statusText = computed(() => {
   if (listening.value) return '正在聆听';
@@ -36,8 +67,19 @@ const statusText = computed(() => {
 });
 
 const interviewTitle = computed(
-  () => session.value?.learning_module_title || session.value?.position || '职业能力面试'
+  () => isGroupInterview.value
+    ? '无领导小组讨论'
+    : isStressInterview.value
+      ? '压力面试'
+      : session.value?.learning_module_title || session.value?.position || '职业能力面试'
 );
+
+const currentPrompt = computed(() => {
+  if (isSimulation.value) {
+    return messages.value.at(-1)?.text;
+  }
+  return currentQuestion.value?.question;
+});
 
 function loadVoices() {
   if (!window.speechSynthesis) return;
@@ -84,7 +126,111 @@ onBeforeUnmount(() => {
   window.speechSynthesis?.cancel();
   if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = null;
   recognition?.abort();
+  cameraStream?.getTracks().forEach((track) => track.stop());
 });
+
+async function startCamera() {
+  cameraError.value = '';
+  cameraReady.value = false;
+  cameraResolution.value = '';
+  if (!window.isSecureContext) {
+    cameraError.value = '摄像头需要 HTTPS，或使用 localhost / 127.0.0.1 访问。';
+    return;
+  }
+  if (!navigator.mediaDevices?.getUserMedia) {
+    cameraError.value = '当前浏览器不支持摄像头访问。';
+    return;
+  }
+  try {
+    cameraStream?.getTracks().forEach((track) => track.stop());
+    const videoConstraints = selectedCamera.value
+      ? { deviceId: { exact: selectedCamera.value }, width: { ideal: 1280 }, height: { ideal: 720 } }
+      : { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } };
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: videoConstraints,
+      audio: false
+    });
+    const track = cameraStream.getVideoTracks()[0];
+    if (!track) throw new Error('没有获取到视频轨道');
+    const settings = track.getSettings();
+    selectedCamera.value = settings.deviceId || selectedCamera.value;
+    cameraResolution.value = settings.width && settings.height ? `${settings.width} × ${settings.height}` : '';
+    track.onended = () => {
+      cameraActive.value = false;
+      cameraReady.value = false;
+      cameraError.value = '摄像头连接已中断，请重新开启。';
+    };
+    track.onmute = () => {
+      cameraReady.value = false;
+      cameraError.value = '摄像头暂时没有输出画面，请检查是否被其他程序占用或物理遮挡。';
+    };
+    track.onunmute = () => {
+      cameraError.value = '';
+    };
+
+    cameraActive.value = true;
+    await nextTick();
+    const video = videoRef.value;
+    if (!video) throw new Error('视频预览组件尚未准备好');
+    video.srcObject = cameraStream;
+    video.muted = true;
+    await waitForVideoMetadata(video);
+    await video.play();
+    cameraReady.value = true;
+    cameraDevices.value = (await navigator.mediaDevices.enumerateDevices())
+      .filter((device) => device.kind === 'videoinput');
+  } catch (err) {
+    cameraStream?.getTracks().forEach((track) => track.stop());
+    cameraStream = null;
+    cameraActive.value = false;
+    cameraReady.value = false;
+    cameraError.value = err?.name === 'NotAllowedError'
+      ? '摄像头权限被拒绝，请在浏览器地址栏中允许摄像头后重试。'
+      : err?.name === 'NotFoundError'
+        ? '没有检测到可用摄像头。'
+        : `摄像头启动失败：${err?.message || '请检查设备是否被其他程序占用'}`;
+  }
+}
+
+function waitForVideoMetadata(video) {
+  if (video.readyState >= 1 && video.videoWidth > 0) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error('摄像头已连接，但浏览器没有收到视频画面'));
+    }, 8000);
+    const ready = () => {
+      if (!video.videoWidth) return;
+      cleanup();
+      resolve();
+    };
+    const cleanup = () => {
+      window.clearTimeout(timeout);
+      video.removeEventListener('loadedmetadata', ready);
+      video.removeEventListener('loadeddata', ready);
+    };
+    video.addEventListener('loadedmetadata', ready);
+    video.addEventListener('loadeddata', ready);
+  });
+}
+
+function markCameraReady() {
+  cameraReady.value = true;
+  cameraError.value = '';
+  const video = videoRef.value;
+  if (video?.videoWidth && video?.videoHeight) {
+    cameraResolution.value = `${video.videoWidth} × ${video.videoHeight}`;
+  }
+}
+
+function stopCamera() {
+  cameraStream?.getTracks().forEach((track) => track.stop());
+  cameraStream = null;
+  if (videoRef.value) videoRef.value.srcObject = null;
+  cameraActive.value = false;
+  cameraReady.value = false;
+  cameraResolution.value = '';
+}
 
 async function ensureSession() {
   if (session.value) return session.value;
@@ -105,9 +251,22 @@ async function scrollToLatest() {
   }
 }
 
-function addMessage(role, text, meta = null) {
-  messages.value.push({ role, text, meta, id: `${Date.now()}-${messages.value.length}` });
+function addMessage(role, text, meta = null, displayName = null) {
+  messages.value.push({ role, text, meta, displayName, id: `${Date.now()}-${messages.value.length}` });
   scrollToLatest();
+}
+
+function addSimulationMessages(items) {
+  for (const item of items || []) {
+    addMessage(
+      item.speaker,
+      item.content,
+      item.reply_to ? '回应其他候选人' : stageLabels[simulationTurn.value?.stage],
+      item.display_name
+    );
+  }
+  const spoken = [...(items || [])].reverse().find((item) => item.speaker === 'interviewer');
+  if (spoken) speak(spoken.content);
 }
 
 function speak(text) {
@@ -132,6 +291,20 @@ async function startInterview() {
   error.value = '';
   try {
     const currentSession = await ensureSession();
+    if (['group_interview', 'stress_interview'].includes(currentSession.mode)) {
+      const data = await api.startSimulation({
+        session_id: currentSession.session_id,
+        mode: currentSession.mode,
+        stress_level: currentSession.mode === 'stress_interview' ? stressLevel.value : null
+      });
+      simulationTurn.value = data;
+      simulationStatus.value = data.status;
+      if (data.stress_level) stressLevel.value = data.stress_level;
+      started.value = true;
+      messages.value = [];
+      addSimulationMessages(data.messages);
+      return;
+    }
     const data = await api.interviewMessage({ session_id: currentSession.session_id });
     currentQuestion.value = data.next_question;
     started.value = true;
@@ -147,13 +320,31 @@ async function startInterview() {
 
 async function submitAnswer() {
   const content = answer.value.trim();
-  if (!content || !currentQuestion.value || loading.value) return;
+  if (
+    !content ||
+    loading.value ||
+    (isSimulation.value && simulationStatus.value === 'completed') ||
+    (!isSimulation.value && !currentQuestion.value)
+  ) return;
   window.speechSynthesis?.cancel();
   addMessage('user', content);
   answer.value = '';
   loading.value = true;
   error.value = '';
   try {
+    if (isSimulation.value) {
+      const data = await api.handleSimulationMessage({
+        session_id: session.value.session_id,
+        turn_id: simulationTurn.value.turn_id,
+        message: content
+      });
+      simulationTurn.value = data;
+      simulationStatus.value = data.status;
+      if (data.stress_level) stressLevel.value = data.stress_level;
+      answeredCount.value += 1;
+      addSimulationMessages(data.messages);
+      return;
+    }
     const data = await api.interviewMessage({
       session_id: session.value.session_id,
       question_id: currentQuestion.value.question_id,
@@ -201,13 +392,13 @@ function toggleVoice() {
   if (!voiceEnabled.value) {
     window.speechSynthesis?.cancel();
     speaking.value = false;
-  } else if (currentQuestion.value) {
-    speak(currentQuestion.value.question);
+  } else if (currentPrompt.value) {
+    speak(currentPrompt.value);
   }
 }
 
 function replayQuestion() {
-  if (currentQuestion.value) speak(currentQuestion.value.question);
+  if (currentPrompt.value) speak(currentPrompt.value);
 }
 
 async function toggleFullscreen() {
@@ -223,6 +414,12 @@ async function finishInterview() {
   loading.value = true;
   error.value = '';
   try {
+    if (isSimulation.value) {
+      await api.finishSimulation({ session_id: session.value.session_id });
+      await api.generateSimulationReport({ session_id: session.value.session_id });
+      await router.push('/report');
+      return;
+    }
     await api.generateReport({ session_id: session.value.session_id });
     router.push('/report');
   } catch (err) {
@@ -243,7 +440,7 @@ async function finishInterview() {
         <header class="avatar-stage-header">
           <div class="avatar-identity">
             <span class="avatar-online-dot"></span>
-            <div><strong>林悦</strong><small>CareerPilot AI 面试官</small></div>
+            <div><strong>{{ isGroupInterview ? '群面主持人' : isStressInterview ? '压力面试官' : '林悦' }}</strong><small>CareerPilot AI 面试官</small></div>
           </div>
           <span class="avatar-status"><i></i>{{ statusText }}</span>
         </header>
@@ -255,46 +452,86 @@ async function finishInterview() {
         <div class="avatar-caption">
           <span>{{ started ? interviewTitle : 'AI 实景模拟面试' }}</span>
           <p>
-            {{ currentQuestion?.question || '我会根据你的目标岗位进行提问、追问与即时评分。准备好后，我们正式开始。' }}
+            {{ currentPrompt || '我会根据你的目标岗位进行提问、追问与即时评分。准备好后，我们正式开始。' }}
           </p>
         </div>
 
         <div class="avatar-controls">
           <button :class="{ active: listening }" :title="listening ? '停止录音' : '语音回答'" @click="toggleListening">{{ listening ? '■' : '●' }}</button>
           <button :class="{ muted: !voiceEnabled }" :title="voiceEnabled ? '关闭声音' : '打开声音'" @click="toggleVoice">{{ voiceEnabled ? '◖))' : '◖×' }}</button>
-          <button title="重播问题" :disabled="!currentQuestion" @click="replayQuestion">↻</button>
+          <button title="重播问题" :disabled="!currentPrompt" @click="replayQuestion">↻</button>
           <button title="全屏显示" @click="toggleFullscreen">⛶</button>
         </div>
       </div>
 
       <aside class="avatar-console">
+        <section class="human-camera" :class="{ active: cameraActive }">
+          <video
+            v-show="cameraActive"
+            ref="videoRef"
+            autoplay
+            playsinline
+            muted
+            @playing="markCameraReady"
+            @loadeddata="markCameraReady"
+          ></video>
+          <div v-if="!cameraActive" class="camera-start-state">
+            <span>LIVE CAMERA</span>
+            <b>开启真人摄像头</b>
+            <p>{{ cameraError || '画面仅在当前浏览器中预览，不会自动上传或保存。' }}</p>
+            <button @click="startCamera">允许并开启摄像头</button>
+          </div>
+          <div v-else class="camera-overlay">
+            <span><i :class="{ ready: cameraReady }"></i>{{ cameraReady ? `真人摄像头 ${cameraResolution}` : '正在获取画面…' }}</span>
+            <div>
+              <select v-if="cameraDevices.length" v-model="selectedCamera" aria-label="选择摄像头" @change="startCamera">
+                <option v-for="(device, index) in cameraDevices" :key="device.deviceId" :value="device.deviceId">{{ device.label || `摄像头 ${index + 1}` }}</option>
+              </select>
+              <button @click="startCamera">重新连接</button>
+              <button @click="stopCamera">关闭</button>
+            </div>
+          </div>
+          <p v-if="cameraActive && cameraError" class="camera-live-error">{{ cameraError }}</p>
+        </section>
+
         <header class="avatar-console-header">
-          <div><span>LIVE INTERVIEW</span><h1>数字人模拟面试</h1></div>
+          <div><span>LIVE INTERVIEW</span><h1>{{ interviewTitle }}</h1></div>
           <div class="interview-metrics">
             <span>已答 <b>{{ answeredCount }}</b></span>
             <span v-if="latestScore !== null">本轮 <b>{{ latestScore }}</b></span>
+            <span v-if="simulationTurn">阶段 <b>{{ stageLabels[simulationTurn.stage] }}</b></span>
           </div>
         </header>
 
         <div v-if="!started" class="avatar-welcome">
           <span class="welcome-mark">AI</span>
-          <h2>不再只是一个展示形象</h2>
-          <p>林悦会调用真实面试服务，根据你的回答进行评分与追问，同时支持语音朗读和语音输入。</p>
+          <h2>{{ isGroupInterview ? '进入五人无领导小组讨论' : isStressInterview ? '开始安全可控的压力面试' : '不再只是一个展示形象' }}</h2>
+          <p v-if="isGroupInterview">你将与逻辑分析型、协调合作型和质疑挑战型三名 AI 候选人共同讨论，AI 面试官负责推进流程。</p>
+          <p v-else-if="isStressInterview">面试官会针对空泛、矛盾和证据不足连续追问。你可以随时输入“停止”“暂停”或“降低压力”。</p>
+          <p v-else>林悦会调用真实面试服务，根据你的回答进行评分与追问，同时支持语音朗读和语音输入。</p>
+          <label v-if="isStressInterview" class="stress-level-picker">
+            初始压力等级
+            <select v-model="stressLevel">
+              <option value="light">轻度</option>
+              <option value="medium">中度</option>
+              <option value="high">高度</option>
+            </select>
+          </label>
           <ul>
             <li><span>01</span>岗位定向提问</li>
             <li><span>02</span>回答即时分析</li>
             <li><span>03</span>训练报告沉淀</li>
           </ul>
           <button class="primary-button avatar-start-button" :disabled="loading" @click="startInterview">
-            {{ loading ? '正在连接面试官...' : '开始数字人面试' }}
+            {{ loading ? '正在连接面试官...' : `开始${interviewTitle}` }}
           </button>
         </div>
 
         <template v-else>
           <div ref="messageListRef" class="avatar-messages">
             <article v-for="message in messages" :key="message.id" :class="['avatar-message', message.role]">
-              <span>{{ message.role === 'user' ? '我' : message.role === 'feedback' ? '评' : '林' }}</span>
-              <div><small v-if="message.meta">{{ message.meta }}</small><p>{{ message.text }}</p></div>
+              <span>{{ message.role === 'user' ? '我' : message.role === 'feedback' ? '评' : message.displayName?.slice(0, 1) || 'AI' }}</span>
+              <div><small>{{ message.displayName || message.meta }}</small><p>{{ message.text }}</p></div>
             </article>
             <div v-if="loading" class="avatar-thinking"><i></i><i></i><i></i><span>正在分析你的回答</span></div>
           </div>
@@ -302,8 +539,8 @@ async function finishInterview() {
           <form class="avatar-composer" @submit.prevent="submitAnswer">
             <textarea
               v-model="answer"
-              :disabled="loading"
-              placeholder="输入回答，或点击麦克风使用语音输入…"
+              :disabled="loading || simulationStatus === 'completed'"
+              :placeholder="simulationStatus === 'completed' ? '面试已停止，请生成报告' : '输入回答，或点击麦克风使用语音输入…'"
               @keydown.enter.exact.prevent="submitAnswer"
             ></textarea>
             <div>
@@ -311,12 +548,16 @@ async function finishInterview() {
                 {{ listening ? '停止聆听' : '语音输入' }}
               </button>
               <span>{{ answer.length }}/10000</span>
-              <button class="send-answer-button" type="submit" :disabled="!answer.trim() || loading">发送回答 ↑</button>
+              <button class="send-answer-button" type="submit" :disabled="!answer.trim() || loading || simulationStatus === 'completed'">发送回答 ↑</button>
             </div>
           </form>
 
           <div class="avatar-session-actions">
             <div class="avatar-voice-settings">
+              <template v-if="isStressInterview">
+                <label>压力</label>
+                <strong class="current-stress-level">{{ { light: '轻度', medium: '中度', high: '高度' }[stressLevel] }}</strong>
+              </template>
               <label>声音</label>
               <select v-model="selectedVoice" :disabled="!speechSupported">
                 <option v-if="!voices.length" value="">系统默认中文音色</option>
@@ -499,7 +740,7 @@ async function finishInterview() {
 .avatar-console {
   position: relative;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-rows: minmax(360px, 48vh) auto minmax(0, 1fr) auto auto;
   min-width: 0;
   min-height: calc(100vh - 44px);
   overflow: hidden;
@@ -511,13 +752,38 @@ async function finishInterview() {
   box-shadow: 18px 16px 45px rgba(35,53,78,.1);
 }
 
+.human-camera {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(70, 106, 151, .28), transparent 28%),
+    #111c2b;
+}
+.human-camera video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.camera-start-state { position: absolute; inset: 0; z-index: 2; display: grid; align-content: center; justify-items: center; padding: 40px; color: #fff; text-align: center; }
+.camera-start-state:before { content: ''; width: 70px; height: 52px; margin-bottom: 22px; border: 2px solid rgba(255,255,255,.48); border-radius: 17px; background: radial-gradient(circle, rgba(112,167,227,.9) 0 7px, transparent 8px); box-shadow: 0 0 50px rgba(83,143,211,.25); }
+.camera-start-state > span { color: #77aee9; font-size: 9px; font-weight: 900; letter-spacing: 2px; }
+.camera-start-state > b { margin-top: 8px; font-family: Georgia, 'Songti SC', serif; font-size: 24px; }
+.camera-start-state > p { max-width: 380px; margin: 10px 0 22px; color: rgba(255,255,255,.62); font-size: 11px; line-height: 1.7; }
+.camera-start-state > button { border: 1px solid rgba(255,255,255,.2); border-radius: 10px; padding: 11px 18px; color: #102238; background: #fff; font-size: 11px; font-weight: 800; }
+.camera-overlay { position: absolute; right: 14px; bottom: 12px; left: 14px; display: flex; align-items: center; justify-content: space-between; }
+.camera-overlay span { display: flex; align-items: center; gap: 7px; border-radius: 99px; padding: 7px 10px; color: #fff; background: rgba(7,18,33,.62); backdrop-filter: blur(10px); font-size: 9px; }
+.camera-overlay span i { width: 6px; height: 6px; border-radius: 50%; background: #8795a9; }
+.camera-overlay span i.ready { background: #45dc9b; box-shadow: 0 0 0 4px rgba(69,220,155,.15); }
+.camera-overlay > div { display: flex; align-items: center; gap: 7px; }
+.camera-overlay select { max-width: 170px; height: 29px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 0 8px; color: #fff; background: rgba(7,18,33,.68); font-size: 9px; }
+.camera-overlay button { border: 1px solid rgba(255,255,255,.25); border-radius: 9px; padding: 7px 10px; color: #fff; background: rgba(255,255,255,.12); font-size: 9px; }
+.camera-live-error { position: absolute; top: 14px; right: 14px; left: 14px; z-index: 3; margin: 0; border: 1px solid rgba(255,189,171,.22); border-radius: 10px; padding: 10px 13px; color: #ffd3c7; background: rgba(74,24,18,.75); backdrop-filter: blur(10px); font-size: 10px; text-align: center; }
+
 .avatar-console-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 18px;
   border-bottom: 1px solid #e5eaf1;
-  padding-bottom: 22px;
+  padding: 20px 0 18px;
 }
 .avatar-console-header > div:first-child { display: grid; gap: 6px; }
 .avatar-console-header > div:first-child > span { color: #3475da; font-size: 9px; font-weight: 900; letter-spacing: 2px; }
@@ -552,6 +818,9 @@ async function finishInterview() {
 .avatar-welcome li { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #edf0f4; padding: 12px 0; color: #47566c; font-size: 12px; }
 .avatar-welcome li span { color: #8ba2c2; font-family: Georgia, serif; font-size: 11px; }
 .avatar-start-button { min-width: 190px; padding: 13px 22px; }
+.stress-level-picker { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; color: #53647b; font-size: 11px; font-weight: 700; }
+.stress-level-picker select { border: 1px solid #dce3ec; border-radius: 8px; padding: 8px 28px 8px 10px; color: #34465f; background: #fff; }
+.current-stress-level { border-radius: 99px; padding: 5px 9px; color: #a4512d; background: #fff0e7; font-size: 9px; }
 
 .avatar-messages {
   min-height: 0;
@@ -582,6 +851,13 @@ async function finishInterview() {
 .avatar-message.feedback { max-width: 96%; }
 .avatar-message.feedback > span { color: #1b8c67; background: #dcf7ec; }
 .avatar-message.feedback p { border: 1px solid #dceee8; color: #386356; background: #f1faf7; }
+.avatar-message.candidate_logic > span { background: #1f5c9f; }
+.avatar-message.candidate_collaboration > span { background: #1b8a68; }
+.avatar-message.candidate_challenger > span { background: #b6652c; }
+.avatar-message.interviewer > span { background: #594d9d; }
+.avatar-message.candidate_logic p { background: #edf5ff; }
+.avatar-message.candidate_collaboration p { background: #edf9f5; }
+.avatar-message.candidate_challenger p { background: #fff5eb; }
 
 .avatar-thinking { display: flex; align-items: center; gap: 4px; padding: 8px 40px; color: #8a97a8; font-size: 10px; }
 .avatar-thinking i { width: 4px; height: 4px; border-radius: 50%; background: #5988d1; animation: thinking-dot .7s ease infinite alternate; }
@@ -618,7 +894,7 @@ async function finishInterview() {
 @media (max-width: 1100px) {
   .avatar-page { grid-template-columns: 1fr; }
   .avatar-stage-full { min-height: 620px; border-radius: 22px 22px 0 0; }
-  .avatar-console { min-height: 690px; border: 1px solid #dce3ec; border-top: 0; border-radius: 0 0 22px 22px; }
+  .avatar-console { grid-template-rows: 420px auto minmax(400px, 1fr) auto auto; min-height: 1050px; border: 1px solid #dce3ec; border-top: 0; border-radius: 0 0 22px 22px; }
 }
 
 @media (max-width: 760px) {
@@ -628,7 +904,7 @@ async function finishInterview() {
   .avatar-caption { right: 22px; bottom: 88px; left: 22px; }
   .avatar-caption p { font-size: 17px; }
   .avatar-controls { right: 18px; bottom: 18px; }
-  .avatar-console { min-height: 680px; border-radius: 0 0 18px 18px; padding: 24px 18px; }
+  .avatar-console { grid-template-rows: 320px auto minmax(420px, 1fr) auto auto; min-height: 980px; border-radius: 0 0 18px 18px; padding: 18px; }
   .avatar-console-header { align-items: flex-start; flex-direction: column; }
   .avatar-session-actions { align-items: flex-start; flex-direction: column; }
   .avatar-voice-settings { width: 100%; flex-wrap: wrap; }

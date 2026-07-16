@@ -98,6 +98,30 @@ export const api = {
   interviewMessage(payload) {
     return request('/api/interviews/message', { method: 'POST', body: JSON.stringify(payload) });
   },
+  startSimulation(payload) {
+    return request('/api/simulations/start-session', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+  handleSimulationMessage(payload) {
+    return request('/api/simulations/handle-user-message', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+  finishSimulation(payload) {
+    return request('/api/simulations/finish-session', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+  generateSimulationReport(payload) {
+    return request('/api/simulations/generate-report', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
   generateReport(payload) {
     return request('/api/reports/generate', { method: 'POST', body: JSON.stringify(payload) });
   },

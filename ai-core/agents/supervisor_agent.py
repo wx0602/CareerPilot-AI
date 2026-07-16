@@ -14,8 +14,24 @@ class SupervisorAgent:
         "generate_report": "report_agent",
     }
 
+    SIMULATION_ROUTES = {
+        "group_interview": "group_interview_agent",
+        "stress_interview": "stress_interview_agent",
+    }
+
+    SIMULATION_TASKS = {
+        "start_session",
+        "handle_user_message",
+        "finish_session",
+        "generate_report",
+    }
+
     def __call__(self, state: dict[str, Any]) -> dict[str, Any]:
         task_type = state.get("task_type")
+        request = state.get("request")
+        mode = request.get("mode") if isinstance(request, dict) else getattr(request, "mode", None)
+        if task_type in self.SIMULATION_TASKS and mode in self.SIMULATION_ROUTES:
+            return {"next_agent": self.SIMULATION_ROUTES[mode]}
         if task_type not in self.ROUTES:
             raise ValueError(f"SupervisorAgent 无法识别任务：{task_type}")
         return {"next_agent": self.ROUTES[task_type]}

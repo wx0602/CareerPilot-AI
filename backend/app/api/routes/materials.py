@@ -13,8 +13,8 @@ from ...services.providers import ProviderUnavailableError
 
 
 router = APIRouter(prefix="/materials", tags=["材料"])
-ALLOWED_EXTENSIONS = {".pdf", ".doc", ".docx", ".txt"}
-MATERIAL_TYPES = {"resume", "jd"}
+ALLOWED_EXTENSIONS = {".pdf", ".doc", ".docx", ".txt", ".pptx"}
+MATERIAL_TYPES = {"resume", "jd", "business_plan", "pitch_ppt", "project_intro"}
 
 
 def _valid_signature(path: Path, extension: str) -> bool:
@@ -28,6 +28,13 @@ def _valid_signature(path: Path, extension: str) -> bool:
             with ZipFile(path) as archive:
                 names = archive.namelist()
                 return "[Content_Types].xml" in names and any(name.startswith("word/") for name in names)
+        except BadZipFile:
+            return False
+    if extension == ".pptx":
+        try:
+            with ZipFile(path) as archive:
+                names = archive.namelist()
+                return "[Content_Types].xml" in names and any(name.startswith("ppt/") for name in names)
         except BadZipFile:
             return False
     if extension == ".txt":
@@ -50,11 +57,11 @@ def upload_material(
 ) -> MaterialUploadResponse:
     owned_training_session(session_id, db, token)
     if material_type not in MATERIAL_TYPES:
-        raise api_error(422, "unsupported_material_type", "第一阶段仅支持 resume 和 jd")
+        raise api_error(422, "unsupported_material_type", "不支持该材料类型")
     original_name = Path(file.filename or "").name
     extension = Path(original_name).suffix.lower()
     if not original_name or extension not in ALLOWED_EXTENSIONS:
-        raise api_error(status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, "unsupported_file_type", "仅支持 PDF、DOC、DOCX、TXT")
+        raise api_error(status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, "unsupported_file_type", "仅支持 PDF、DOC、DOCX、TXT、PPTX")
 
     upload_dir = Path(request.app.state.settings.upload_dir).resolve()
     upload_dir.mkdir(parents=True, exist_ok=True)

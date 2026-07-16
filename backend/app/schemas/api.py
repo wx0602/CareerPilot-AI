@@ -4,7 +4,22 @@ from typing import Annotated, Any, Literal
 from pydantic import BaseModel, Field, model_validator
 
 
-InterviewMode = Literal["job", "technical", "pitch"]
+InterviewMode = Literal["job", "technical", "pitch", "group_interview", "stress_interview"]
+SimulationMode = Literal["group_interview", "stress_interview"]
+StressLevel = Literal["light", "medium", "high"]
+SimulationStage = Literal[
+    "case_intro",
+    "individual_statement",
+    "free_discussion",
+    "disagreement_resolution",
+    "consensus",
+    "summary",
+    "opening",
+    "probing",
+    "paused",
+    "closing",
+    "scoring",
+]
 Difficulty = Literal["easy", "medium", "hard"]
 QuestionType = Literal["single_choice", "multiple_choice", "true_false", "short_answer"]
 Score = Annotated[int, Field(ge=0, le=100)]
@@ -76,7 +91,7 @@ class TrainingSessionUpdate(BaseModel):
 class MaterialUploadResponse(BaseModel):
     material_id: str
     session_id: str
-    material_type: Literal["resume", "jd"]
+    material_type: Literal["resume", "jd", "business_plan", "pitch_ppt", "project_intro"]
     filename: str
     mime_type: str
     size_bytes: int
@@ -179,6 +194,74 @@ class InterviewMessageResponse(BaseModel):
     evaluation: EvaluationResponse | None = None
     next_question: QuestionResponse
     is_followup: bool = False
+
+
+class SimulationMessage(BaseModel):
+    message_id: str
+    speaker: Literal[
+        "interviewer",
+        "user",
+        "candidate_logic",
+        "candidate_collaboration",
+        "candidate_challenger",
+    ]
+    display_name: str
+    content: str = Field(min_length=1, max_length=10000)
+    reply_to: str | None = None
+
+
+class EvidenceReference(BaseModel):
+    dimension: str
+    quote: str
+    rationale: str
+
+
+class SimulationEvaluation(BaseModel):
+    overall_score: Score
+    dimension_scores: dict[str, Score]
+    evidence: list[EvidenceReference]
+    strengths: list[str] = Field(default_factory=list)
+    weaknesses: list[str] = Field(default_factory=list)
+    suggestions: list[str] = Field(default_factory=list)
+
+
+class SimulationStartRequest(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    stress_level: StressLevel | None = None
+
+
+class SimulationHandleMessageRequest(BaseModel):
+    session_id: str
+    turn_id: str
+    message: str = Field(min_length=1, max_length=10000)
+
+
+class SimulationFinishRequest(BaseModel):
+    session_id: str
+
+
+class SimulationGenerateReportRequest(BaseModel):
+    session_id: str
+
+
+class SimulationTurnResponse(BaseModel):
+    interview_id: str
+    turn_id: str
+    session_id: str
+    mode: SimulationMode
+    stage: SimulationStage
+    status: Literal["active", "paused", "completed"] = "active"
+    stress_level: StressLevel | None = None
+    messages: list[SimulationMessage] = Field(min_length=1)
+    control_acknowledged: bool = False
+
+
+class SimulationFinishResponse(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    status: Literal["completed"] = "completed"
+    evaluation: SimulationEvaluation
 
 
 class ReportGenerateRequest(BaseModel):

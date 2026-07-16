@@ -10,6 +10,8 @@ import AvatarPage from '../pages/AvatarPage.vue';
 import FavoritesPage from '../pages/FavoritesPage.vue';
 import SettingsPage from '../pages/SettingsPage.vue';
 import CareerAssessmentPage from '../pages/CareerAssessmentPage.vue';
+import SimulationInterviewPage from '../pages/SimulationInterviewPage.vue';
+import SceneIntroPage from '../pages/SceneIntroPage.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -22,6 +24,8 @@ const routes = [
   { path: '/report', name: 'report', component: ReportPage },
   { path: '/favorites', name: 'favorites', component: FavoritesPage },
   { path: '/avatar', name: 'avatar', component: AvatarPage },
+  { path: '/simulation-interview', name: 'simulation-interview', component: SimulationInterviewPage },
+  { path: '/scene/:sceneId', name: 'scene-intro', component: SceneIntroPage },
   { path: '/settings', name: 'settings', component: SettingsPage },
   { path: '/career-assessment', name: 'career-assessment', component: CareerAssessmentPage },
   {

@@ -87,6 +87,42 @@ SKILLS: dict[str, SkillDefinition] = {
             "表达能力": "答辩是否直接、有说服力并能处理质疑。",
         },
     ),
+    "group_interview": SkillDefinition(
+        name="group_interview",
+        agent="GroupInterviewAgent",
+        prompt_file="group_interview.md",
+        description="模拟一名用户、三名不同风格 AI 候选人与一名 AI 面试官的无领导小组讨论。",
+        inputs=["案例", "用户发言", "所有参与者历史发言", "当前讨论阶段"],
+        outputs=["多角色结构化发言", "阶段推进", "引用用户原话的八维评分"],
+        dimensions={
+            "逻辑": "观点、论据与结论是否连贯。",
+            "表达": "发言是否清晰、简洁、有结构。",
+            "参与度": "是否持续贡献有效信息并推动讨论。",
+            "协作": "是否吸收并发展其他成员的观点。",
+            "倾听": "是否准确回应其他参与者的具体发言。",
+            "领导力": "是否明确目标、组织流程并推动决策。",
+            "冲突处理": "是否处理分歧而非回避或压制。",
+            "总结能力": "是否提炼共识、分歧与行动结论。",
+        },
+    ),
+    "stress_interview": SkillDefinition(
+        name="stress_interview",
+        agent="StressInterviewAgent",
+        prompt_file="stress_interview.md",
+        description="通过连续追问与证据质疑训练候选人在压力下的回答质量。",
+        inputs=["用户回答", "历史问答", "压力等级", "识别出的回答缺口"],
+        outputs=["安全的结构化追问", "动态压力等级", "引用用户原话的八维评分"],
+        dimensions={
+            "稳定性": "面对追问时能否保持稳定和专注。",
+            "逻辑一致性": "多轮回答是否前后一致。",
+            "证据质量": "是否提供数据、事实和可核验细节。",
+            "应变能力": "能否快速识别问题并调整回答。",
+            "直接性": "是否直接回答问题而非回避。",
+            "可信度": "个人贡献、事实与结论是否可信。",
+            "表达": "压力下表达是否清晰有序。",
+            "反思能力": "能否承认不足并提出改进。",
+        },
+    ),
     "report_generation": SkillDefinition(
         name="report_generation",
         agent="ReportAgent",
@@ -107,6 +143,8 @@ MODE_TO_INTERVIEW_SKILL = {
     "job": "job_interview",
     "technical": "technical_interview",
     "pitch": "pitch_interview",
+    "group_interview": "group_interview",
+    "stress_interview": "stress_interview",
 }
 
 

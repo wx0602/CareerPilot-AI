@@ -34,6 +34,12 @@ class AIProvider(Protocol):
 
     def generate_report(self, request: dict[str, Any]) -> dict[str, Any]: ...
 
+    def start_session(self, request: dict[str, Any]) -> dict[str, Any]: ...
+
+    def handle_user_message(self, request: dict[str, Any]) -> dict[str, Any]: ...
+
+    def finish_session(self, request: dict[str, Any]) -> dict[str, Any]: ...
+
 
 class StubKnowledgeProvider:
     """仅用于联调的材料解析占位实现。"""
@@ -227,6 +233,22 @@ class StubAIProvider:
         }
 
     def generate_report(self, request: dict[str, Any]) -> dict[str, Any]:
+        simulation_evaluation = request.get("evaluation")
+        if simulation_evaluation:
+            return {
+                "session_id": request["session_id"],
+                "mode": request["mode"],
+                "overall_score": simulation_evaluation["overall_score"],
+                "dimension_scores": simulation_evaluation["dimension_scores"],
+                "strengths": simulation_evaluation.get("strengths", []),
+                "weaknesses": simulation_evaluation.get("weaknesses", []),
+                "suggestions": simulation_evaluation.get("suggestions", []),
+                "charts": {
+                    "radar": simulation_evaluation["dimension_scores"],
+                    "evidence": simulation_evaluation.get("evidence", []),
+                },
+                "summary": "该报告基于模拟面试中的用户真实发言生成。",
+            }
         scores: list[int] = []
         weaknesses: list[str] = []
         suggestions: list[str] = []
@@ -261,6 +283,141 @@ class StubAIProvider:
             "summary": "该报告由联调占位实现生成，用于验证接口和数据流。",
         }
 
+    def start_session(self, request: dict[str, Any]) -> dict[str, Any]:
+        mode = request["mode"]
+        if mode == "group_interview":
+            stage = "case_intro"
+            messages = [
+                {
+                    "message_id": "group-case-1",
+                    "speaker": "interviewer",
+                    "display_name": "群面面试官",
+                    "content": "案例：团队资源有限，请讨论并确定三个项目的优先级。请先进行个人陈述。",
+                }
+            ]
+            stress_level = None
+        else:
+            stage = "opening"
+            messages = [
+                {
+                    "message_id": "stress-opening-1",
+                    "speaker": "interviewer",
+                    "display_name": "压力面试官",
+                    "content": "请介绍一个最能体现你个人贡献的项目，并给出可核验的数据。",
+                }
+            ]
+            stress_level = request.get("stress_level") or "medium"
+        return {
+            "session_id": request["session_id"],
+            "mode": mode,
+            "stage": stage,
+            "status": "active",
+            "stress_level": stress_level,
+            "messages": messages,
+            "control_acknowledged": False,
+        }
+
+    def handle_user_message(self, request: dict[str, Any]) -> dict[str, Any]:
+        mode = request["mode"]
+        if mode == "group_interview":
+            stages = (
+                "case_intro",
+                "individual_statement",
+                "free_discussion",
+                "disagreement_resolution",
+                "consensus",
+                "summary",
+                "scoring",
+            )
+            current_stage = request.get("stage")
+            current_index = stages.index(current_stage) if current_stage in stages else 0
+            next_stage = stages[min(current_index + 1, len(stages) - 1)]
+            messages = [
+                {
+                    "message_id": str(uuid4()),
+                    "speaker": "candidate_logic",
+                    "display_name": "陈析",
+                    "content": "我建议先按收益、成本和风险建立统一排序标准。",
+                },
+                {
+                    "message_id": str(uuid4()),
+                    "speaker": "candidate_collaboration",
+                    "display_name": "周和",
+                    "content": "我认同统一标准，也建议把用户刚才的资源约束纳入权重。",
+                },
+                {
+                    "message_id": str(uuid4()),
+                    "speaker": "candidate_challenger",
+                    "display_name": "秦问",
+                    "content": "只看收益可能忽略紧急性，我们需要先验证这个假设。",
+                },
+            ]
+            messages[1]["reply_to"] = messages[0]["message_id"]
+            messages[2]["reply_to"] = messages[0]["message_id"]
+            return {
+                "session_id": request["session_id"],
+                "mode": mode,
+                "stage": next_stage,
+                "status": "completed" if next_stage == "scoring" else "active",
+                "stress_level": None,
+                "messages": messages,
+                "control_acknowledged": False,
+            }
+
+        normalized = "".join(request["user_message"].split()).lower()
+        level = request.get("stress_level") or "medium"
+        if "停止" in normalized or "stop" in normalized:
+            status, stage, content = "completed", "closing", "已立即停止压力追问。"
+        elif "暂停" in normalized or "pause" in normalized:
+            status, stage, content = "paused", "paused", "已暂停压力面试。"
+        elif "降低压力" in normalized:
+            status, stage, content = "active", "probing", "已降低压力，后续将采用温和澄清。"
+            level = "light" if level in ("light", "medium") else "medium"
+        else:
+            status, stage = "active", "probing"
+            content = "你提到了结果，但缺少具体数据。请说明指标变化和你的个人贡献。"
+        return {
+            "session_id": request["session_id"],
+            "mode": mode,
+            "stage": stage,
+            "status": status,
+            "stress_level": level,
+            "messages": [
+                {
+                    "message_id": str(uuid4()),
+                    "speaker": "interviewer",
+                    "display_name": "压力面试官",
+                    "content": content,
+                }
+            ],
+            "control_acknowledged": status != "active" or "降低压力" in normalized,
+        }
+
+    def finish_session(self, request: dict[str, Any]) -> dict[str, Any]:
+        dimensions = (
+            ("逻辑", "表达", "参与度", "协作", "倾听", "领导力", "冲突处理", "总结能力")
+            if request["mode"] == "group_interview"
+            else ("稳定性", "逻辑一致性", "证据质量", "应变能力", "直接性", "可信度", "表达", "反思能力")
+        )
+        user_messages = [item["content"] for item in request.get("history", []) if item["speaker"] == "user"]
+        quote = user_messages[0] if user_messages else ""
+        return {
+            "session_id": request["session_id"],
+            "mode": request["mode"],
+            "status": "completed",
+            "evaluation": {
+                "overall_score": 80,
+                "dimension_scores": {dimension: 80 for dimension in dimensions},
+                "evidence": [
+                    {"dimension": dimension, "quote": quote, "rationale": "该原话体现了本维度表现。"}
+                    for dimension in dimensions
+                ],
+                "strengths": ["能够持续回应面试任务"],
+                "weaknesses": ["论据还可以更具体"],
+                "suggestions": ["使用事实和数据支撑关键结论"],
+            },
+        }
+
 
 class UnavailableKnowledgeProvider:
     def parse_material(self, path: Path, material_type: str) -> list[dict[str, Any]]:
@@ -284,6 +441,15 @@ class UnavailableAIProvider:
         self._raise()
 
     def generate_report(self, request: dict[str, Any]):
+        self._raise()
+
+    def start_session(self, request: dict[str, Any]):
+        self._raise()
+
+    def handle_user_message(self, request: dict[str, Any]):
+        self._raise()
+
+    def finish_session(self, request: dict[str, Any]):
         self._raise()
 
 
@@ -582,9 +748,33 @@ class RealAIProvider:
         return response.model_dump(mode="json")
 
     def generate_report(self, request: dict[str, Any]) -> dict[str, Any]:
+        if request.get("mode") in {"group_interview", "stress_interview"}:
+            from agents import generate_simulation_report
+
+            response = generate_simulation_report(request)
+            return response.model_dump(mode="json")
+
         from agents import generate_report
 
         response = generate_report(request)
+        return response.model_dump(mode="json")
+
+    def start_session(self, request: dict[str, Any]) -> dict[str, Any]:
+        from agents import start_session
+
+        response = start_session(request)
+        return response.model_dump(mode="json")
+
+    def handle_user_message(self, request: dict[str, Any]) -> dict[str, Any]:
+        from agents import handle_user_message
+
+        response = handle_user_message(request)
+        return response.model_dump(mode="json")
+
+    def finish_session(self, request: dict[str, Any]) -> dict[str, Any]:
+        from agents import finish_session
+
+        response = finish_session(request)
         return response.model_dump(mode="json")
 
 

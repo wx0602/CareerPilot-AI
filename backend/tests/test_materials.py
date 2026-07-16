@@ -1,4 +1,5 @@
 from pathlib import Path
+from io import BytesIO
 
 from starlette.testclient import TestClient
 
@@ -60,3 +61,33 @@ def test_rejects_phase_two_material_type(logged_in):
         files={"file": ("plan.txt", "test", "text/plain")},
     )
     assert response.status_code == 422
+
+
+def test_accepts_pitch_pptx_material(logged_in):
+    from pptx import Presentation
+
+    client, headers = logged_in
+    client.app.state.settings.max_upload_bytes = 1024 * 1024
+    session_id = _session(client, headers)
+    presentation = Presentation()
+    slide = presentation.slides.add_slide(presentation.slide_layouts[1])
+    slide.shapes.title.text = "CareerPilot 路演"
+    slide.placeholders[1].text = "目标用户与商业模式"
+    content = BytesIO()
+    presentation.save(content)
+
+    response = client.post(
+        "/api/materials/upload",
+        headers=headers,
+        data={"session_id": session_id, "material_type": "pitch_ppt"},
+        files={
+            "file": (
+                "pitch.pptx",
+                content.getvalue(),
+                "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            )
+        },
+    )
+    assert response.status_code == 201
+    assert response.json()["material_type"] == "pitch_ppt"
+    assert response.json()["parse_status"] == "parsed"

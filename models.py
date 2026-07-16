@@ -36,6 +36,32 @@ InterviewMode = Literal[
     "job",
     "technical",
     "pitch",
+    "group_interview",
+    "stress_interview",
+]
+
+SimulationMode = Literal["group_interview", "stress_interview"]
+StressLevel = Literal["light", "medium", "high"]
+SimulationStage = Literal[
+    "case_intro",
+    "individual_statement",
+    "free_discussion",
+    "disagreement_resolution",
+    "consensus",
+    "summary",
+    "opening",
+    "probing",
+    "paused",
+    "closing",
+    "scoring",
+]
+SimulationStatus = Literal["active", "paused", "completed"]
+SimulationSpeaker = Literal[
+    "interviewer",
+    "user",
+    "candidate_logic",
+    "candidate_collaboration",
+    "candidate_challenger",
 ]
 
 
@@ -161,6 +187,82 @@ class HistoryItem(BaseModel):
     #
     # 在问题刚生成、用户还没有回答时，可以为空。
     answer: str | None = None
+
+
+class SimulationMessage(BaseModel):
+    """A structured utterance in group or stress interview history."""
+
+    message_id: str
+    speaker: SimulationSpeaker
+    display_name: str
+    content: str = Field(min_length=1, max_length=10000)
+    reply_to: str | None = None
+
+
+class EvidenceReference(BaseModel):
+    """A score citation that must quote the user's actual message verbatim."""
+
+    dimension: str
+    quote: str = Field(min_length=1, max_length=1000)
+    rationale: str = Field(min_length=1, max_length=2000)
+
+
+class SimulationEvaluation(BaseModel):
+    overall_score: Score
+    dimension_scores: dict[str, Score]
+    evidence: list[EvidenceReference]
+    strengths: list[str] = Field(default_factory=list)
+    weaknesses: list[str] = Field(default_factory=list)
+    suggestions: list[str] = Field(default_factory=list)
+
+
+class SimulationStartRequest(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    candidate_profile: CandidateProfile = Field(default_factory=CandidateProfile)
+    contexts: list[ContextChunk] = Field(default_factory=list)
+    stress_level: StressLevel | None = None
+
+
+class SimulationUserMessageRequest(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    user_message: str = Field(min_length=1, max_length=10000)
+    history: list[SimulationMessage] = Field(default_factory=list)
+    stage: SimulationStage | None = None
+    stress_level: StressLevel | None = None
+
+
+class SimulationFinishRequest(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    history: list[SimulationMessage] = Field(default_factory=list)
+    stage: SimulationStage | None = None
+    stress_level: StressLevel | None = None
+
+
+class SimulationTurnResponse(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    stage: SimulationStage
+    status: SimulationStatus = "active"
+    stress_level: StressLevel | None = None
+    messages: list[SimulationMessage] = Field(min_length=1)
+    control_acknowledged: bool = False
+
+
+class SimulationFinishResponse(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    status: Literal["completed"] = "completed"
+    evaluation: SimulationEvaluation
+
+
+class SimulationReportRequest(BaseModel):
+    session_id: str
+    mode: SimulationMode
+    history: list[SimulationMessage] = Field(default_factory=list)
+    evaluation: SimulationEvaluation
 
 
 # ============================================================
