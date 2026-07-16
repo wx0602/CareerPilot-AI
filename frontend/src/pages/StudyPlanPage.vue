@@ -66,7 +66,7 @@ async function confirmAndNext() {
         <div class="module-section-head">
           <div>
             <h2>学习模块选择</h2>
-            <p>Java 和 Python 已可直接使用；前端、Go、C++、AI、产品、测试、运维先预留模块入口。</p>
+            <p>Java、Python、前端、Go、C++、AI、产品、测试与运维模块均已接入真实题库，可直接开始练习。</p>
           </div>
           <div class="module-chip">{{ selectedModule?.title || '未选择模块' }}</div>
         </div>

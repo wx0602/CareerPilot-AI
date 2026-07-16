@@ -166,11 +166,16 @@ async function submit() {
     </header>
 
     <div class="exam-summary">
-      <span>{{ session?.learning_module_title || '未命名模块' }}</span>
-      <b>{{ questionMix.single_choice }} 单选</b>
-      <b>{{ questionMix.multiple_choice }} 多选</b>
-      <b>{{ questionMix.true_false }} 判断</b>
-      <b>{{ questionMix.short_answer }} 简答</b>
+      <span class="exam-module">{{ session?.learning_module_title || '未命名模块' }}</span>
+      <div class="exam-mix" aria-label="本次练习题型配比">
+        <span>题型配比</span>
+        <dl>
+          <div><dt>{{ questionMix.single_choice }}</dt><dd>单选</dd></div>
+          <div><dt>{{ questionMix.multiple_choice }}</dt><dd>多选</dd></div>
+          <div><dt>{{ questionMix.true_false }}</dt><dd>判断</dd></div>
+          <div><dt>{{ questionMix.short_answer }}</dt><dd>简答</dd></div>
+        </dl>
+      </div>
     </div>
 
     <p v-if="loading" class="privacy-note">正在生成练习题...</p>
@@ -282,3 +287,16 @@ async function submit() {
     </div>
   </main>
 </template>
+
+<style scoped>
+.exam-summary { align-items: stretch; }
+.exam-summary .exam-module { display: inline-flex; align-items: center; }
+.exam-summary .exam-mix { display: flex; align-items: center; gap: 16px; border-left: 1px solid #dce3ed; padding-left: 18px; }
+.exam-summary .exam-mix > span { border: 0; border-radius: 0; padding: 0; color: #8a96a8; background: transparent; font-size: 10px; font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
+.exam-mix dl { display: flex; align-items: center; gap: 0; margin: 0; }
+.exam-mix dl > div { display: flex; align-items: baseline; gap: 4px; padding: 0 14px; }
+.exam-mix dl > div + div { border-left: 1px solid #e2e7ef; }
+.exam-mix dt { color: #253750; font-family: Georgia, serif; font-size: 19px; font-weight: 700; }
+.exam-mix dd { margin: 0; color: #758197; font-size: 11px; }
+@media(max-width:640px){.exam-summary .exam-mix{width:100%;border-left:0;padding-left:0}.exam-mix>span{display:none}.exam-mix dl{width:100%;justify-content:space-between}.exam-mix dl>div{padding:0 10px}.exam-mix dl>div:first-child{padding-left:0}}
+</style>
