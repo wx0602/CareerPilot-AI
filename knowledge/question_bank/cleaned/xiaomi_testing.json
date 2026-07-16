@@ -1,0 +1,789 @@
+[
+  {
+    "question_id": "xiaomi_testing_001",
+    "question_type": "single_choice",
+    "content": "在关系数据库的视图上，通常不能直接完成哪项操作？",
+    "options": [
+      {
+        "key": "A",
+        "text": "更新满足条件的可更新视图"
+      },
+      {
+        "key": "B",
+        "text": "查询视图"
+      },
+      {
+        "key": "C",
+        "text": "在视图上定义一张新的基本表"
+      },
+      {
+        "key": "D",
+        "text": "基于已有视图定义新的视图"
+      }
+    ],
+    "answer": "C",
+    "explanation": "视图可以被查询，也可以作为新视图的基础；部分简单视图还支持更新。但基本表需要通过 CREATE TABLE 独立定义，不能“建立在视图之上”。",
+    "knowledge_points": [
+      "数据库",
+      "视图"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_002",
+    "question_type": "single_choice",
+    "content": "在 Python 中执行以下代码，输出结果是什么？ lst=['a','b','c','d','e'] print(lst[10:])",
+    "options": [
+      {
+        "key": "A",
+        "text": "抛出 IndexError"
+      },
+      {
+        "key": "B",
+        "text": "['a','b','c','d','e']"
+      },
+      {
+        "key": "C",
+        "text": "[]"
+      },
+      {
+        "key": "D",
+        "text": "不输出任何内容"
+      }
+    ],
+    "answer": "C",
+    "explanation": "切片允许起始位置超过列表长度，此时返回空列表，不会抛出异常。",
+    "knowledge_points": [
+      "Python",
+      "列表",
+      "切片"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_003",
+    "question_type": "single_choice",
+    "content": "八进制数 256 转换为七进制后是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "338"
+      },
+      {
+        "key": "B",
+        "text": "336"
+      },
+      {
+        "key": "C",
+        "text": "356"
+      },
+      {
+        "key": "D",
+        "text": "346"
+      }
+    ],
+    "answer": "B",
+    "explanation": "八进制 256 等于十进制 2×64+5×8+6=174；174=3×49+3×7+6，因此七进制表示为 336。",
+    "knowledge_points": [
+      "进制转换",
+      "基础数学"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_004",
+    "question_type": "single_choice",
+    "content": "下列哪项通常不会导致进程进入阻塞态？",
+    "options": [
+      {
+        "key": "A",
+        "text": "进程主动 sleep"
+      },
+      {
+        "key": "B",
+        "text": "时间片用完后被调度器切换"
+      },
+      {
+        "key": "C",
+        "text": "等待互斥锁释放"
+      },
+      {
+        "key": "D",
+        "text": "等待 I/O 完成"
+      }
+    ],
+    "answer": "B",
+    "explanation": "时间片用完通常使进程由运行态转为就绪态，而不是阻塞态。sleep、等待锁和等待 I/O 都会使进程等待某个事件。",
+    "knowledge_points": [
+      "操作系统",
+      "进程状态"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_005",
+    "question_type": "single_choice",
+    "content": "分析以下 C 代码的输出： int a[5]={1,3,5,7,9}; int *p=(int *)(&a+1); printf(\"%d, %d\", *(a+1), *(p-1));",
+    "options": [
+      {
+        "key": "A",
+        "text": "3, 9"
+      },
+      {
+        "key": "B",
+        "text": "运行时崩溃"
+      },
+      {
+        "key": "C",
+        "text": "3, 1"
+      },
+      {
+        "key": "D",
+        "text": "2, 1"
+      }
+    ],
+    "answer": "A",
+    "explanation": "a+1 指向第二个元素，值为 3；&a+1 跨过整个数组，转换为 int* 后 p-1 指向最后一个元素 9。",
+    "knowledge_points": [
+      "C语言",
+      "数组",
+      "指针"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_006",
+    "question_type": "single_choice",
+    "content": "从 n 个数中选出最大的 m 个数（3<m<n），若结果不要求排序，最优渐进时间复杂度可以达到多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "O(n log n)"
+      },
+      {
+        "key": "B",
+        "text": "O(mn)"
+      },
+      {
+        "key": "C",
+        "text": "O(log n)"
+      },
+      {
+        "key": "D",
+        "text": "O(n)"
+      }
+    ],
+    "answer": "D",
+    "explanation": "可以使用线性时间选择算法找到第 n-m 小的分界值，再扫描一次取出最大的 m 个数，因此可达到 O(n)。",
+    "knowledge_points": [
+      "算法复杂度",
+      "选择算法",
+      "Top-K"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_007",
+    "question_type": "single_choice",
+    "content": "一棵包含 n 个结点的四叉树，每个结点都有 4 个孩子指针。全部 4n 个指针中共有多少个空指针？",
+    "options": [
+      {
+        "key": "A",
+        "text": "2n+1"
+      },
+      {
+        "key": "B",
+        "text": "3n-1"
+      },
+      {
+        "key": "C",
+        "text": "3n"
+      },
+      {
+        "key": "D",
+        "text": "3n+1"
+      }
+    ],
+    "answer": "D",
+    "explanation": "树中实际边数为 n-1，因此非空孩子指针有 n-1 个。空指针数为 4n-(n-1)=3n+1。",
+    "knowledge_points": [
+      "树",
+      "四叉树"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_008",
+    "question_type": "single_choice",
+    "content": "下面哪条 C 语句可以把一个 32 位无符号变量 reg32 的最高位置为 1，同时保持其他位不变？",
+    "options": [
+      {
+        "key": "A",
+        "text": "reg32 &= (1u<<31)"
+      },
+      {
+        "key": "B",
+        "text": "reg32 |= (1u<<31)"
+      },
+      {
+        "key": "C",
+        "text": "reg32 ^= (1u<<31)"
+      },
+      {
+        "key": "D",
+        "text": "reg32 &= ~(1u<<31)"
+      }
+    ],
+    "answer": "B",
+    "explanation": "按位或可以把指定位置 1，而其他位与 0 做或后保持不变。",
+    "knowledge_points": [
+      "C语言",
+      "位运算"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_009",
+    "question_type": "single_choice",
+    "content": "下列哪个命令不属于 Git 命令？",
+    "options": [
+      {
+        "key": "A",
+        "text": "add"
+      },
+      {
+        "key": "B",
+        "text": "merge"
+      },
+      {
+        "key": "C",
+        "text": "fetch"
+      },
+      {
+        "key": "D",
+        "text": "mkdir"
+      }
+    ],
+    "answer": "D",
+    "explanation": "git add、git merge 和 git fetch 都是 Git 子命令；mkdir 是操作系统中创建目录的命令。",
+    "knowledge_points": [
+      "Git",
+      "开发工具"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_010",
+    "question_type": "single_choice",
+    "content": "关于四层代理和七层代理，下列描述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "四层代理通常依据源/目标 IP、端口和 TCP/UDP 等传输层信息转发"
+      },
+      {
+        "key": "B",
+        "text": "七层代理可理解 HTTP 等应用层协议并按 URL、Header 等信息转发"
+      },
+      {
+        "key": "C",
+        "text": "SNMP 工作在传输层，因此属于典型四层协议"
+      },
+      {
+        "key": "D",
+        "text": "TCP/UDP 代理常属于四层代理，HTTP 反向代理常属于七层代理"
+      }
+    ],
+    "answer": "C",
+    "explanation": "SNMP 是应用层网络管理协议，通常使用 UDP 作为传输层承载，因此不能说 SNMP 工作在第四层。",
+    "knowledge_points": [
+      "网络基础",
+      "OSI模型",
+      "代理"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_011",
+    "question_type": "multiple_choice",
+    "content": "比较以下两种 C++ 成员对象初始化方式，下列说法正确的有哪些？ (1) classB(classA a){ mA=a; } (2) classB(classA a):mA(a){}",
+    "options": [
+      {
+        "key": "A",
+        "text": "两种方式会产生完全相同的成员构造过程"
+      },
+      {
+        "key": "B",
+        "text": "通常情况下方式（1）效率更高"
+      },
+      {
+        "key": "C",
+        "text": "通常情况下方式（2）效率更高"
+      },
+      {
+        "key": "D",
+        "text": "两种方式最终成员值可能相同，但成员的构造与赋值过程不同"
+      }
+    ],
+    "answer": [
+      "C",
+      "D"
+    ],
+    "explanation": "方式（1）通常先默认构造 mA，再执行赋值；方式（2）直接使用 a 构造 mA，因此一般更高效。两种方式最终值可能相同，但过程不同。",
+    "knowledge_points": [
+      "C++",
+      "构造函数",
+      "初始化列表"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_012",
+    "question_type": "multiple_choice",
+    "content": "下列 JavaScript 表达式中，结果为 true 的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "undefined == null"
+      },
+      {
+        "key": "B",
+        "text": "isNaN('100')"
+      },
+      {
+        "key": "C",
+        "text": "parseInt('1a') == 1"
+      },
+      {
+        "key": "D",
+        "text": "[] instanceof Array"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": "undefined==null 为 true；'100' 可转换为有效数字，因此 isNaN('100') 为 false；parseInt('1a') 为 1；数组是 Array 的实例。",
+    "knowledge_points": [
+      "JavaScript",
+      "类型转换",
+      "内置函数"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_013",
+    "question_type": "multiple_choice",
+    "content": "在不修改原数组 a 的前提下，创建一个内容相同但引用不同的新数组 b。下列写法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "let b=a"
+      },
+      {
+        "key": "B",
+        "text": "let b=a.slice()"
+      },
+      {
+        "key": "C",
+        "text": "let b=a.splice(0,0)"
+      },
+      {
+        "key": "D",
+        "text": "let b=a.concat()"
+      }
+    ],
+    "answer": [
+      "B",
+      "D"
+    ],
+    "explanation": "slice() 和 concat() 都会返回新的浅拷贝数组。直接赋值仍指向同一数组；splice(0,0) 返回空数组，并非原数组的完整副本。",
+    "knowledge_points": [
+      "JavaScript",
+      "数组",
+      "浅拷贝"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_014",
+    "question_type": "multiple_choice",
+    "content": "常见的黑盒测试用例设计方法包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "边界值分析"
+      },
+      {
+        "key": "B",
+        "text": "决策表法"
+      },
+      {
+        "key": "C",
+        "text": "因果图法"
+      },
+      {
+        "key": "D",
+        "text": "等价类划分"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "边界值分析、决策表法、因果图法和等价类划分都属于常见黑盒测试方法。原题参考答案遗漏了决策表法。",
+    "knowledge_points": [
+      "软件测试",
+      "黑盒测试"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_015",
+    "question_type": "multiple_choice",
+    "content": "关于栈和队列，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "可以使用队列模拟栈"
+      },
+      {
+        "key": "B",
+        "text": "栈是一种树形数据结构"
+      },
+      {
+        "key": "C",
+        "text": "栈和队列都不支持按下标随机访问"
+      },
+      {
+        "key": "D",
+        "text": "栈具有后进先出的特征"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": "可以用两个队列模拟栈；栈和队列都是受限线性结构，不支持随机访问；栈遵循后进先出。",
+    "knowledge_points": [
+      "数据结构",
+      "栈",
+      "队列"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_016",
+    "question_type": "multiple_choice",
+    "content": "传统关系型数据库事务的 ACID 特性包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "原子性"
+      },
+      {
+        "key": "B",
+        "text": "一致性"
+      },
+      {
+        "key": "C",
+        "text": "持久性"
+      },
+      {
+        "key": "D",
+        "text": "隔离性"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "ACID 分别指 Atomicity、Consistency、Isolation 和 Durability。",
+    "knowledge_points": [
+      "数据库",
+      "事务",
+      "ACID"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_017",
+    "question_type": "multiple_choice",
+    "content": "下列哪些是 HTTP 请求方法？",
+    "options": [
+      {
+        "key": "A",
+        "text": "GET"
+      },
+      {
+        "key": "B",
+        "text": "SELECT"
+      },
+      {
+        "key": "C",
+        "text": "POST"
+      },
+      {
+        "key": "D",
+        "text": "PUT"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": "GET、POST、PUT 都是标准 HTTP 方法；SELECT 是 SQL 查询关键字。",
+    "knowledge_points": [
+      "网络基础",
+      "HTTP"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_018",
+    "question_type": "multiple_choice",
+    "content": "下列排序算法中，平均时间复杂度为 O(n²) 的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "归并排序"
+      },
+      {
+        "key": "B",
+        "text": "插入排序"
+      },
+      {
+        "key": "C",
+        "text": "冒泡排序"
+      },
+      {
+        "key": "D",
+        "text": "快速排序"
+      }
+    ],
+    "answer": [
+      "B",
+      "C"
+    ],
+    "explanation": "插入排序和冒泡排序平均为 O(n²)；归并排序为 O(n log n)，快速排序平均为 O(n log n)。",
+    "knowledge_points": [
+      "排序",
+      "算法复杂度"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_019",
+    "question_type": "multiple_choice",
+    "content": "经典进程三状态模型包括哪些状态？",
+    "options": [
+      {
+        "key": "A",
+        "text": "运行态"
+      },
+      {
+        "key": "B",
+        "text": "就绪态"
+      },
+      {
+        "key": "C",
+        "text": "阻塞态"
+      },
+      {
+        "key": "D",
+        "text": "终止态"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": "经典三状态模型由运行态、就绪态和阻塞态组成。终止态通常出现在扩展状态模型中。",
+    "knowledge_points": [
+      "操作系统",
+      "进程状态"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_020",
+    "question_type": "multiple_choice",
+    "content": "Linux 操作系统通常具备哪些特性？",
+    "options": [
+      {
+        "key": "A",
+        "text": "多用户"
+      },
+      {
+        "key": "B",
+        "text": "多任务"
+      },
+      {
+        "key": "C",
+        "text": "多进程"
+      },
+      {
+        "key": "D",
+        "text": "以上都不具备"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": "Linux 支持多用户、多任务和多进程。",
+    "knowledge_points": [
+      "Linux",
+      "操作系统"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_021",
+    "question_type": "short_answer",
+    "content": "给定一个正整数 n，请按从小到大的顺序输出其全部质因子。若同一质因子出现多次，应重复输出。例如 12 输出 2、2、3。请设计算法并分析复杂度。",
+    "options": [],
+    "answer": "令 x=n，从因子 d=2 开始试除。当 d*d<=x 时，只要 x%d==0，就输出 d 并令 x/=d；不能整除时令 d++。循环结束后若 x>1，则 x 本身是最后一个质因子，输出 x。由于试除因子按递增顺序进行，输出自然有序。时间复杂度最坏为 O(sqrt(n))，额外空间复杂度 O(1)（不计输出）。",
+    "explanation": "每次找到质因子后持续除尽，可以保证不遗漏重复因子；当剩余值大于 1 时，它一定是质数。",
+    "knowledge_points": [
+      "质数",
+      "数学",
+      "试除法"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "easy",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_testing_022",
+    "question_type": "short_answer",
+    "content": "给定 n×m 字符网格和一个单词，判断该单词能否由网格中水平或垂直相邻的单元格按顺序组成。每个单元格在一次匹配中最多使用一次。请设计算法并分析复杂度。",
+    "options": [],
+    "answer": "枚举每个单元格作为起点，若字符等于单词首字符则启动 DFS/回溯。状态为当前位置 (r,c) 和正在匹配的下标 index。若 grid[r][c] 不等于 word[index] 则失败；若 index==len(word)-1 则成功。匹配当前格后将其临时标记为已访问，再递归搜索上下左右四个相邻格，回溯时恢复原字符或访问标记。任一分支成功即可返回 true。最坏时间复杂度 O(n*m*4*3^(L-1))，常写作 O(nm·3^L)，其中 L 为单词长度；空间复杂度 O(L) 递归栈，若使用 visited 数组则额外 O(nm)。",
+    "explanation": "每条搜索路径不能重复使用单元格，因此需要访问标记和回溯恢复。除第一步外，每一步通常最多继续探索三个未访问方向。",
+    "knowledge_points": [
+      "数组",
+      "网格搜索",
+      "DFS",
+      "回溯"
+    ],
+    "company": "xiaomi",
+    "position": "testing",
+    "difficulty": "medium",
+    "source": "用户提供的小米测试开发类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  }
+]

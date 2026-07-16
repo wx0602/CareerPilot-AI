@@ -76,8 +76,8 @@ async function start(item) {
   try {
     const session = await api.createSession({
       mode: item.mode,
-      position: item.mode === 'technical' ? '软件工程师' : null,
-      company: 'CareerPilot 练习题库'
+      position: null,
+      company: null
     });
     setSession(session);
     router.push(item.route);
@@ -95,7 +95,7 @@ async function start(item) {
       <header class="dashboard-header">
         <div>
           <h1>选择训练场景</h1>
-          <p>首页只做场景选择。企业笔试进入学习计划后再选学习模块。</p>
+          <p>首页只做场景选择。企业笔试进入后再选择目标企业与应聘岗位。</p>
         </div>
         <div class="practice-summary">当前首页保持场景入口</div>
         <div class="user-avatar">AI</div>

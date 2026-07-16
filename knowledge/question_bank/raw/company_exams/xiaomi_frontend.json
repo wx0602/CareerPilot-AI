@@ -1,0 +1,802 @@
+[
+  {
+    "question_id": "xiaomi_frontend_001",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 HTML 语义，下列描述正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "HTML 中的元素、属性和属性值都可以承载语义"
+      },
+      {
+        "key": "B",
+        "text": "HTML 语义只供搜索引擎爬虫理解，对可访问性和维护没有作用"
+      },
+      {
+        "key": "C",
+        "text": "title 元素的语义是正文段落标题"
+      },
+      {
+        "key": "D",
+        "text": "head 元素不会直接显示，因此没有语义"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "HTML",
+      "语义化",
+      "可访问性"
+    ],
+    "explanation": "HTML 的标签、属性及属性值都可以表达文档结构和含义。语义化还有助于可访问性、搜索引擎理解和代码维护。title 表示文档标题，head 包含文档元数据。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_002",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 Promise，下列说法正确的有哪些？这里的“返回结果”包括 fulfilled 和 rejected。",
+    "options": [
+      {
+        "key": "A",
+        "text": "Promise.all 只有在所有输入 Promise 都 fulfilled 后才会返回结果"
+      },
+      {
+        "key": "B",
+        "text": "Promise.race 只有在某个输入 Promise fulfilled 后才会返回结果"
+      },
+      {
+        "key": "C",
+        "text": "Promise.then 的回调函数可以返回一个新的 Promise"
+      },
+      {
+        "key": "D",
+        "text": "对于已经完成网络请求并产生结果的 Promise p1，再次调用 p1.then 不会重新发起原网络请求"
+      }
+    ],
+    "answer": [
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "Promise",
+      "异步编程"
+    ],
+    "explanation": "Promise.all 会在任一输入 rejected 时立即返回 rejected 结果，并非只在全部 fulfilled 后才返回；Promise.race 在任一输入率先 settled 时返回，不限于 fulfilled。then 回调可以返回 Promise，已 settled 的 Promise 再注册 then 只会安排回调，不会重做原请求。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_003",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "在 Linux 系统中，假设用户具有相应授权，下列哪些操作可能使普通用户获得管理员身份或管理员权限？",
+    "options": [
+      {
+        "key": "A",
+        "text": "使用 su 切换到 root 用户"
+      },
+      {
+        "key": "B",
+        "text": "使用 passwd 修改自己的密码"
+      },
+      {
+        "key": "C",
+        "text": "执行名为 usrchmod 的命令"
+      },
+      {
+        "key": "D",
+        "text": "修改 /etc/passwd 中与用户身份相关的配置"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "knowledge_points": [
+      "Linux",
+      "用户权限",
+      "系统管理"
+    ],
+    "explanation": "su 可在通过认证后切换到 root。/etc/passwd 保存用户身份信息，修改其中的 UID 等字段可能改变身份，但该操作本身也需要管理员权限且风险很高。passwd 修改普通用户自己的密码不会使其成为管理员，usrchmod 不是标准命令。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_004",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 Vue 与 React，下列描述正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Vue 的所有数据流都是双向的，而 React 的所有数据流都是单向的"
+      },
+      {
+        "key": "B",
+        "text": "JSX 由 React 推广，因此 Vue 中完全不能使用 JSX"
+      },
+      {
+        "key": "C",
+        "text": "Vue 和 React 都可以通过浏览器脚本方式使用，不一定必须配合 NPM"
+      },
+      {
+        "key": "D",
+        "text": "Vue 支持自定义指令"
+      }
+    ],
+    "answer": [
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "Vue",
+      "React",
+      "前端框架"
+    ],
+    "explanation": "Vue 的 props 数据流同样是单向的，表单双向绑定只是便捷语法；Vue 也可以通过插件或相应构建支持 JSX。二者都可通过 CDN/脚本方式使用，Vue 还支持自定义指令。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_005",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 HTTPS 和 TLS，下列描述正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "典型 HTTPS 通信会结合非对称密码机制与对称加密"
+      },
+      {
+        "key": "B",
+        "text": "消息认证码、AEAD 或摘要相关机制可用于保障数据完整性"
+      },
+      {
+        "key": "C",
+        "text": "传统数字签名可理解为使用私钥对消息摘要进行签名"
+      },
+      {
+        "key": "D",
+        "text": "建立 HTTPS 连接的整个过程中，所有字段都不会以明文形式传输"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "网络基础",
+      "HTTPS",
+      "TLS",
+      "数字签名"
+    ],
+    "explanation": "TLS 握手使用非对称密码或密钥协商建立会话密钥，应用数据主要使用对称加密；完整性通常由 MAC 或 AEAD 保障。握手中的部分元数据和证书可能是明文传输，因此 D 过于绝对。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_006",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "下列 JavaScript 代码中，可以合法声明数值的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "const a = 0xa1"
+      },
+      {
+        "key": "B",
+        "text": "const a = 0o76"
+      },
+      {
+        "key": "C",
+        "text": "const a = 0b21"
+      },
+      {
+        "key": "D",
+        "text": "const a = 7e2"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "数字字面量",
+      "进制"
+    ],
+    "explanation": "0xa1 是十六进制，0o76 是八进制，7e2 是科学计数法，均合法。二进制字面量只能包含 0 和 1，因此 0b21 非法。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_007",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "下列哪些 JavaScript 数组方法会修改原数组？",
+    "options": [
+      {
+        "key": "A",
+        "text": "push()"
+      },
+      {
+        "key": "B",
+        "text": "concat()"
+      },
+      {
+        "key": "C",
+        "text": "splice()"
+      },
+      {
+        "key": "D",
+        "text": "map()"
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "数组",
+      "可变操作"
+    ],
+    "explanation": "push 会在原数组末尾添加元素，splice 会删除或插入原数组元素。concat 和 map 都返回新数组，不直接修改原数组。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_008",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于闭包，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只要创建了闭包，其捕获的数据就永远不会被垃圾回收"
+      },
+      {
+        "key": "B",
+        "text": "标准 C 语言原生提供与 JavaScript 完全相同的词法闭包"
+      },
+      {
+        "key": "C",
+        "text": "闭包是一种常见语言特性，通常与函数作为一等公民及词法作用域相关"
+      },
+      {
+        "key": "D",
+        "text": "函数与其周围词法环境的引用组合在一起可以构成闭包"
+      }
+    ],
+    "answer": [
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "JavaScript",
+      "闭包",
+      "词法作用域"
+    ],
+    "explanation": "闭包会保留仍可达的词法环境，但当闭包本身不再可达时仍可被垃圾回收。标准 C 没有原生词法闭包。C、D 描述了闭包的典型概念。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_009",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 Cookie 和 Session，下列描述错误的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "通常情况下 Cookie 比服务器端 Session 更安全"
+      },
+      {
+        "key": "B",
+        "text": "Cookie 数据通常保存在客户端，Session 数据通常保存在服务器端或服务端存储中"
+      },
+      {
+        "key": "C",
+        "text": "Session 有有效期，而 Cookie 一定没有有效期"
+      },
+      {
+        "key": "D",
+        "text": "Session 天然可以在多台服务器之间共享，不需要任何共享存储或一致性机制"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "网络基础",
+      "Cookie",
+      "Session"
+    ],
+    "explanation": "Cookie 位于客户端，更容易被窃取或篡改，通常不比服务端 Session 更安全。Cookie 可以设置过期时间；Session 跨服务器共享通常需要 Redis、数据库或粘性会话等额外机制。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_010",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "下列哪些 HTTP 响应状态码表示客户端或服务器发生了错误？",
+    "options": [
+      {
+        "key": "A",
+        "text": "202"
+      },
+      {
+        "key": "B",
+        "text": "304"
+      },
+      {
+        "key": "C",
+        "text": "401"
+      },
+      {
+        "key": "D",
+        "text": "500"
+      }
+    ],
+    "answer": [
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "HTTP",
+      "状态码"
+    ],
+    "explanation": "401 属于 4xx 客户端错误，500 属于 5xx 服务器错误。202 表示请求已接受，304 表示资源未修改。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_011",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "以下哪些属于 CPU 的内部组成部分？",
+    "options": [
+      {
+        "key": "A",
+        "text": "主存储器"
+      },
+      {
+        "key": "B",
+        "text": "寄存器"
+      },
+      {
+        "key": "C",
+        "text": "运算器"
+      },
+      {
+        "key": "D",
+        "text": "控制器"
+      }
+    ],
+    "answer": [
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "计算机组成原理",
+      "CPU"
+    ],
+    "explanation": "CPU 主要包括运算器、控制器和寄存器等。主存储器通常位于 CPU 外部，属于存储系统。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_012",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "修改下列哪个 CSS 属性最可能触发布局回流（reflow）？",
+    "options": [
+      {
+        "key": "A",
+        "text": "background-color"
+      },
+      {
+        "key": "B",
+        "text": "outline-width"
+      },
+      {
+        "key": "C",
+        "text": "border-width"
+      },
+      {
+        "key": "D",
+        "text": "transform"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "CSS",
+      "浏览器渲染",
+      "回流"
+    ],
+    "explanation": "border-width 会改变元素盒模型尺寸，可能影响周围元素布局，从而触发回流。background-color 通常只触发重绘，transform 通常由合成阶段处理，outline 通常不占布局空间。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_013",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "执行 `var a = []; typeof a`，结果是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "array"
+      },
+      {
+        "key": "B",
+        "text": "object"
+      },
+      {
+        "key": "C",
+        "text": "null"
+      },
+      {
+        "key": "D",
+        "text": "function"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript",
+      "typeof",
+      "数组"
+    ],
+    "explanation": "JavaScript 中数组属于对象，typeof [] 返回字符串 'object'。判断数组应使用 Array.isArray(a)。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_014",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "下列关于 HTTP 协议的描述中，错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "HTTP 是无状态协议"
+      },
+      {
+        "key": "B",
+        "text": "HTTP 是传输层协议"
+      },
+      {
+        "key": "C",
+        "text": "HTTP 具有较强的可扩展性"
+      },
+      {
+        "key": "D",
+        "text": "HTTP/1.x 的报文格式以文本为主"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "HTTP",
+      "网络分层"
+    ],
+    "explanation": "HTTP 属于应用层协议，通常运行在 TCP 或 QUIC 等传输机制之上。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_015",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "刚提交完代码后发现最近一次提交信息有误，应使用哪个命令直接修改该提交信息？",
+    "options": [
+      {
+        "key": "A",
+        "text": "git stash -p"
+      },
+      {
+        "key": "B",
+        "text": "git revert HEAD -e"
+      },
+      {
+        "key": "C",
+        "text": "git rebase"
+      },
+      {
+        "key": "D",
+        "text": "git commit --amend"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "Git",
+      "版本控制"
+    ],
+    "explanation": "git commit --amend 可以修改最近一次提交的提交信息，也可以将新的暂存内容补入该提交。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_016",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 Flexbox，下列描述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Flexbox 可以实现单行布局"
+      },
+      {
+        "key": "B",
+        "text": "通过设置主轴方向，Flexbox 可以实现单列布局"
+      },
+      {
+        "key": "C",
+        "text": "Flexbox 支持多行布局，使用 space-around 等分布方式时不同项目边缘可能不完全对齐"
+      },
+      {
+        "key": "D",
+        "text": "flex-grow 默认为 0，表示存在剩余空间时项目会自动放大"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "CSS",
+      "Flexbox",
+      "flex-grow"
+    ],
+    "explanation": "flex-grow 默认值为 0，含义是项目默认不参与剩余空间的放大分配。只有设置为正数时才会按比例放大。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_017",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "下列哪种写法不能可靠判断 arr 是空数组？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Array.isArray(arr) && arr.length === 0"
+      },
+      {
+        "key": "B",
+        "text": "arr === []"
+      },
+      {
+        "key": "C",
+        "text": "JSON.stringify(arr) === '[]'"
+      },
+      {
+        "key": "D",
+        "text": "arr instanceof Array && arr.length === 0"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "JavaScript",
+      "数组",
+      "引用比较"
+    ],
+    "explanation": "每个数组字面量都会创建新对象，因此 arr===[] 比较的是两个不同引用，结果通常为 false。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_018",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "下列哪个不是专门用于链接交互状态的常见锚元素伪类？",
+    "options": [
+      {
+        "key": "A",
+        "text": "a:visited"
+      },
+      {
+        "key": "B",
+        "text": "a:hover"
+      },
+      {
+        "key": "C",
+        "text": "a:disabled"
+      },
+      {
+        "key": "D",
+        "text": "a:active"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "CSS",
+      "伪类",
+      "链接状态"
+    ],
+    "explanation": ":visited、:hover 和 :active 都常用于链接状态。原生 a 元素没有 disabled 状态，:disabled 主要匹配被禁用的表单控件等元素。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_019",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Linux 中哪个文件通常保存主机名到 IP 地址的静态映射关系？",
+    "options": [
+      {
+        "key": "A",
+        "text": "/etc/hosts"
+      },
+      {
+        "key": "B",
+        "text": "/etc/iptable"
+      },
+      {
+        "key": "C",
+        "text": "/etc/networks"
+      },
+      {
+        "key": "D",
+        "text": "/etc/ips"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Linux",
+      "网络配置",
+      "hosts"
+    ],
+    "explanation": "/etc/hosts 用于配置本地主机名与 IP 地址的静态映射。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_020",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "使用 mkdir 创建目录时，若父目录不存在，希望自动一并创建父目录，应使用哪个选项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "-m"
+      },
+      {
+        "key": "B",
+        "text": "-d"
+      },
+      {
+        "key": "C",
+        "text": "-f"
+      },
+      {
+        "key": "D",
+        "text": "-p"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "Linux",
+      "mkdir",
+      "命令行"
+    ],
+    "explanation": "mkdir -p 会按需创建缺失的父目录，并且目标目录已存在时通常不会报错。",
+    "source": "用户提供的小米前端类笔试题整理"
+  },
+  {
+    "question_id": "xiaomi_frontend_021",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "存在 n+1 个房间，编号为 1 到 n+1。房间 i（1≤i≤n）有传送门指向 p_i，且 1≤p_i≤i。路人从房间 1 开始，此时算作第一次访问。每次位于房间 i：若当前对 i 的访问次数为奇数，则移动到 p_i；若为偶数，则移动到 i+1。请设计算法计算第一次到达房间 n+1 所需的移动次数。",
+    "options": [],
+    "answer": "定义 dp[i] 为从起点开始第一次到达房间 i 所需的移动次数，dp[1]=0。第一次到达房间 i 时，该房间访问次数为奇数，下一步会传送到 p_i；之后系统从 p_i 重新演化到 i，再执行一步从 i 到 i+1。根据此前访问状态的结构，可得到递推式 dp[i+1]=2*dp[i]-dp[p_i]+2。按 i=1..n 依次计算即可，答案为 dp[n+1]。若题目要求对某个模数 MOD 取模，应写成 (2*dp[i]-dp[p_i]+2+MOD)%MOD。时间复杂度 O(n)，空间复杂度 O(n)。",
+    "knowledge_points": [
+      "数组",
+      "动态规划",
+      "递推"
+    ],
+    "explanation": "到达 i 后需要先走到 p_i，再重走从 p_i 到 i 的过程，最后从 i 前进到 i+1，因此可以利用首次到达时间之差建立递推。",
+    "source": "用户提供的小米前端类笔试题整理",
+    "grading_points": [
+      {
+        "point": "定义 dp[i] 为首次到达房间 i 的移动次数",
+        "score": 2
+      },
+      {
+        "point": "给出初值 dp[1]=0",
+        "score": 1
+      },
+      {
+        "point": "分析首次到达 i 后会先传送到 p_i",
+        "score": 2
+      },
+      {
+        "point": "推导 dp[i+1]=2*dp[i]-dp[p_i]+2",
+        "score": 3
+      },
+      {
+        "point": "按 i 从小到大计算并输出 dp[n+1]",
+        "score": 1
+      },
+      {
+        "point": "给出 O(n) 时间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "xiaomi_frontend_022",
+    "company": "xiaomi",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "使用 JavaScript 计算两个可能包含小数的十进制数 a 和 b 的乘积，要求避免 IEEE 754 浮点误差。请设计一种可以精确处理有限小数的方法。",
+    "options": [],
+    "answer": "将 a、b 按字符串处理。先记录符号，再分别统计小数点后的位数 da、db，并删除小数点得到整数字符串 ia、ib。使用 BigInt 计算 product=BigInt(ia)*BigInt(ib)。结果的小数位数为 scale=da+db，在 product 的十进制字符串左侧补足至少 scale+1 位，然后从右侧数 scale 位插入小数点；去除不必要的末尾 0 和末尾小数点，最后恢复符号。这样整个计算只进行整数乘法，不经过 Number 浮点运算，因此可精确处理任意长度的有限十进制小数。时间复杂度取决于大整数乘法，额外空间与输入数字长度成正比。",
+    "knowledge_points": [
+      "JavaScript",
+      "高精度计算",
+      "BigInt",
+      "字符串"
+    ],
+    "explanation": "把有限小数转换成按 10 的幂缩放后的整数，乘法后再恢复小数点，可以完全避开二进制浮点表示误差。",
+    "source": "用户提供的小米前端类笔试题整理",
+    "grading_points": [
+      {
+        "point": "使用字符串读取输入，避免先转为 Number",
+        "score": 2
+      },
+      {
+        "point": "统计两个操作数的小数位数",
+        "score": 1
+      },
+      {
+        "point": "删除小数点并转换为 BigInt",
+        "score": 2
+      },
+      {
+        "point": "使用 BigInt 完成整数乘法",
+        "score": 2
+      },
+      {
+        "point": "按 da+db 位恢复小数点",
+        "score": 2
+      },
+      {
+        "point": "正确处理符号和结果格式化",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  }
+]

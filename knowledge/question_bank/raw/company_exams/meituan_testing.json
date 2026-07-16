@@ -1,0 +1,659 @@
+[
+  {
+    "question_id": "meituan_testing_001",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于大语言模型（LLM）的基础概念，下列说法正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "位置编码的作用是扩大词表，以容纳更长的序列"
+      },
+      {
+        "key": "B",
+        "text": "自回归解码是指在推理时一次性并行生成完整序列"
+      },
+      {
+        "key": "C",
+        "text": "自注意力机制能根据上下文动态计算各 token 之间的相关性，从而建模长距离依赖"
+      },
+      {
+        "key": "D",
+        "text": "参数量越大，单次推理延迟通常越低"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "大模型开发",
+      "Self-Attention",
+      "位置编码",
+      "自回归生成"
+    ],
+    "explanation": "Self-Attention 通过 Query、Key、Value 之间的关系为序列中不同位置分配权重，可以直接建模长距离依赖。位置编码用于注入顺序信息；自回归推理通常逐 token 生成；更大的参数量通常会增加计算量和推理延迟。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_002",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "虚拟试衣系统生成的肤色与用户实际肤色差异过大并引发投诉。以下哪种改进最能直接解决个体适配问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只使用一套预设的肤色校准 3D LUT"
+      },
+      {
+        "key": "B",
+        "text": "在获得用户明确授权后，根据用户上传照片提取肤色特征并进行自适应渲染"
+      },
+      {
+        "key": "C",
+        "text": "建立固定肤色分类库，并按肤色类别提供不同服务"
+      },
+      {
+        "key": "D",
+        "text": "仅在输出结果旁增加免责声明"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "大模型开发",
+      "多模态应用",
+      "个性化渲染",
+      "隐私合规"
+    ],
+    "explanation": "在取得明确授权并妥善保护用户数据的前提下，从用户照片中提取个体肤色特征进行自适应渲染，能够直接减少生成结果与真实肤色的偏差。预设 LUT 难以覆盖个体差异，固定分区可能引入不公平风险，免责声明也不能解决实际误差。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_003",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "视觉搜索模型的视觉主干被冻结，仅在上层使用低秩适配器进行 LoRA 微调。微调后模型对生鲜商品的微小瑕疵灵敏度不足，以下哪项原因最值得优先排查？",
+    "options": [
+      {
+        "key": "A",
+        "text": "被冻结的视觉主干和低秩更新可能不足以适配微小瑕疵所需的高频局部特征"
+      },
+      {
+        "key": "B",
+        "text": "只要过采样瑕疵样本，就一定能解决该问题"
+      },
+      {
+        "key": "C",
+        "text": "图像编码器没有启用数据增强，因此模型完全无法识别瑕疵"
+      },
+      {
+        "key": "D",
+        "text": "交叉注意力层的秩过低一定是唯一原因"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "大模型开发",
+      "LoRA",
+      "视觉模型",
+      "微小目标检测"
+    ],
+    "explanation": "LoRA 本身并非天然无法学习高频特征，但在视觉主干被冻结、只对上层进行低秩更新的受限设置下，模型可能难以重新学习微小瑕疵需要的局部纹理表示。还应结合数据分辨率、标注质量、采样策略和可训练层范围进一步验证。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_004",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "联邦微调跨区域骑手调度模型时，各参与方数据分布差异较大，导致全局模型训练不稳定甚至发散。以下哪种方法更适合缓解该问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "采用 FedProx，在本地目标函数中加入本地模型偏离全局模型的近端正则项"
+      },
+      {
+        "key": "B",
+        "text": "为每个区域随机分配差异很大的学习率"
+      },
+      {
+        "key": "C",
+        "text": "加入更强的差分隐私噪声以强制平滑"
+      },
+      {
+        "key": "D",
+        "text": "固定所有参与方只能执行一次梯度更新"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "大模型开发",
+      "联邦学习",
+      "FedProx",
+      "Non-IID 数据"
+    ],
+    "explanation": "FedProx 在本地优化目标中加入类似 μ/2·||w-w_global||² 的近端项，限制本地模型过度偏离全局模型，可缓解 Non-IID 数据造成的客户端漂移。其他选项不能从根本上解决异构数据导致的优化方向差异。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_005",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "训练图像、文本与轨迹联合建模的多模态配送模型时，暴雨场景的路径预测误差明显增大。已知视觉分支对雨天和低照度做过补偿，数据中也有降水量字段。以下哪项问题最值得优先检查？",
+    "options": [
+      {
+        "key": "A",
+        "text": "跨模态融合层没有使用门控机制"
+      },
+      {
+        "key": "B",
+        "text": "图像编码器完全无法提取低照度特征"
+      },
+      {
+        "key": "C",
+        "text": "轨迹分支没有编码降水强度随时间变化的时序特征"
+      },
+      {
+        "key": "D",
+        "text": "多头注意力没有设置专门的气象注意力头"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "大模型开发",
+      "多模态学习",
+      "时序建模",
+      "特征工程"
+    ],
+    "explanation": "暴雨对配送路径的影响具有明显的时间变化特征。即使存在单点降水量标签，如果没有把降水强度的时间序列变化与轨迹联合编码，模型仍可能忽略天气动态对速度、拥堵和道路可达性的影响。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_006",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "某 VLTransformer 仅使用 Cross-Attention 进行图文融合，没有引入 CLIP 风格的图文对比损失。即使增加 Cross-Attention 层数并加入模态类型嵌入，图文检索效果仍显著弱于 CLIP。其最核心的问题是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "缺少将匹配图文拉近、非匹配图文推远的对比学习目标"
+      },
+      {
+        "key": "B",
+        "text": "Cross-Attention 层数仍然不够多"
+      },
+      {
+        "key": "C",
+        "text": "图像 patch 必须与文本 token 一一对应"
+      },
+      {
+        "key": "D",
+        "text": "位置编码没有区分模态类型"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "大模型开发",
+      "多模态学习",
+      "CLIP",
+      "对比学习"
+    ],
+    "explanation": "CLIP 的关键是利用对比损失直接约束图像与文本在共享表示空间中的相似度。Cross-Attention 可以完成信息融合，但如果缺少显式的全局对齐目标，未必能学到适合跨模态检索的嵌入空间。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_007",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "一个长度为 120 的顺序表，元素从 1 开始编号。删除第 45 个元素，需要移动多少个元素？",
+    "options": [
+      {
+        "key": "A",
+        "text": "74"
+      },
+      {
+        "key": "B",
+        "text": "75"
+      },
+      {
+        "key": "C",
+        "text": "76"
+      },
+      {
+        "key": "D",
+        "text": "45"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "数组",
+      "顺序表"
+    ],
+    "explanation": "删除第 45 个元素后，其后的第 46 至第 120 个元素都需要向前移动一位，共移动 120-45=75 个元素。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_008",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在 Wireshark 中，用于过滤 TCP 重传报文的常用显示过滤器是哪个？",
+    "options": [
+      {
+        "key": "A",
+        "text": "tcp.analysis.retransmission"
+      },
+      {
+        "key": "B",
+        "text": "tcp.flags.reset == 1"
+      },
+      {
+        "key": "C",
+        "text": "tcp.seq == 0"
+      },
+      {
+        "key": "D",
+        "text": "tcp.window_size == 0"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络基础",
+      "Wireshark",
+      "TCP"
+    ],
+    "explanation": "tcp.analysis.retransmission 是 Wireshark 分析器用于标记 TCP 重传的字段。其余选项分别与 RST、序列号和窗口大小有关，不能直接筛选重传。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_009",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "下列关于 TCP/IP 参考模型的描述中，错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "网络层包含 TCP 协议，主要为应用层直接提供服务"
+      },
+      {
+        "key": "B",
+        "text": "传输层为不同主机上的应用程序提供端到端通信"
+      },
+      {
+        "key": "C",
+        "text": "应用层负责处理特定应用程序的通信细节"
+      },
+      {
+        "key": "D",
+        "text": "网络接口层通常涉及设备驱动程序和网络接口卡"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络基础",
+      "TCP/IP 模型"
+    ],
+    "explanation": "TCP 属于传输层；网络层主要包含 IP、ICMP 等协议，负责分组转发和路由。B、C、D 均符合 TCP/IP 分层模型的基本描述。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_010",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "操作系统中，哪项技术主要用于缓解处理器与外部设备之间的速度差异？",
+    "options": [
+      {
+        "key": "A",
+        "text": "分页技术"
+      },
+      {
+        "key": "B",
+        "text": "调度技术"
+      },
+      {
+        "key": "C",
+        "text": "缓冲技术"
+      },
+      {
+        "key": "D",
+        "text": "中断技术"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "操作系统",
+      "I/O 管理",
+      "缓冲"
+    ],
+    "explanation": "缓冲区可暂存处理器与外部设备交换的数据，使双方不必严格同步等待，从而缓解速度不匹配问题。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_011",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "下面关于查找的说法中，错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "顺序查找可以用于无序表"
+      },
+      {
+        "key": "B",
+        "text": "二分查找要求待查找序列有序，并且通常需要支持随机访问"
+      },
+      {
+        "key": "C",
+        "text": "二叉搜索树通过比较关键字决定向左子树或右子树继续查找"
+      },
+      {
+        "key": "D",
+        "text": "长度为 8 的有序顺序表进行二分查找时，成功查找的平均查找长度一定等于 2"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "查找",
+      "顺序查找",
+      "二分查找",
+      "二叉搜索树"
+    ],
+    "explanation": "二分查找的成功平均查找长度取决于比较树结构，不会固定等于 2。按常见取中点方式构造的 8 个元素比较树，其平均比较次数大于 2。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_012",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "下列哪项通常不属于数据库分区表的直接优势？",
+    "options": [
+      {
+        "key": "A",
+        "text": "通过分区裁剪提高部分查询效率"
+      },
+      {
+        "key": "B",
+        "text": "按分区进行备份、归档或恢复更加灵活"
+      },
+      {
+        "key": "C",
+        "text": "改善大规模数据管理的性能和可扩展性"
+      },
+      {
+        "key": "D",
+        "text": "天然提供更高的数据安全性和访问控制能力"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "数据库",
+      "分区表"
+    ],
+    "explanation": "分区主要用于改善数据管理、查询裁剪、维护和扩展能力，并不会天然增强身份认证、权限控制或加密等安全能力。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_013",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "审稿表 view 包含审核编号 vid、稿件编号 mid、审核人编号 rid、审核时间 vtime 和审核结果 vresult。需要统计每位审核人审核结果在 60 到 80 之间的记录数，以下 SQL 正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SELECT rid, COUNT(*) AS cnt FROM view WHERE vresult BETWEEN 60 AND 80 GROUP BY rid;"
+      },
+      {
+        "key": "B",
+        "text": "SELECT rid, COUNT(*) AS cnt FROM view WHERE vresult BETWEEN 60 AND 80 GROUP BY mid;"
+      },
+      {
+        "key": "C",
+        "text": "SELECT rid, COUNT(*) AS cnt FROM view WHERE 60 <= vresult <= 80 GROUP BY rid;"
+      },
+      {
+        "key": "D",
+        "text": "SELECT rid, COUNT(*) AS cnt FROM view WHERE vtime BETWEEN 60 AND 80 GROUP BY rid;"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "数据库",
+      "SQL",
+      "GROUP BY",
+      "BETWEEN"
+    ],
+    "explanation": "应先使用 vresult BETWEEN 60 AND 80 过滤审核结果，再按照审核人 rid 分组并统计记录数。SQL 不支持把 60<=vresult<=80 作为数学式链式比较。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_014",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于进程间通信中的共享内存和消息传递，下列说法正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "消息传递通常比共享内存更快"
+      },
+      {
+        "key": "B",
+        "text": "消息传递更适合频繁交换超大规模数据，且没有系统调用开销"
+      },
+      {
+        "key": "C",
+        "text": "共享内存在所有场景下都比消息传递更容易实现"
+      },
+      {
+        "key": "D",
+        "text": "在避免频繁数据复制的情况下，共享内存通常比消息传递具有更高的数据交换速度"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "操作系统",
+      "进程间通信",
+      "共享内存",
+      "消息传递"
+    ],
+    "explanation": "共享内存建立后，进程可以直接访问同一片内存，适合高吞吐数据交换；消息传递通常涉及系统调用和数据复制。共享内存虽然快，但同步和一致性管理往往更复杂。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_015",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在二叉树 T 中，结点 a 的左子树根为 b，右子树根为 c。对于前序、中序和后序遍历，下列哪项关系始终成立？",
+    "options": [
+      {
+        "key": "A",
+        "text": "b 一定在 a 之前"
+      },
+      {
+        "key": "B",
+        "text": "a 一定在 c 之前"
+      },
+      {
+        "key": "C",
+        "text": "b 一定在 c 之前"
+      },
+      {
+        "key": "D",
+        "text": "a 一定在 b 之前"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "树",
+      "二叉树遍历"
+    ],
+    "explanation": "前序为根-左-右，中序为左-根-右，后序为左-右-根。三种遍历都会先完整访问左子树，再访问右子树，因此 b 一定在 c 之前。",
+    "source": "用户提供的美团测试类笔试题整理"
+  },
+  {
+    "question_id": "meituan_testing_016",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "easy",
+    "question_type": "short_answer",
+    "content": "给定多个仅包含 ASCII 可见字符的密码字符串，请设计算法判断每个密码的强度。长度小于 8 为 Weak；否则统计小写字母、大写字母、数字和特殊字符四种类型：包含四种为 Strong，恰好包含三种为 Medium，其余为 Weak。请说明算法步骤和复杂度。",
+    "options": [],
+    "answer": "逐个处理密码。若长度小于 8，直接输出 Weak。否则初始化四个布尔标记 lower、upper、digit、special，遍历密码中的每个字符：若在 'a' 到 'z' 之间设置 lower；若在 'A' 到 'Z' 之间设置 upper；若在 '0' 到 '9' 之间设置 digit；否则该字符属于 ASCII 33 到 126 范围内的非字母数字可见字符，设置 special。统计四个标记中为真的数量 count；count=4 输出 Strong，count=3 输出 Medium，否则输出 Weak。单个密码时间复杂度 O(L)，额外空间复杂度 O(1)。",
+    "knowledge_points": [
+      "字符串",
+      "模拟",
+      "字符分类"
+    ],
+    "explanation": "题目只要求判断四类字符是否出现，因此无需统计每类字符的数量，只需维护四个布尔标记即可。",
+    "source": "用户提供的美团测试类笔试题整理",
+    "grading_points": [
+      {
+        "point": "长度小于 8 时直接判定为 Weak",
+        "score": 2
+      },
+      {
+        "point": "正确识别小写字母",
+        "score": 1
+      },
+      {
+        "point": "正确识别大写字母",
+        "score": 1
+      },
+      {
+        "point": "正确识别数字",
+        "score": 1
+      },
+      {
+        "point": "正确识别特殊可见字符",
+        "score": 1
+      },
+      {
+        "point": "四种类型输出 Strong，三种输出 Medium，其余输出 Weak",
+        "score": 3
+      },
+      {
+        "point": "给出 O(L) 时间和 O(1) 额外空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "meituan_testing_017",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "给定非负整数数组 a，需要构造非负整数 x，其二进制位数不超过数组最大值的二进制位数。可重复选择下标 i，并同时执行 a[i]←a[i] OR x、x←a[i] AND x（右侧均使用操作前的值）。请设计算法，使数组元素总和最大，并在最大总和下令初始 x 最小。输出最大总和及对应的最小初始 x。",
+    "options": [],
+    "answer": "利用恒等式 (a OR x)+(a AND x)=a+x，每次操作都保持 a[i]+x 的和不变。因此数组总和增加多少，恰好等于 x 减少多少。按位分析：如果初始 x 的第 b 位为 1，而至少存在一个数组元素的第 b 位为 0，那么选择该元素操作时，这一位会从 x 转移到该元素，数组总和增加 2^b；如果所有元素该位都为 1，这一位永远无法从 x 中清除，设置它不会增加数组总和。设 L 为 max(a) 的二进制位数，mask=(1<<L)-1，all_and 为所有 a[i] 的按位与。为了获得最大增量，初始 x 必须且只需要在 all_and 为 0 的位上取 1，因此最小最优 x=(~all_and)&mask。依次对所有数组元素执行一次操作后，x 会变成 x & all_and=0，所有可转移位均进入数组。最大总和为 sum(a)+x。计算 all_and 和原数组和即可，时间复杂度 O(n)，额外空间 O(1)。若最大值为 0，则 L=1。",
+    "knowledge_points": [
+      "贪心",
+      "位运算",
+      "按位与",
+      "按位或"
+    ],
+    "explanation": "每一位可以独立考虑。只有“并非所有数组元素都为 1”的位能够从 x 转移到数组；为达到最大总和这些位必须全部设置，而为了让 x 最小，其他无收益位不应设置。",
+    "source": "用户提供的美团测试类笔试题整理",
+    "grading_points": [
+      {
+        "point": "指出恒等式 (a OR x)+(a AND x)=a+x，操作保持 a[i]+x 不变",
+        "score": 2
+      },
+      {
+        "point": "按位分析 x 中的 1 可以转移到某个该位为 0 的数组元素",
+        "score": 2
+      },
+      {
+        "point": "指出所有元素该位均为 1 时设置该位没有收益",
+        "score": 1
+      },
+      {
+        "point": "计算 all_and 为所有数组元素按位与",
+        "score": 1
+      },
+      {
+        "point": "得到最小最优 x=(~all_and)&mask",
+        "score": 2
+      },
+      {
+        "point": "得到最大总和 sum(a)+x",
+        "score": 1
+      },
+      {
+        "point": "给出 O(n) 时间和 O(1) 额外空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "meituan_testing_018",
+    "company": "meituan",
+    "position": "testing",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "给定两个长度均为 n 的正整数数组 A 和 B。每次可以选择任意一个元素 x，将其替换为 popcount(x)，代价为 1。两个数组排序后完全相同时称为同构。请设计算法计算使两数组同构的最少操作次数，并分析复杂度。题目保证有解。",
+    "options": [],
+    "answer": "可以使用两个最大堆。先分别把 A、B 的所有元素加入最大堆。循环处理堆顶：若两个堆顶相等，则同时弹出，表示这两个值无需操作即可匹配；若 maxA>maxB，则当前 A 中的最大值无法通过增加 B 中元素来匹配，因为操作只会使正整数变小或保持 1 不变，所以必须把 maxA 替换为 popcount(maxA)，操作数加 1，再放回 A 堆；若 maxB>maxA，则对 B 堆顶做同样处理。持续到两个堆都为空。该贪心每次只缩小当前无法匹配的较大值，不会破坏更小值的最优匹配。若每个元素最多执行 k 次 popcount，复杂度为 O((n+K)log n)，其中 K 为总操作数；对常见整数范围，popcount 迭代次数很小，空间复杂度 O(n)。也可使用有序多重集合实现。",
+    "knowledge_points": [
+      "堆",
+      "贪心",
+      "位运算",
+      "popcount"
+    ],
+    "explanation": "操作只能把数值向更小的方向变换。当前两个多重集合中的最大值若不同，较大的那个不可能由另一侧较小值通过操作得到，因此较大值必须先执行 popcount。相等的最大值直接匹配不会增加代价。",
+    "source": "用户提供的美团测试类笔试题整理",
+    "grading_points": [
+      {
+        "point": "使用两个最大堆或等价的有序多重集合",
+        "score": 2
+      },
+      {
+        "point": "两个最大值相等时直接匹配并删除",
+        "score": 2
+      },
+      {
+        "point": "最大值不等时仅对较大值执行 popcount",
+        "score": 2
+      },
+      {
+        "point": "每次变换累计一次操作并重新插入",
+        "score": 1
+      },
+      {
+        "point": "说明操作只会减小数值，因此处理较大最大值的贪心正确",
+        "score": 2
+      },
+      {
+        "point": "给出 O((n+K)log n) 时间和 O(n) 空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  }
+]

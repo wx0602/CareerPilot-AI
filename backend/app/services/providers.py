@@ -660,6 +660,9 @@ class RealAIProvider:
         if module and not module.available:
             raise ValueError(f"{module.title} 模块题库暂未补充完成。")
 
+        # 学习模块沿用原有公共题库；只有企业笔试才按 company 隔离，
+        # 避免旧会话中残留的展示文案影响普通模块检索。
+        company = request.get("company") if not module else None
         search_position = module.search_position if module else request.get("position")
         search_points = list(module.search_knowledge_points) if module and module.search_knowledge_points else None
         requested_count = self._question_target_count(request)
@@ -668,6 +671,7 @@ class RealAIProvider:
         preferred_result = self.knowledge.search_questions(
             "",
             position=search_position,
+            company=company,
             difficulty=request.get("difficulty"),
             knowledge_points=search_points,
             top_k=top_k,
@@ -676,6 +680,7 @@ class RealAIProvider:
         all_difficulties_result = self.knowledge.search_questions(
             "",
             position=search_position,
+            company=company,
             knowledge_points=search_points,
             top_k=top_k,
             include_answer=True,
@@ -685,6 +690,10 @@ class RealAIProvider:
             preferred,
             all_difficulties_result.get("questions", []),
         )
+
+        if not candidates and company:
+            position_name = request.get("learning_module_title") or search_position or "所选岗位"
+            raise ValueError(f"{company} 的{position_name}暂无可用题目，请检查企业题库是否已导入。")
 
         if not candidates and module:
             module_name = request.get("learning_module_title") or request.get("position") or "当前模块"

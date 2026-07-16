@@ -5,6 +5,7 @@ import AppIcon from '../components/AppIcon.vue';
 import BrandLogo from '../components/BrandLogo.vue';
 import { api, getSession } from '../api/client';
 import { QUESTION_MIX, getLearningModule } from '../data/learningModules';
+import { getCompany } from '../data/companyExams';
 
 const router = useRouter();
 const current = ref(0);
@@ -18,6 +19,13 @@ const session = ref(null);
 
 const question = computed(() => paper.value?.questions?.[current.value]);
 const moduleInfo = computed(() => getLearningModule(session.value?.learning_module));
+const companyInfo = computed(() => getCompany(session.value?.company));
+const isCompanyExam = computed(() => Boolean(companyInfo.value));
+const displayTitle = computed(() => {
+  const positionTitle = session.value?.learning_module_title || moduleInfo.value?.title || '岗位笔试';
+  return isCompanyExam.value ? `${companyInfo.value.name} · ${positionTitle}` : positionTitle;
+});
+const backPath = computed(() => (isCompanyExam.value ? '/company-exams' : '/study-plan'));
 const questionMix = computed(() => session.value?.question_mix || QUESTION_MIX);
 const questionCount = computed(() =>
   Object.values(questionMix.value).reduce((sum, value) => sum + Number(value || 0), 0)
@@ -57,8 +65,8 @@ async function loadExam() {
     router.push('/dashboard');
     return;
   }
-  if (!session.value.learning_module) {
-    router.push('/study-plan');
+  if (!session.value.learning_module && (!session.value.company || !session.value.position)) {
+    router.push('/company-exams');
     return;
   }
 
@@ -77,6 +85,7 @@ async function loadExam() {
     });
     paper.value = {
       ...generated,
+      title: isCompanyExam.value ? `${displayTitle.value}笔试` : generated.title,
       questions: [...generated.questions].sort(
         (left, right) =>
           questionTypeOrder.indexOf(left.question_type) -
@@ -153,10 +162,10 @@ async function submit() {
   <main class="exam-page">
     <header class="exam-topbar">
       <BrandLogo />
-      <button class="back-link" @click="router.push('/dashboard')">
-        <AppIcon name="back" />返回
+      <button class="back-link" @click="router.push(backPath)">
+        <AppIcon name="back" />{{ isCompanyExam ? '返回企业岗位' : '返回学习模块' }}
       </button>
-      <h1>{{ paper?.title || `${session?.learning_module_title || '学习模块'} 练习` }}</h1>
+      <h1>{{ paper?.title || `${displayTitle}练习` }}</h1>
       <span class="timer">
         <AppIcon name="clock" />固定配比 {{ questionCount }} 题
       </span>
@@ -166,14 +175,14 @@ async function submit() {
     </header>
 
     <div class="exam-summary">
-      <span class="exam-module">{{ session?.learning_module_title || '未命名模块' }}</span>
+      <span class="exam-module">{{ displayTitle }}</span>
       <div class="exam-mix" aria-label="本次练习题型配比">
         <span>题型配比</span>
         <dl>
-          <div><dt>{{ questionMix.single_choice }}</dt><dd>单选</dd></div>
-          <div><dt>{{ questionMix.multiple_choice }}</dt><dd>多选</dd></div>
-          <div><dt>{{ questionMix.true_false }}</dt><dd>判断</dd></div>
-          <div><dt>{{ questionMix.short_answer }}</dt><dd>简答</dd></div>
+          <div v-if="questionMix.single_choice"><dt>{{ questionMix.single_choice }}</dt><dd>单选</dd></div>
+          <div v-if="questionMix.multiple_choice"><dt>{{ questionMix.multiple_choice }}</dt><dd>多选</dd></div>
+          <div v-if="questionMix.true_false"><dt>{{ questionMix.true_false }}</dt><dd>判断</dd></div>
+          <div v-if="questionMix.short_answer"><dt>{{ questionMix.short_answer }}</dt><dd>简答</dd></div>
         </dl>
       </div>
     </div>
@@ -185,7 +194,7 @@ async function submit() {
     <div v-if="paper && question" class="exam-layout">
       <aside class="question-nav">
         <h2>题目导航</h2>
-        <section v-for="(items, type) in questionGroups" :key="type">
+        <section v-for="(items, type) in questionGroups" v-show="items.length" :key="type">
           <b>{{ typeLabels[type] }} ({{ items.length }})</b>
           <div>
             <button
@@ -203,7 +212,7 @@ async function submit() {
       <section class="question-panel">
         <div class="question-meta">
           <b>{{ currentTypeLabel }} {{ current + 1 }}/{{ paper.questions.length }}</b>
-          <span>{{ session?.learning_module_title }} 模块练习</span>
+          <span>{{ displayTitle }}</span>
         </div>
         <h2>{{ question.content }}</h2>
 

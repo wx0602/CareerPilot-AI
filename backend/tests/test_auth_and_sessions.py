@@ -184,3 +184,61 @@ def test_confirming_a_module_starts_a_fresh_exam_and_refresh_keeps_it(logged_in)
         },
     ).json()
     assert refreshed["exam_id"] == second["exam_id"]
+
+
+def test_switching_company_position_starts_a_fresh_exam(logged_in):
+    client, headers = logged_in
+    question_mix = {
+        "single_choice": 1,
+        "multiple_choice": 0,
+        "true_false": 0,
+        "short_answer": 0,
+    }
+    session = client.post(
+        "/api/training-sessions",
+        headers=headers,
+        json={
+            "mode": "technical",
+            "company": "alibaba",
+            "position": "engineering",
+            "learning_module": "company_exam",
+            "learning_module_title": "研发岗",
+            "question_mix": question_mix,
+        },
+    ).json()
+    first = client.post(
+        "/api/exams/generate",
+        headers=headers,
+        json={
+            "session_id": session["session_id"],
+            "company": session["company"],
+            "position": session["position"],
+            "learning_module": session["learning_module"],
+            "learning_module_title": session["learning_module_title"],
+            "question_mix": question_mix,
+        },
+    ).json()
+
+    updated = client.patch(
+        f"/api/training-sessions/{session['session_id']}",
+        headers=headers,
+        json={
+            "position": "algorithm",
+            "learning_module_title": "算法岗",
+            "question_mix": question_mix,
+        },
+    ).json()
+    second = client.post(
+        "/api/exams/generate",
+        headers=headers,
+        json={
+            "session_id": updated["session_id"],
+            "company": updated["company"],
+            "position": updated["position"],
+            "learning_module": updated["learning_module"],
+            "learning_module_title": updated["learning_module_title"],
+            "question_mix": question_mix,
+        },
+    ).json()
+
+    assert second["exam_id"] != first["exam_id"]

@@ -1,0 +1,929 @@
+[
+  {
+    "question_id": "xiaohongshu_algorithm_001",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "以 {2,4,6,8,10} 作为叶子结点权值构造哈夫曼树，其带权路径长度是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "62"
+      },
+      {
+        "key": "B",
+        "text": "64"
+      },
+      {
+        "key": "C",
+        "text": "66"
+      },
+      {
+        "key": "D",
+        "text": "68"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "树",
+      "哈夫曼树",
+      "带权路径长度"
+    ],
+    "explanation": "哈夫曼合并过程可写为 2+4=6，6+6=12，8+10=18，12+18=30。带权路径长度等于所有合并权值之和，即 6+12+18+30=66。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_002",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "按照 next[1]=0 的教材约定，已知模式串 S='abcdeabcde'，其 next 数组为哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "0,1,2,3,4,5,6,7,8,9"
+      },
+      {
+        "key": "B",
+        "text": "0,0,1,2,3,4,5,6,7,8"
+      },
+      {
+        "key": "C",
+        "text": "0,1,1,1,1,1,2,3,4,5"
+      },
+      {
+        "key": "D",
+        "text": "0,1,2,3,4,5,6,7,8,0"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "字符串",
+      "KMP",
+      "next数组"
+    ],
+    "explanation": "前 5 个字符不存在可复用的相同真前后缀；从第二个 a 开始，可逐步复用前缀 a、ab、abc、abcd，因此得到 0,1,1,1,1,1,2,3,4,5。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_003",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "给定整数数组 nums，要求选择若干互不相邻的元素，使总和最大。状态转移为 dp[i]=max(dp[i-1],____)。空缺部分应填写什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "dp[i-1]+nums[i]"
+      },
+      {
+        "key": "B",
+        "text": "dp[i-2]+nums[i]"
+      },
+      {
+        "key": "C",
+        "text": "dp[i-2]+nums[i-1]"
+      },
+      {
+        "key": "D",
+        "text": "dp[i-1]+nums[i-1]"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "动态规划",
+      "数组",
+      "非相邻最大和"
+    ],
+    "explanation": "若不选择 nums[i]，答案为 dp[i-1]；若选择 nums[i]，则不能选择相邻的 nums[i-1]，答案为 dp[i-2]+nums[i]。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_004",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在 HTTP/1.1 缓存机制中，哪个响应头可以直接指定缓存资源失效的绝对日期和时间？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Expires"
+      },
+      {
+        "key": "B",
+        "text": "Cache-Control"
+      },
+      {
+        "key": "C",
+        "text": "Last-Modified"
+      },
+      {
+        "key": "D",
+        "text": "ETag"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络基础",
+      "HTTP缓存"
+    ],
+    "explanation": "Expires 使用绝对时间表示缓存过期时间。Cache-Control 可以通过 max-age 等指令控制相对有效期；Last-Modified 和 ETag 主要用于协商缓存。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_005",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "TCP 连接的主动关闭方处于 FIN_WAIT_1 状态时，表示什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "已经发送 FIN，正在等待对端对该 FIN 的 ACK"
+      },
+      {
+        "key": "B",
+        "text": "已经收到对端 FIN，正在等待应用程序关闭连接"
+      },
+      {
+        "key": "C",
+        "text": "已经发送最后一个 ACK，正在等待 2MSL"
+      },
+      {
+        "key": "D",
+        "text": "已经收到 ACK 和 FIN，正在等待本地应用读取数据"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络基础",
+      "TCP",
+      "连接关闭"
+    ],
+    "explanation": "主动关闭方发送 FIN 后进入 FIN_WAIT_1，等待对端确认该 FIN。收到 ACK 后通常进入 FIN_WAIT_2；若同时收到 FIN 和 ACK，则可能进入 TIME_WAIT。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_006",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在操作系统中，下列关于同步和互斥的说法中不正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "临界区是进程中访问临界资源的代码段"
+      },
+      {
+        "key": "B",
+        "text": "使用信号量实现互斥时，互斥信号量初值应设为 0"
+      },
+      {
+        "key": "C",
+        "text": "互斥关系来源于进程竞争独占资源"
+      },
+      {
+        "key": "D",
+        "text": "同步关系来源于进程协同工作时的相互等待和信息交换"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "操作系统",
+      "同步",
+      "互斥",
+      "信号量"
+    ],
+    "explanation": "互斥信号量初值通常设为 1，表示临界资源最初可用。进程执行 P 操作后信号量变为 0，其他进程必须等待。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_007",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在采用纯用户级线程、且内核只感知进程的传统实现中，下列叙述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "同一进程中的多个用户级线程通常不能在多个处理器上真正并行"
+      },
+      {
+        "key": "B",
+        "text": "内核调度单位是进程，而不是该进程内部的用户级线程"
+      },
+      {
+        "key": "C",
+        "text": "同一进程中通常最多只有一个用户级线程在处理器上执行"
+      },
+      {
+        "key": "D",
+        "text": "某个用户级线程执行阻塞系统调用时，只阻塞该线程，进程内其他用户级线程仍可由内核继续调度"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "操作系统",
+      "用户级线程",
+      "线程调度"
+    ],
+    "explanation": "纯用户级线程对内核不可见。一个线程执行阻塞系统调用时，内核会阻塞整个进程，因此进程内其他用户级线程也无法继续运行。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_008",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "朴素贝叶斯分类器对特征独立性的核心假设是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "所有特征在任何情况下都绝对独立"
+      },
+      {
+        "key": "B",
+        "text": "在给定类别标签的条件下，各特征彼此条件独立"
+      },
+      {
+        "key": "C",
+        "text": "特征之间只要相关性较弱即可视为严格独立"
+      },
+      {
+        "key": "D",
+        "text": "特征之间只要不存在线性关系即可"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "机器学习",
+      "朴素贝叶斯",
+      "条件独立"
+    ],
+    "explanation": "朴素贝叶斯假设在给定类别 y 的条件下，各特征相互独立，即 P(x1,...,xd|y)=∏P(xi|y)。它并不要求特征在无条件情况下完全独立。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_009",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "关于偏差和方差，下列结论错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "偏差刻画模型期望预测与真实目标之间的偏离，方差刻画数据扰动造成的预测变化"
+      },
+      {
+        "key": "B",
+        "text": "方差过高通常意味着模型对训练数据变化过于敏感，容易过拟合"
+      },
+      {
+        "key": "C",
+        "text": "Boosting 往往有助于降低偏差，Bagging 往往有助于降低方差"
+      },
+      {
+        "key": "D",
+        "text": "训练不足时通常由方差主导泛化误差，训练充分后通常由偏差主导"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "机器学习",
+      "偏差-方差分解",
+      "泛化能力"
+    ],
+    "explanation": "一般情况下，模型复杂度或训练程度不足时偏差较大；随着拟合能力增强，偏差下降而方差可能上升。D 将二者的典型主导关系说反了。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_010",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "下列关于常见机器学习算法的说法中，不正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "逻辑回归和支持向量机通常都使用交叉熵损失进行优化"
+      },
+      {
+        "key": "B",
+        "text": "决策树、朴素贝叶斯和逻辑回归都属于判别式模型"
+      },
+      {
+        "key": "C",
+        "text": "逻辑回归使用交叉熵或均方误差时，梯度都与 Sigmoid 导数无关"
+      },
+      {
+        "key": "D",
+        "text": "C4.5 和 CART 都可以处理连续型特征"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "机器学习",
+      "逻辑回归",
+      "SVM",
+      "决策树"
+    ],
+    "explanation": "SVM 常使用 Hinge 损失；朴素贝叶斯属于生成式模型；逻辑回归使用均方误差时梯度会包含 Sigmoid 导数。C4.5 和 CART 均可处理连续特征。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_011",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 ISODATA 与 K-Means 的区别，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "K-Means 通常需要预先指定簇数，而 ISODATA 可在迭代中调整簇数"
+      },
+      {
+        "key": "B",
+        "text": "ISODATA 每调整一个样本就必须立即重算全部簇均值"
+      },
+      {
+        "key": "C",
+        "text": "ISODATA 可依据评价准则自动合并或分裂类别"
+      },
+      {
+        "key": "D",
+        "text": "ISODATA 在一定程度上可以突破初始簇数限制"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "数据挖掘",
+      "聚类",
+      "K-Means",
+      "ISODATA"
+    ],
+    "explanation": "ISODATA 在 K-Means 基础上加入簇的合并和分裂机制，可以根据阈值和评价准则调整簇数。它并非每调整一个样本就重新计算全部均值。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_012",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "两个分类任务的输出层分别使用 Sigmoid 和 Softmax。它们最可能对应哪一组任务？",
+    "options": [
+      {
+        "key": "A",
+        "text": "手写数字识别；二元情感分析"
+      },
+      {
+        "key": "B",
+        "text": "二元情感分析；手写数字识别"
+      },
+      {
+        "key": "C",
+        "text": "手写数字识别；猫脸检测"
+      },
+      {
+        "key": "D",
+        "text": "猫脸识别；二元情感分析"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "深度学习",
+      "Sigmoid",
+      "Softmax",
+      "分类"
+    ],
+    "explanation": "Sigmoid 常用于二分类或多标签任务；Softmax 常用于互斥的多分类任务。二元情感分析对应 Sigmoid，0 至 9 手写数字识别对应 Softmax。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_013",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于循环神经网络及其变体，下列说法中不正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "RNN 和普通全连接深层网络都天然具有跨时间步共享权重的特点"
+      },
+      {
+        "key": "B",
+        "text": "只要加入 Batch Normalization，就可以有效解决 RNN 的长期依赖问题"
+      },
+      {
+        "key": "C",
+        "text": "GRU 比 LSTM 具有更丰富的门控结构"
+      },
+      {
+        "key": "D",
+        "text": "LSTM 和 GRU 可以完全避免长期依赖和梯度问题"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "RNN",
+      "LSTM",
+      "GRU"
+    ],
+    "explanation": "RNN 在时间步之间共享参数，普通全连接网络并不具备这一结构；BN 不能从根本上解决长期依赖；LSTM 的门控通常比 GRU 更丰富；二者只能缓解而不能完全消除长期依赖和梯度问题。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_014",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "一个三层卷积网络的输出通道数依次为 10、20、30，卷积核均为 3×3，输入为 RGB 图像。每层均含偏置，则总参数量是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "956160"
+      },
+      {
+        "key": "B",
+        "text": "7470"
+      },
+      {
+        "key": "C",
+        "text": "963840"
+      },
+      {
+        "key": "D",
+        "text": "7530"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "深度学习",
+      "卷积神经网络",
+      "参数量"
+    ],
+    "explanation": "第一层参数为 (3×3×3+1)×10=280；第二层为 (3×3×10+1)×20=1820；第三层为 (3×3×20+1)×30=5430。总计 7530。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_015",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "经典 ResNet 结构通常没有采用下列哪一种结构作为主要正则化组件？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Batch Normalization"
+      },
+      {
+        "key": "B",
+        "text": "Dropout"
+      },
+      {
+        "key": "C",
+        "text": "卷积层"
+      },
+      {
+        "key": "D",
+        "text": "全局平均池化"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "深度学习",
+      "ResNet",
+      "Dropout"
+    ],
+    "explanation": "经典 ResNet 广泛使用卷积层、Batch Normalization 和全局平均池化，通常不依赖 Dropout 作为主要正则化手段。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_016",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "以下哪种目标检测算法使用区域提议网络 RPN 生成候选区域，再对候选区域进行分类和边界框回归？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Faster R-CNN"
+      },
+      {
+        "key": "B",
+        "text": "YOLO"
+      },
+      {
+        "key": "C",
+        "text": "SSD"
+      },
+      {
+        "key": "D",
+        "text": "R-FCN"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "深度学习",
+      "目标检测",
+      "Faster R-CNN",
+      "RPN"
+    ],
+    "explanation": "Faster R-CNN 引入 Region Proposal Network，与检测网络共享卷积特征，用于生成候选目标区域。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_017",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于卷积神经网络中的特殊卷积操作，下列说法错误的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "空洞卷积通过增大卷积核参数规模来扩大感受野"
+      },
+      {
+        "key": "B",
+        "text": "1×1 卷积可以在每个空间位置上进行通道间线性组合，并保持高宽不变"
+      },
+      {
+        "key": "C",
+        "text": "普通多通道卷积会对各输入通道分别卷积，再按输出通道求和并加偏置"
+      },
+      {
+        "key": "D",
+        "text": "转置卷积是普通卷积的严格逆运算，并在 FCN 中主要用于下采样"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "卷积",
+      "空洞卷积",
+      "转置卷积"
+    ],
+    "explanation": "空洞卷积通过在卷积核采样点之间加入间隔扩大感受野，并不增加核参数量。转置卷积不是普通卷积的严格逆过程，通常用于上采样而非下采样。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_018",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "下列迁移学习方案中，可行的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "先使用源域数据训练，再使用目标域数据微调"
+      },
+      {
+        "key": "B",
+        "text": "先使用目标域数据训练，再使用源域数据微调，以提升目标域性能"
+      },
+      {
+        "key": "C",
+        "text": "当源域与目标域足够相似时，将源域训练模型直接应用到目标域"
+      },
+      {
+        "key": "D",
+        "text": "只使用目标域训练模型，然后直接称其为迁移到源域的标准方案"
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "knowledge_points": [
+      "机器学习",
+      "迁移学习",
+      "微调"
+    ],
+    "explanation": "典型迁移学习先从源域获得表示，再在目标域微调；当域差异较小时，也可直接迁移源域模型。B 和 D 的方向与提升目标域性能的常见迁移设置相反。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_019",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 One-Hot 编码和分布式词向量编码，下列说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "One-Hot 难以表达词之间的语义相似性"
+      },
+      {
+        "key": "B",
+        "text": "One-Hot 向量通常非常稀疏"
+      },
+      {
+        "key": "C",
+        "text": "在相同维度下，One-Hot 通常能表示比分布式编码更多的不同词语"
+      },
+      {
+        "key": "D",
+        "text": "One-Hot 构造简单，不需要像词向量那样通过模型训练获得"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "自然语言处理",
+      "One-Hot",
+      "词向量"
+    ],
+    "explanation": "d 维 One-Hot 最多直接表示 d 个类别，而 d 维稠密分布式向量可以容纳远多于 d 个词的不同表示，因此 C 错误。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_020",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 Batch Normalization，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "标准化步骤可写为 H_hat=(H-μ)/sqrt(σ²+ε)，之后通常再进行可学习的缩放和平移"
+      },
+      {
+        "key": "B",
+        "text": "BN 不仅可用于隐藏层，也可以用于输入特征的标准化处理"
+      },
+      {
+        "key": "C",
+        "text": "对于 φ(WX+b)，BN 更应固定应用于原始输入 X，而不能应用于 WX+b"
+      },
+      {
+        "key": "D",
+        "text": "标准 BN 可以不加修改地解决循环神经网络的全部时序归一化问题"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "Batch Normalization",
+      "归一化"
+    ],
+    "explanation": "BN 通常对线性变换后的激活进行标准化，并可用于输入或隐藏表示。C 过于绝对；标准 BN 在循环结构中的使用需要特殊处理，不能解决全部时序问题。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_021",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "语料库包含三句话：“今天 上 NLP 课程”“今天 的 课程 有 意思”“CV 课程 也 有 意思”。使用 TF-IDF，TF 取词频计数，IDF(t)=log(N/df(t))，不做其他归一化。第一句话中“今天”和“NLP”的 TF-IDF 分别是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "log(3)；log(3/2)"
+      },
+      {
+        "key": "B",
+        "text": "log(3/2)；log(3)"
+      },
+      {
+        "key": "C",
+        "text": "log(2)；log(3)"
+      },
+      {
+        "key": "D",
+        "text": "2/3；1/3"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "机器学习",
+      "自然语言处理",
+      "TF-IDF"
+    ],
+    "explanation": "语料库文档数 N=3。“今天”出现在 2 篇文档中，因此值为 1×log(3/2)；“NLP”只出现在 1 篇中，因此值为 1×log(3)。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_022",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于 AdaGrad 和 RMSProp，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "AdaGrad 在部分凸优化问题上表现良好，但累计平方梯度可能使非凸训练后期学习率过小"
+      },
+      {
+        "key": "B",
+        "text": "RMSProp 与 AdaGrad 完全相同，仍对历史平方梯度进行无衰减的无限累加"
+      },
+      {
+        "key": "C",
+        "text": "RMSProp 引入衰减系数 ρ 控制平方梯度指数移动平均的记忆长度"
+      },
+      {
+        "key": "D",
+        "text": "RMSProp 会降低较久远梯度历史的权重"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "AdaGrad",
+      "RMSProp",
+      "优化器"
+    ],
+    "explanation": "AdaGrad 累计全部历史平方梯度，学习率可能持续衰减。RMSProp 改用带衰减的指数移动平均，并通过 ρ 控制历史权重。",
+    "source": "用户提供的小红书算法类笔试题整理"
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_023",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "小红按顺序背诵单词。若她当前已经记住 i 个不同单词，则某个尚未记住的单词累计被背诵 i+1 次时，她会记住该单词。给定当天背单词的顺序，请设计算法计算最终记住的不同单词数量。",
+    "options": [],
+    "answer": "维护哈希表 count 记录每个尚未记住单词的出现次数，维护集合 learned 和整数 learnedCount。按顺序处理每个单词 w：若 w 已在 learned 中则无需改变；否则令 count[w]++。若 count[w] 等于 learnedCount+1，则把 w 加入 learned，并令 learnedCount++。最后输出 learnedCount。由于记住单词数只会增加，某个单词达到当时阈值时立即记住即可。设序列长度为 n，平均时间复杂度 O(n)，空间复杂度 O(U)，U 为不同单词数量。",
+    "knowledge_points": [
+      "哈希",
+      "模拟",
+      "字符串"
+    ],
+    "explanation": "阈值由当前已记住单词数量决定，因此需要按输入顺序在线模拟，并为每个未记住单词累计出现次数。",
+    "source": "用户提供的小红书算法类笔试题整理",
+    "grading_points": [
+      {
+        "point": "使用哈希表记录每个单词出现次数",
+        "score": 2
+      },
+      {
+        "point": "维护已记住单词集合或状态",
+        "score": 1
+      },
+      {
+        "point": "维护当前已记住数量 learnedCount",
+        "score": 1
+      },
+      {
+        "point": "只对尚未记住的单词累计次数",
+        "score": 2
+      },
+      {
+        "point": "达到 learnedCount+1 时立即记住并更新数量",
+        "score": 2
+      },
+      {
+        "point": "给出 O(n) 平均时间复杂度",
+        "score": 1
+      },
+      {
+        "point": "给出 O(U) 空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_024",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "字符串允许进行以下操作：w 可拆成 vv；m 可拆成 nn；b、d、p、q 可通过轴对称或翻转相互转换；n 与 u 可相互转换。每个操作可执行任意次。请设计一个算法判断给定字符串能否变成回文串。",
+    "options": [],
+    "answer": "先为每个字符建立有限替换集合 T(c)：普通字符只能替换为自身；b/d/p/q 可替换为该四字符中的任意一个；n/u 可替换为 n 或 u；w 可保留为 w 或替换为 vv；m 可保留为 m，或拆成两个字符且每个字符可为 n/u，即 nn、nu、un、uu。随后使用带记忆化的双端 DFS。状态可表示为 (l,r,L,R)：l、r 是尚未处理的原字符串区间，L 是从左端选定替换串后尚未匹配的后缀，R 是从右端选定替换串按反向读取后尚未匹配的后缀。若 L 为空，则枚举 T(s[l]) 填入 L 并令 l++；若 R 为空，则枚举 T(s[r]) 的反串填入 R 并令 r--；当 L、R 均非空时，比较首字符，相同则同时删除首字符继续，否则该分支失败。当 l>r 时，只需判断 L+reverse(R) 是否为回文。替换串长度至多 2、种类为常数，记忆化后状态数为 O(n²) 量级，空间复杂度 O(n²)。",
+    "knowledge_points": [
+      "字符串",
+      "动态规划",
+      "双指针",
+      "状态搜索"
+    ],
+    "explanation": "拆分会改变字符串长度，不能只逐字符比较。把每个字符可能产生的短字符串列出，再从两端逐步匹配，并把少量未匹配字符纳入状态，可以避免指数枚举所有结果。",
+    "source": "用户提供的小红书算法类笔试题整理",
+    "grading_points": [
+      {
+        "point": "正确建立普通字符及 b/d/p/q、n/u 的替换集合",
+        "score": 2
+      },
+      {
+        "point": "处理 w→vv 与 m→nn 后 n/u 可变换的情况",
+        "score": 2
+      },
+      {
+        "point": "提出从字符串两端同时匹配",
+        "score": 1
+      },
+      {
+        "point": "状态中保存左右位置及短的未匹配残余串",
+        "score": 2
+      },
+      {
+        "point": "字符不匹配时剪枝，相同时继续",
+        "score": 1
+      },
+      {
+        "point": "使用记忆化避免重复状态",
+        "score": 1
+      },
+      {
+        "point": "给出多项式复杂度分析",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "xiaohongshu_algorithm_025",
+    "company": "xiaohongshu",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "有 n 个景点和 m 条无向旅游路线。景点 i 的攻略价值为 a_i、浏览时间为 h_i，路线 (u,v) 的交通时间为 w。小红最多选择 3 个互不相同且按路线相邻的景点，按顺序组成长度为 1、2 或 3 的路径；浏览时间与相邻景点交通时间总和不能超过 k。请设计算法求最大总价值。",
+    "options": [],
+    "answer": "使用邻接表存图，并枚举路径长度。长度 1：枚举每个景点 i，若 h_i≤k，用 a_i 更新答案。长度 2：枚举每条边 (u,v,w)，若 h_u+w+h_v≤k，用 a_u+a_v 更新。长度 3：枚举每个景点 v 作为中间点，再枚举 v 的两个不同邻居 u、t，对应边权为 w_uv、w_vt；若 u、v、t 互不相同且 h_u+w_uv+h_v+w_vt+h_t≤k，则用 a_u+a_v+a_t 更新答案。总时间复杂度为 O(n+m+Σ_v deg(v)²)，最坏情况下为 O(n³)，空间复杂度 O(n+m)。若图规模很大，可针对每个中间点按时间约束筛选邻居并维护高价值候选以进一步优化。",
+    "knowledge_points": [
+      "图",
+      "枚举",
+      "排序",
+      "路径"
+    ],
+    "explanation": "由于最多只选择 3 个景点，可以直接分别枚举单点、单边和以某点为中心的两条相邻边，无需使用一般最长路算法。",
+    "source": "用户提供的小红书算法类笔试题整理",
+    "grading_points": [
+      {
+        "point": "使用邻接表存储图",
+        "score": 1
+      },
+      {
+        "point": "枚举长度为 1 的方案",
+        "score": 1
+      },
+      {
+        "point": "枚举每条边得到长度为 2 的方案",
+        "score": 2
+      },
+      {
+        "point": "枚举中间点及两个不同邻居得到长度为 3 的方案",
+        "score": 3
+      },
+      {
+        "point": "正确计算浏览时间和交通时间总和",
+        "score": 1
+      },
+      {
+        "point": "正确更新最大价值",
+        "score": 1
+      },
+      {
+        "point": "给出 O(n+m+Σdeg²) 等合理复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  }
+]

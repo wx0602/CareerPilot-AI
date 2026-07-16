@@ -1,0 +1,798 @@
+[
+  {
+    "question_id": "xiaohongshu_frontend_001",
+    "question_type": "single_choice",
+    "content": "设有一个栈，元素按 5、3、7、3、9、3 的顺序入栈，入栈和出栈可以交替进行。下列哪个序列不可能是其出栈序列？",
+    "options": [
+      {
+        "key": "A",
+        "text": "3、5、3、7、3、9"
+      },
+      {
+        "key": "B",
+        "text": "3、7、3、5、9、3"
+      },
+      {
+        "key": "C",
+        "text": "3、9、5、7、3、3"
+      },
+      {
+        "key": "D",
+        "text": "7、3、5、3、9、3"
+      }
+    ],
+    "answer": "C",
+    "explanation": "根据后进先出规则逐项模拟，C 中在输出第二个 3 和 9 之后，剩余元素的栈顶次序无法继续得到 5、7、3、3，因此该序列不可能。",
+    "knowledge_points": [
+      "栈",
+      "出栈序列",
+      "模拟"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_002",
+    "question_type": "single_choice",
+    "content": "已知有序表 {3,6,9,12,15,18,21,24,27,30,33,35}，使用二分查找寻找 31，且 mid=(low+high)/2 向下取整。查找失败前共比较多少次？",
+    "options": [
+      {
+        "key": "A",
+        "text": "3"
+      },
+      {
+        "key": "B",
+        "text": "4"
+      },
+      {
+        "key": "C",
+        "text": "5"
+      },
+      {
+        "key": "D",
+        "text": "6"
+      }
+    ],
+    "answer": "B",
+    "explanation": "比较过程依次访问 18、27、33、30，共比较 4 次，随后 low>high，查找失败。",
+    "knowledge_points": [
+      "查找",
+      "二分查找"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_003",
+    "question_type": "single_choice",
+    "content": "0-1 背包容量为 8，有四件物品，其（重量，价值）分别为（2,3）、（3,4）、（4,5）、（5,6），每件最多选择一次。能够获得的最大价值是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "4"
+      },
+      {
+        "key": "B",
+        "text": "6"
+      },
+      {
+        "key": "C",
+        "text": "8"
+      },
+      {
+        "key": "D",
+        "text": "10"
+      }
+    ],
+    "answer": "D",
+    "explanation": "选择重量为 3、价值为 4 和重量为 5、价值为 6 的两件物品，总重量为 8，总价值为 10。",
+    "knowledge_points": [
+      "动态规划",
+      "0-1背包"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_004",
+    "question_type": "single_choice",
+    "content": "使用 KMP 算法在主串“abaabaabcabaabc”中搜索模式串“abaabc”，直到第一次匹配成功为止，单个字符之间共比较多少次？",
+    "options": [
+      {
+        "key": "A",
+        "text": "8"
+      },
+      {
+        "key": "B",
+        "text": "10"
+      },
+      {
+        "key": "C",
+        "text": "12"
+      },
+      {
+        "key": "D",
+        "text": "14"
+      }
+    ],
+    "answer": "B",
+    "explanation": "按照模式串的 next 信息进行匹配和回退，从主串开头到首次完整匹配成功，共发生 10 次字符比较。",
+    "knowledge_points": [
+      "字符串",
+      "KMP",
+      "查找"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_005",
+    "question_type": "single_choice",
+    "content": "用户访问一个包含 HTML 文档和 3 张 GIF 图片的页面，所有资源都来自同一服务器。使用基于 TCP 的 HTTP/2 时，通常需要建立多少次 UDP 连接和多少次 TCP 连接？",
+    "options": [
+      {
+        "key": "A",
+        "text": "0 次 UDP，1 次 TCP"
+      },
+      {
+        "key": "B",
+        "text": "1 次 UDP，3 次 TCP"
+      },
+      {
+        "key": "C",
+        "text": "0 次 UDP，2 次 TCP"
+      },
+      {
+        "key": "D",
+        "text": "1 次 UDP，2 次 TCP"
+      }
+    ],
+    "answer": "A",
+    "explanation": "HTTP/2 可在一条 TCP 连接上多路复用同源资源请求，因此通常需要 0 条 UDP 连接和 1 条 TCP 连接。",
+    "knowledge_points": [
+      "网络基础",
+      "HTTP/2",
+      "TCP"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_006",
+    "question_type": "single_choice",
+    "content": "下列哪一项不是 HTTPS 相比 HTTP 的劣势？",
+    "options": [
+      {
+        "key": "A",
+        "text": "存在加密计算开销和证书配置复杂性"
+      },
+      {
+        "key": "B",
+        "text": "在相同条件下可能增加握手和加密开销"
+      },
+      {
+        "key": "C",
+        "text": "必须对传输数据进行压缩"
+      },
+      {
+        "key": "D",
+        "text": "可能增加服务器计算负载"
+      }
+    ],
+    "answer": "C",
+    "explanation": "HTTPS 并不强制要求压缩传输数据。加密计算、证书管理和握手可能带来额外开销。",
+    "knowledge_points": [
+      "网络基础",
+      "HTTPS",
+      "TLS"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_007",
+    "question_type": "single_choice",
+    "content": "某系统使用二进制信号量作为临界区互斥锁。为了确保任意时刻最多只有一个进程进入临界区，信号量初值应设置为多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "0"
+      },
+      {
+        "key": "B",
+        "text": "1"
+      },
+      {
+        "key": "C",
+        "text": "49"
+      },
+      {
+        "key": "D",
+        "text": "50"
+      }
+    ],
+    "answer": "B",
+    "explanation": "互斥信号量初值应为 1。首个进程获取后值变为 0，其他进程需要等待。",
+    "knowledge_points": [
+      "操作系统",
+      "信号量",
+      "进程同步"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_008",
+    "question_type": "single_choice",
+    "content": "P、V 操作所使用的信号量 S 初值为 4，当前值为 -1。按照负值绝对值表示等待进程数的常见定义，此时有多少个进程正在等待？",
+    "options": [
+      {
+        "key": "A",
+        "text": "1 个"
+      },
+      {
+        "key": "B",
+        "text": "2 个"
+      },
+      {
+        "key": "C",
+        "text": "3 个"
+      },
+      {
+        "key": "D",
+        "text": "5 个"
+      }
+    ],
+    "answer": "A",
+    "explanation": "信号量为负时，其绝对值通常表示等待队列中的进程数，因此 S=-1 表示有 1 个进程等待。",
+    "knowledge_points": [
+      "操作系统",
+      "信号量"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_009",
+    "question_type": "single_choice",
+    "content": "需要查询 university 重复出现时 id 最大的那条 user_profile 记录。某方案先找出重复大学及其最大 id，再与原表连接。以下哪种最终连接方式会把原表的全部记录保留下来，从而不符合要求？",
+    "options": [
+      {
+        "key": "A",
+        "text": "LEFT JOIN user_profile t4 ON t3.id=t4.id"
+      },
+      {
+        "key": "B",
+        "text": "INNER JOIN user_profile t4 ON t3.id=t4.id"
+      },
+      {
+        "key": "C",
+        "text": "RIGHT JOIN user_profile t4 ON t3.id=t4.id"
+      },
+      {
+        "key": "D",
+        "text": "在前一层使用 LEFT JOIN 后，再 LEFT JOIN 原表"
+      }
+    ],
+    "answer": "C",
+    "explanation": "RIGHT JOIN 会以右侧的 user_profile 为保留表，从而返回原表全部记录，而不是仅返回重复大学对应的最大 id 记录。",
+    "knowledge_points": [
+      "SQL",
+      "JOIN",
+      "分组聚合"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_010",
+    "question_type": "single_choice",
+    "content": "PRODUCT 表包含商品名称 name 和价格 price。希望查询“存在另一件不同名称但价格相同的商品”的商品名称和价格，并对结果去重。下列自连接写法正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SELECT P1.name,P1.price，并使用 P1.name != P2.name"
+      },
+      {
+        "key": "B",
+        "text": "SELECT P1.name,P1.price，并使用 P1.name == P2.name"
+      },
+      {
+        "key": "C",
+        "text": "SELECT P1.name,P1.price，并使用 P1.name <> P2.name"
+      },
+      {
+        "key": "D",
+        "text": "SELECT DISTINCT P1.name,P1.price，并使用 P1.name <> P2.name"
+      }
+    ],
+    "answer": "D",
+    "explanation": "应使用 P1.price=P2.price 且 P1.name<>P2.name，并使用 DISTINCT 消除一个商品匹配多个同价商品造成的重复行。",
+    "knowledge_points": [
+      "SQL",
+      "自连接",
+      "DISTINCT"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_011",
+    "question_type": "single_choice",
+    "content": "以下 JavaScript 代码最终输出什么？ let count=0; class Parent { constructor(){ count++; } } class Child extends Parent {} new Child(); new Child(); console.log(count);",
+    "options": [
+      {
+        "key": "A",
+        "text": "报错"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      },
+      {
+        "key": "C",
+        "text": "1"
+      },
+      {
+        "key": "D",
+        "text": "0"
+      }
+    ],
+    "answer": "B",
+    "explanation": "子类未显式定义 constructor 时会生成默认构造函数并调用 super。实例化两次会调用两次父类构造函数，因此输出 2。",
+    "knowledge_points": [
+      "JavaScript",
+      "class",
+      "继承"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_012",
+    "question_type": "single_choice",
+    "content": "执行以下 JavaScript 代码，输出顺序是什么？ const arr=[117]; arr.ops=935; arr.__proto__.func=130; for (let item in arr) { if (item===0) { console.log(undefined); break; } console.log(arr[item]); } for (let item of arr) console.log(item);",
+    "options": [
+      {
+        "key": "A",
+        "text": "117、935、130、117、935、130"
+      },
+      {
+        "key": "B",
+        "text": "117、117"
+      },
+      {
+        "key": "C",
+        "text": "117、935、130、117"
+      },
+      {
+        "key": "D",
+        "text": "undefined、117"
+      }
+    ],
+    "answer": "C",
+    "explanation": "for...in 的键是字符串，item===0 不成立，并会遍历可枚举的索引、自定义属性和原型属性；for...of 只读取数组元素值。因此输出 117、935、130、117。",
+    "knowledge_points": [
+      "JavaScript",
+      "for...in",
+      "for...of",
+      "原型链"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_013",
+    "question_type": "single_choice",
+    "content": "以下使用 async/await 的 JavaScript 代码输出顺序是什么？ async function getData(){ console.log('Start'); const data=await fetchData(); console.log(data); console.log('End'); } getData(); 其中 fetchData() 在约 2 秒后兑现为“Data loaded”。",
+    "options": [
+      {
+        "key": "A",
+        "text": "Start、Data loaded、End"
+      },
+      {
+        "key": "B",
+        "text": "Start、End、Data loaded"
+      },
+      {
+        "key": "C",
+        "text": "Data loaded、Start、End"
+      },
+      {
+        "key": "D",
+        "text": "End、Start、Data loaded"
+      }
+    ],
+    "answer": "A",
+    "explanation": "先同步输出 Start；await 等待 Promise 兑现后继续执行，随后输出 Data loaded 和 End。",
+    "knowledge_points": [
+      "JavaScript",
+      "async/await",
+      "Promise"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_014",
+    "question_type": "multiple_choice",
+    "content": "关于 window.open()，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "同源时可以通过返回的 WindowProxy 访问新窗口内容，跨源访问受同源策略限制"
+      },
+      {
+        "key": "B",
+        "text": "调用后远程 URL 的导航和加载通常异步进行"
+      },
+      {
+        "key": "C",
+        "text": "指定的窗口名已存在且不为 _blank 时一定会新建窗口"
+      },
+      {
+        "key": "D",
+        "text": "URL 参数可以为空，此时通常先打开 about:blank"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": "跨源窗口受同源策略限制；页面加载是异步的；已有命名窗口通常被复用；URL 可以为空。",
+    "knowledge_points": [
+      "JavaScript",
+      "window.open",
+      "同源策略"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_015",
+    "question_type": "multiple_choice",
+    "content": "按钮位于 div 内部，二者都注册了 click 事件。希望单击按钮时只输出 btn，不触发 div 的冒泡阶段处理函数。下列做法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "在按钮处理函数中调用 e.stopPropagation()"
+      },
+      {
+        "key": "B",
+        "text": "在按钮处理函数中设置 e.cancelBubble=true"
+      },
+      {
+        "key": "C",
+        "text": "只在 div 的处理函数中调用 e.stopPropagation()"
+      },
+      {
+        "key": "D",
+        "text": "在按钮处理函数中调用 e.cancelBubble()"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "stopPropagation() 和将 cancelBubble 设置为 true 都能阻止继续冒泡。cancelBubble 是属性，不是函数。",
+    "knowledge_points": [
+      "JavaScript",
+      "DOM事件",
+      "事件冒泡"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_016",
+    "question_type": "single_choice",
+    "content": "响应式布局中，当页面尺寸满足某个媒体查询条件时，希望元素完全隐藏并且不再占据布局空间，应使用哪个 CSS 声明？",
+    "options": [
+      {
+        "key": "A",
+        "text": "display:none"
+      },
+      {
+        "key": "B",
+        "text": "visibility:hidden"
+      },
+      {
+        "key": "C",
+        "text": "opacity:0"
+      },
+      {
+        "key": "D",
+        "text": "float:none"
+      }
+    ],
+    "answer": "A",
+    "explanation": "display:none 会使元素不参与布局；visibility:hidden 和 opacity:0 通常仍保留布局空间。",
+    "knowledge_points": [
+      "CSS",
+      "响应式布局",
+      "display"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_017",
+    "question_type": "single_choice",
+    "content": "某 600px×600px 的 CSS Grid 使用 3 行 3 列，每格 200px×200px，grid-template-areas 为： \"a a a\" \". b b\" \"c b b\" 前 3 个 div 分别占 a、b、c，第 4 个 div 自动放入剩余空格。下列描述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "内容为 2 的 div 占据面积最大"
+      },
+      {
+        "key": "B",
+        "text": "内容为 4 的 div 是 200px×200px 的正方形"
+      },
+      {
+        "key": "C",
+        "text": "内容为 3 的 div 面积比内容为 4 的 div 小"
+      },
+      {
+        "key": "D",
+        "text": "内容为 1 的 div 水平方向长度最长"
+      }
+    ],
+    "answer": "C",
+    "explanation": "b 占 4 格，a 横跨 3 列，c 和自动放置的第 4 个 div 都只占 1 格，因此二者面积相同，C 错误。",
+    "knowledge_points": [
+      "CSS",
+      "Grid布局",
+      "grid-template-areas"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_018",
+    "question_type": "multiple_choice",
+    "content": "关于 HTML 语义化，下列描述正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "根据内容含义选择恰当标签，而不只是为了样式选标签"
+      },
+      {
+        "key": "B",
+        "text": "有助于屏幕阅读器等辅助技术理解页面结构"
+      },
+      {
+        "key": "C",
+        "text": "对搜索引擎理解网页内容完全没有帮助"
+      },
+      {
+        "key": "D",
+        "text": "代码通常更容易阅读、维护和修改"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": "语义化有助于表达内容含义、提升可访问性、帮助搜索引擎理解并改善维护性。",
+    "knowledge_points": [
+      "HTML",
+      "语义化",
+      "可访问性"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_019",
+    "question_type": "multiple_choice",
+    "content": "容器宽 100px、高 200px，设置 display:flex、flex-wrap:wrap、align-content:space-between；内部有 3 个宽高均为 40px 的 item。下列描述正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "第一行放两个 item，第三个换到第二行；两行分别靠近容器顶部和底部"
+      },
+      {
+        "key": "B",
+        "text": "三个 item 会全部排列在同一行"
+      },
+      {
+        "key": "C",
+        "text": "去掉 display:flex 后，三个块级 item 按普通文档流纵向排列"
+      },
+      {
+        "key": "D",
+        "text": "去掉 align-content:space-between 后，默认 stretch 会分配两个 flex 行的交叉轴空间，但固定高度 item 仍保持 40px"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": "容器一行最多放两个 item，第三个换行。space-between 将两行推向两端；去掉 flex 后块级元素纵排；默认 stretch 拉伸行盒，不改变已明确指定的 item 高度。",
+    "knowledge_points": [
+      "CSS",
+      "Flexbox",
+      "flex-wrap",
+      "align-content"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_020",
+    "question_type": "multiple_choice",
+    "content": "元素设置 width:200px、height:150px、padding:20px、border:2px solid、margin:10px，并设置 box-sizing:border-box。下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "offsetWidth 为 200px，offsetHeight 为 150px，包含内容、内边距和边框"
+      },
+      {
+        "key": "B",
+        "text": "offsetWidth 为 244px，offsetHeight 为 184px"
+      },
+      {
+        "key": "C",
+        "text": "offsetWidth 和 offsetHeight 会包含外边距 margin"
+      },
+      {
+        "key": "D",
+        "text": "去掉 box-sizing 后采用 content-box，offsetWidth 为 244px，offsetHeight 为 194px"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "explanation": "border-box 下声明宽高已包含 padding 与 border，且 offsetWidth/offsetHeight 不含 margin。content-box 下分别为 200+40+4=244 和 150+40+4=194。",
+    "knowledge_points": [
+      "CSS",
+      "盒模型",
+      "box-sizing",
+      "offsetWidth"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_021",
+    "question_type": "short_answer",
+    "content": "给定一个长度为 7、仅由 '0' 和 '1' 组成的字符串，第 i 个字符为 '1' 表示小红在一周第 i 天发布过笔记，'0' 表示未发布。请统计发布过笔记的天数，并分析复杂度。",
+    "options": [],
+    "answer": "遍历字符串并统计字符 '1' 的数量。初始化 count=0，每遇到 '1' 就令 count++，遍历结束后输出 count。时间复杂度 O(n)，此处 n=7；额外空间复杂度 O(1)。",
+    "explanation": "只需要统计打卡字符串中字符 '1' 的数量。",
+    "knowledge_points": [
+      "字符串",
+      "模拟",
+      "计数"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "easy",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_022",
+    "question_type": "short_answer",
+    "content": "敌方共有 n 个随从，按从左到右排列。两次致命射击会先后等概率随机消灭两个不同随从。请计算两次射击恰好消灭最左边和最右边随从的概率。假设 n≥2。",
+    "options": [],
+    "answer": "两次射击的有序结果总数为 n(n-1)。有利结果有两种：先左后右，或先右后左。因此概率为 2/[n(n-1)]，等价于 1/C(n,2)。",
+    "explanation": "两次射击有先后顺序，所以按有序对计算样本空间。",
+    "knowledge_points": [
+      "概率论",
+      "排列组合",
+      "基础数学"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_frontend_023",
+    "question_type": "short_answer",
+    "content": "给定若干商品，每件商品包含一组关键词；另给出用户近期搜索关键词。按照商品包含的搜索关键词数量从高到低排序，数量相同的商品保持输入顺序。请设计算法并分析复杂度。",
+    "options": [],
+    "answer": "将用户搜索关键词存入哈希集合。遍历每件商品，对商品关键词去重后统计与搜索集合的交集大小，记录 score 和原始下标 index。使用稳定排序按 score 降序排列，或按 (-score,index) 排序。设所有商品关键词总数为 M、商品数为 n，统计平均 O(M)，排序 O(n log n)，空间 O(S+n)，S 为搜索关键词数。",
+    "explanation": "核心是计算关键词集合交集大小，并使用稳定排序保留同分商品的输入顺序。",
+    "knowledge_points": [
+      "哈希",
+      "排序",
+      "推荐算法",
+      "稳定排序"
+    ],
+    "company": "xiaohongshu",
+    "position": "frontend",
+    "difficulty": "medium",
+    "source": "用户提供的小红书前端类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  }
+]

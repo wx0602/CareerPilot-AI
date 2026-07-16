@@ -14,6 +14,79 @@ DEFAULT_MIX = {
 }
 
 
+class RecordingQuestionBank:
+    def __init__(self, questions):
+        self.questions = questions
+        self.calls = []
+
+    def search_questions(self, query, **kwargs):
+        self.calls.append({"query": query, **kwargs})
+        return {"questions": self.questions}
+
+
+def test_company_exam_search_is_limited_to_company_and_position():
+    bank = RecordingQuestionBank(
+        [
+            {
+                "question_id": "alibaba-engineering-1",
+                "question_type": "single_choice",
+                "content": "示例题目",
+                "options": [{"key": "A", "text": "选项 A"}],
+                "correct_answer": "A",
+                "difficulty": "medium",
+            }
+        ]
+    )
+    provider = object.__new__(RealAIProvider)
+    provider.knowledge = bank
+
+    selected = provider._search_question_bank(
+        {
+            "company": "alibaba",
+            "position": "engineering",
+            "difficulty": "medium",
+            "learning_module": "company_exam",
+            "learning_module_title": "研发岗",
+            "question_mix": {
+                "single_choice": 1,
+                "multiple_choice": 0,
+                "true_false": 0,
+                "short_answer": 0,
+            },
+        }
+    )
+
+    assert [item["question_id"] for item in selected] == ["alibaba-engineering-1"]
+    assert len(bank.calls) == 2
+    assert all(call["company"] == "alibaba" for call in bank.calls)
+    assert all(call["position"] == "engineering" for call in bank.calls)
+
+
+def test_company_exam_does_not_fall_back_to_the_global_bank():
+    bank = RecordingQuestionBank([])
+    provider = object.__new__(RealAIProvider)
+    provider.knowledge = bank
+
+    try:
+        provider._search_question_bank(
+            {
+                "company": "alibaba",
+                "position": "algorithm",
+                "difficulty": "medium",
+                "learning_module": "company_exam",
+                "learning_module_title": "算法岗",
+                "question_mix": {"single_choice": 1},
+            }
+        )
+    except ValueError as exc:
+        assert "算法岗暂无可用题目" in str(exc)
+    else:
+        raise AssertionError("企业岗位题库为空时不应回退到全局题库")
+
+    assert len(bank.calls) == 2
+    assert all(call["company"] == "alibaba" for call in bank.calls)
+
+
 def test_real_question_shuffle_varies_between_draws():
     questions = [{"question_id": f"q-{index}"} for index in range(10)]
     draws = {
