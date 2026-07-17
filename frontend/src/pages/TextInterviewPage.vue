@@ -1,17 +1,28 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import AppIcon from '../components/AppIcon.vue';
 import BrandLogo from '../components/BrandLogo.vue';
 import { api, getSession } from '../api/client';
 
 const router = useRouter();
+const messageListRef = ref(null);
 const text = ref('');
 const messages = ref([]);
 const currentQuestion = ref(null);
 const loading = ref(false);
+const streaming = ref(false);
 const error = ref('');
 const session = ref(null);
+let streamVersion = 0;
+
+const STREAM_INTERVAL = 32;
+
+function streamDelay(character) {
+  if (/[。！？!?]/.test(character)) return 140;
+  if (/[，、；：,;:]/.test(character)) return 70;
+  return STREAM_INTERVAL;
+}
 
 const interviewTitle = computed(
   () => session.value?.learning_module_title || session.value?.position || '模拟面试'
@@ -22,6 +33,38 @@ onMounted(async () => {
   await loadFirstQuestion();
 });
 
+onBeforeUnmount(() => {
+  streamVersion += 1;
+});
+
+function wait(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function scrollToLatest() {
+  await nextTick();
+  if (messageListRef.value) {
+    messageListRef.value.scrollTop = messageListRef.value.scrollHeight;
+  }
+}
+
+async function streamAiMessage(content) {
+  const version = ++streamVersion;
+  const message = reactive({ role: 'ai', text: '', streaming: true });
+  messages.value.push(message);
+  streaming.value = true;
+
+  for (const character of Array.from(content || '')) {
+    if (version !== streamVersion) return;
+    message.text += character;
+    await scrollToLatest();
+    await wait(streamDelay(character));
+  }
+
+  message.streaming = false;
+  streaming.value = false;
+}
+
 async function loadFirstQuestion() {
   if (!session.value) {
     router.push('/dashboard');
@@ -31,7 +74,7 @@ async function loadFirstQuestion() {
   try {
     const data = await api.interviewMessage({ session_id: session.value.session_id });
     currentQuestion.value = data.next_question;
-    messages.value.push({ role: 'ai', text: data.next_question.question });
+    await streamAiMessage(data.next_question.question);
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -43,6 +86,7 @@ async function send() {
   if (!session.value || !currentQuestion.value || !text.value.trim()) return;
   const answer = text.value.trim();
   messages.value.push({ role: 'user', text: answer });
+  scrollToLatest();
   text.value = '';
   loading.value = true;
   error.value = '';
@@ -55,13 +99,12 @@ async function send() {
     if (data.evaluation) {
       const strengths = data.evaluation.strengths.join('、') || '暂无';
       const weaknesses = data.evaluation.weaknesses.join('、') || '暂无';
-      messages.value.push({
-        role: 'ai',
-        text: `本轮评分 ${data.evaluation.score} 分。优点：${strengths}。不足：${weaknesses}。`
-      });
+      await streamAiMessage(
+        `本轮评分 ${data.evaluation.score} 分。优点：${strengths}。不足：${weaknesses}。`
+      );
     }
     currentQuestion.value = data.next_question;
-    messages.value.push({ role: 'ai', text: data.next_question.question });
+    await streamAiMessage(data.next_question.question);
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -112,16 +155,16 @@ async function finishInterview() {
       </aside>
 
       <section class="chat-panel">
-        <div class="messages">
+        <div ref="messageListRef" class="messages">
           <article v-for="(message, i) in messages" :key="i" :class="['message', message.role]">
             <div class="message-avatar">{{ message.role === 'ai' ? 'AI' : '我' }}</div>
             <div>
               <b>{{ message.role === 'ai' ? '面试官（AI）' : '我' }}</b>
-              <p>{{ message.text }}</p>
+              <p :class="{ streaming: message.streaming }">{{ message.text }}</p>
               <time>{{ message.time || '现在' }}</time>
             </div>
           </article>
-          <div v-if="loading" class="typing"><i></i><i></i><i></i></div>
+          <div v-if="loading && !streaming" class="typing"><i></i><i></i><i></i></div>
         </div>
 
         <form class="chat-composer" @submit.prevent="send">
@@ -136,3 +179,20 @@ async function finishInterview() {
     </div>
   </main>
 </template>
+
+<style scoped>
+.message p.streaming::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -2px;
+  background: currentColor;
+  animation: stream-cursor .65s steps(1) infinite;
+}
+
+@keyframes stream-cursor {
+  50% { opacity: 0; }
+}
+</style>
