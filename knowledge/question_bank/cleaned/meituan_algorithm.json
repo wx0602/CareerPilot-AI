@@ -1,0 +1,379 @@
+[
+  {
+    "question_id": "meituan_algorithm_001",
+    "question_type": "single_choice",
+    "content": "某二叉树共有 399 个结点，其中有 199 个度为 2 的结点，则该二叉树中的叶子结点数为多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "不存在这样的二叉树"
+      },
+      {
+        "key": "B",
+        "text": "200"
+      },
+      {
+        "key": "C",
+        "text": "198"
+      },
+      {
+        "key": "D",
+        "text": "199"
+      }
+    ],
+    "answer": "B",
+    "explanation": "对任意非空二叉树，度为 0 的结点数 n0 与度为 2 的结点数 n2 满足 n0=n2+1。已知 n2=199，因此叶子结点数 n0=200，选择 B。",
+    "knowledge_points": [
+      "树",
+      "二叉树性质"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_002",
+    "question_type": "single_choice",
+    "content": "对于下列关键字序列，哪一项不可能构成某棵二叉排序树中的一条查找路径？",
+    "options": [
+      {
+        "key": "A",
+        "text": "90，17，83，24，85，71"
+      },
+      {
+        "key": "B",
+        "text": "90，18，89，32，86，33"
+      },
+      {
+        "key": "C",
+        "text": "19，87，75，27，34，36"
+      },
+      {
+        "key": "D",
+        "text": "10，23，69，66，31，32"
+      }
+    ],
+    "answer": "A",
+    "explanation": "查找路径会不断缩小目标值可能所在的区间。A 中从 90 到 17 表示目标小于 90，从 17 到 83 表示目标大于 17；随后从 83 到 24 表示目标小于 83，因此后续结点都必须落在 (17,83) 内，但下一结点 85 超出了该区间，所以不可能。",
+    "knowledge_points": [
+      "树",
+      "查找",
+      "二叉排序树"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_003",
+    "question_type": "single_choice",
+    "content": "下列哪一个函数是 ReLU 激活函数？",
+    "options": [
+      {
+        "key": "A",
+        "text": "f(x)=x²"
+      },
+      {
+        "key": "B",
+        "text": "f(x)=tanh(x)"
+      },
+      {
+        "key": "C",
+        "text": "f(x)=max(0,x)"
+      },
+      {
+        "key": "D",
+        "text": "f(x)=1/(1+e^(-x))"
+      }
+    ],
+    "answer": "C",
+    "explanation": "ReLU 的定义是 f(x)=max(0,x)：当 x<0 时输出 0，当 x≥0 时输出 x，因此选择 C。原题依赖缺失图片，现已改写为等价且可直接判题的函数识别题。",
+    "knowledge_points": [
+      "机器学习",
+      "深度学习",
+      "激活函数",
+      "ReLU"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_004",
+    "question_type": "single_choice",
+    "content": "以下机器学习模型中，在数据预处理时通常最不需要考虑特征归一化的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Logistic 回归"
+      },
+      {
+        "key": "B",
+        "text": "支持向量机 SVM"
+      },
+      {
+        "key": "C",
+        "text": "决策树模型"
+      },
+      {
+        "key": "D",
+        "text": "神经网络"
+      }
+    ],
+    "answer": "C",
+    "explanation": "决策树按照特征阈值进行划分，单调缩放特征通常不会改变样本的相对顺序和可选切分，因此对归一化不敏感。Logistic 回归、SVM 和神经网络通常会受到特征尺度影响。",
+    "knowledge_points": [
+      "机器学习",
+      "数据预处理",
+      "特征归一化",
+      "决策树"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_005",
+    "question_type": "single_choice",
+    "content": "Adam 是深度学习中常用的自适应学习率优化算法。下列关于 Adam 的说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Adam 属于基于随机梯度的一阶优化算法"
+      },
+      {
+        "key": "B",
+        "text": "Adam 在所有深度学习任务中都一定优于 SGD、AdaGrad 和 RMSProp"
+      },
+      {
+        "key": "C",
+        "text": "Adam 的设计考虑了动量思想"
+      },
+      {
+        "key": "D",
+        "text": "Adam 综合了动量法与 RMSProp 的部分思想"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Adam 结合了一阶矩估计和二阶矩估计，通常收敛较快，但不存在对所有任务都必然优于其他优化器的保证。在部分视觉分类等任务中，经过良好调参的 SGD 可能有更好的泛化表现，因此 B 错误。",
+    "knowledge_points": [
+      "深度学习",
+      "优化算法",
+      "Adam",
+      "SGD"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_006",
+    "question_type": "single_choice",
+    "content": "下列哪些方法通常有助于缓解深度学习模型的过拟合？①增加训练数据；②使用数据增强；③使用集成学习；④使用正则化技术；⑤降低模型架构复杂度。",
+    "options": [
+      {
+        "key": "A",
+        "text": "①④⑤"
+      },
+      {
+        "key": "B",
+        "text": "①②③"
+      },
+      {
+        "key": "C",
+        "text": "①③④⑤"
+      },
+      {
+        "key": "D",
+        "text": "①②③④⑤都有帮助"
+      }
+    ],
+    "answer": "D",
+    "explanation": "更多数据和数据增强可以扩大有效样本分布；集成学习可降低方差；正则化可约束模型；降低模型复杂度可减少过强拟合能力。因此五种方法通常都可能有助于缓解过拟合。",
+    "knowledge_points": [
+      "深度学习",
+      "过拟合",
+      "正则化",
+      "数据增强"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_007",
+    "question_type": "single_choice",
+    "content": "指令微调（Instruction Tuning）与一般任务微调相比，最核心的特点是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "一定使用更少的训练数据"
+      },
+      {
+        "key": "B",
+        "text": "训练模型理解并遵循自然语言指令"
+      },
+      {
+        "key": "C",
+        "text": "只更新模型的一小部分参数"
+      },
+      {
+        "key": "D",
+        "text": "必须使用更高的学习率"
+      }
+    ],
+    "answer": "B",
+    "explanation": "指令微调使用由指令、输入和期望输出组成的数据训练模型，使模型学习理解和执行自然语言任务指令。只更新部分参数属于参数高效微调，不是指令微调的必要特征。",
+    "knowledge_points": [
+      "大模型开发",
+      "指令微调",
+      "自然语言指令"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_008",
+    "question_type": "single_choice",
+    "content": "在大语言模型中，位置编码（Positional Encoding）的主要作用是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "增加模型的参数量"
+      },
+      {
+        "key": "B",
+        "text": "减少训练时间"
+      },
+      {
+        "key": "C",
+        "text": "向模型提供序列中各 token 的位置信息"
+      },
+      {
+        "key": "D",
+        "text": "直接扩大模型的长期记忆容量"
+      }
+    ],
+    "answer": "C",
+    "explanation": "自注意力本身不会天然区分 token 的先后顺序，位置编码用于把绝对或相对位置信息注入表示，使模型能够理解序列顺序，因此选择 C。",
+    "knowledge_points": [
+      "大模型开发",
+      "Transformer",
+      "位置编码",
+      "自注意力"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_009",
+    "question_type": "short_answer",
+    "content": "小美初始位于二维整数坐标 (x,y)。她依次进行 n 次移动，第 i 次必须选择整数 l、r，满足 |l|+|r|=a_i，并移动到 (x+l,y+r)。请设计方法判断 n 次移动后能否恰好到达 (p,q)，说明判定条件与复杂度。",
+    "options": [],
+    "answer": "令 dx=|p-x|、dy=|q-y|，目标曼哈顿距离 d=dx+dy；令 S=Σa_i，M=max(a_i)。必要且充分的条件为：① d≤S；② d≥max(0,2M-S)；③ d 与 S 奇偶性相同，即 (S-d) mod 2=0。上界 d≤S 来自三角不等式；若最大一步 M 大于其余步长之和 S-M，则其无法被其余移动完全抵消，所以最终距离至少为 2M-S；每次移动的横纵坐标变化之和与 a_i 同奇偶，故最终曼哈顿距离与 S 同奇偶。满足三项时可通过选择方向、拆分横纵分量并用成对回退消耗多余步长构造路径。扫描数组计算 S 和 M 即可，时间复杂度 O(n)，额外空间 O(1)。",
+    "explanation": "不能只判断目标距离是否不超过总步长；当某一步特别长时，还要考虑其他步是否足以抵消它。例如步长为 5 和 1 时，最终曼哈顿距离不可能小于 4。",
+    "knowledge_points": [
+      "数组",
+      "基础数学",
+      "曼哈顿距离",
+      "构造",
+      "奇偶性"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_010",
+    "question_type": "short_answer",
+    "content": "给定一个二维灰度图像矩阵 image 和一个边长为奇数 k 的 k×k 卷积核 kernel。请说明如何使用 NumPy 实现零填充卷积，使输出尺寸与原图相同，并把每个输出元素保留两位小数。",
+    "options": [],
+    "answer": "设 pad=k//2，先使用 np.pad(image, ((pad,pad),(pad,pad)), mode='constant', constant_values=0) 在四周补零。按照数学卷积定义，可先执行 flipped=np.flip(kernel, axis=(0,1)) 将卷积核上下、左右翻转。然后对原图每个位置 (i,j)，截取填充矩阵中的 k×k 区域 region=padded[i:i+k, j:j+k]，计算 output[i,j]=round(float(np.sum(region*flipped)),2)。若题目把深度学习中常见的互相关也称作卷积，则不翻转 kernel，其余步骤相同。输出矩阵大小为 H×W。直接实现的时间复杂度为 O(HWk²)，额外空间为 O(HW)。",
+    "explanation": "关键步骤是补零、滑动窗口、逐元素乘积求和以及保留两位小数。需要明确题目使用的是数学卷积还是不翻核的互相关定义。",
+    "knowledge_points": [
+      "数组",
+      "NumPy",
+      "图像处理",
+      "卷积",
+      "零填充"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_011",
+    "question_type": "short_answer",
+    "content": "给定长度为 n 的数组 a。对于任意 i<j，若 i-j<a_i-a_j，就在顶点 i、j 之间连一条无向边。请设计算法计算所得图的极大连通块数量，并分析复杂度。",
+    "options": [],
+    "answer": "将不等式整理为 a_i-i>a_j-j。定义 b_i=a_i-i，则 i<j 时存在边当且仅当 b_i>b_j，也就是序列 b 中的一对逆序。若在位置 k 与 k+1 之间不存在跨越该切分的边，则左侧任意 i≤k 与右侧任意 j>k 都满足 b_i≤b_j；这等价于 prefixMax[k]≤suffixMin[k+1]。这样的切分会把图分成两个互不连边的部分。反过来，若某个区间内部每个切分位置都有跨越边，则该区间对应的逆序图是连通的。因此先计算每个位置的前缀最大值 prefixMax 和后缀最小值 suffixMin，答案初始为 1；对 k=1…n-1，若 prefixMax[k]≤suffixMin[k+1]，则答案加 1。时间复杂度 O(n)，空间复杂度 O(n)；后缀最小值也可预存后配合滚动前缀最大值扫描。",
+    "explanation": "无需显式构造最多 O(n²) 条边。把条件变成 b_i>b_j 后，连边关系就是逆序关系；连通块边界正好对应不存在跨边的位置。",
+    "knowledge_points": [
+      "数组",
+      "图",
+      "连通块",
+      "前缀最大值",
+      "后缀最小值",
+      "逆序关系"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_algorithm_012",
+    "question_type": "short_answer",
+    "content": "给定数组 a 和多次区间询问 [l,r]。若区间中的元素能够在保持各自相对顺序的前提下，划分为两个非空的严格递增子序列，则称该区间为好区间。请说明如何判定一个询问区间是否为好区间，并给出复杂度。",
+    "options": [],
+    "answer": "根据偏序分解结论，一个序列能够被划分为不超过 2 个严格递增子序列，当且仅当它的最长非递增子序列长度不超过 2；等价地，区间中不存在 i<j<k 且 a_i≥a_j≥a_k。对单个询问可使用耐心排序的贪心过程，并且只维护至多两个递增子序列的末尾值：从左到右处理 x，把 x 接到末尾值小于 x 且末尾值最大的那条子序列后；若两条子序列都不能接收 x，就需要第三条递增子序列，说明区间不是好区间。处理结束后还需确保实际使用了两条非空子序列；长度小于 2 的区间不满足题意。每个询问时间复杂度 O(r-l+1)，额外空间 O(1)。若数据规模很大，可进一步围绕“是否出现长度为 3 的非递增子序列”使用离线预处理、单调结构或线段树加速。",
+    "explanation": "把序列划分为若干严格递增子序列所需的最少条数，等于最长非递增子序列长度。因此本题只需判断是否需要第三条递增子序列。",
+    "knowledge_points": [
+      "数组",
+      "单调结构",
+      "贪心",
+      "最长非递增子序列",
+      "序列划分"
+    ],
+    "company": "meituan",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "source": "用户提供的美团算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  }
+]

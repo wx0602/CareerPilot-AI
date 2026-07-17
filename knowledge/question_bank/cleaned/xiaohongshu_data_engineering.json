@@ -1,0 +1,779 @@
+[
+  {
+    "question_id": "xiaohongshu_data_engineering_001",
+    "question_type": "single_choice",
+    "content": "栈 S 初始为空，元素序列“banana12345”依次入栈，允许入栈与出栈交替进行。若要求出栈序列为“ann45321aab”，则栈 S 的容量至少是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "6"
+      },
+      {
+        "key": "B",
+        "text": "7"
+      },
+      {
+        "key": "C",
+        "text": "8"
+      },
+      {
+        "key": "D",
+        "text": "9"
+      }
+    ],
+    "answer": "B",
+    "explanation": "按目标出栈顺序模拟，栈内元素数量的最大值为 7，因此最小容量为 7。",
+    "knowledge_points": [
+      "栈",
+      "模拟"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_002",
+    "question_type": "single_choice",
+    "content": "按 AVL 树插入规则，将关键字序列 {80,40,120,20,60,100,140,10,30,50,70,90,110,130,150} 依次插入。若根结点为第 1 层，最终树高为多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "5"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      },
+      {
+        "key": "C",
+        "text": "3"
+      },
+      {
+        "key": "D",
+        "text": "4"
+      }
+    ],
+    "answer": "D",
+    "explanation": "该序列形成 4 层平衡二叉搜索树，因此高度为 4。",
+    "knowledge_points": [
+      "树",
+      "AVL树"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_003",
+    "question_type": "single_choice",
+    "content": "递归函数 foo(n)：n<=0 时返回 0，否则返回 2*foo(n-1)+1。计算 foo(foo(3)) 时总共调用多少次 foo？",
+    "options": [
+      {
+        "key": "A",
+        "text": "3 次"
+      },
+      {
+        "key": "B",
+        "text": "4 次"
+      },
+      {
+        "key": "C",
+        "text": "10 次"
+      },
+      {
+        "key": "D",
+        "text": "12 次"
+      }
+    ],
+    "answer": "D",
+    "explanation": "foo(3) 调用 4 次并返回 7；foo(7) 调用 8 次，共 12 次。",
+    "knowledge_points": [
+      "递归"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_004",
+    "question_type": "single_choice",
+    "content": "0-1 背包中，x[k,h] 表示前 k 件物品装入容量 h 的背包的最大价值。第 k 件重量为 w_k、价值为 c_k。当 h>=w_k 时，正确转移式是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "x[k,h]=x[k-1,h]"
+      },
+      {
+        "key": "B",
+        "text": "x[k,h]=max{x[k,h],x[k-1,h-w_k]+c_k}"
+      },
+      {
+        "key": "C",
+        "text": "x[k,h]=max{x[k-1,h],x[k-1,h-w_k]+c_k}"
+      },
+      {
+        "key": "D",
+        "text": "x[k,h]=x[k-1,h-w_k]+c_k"
+      }
+    ],
+    "answer": "C",
+    "explanation": "需比较不选第 k 件与选择第 k 件两种情况，取最大值。",
+    "knowledge_points": [
+      "动态规划",
+      "0-1背包"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_005",
+    "question_type": "single_choice",
+    "content": "KMP 匹配模式串“xyzxxyz”时，若模式串指针在第 7 个字符处失配，位置从 1 开始编号，则应回退到哪个位置继续比较？",
+    "options": [
+      {
+        "key": "A",
+        "text": "1"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      },
+      {
+        "key": "C",
+        "text": "3"
+      },
+      {
+        "key": "D",
+        "text": "4"
+      }
+    ],
+    "answer": "C",
+    "explanation": "失配前匹配的“xyzxxy”的最长相同真前后缀为“xy”，长度 2，因此从第 3 个字符继续。",
+    "knowledge_points": [
+      "字符串",
+      "KMP"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_006",
+    "question_type": "single_choice",
+    "content": "下列关于 Socket 网络编程的说法中，错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "类 Unix 系统中 Socket 可通过文件描述符操作"
+      },
+      {
+        "key": "B",
+        "text": "IP 地址、传输层协议和端口号的组合可标识通信端点"
+      },
+      {
+        "key": "C",
+        "text": "WebSocket 是建立在 TCP 之上的应用层协议"
+      },
+      {
+        "key": "D",
+        "text": "阻塞调用在结果尚未得到时不会挂起当前线程，而是立即返回"
+      }
+    ],
+    "answer": "D",
+    "explanation": "阻塞调用会等待操作完成；立即返回属于非阻塞调用。",
+    "knowledge_points": [
+      "网络基础",
+      "Socket"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_007",
+    "question_type": "single_choice",
+    "content": "在 HTTP/1.1 缓存机制中，哪个响应头可以直接给出资源缓存失效的绝对日期和时间？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Expires"
+      },
+      {
+        "key": "B",
+        "text": "Cache-Control"
+      },
+      {
+        "key": "C",
+        "text": "Last-Modified"
+      },
+      {
+        "key": "D",
+        "text": "ETag"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Expires 使用绝对时间表示缓存过期时间；Cache-Control 的 max-age 表示相对时长。",
+    "knowledge_points": [
+      "网络基础",
+      "HTTP缓存"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_008",
+    "question_type": "single_choice",
+    "content": "下列关于模式切换和进程切换的叙述中，错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "操作系统获得当前进程控制权时可能发生进程切换"
+      },
+      {
+        "key": "B",
+        "text": "模式切换是用户态和内核态之间的切换"
+      },
+      {
+        "key": "C",
+        "text": "模式切换不一定改变当前进程状态"
+      },
+      {
+        "key": "D",
+        "text": "进程切换不一定需要在内核态下完成"
+      }
+    ],
+    "answer": "D",
+    "explanation": "进程上下文切换由操作系统内核完成，因此必须在内核态执行。",
+    "knowledge_points": [
+      "操作系统",
+      "进程切换"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_009",
+    "question_type": "single_choice",
+    "content": "ZooKeeper 等协调服务通常具备哪些能力？I.存储少量协调数据；II.监视节点变化；III.创建和删除节点；IV.自动复制任意业务文件。",
+    "options": [
+      {
+        "key": "A",
+        "text": "I、II、IV"
+      },
+      {
+        "key": "B",
+        "text": "I、III、IV"
+      },
+      {
+        "key": "C",
+        "text": "I、II、III"
+      },
+      {
+        "key": "D",
+        "text": "I、II、III、IV"
+      }
+    ],
+    "answer": "C",
+    "explanation": "ZooKeeper 支持 znode 数据、Watch、节点创建与删除，不负责复制任意业务文件。",
+    "knowledge_points": [
+      "ZooKeeper",
+      "分布式系统"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_010",
+    "question_type": "single_choice",
+    "content": "SHOW ENGINE INNODB STATUS 输出 Buffer pool hit rate 999/1000、LRU len:1539、unzip_LRU len:156。下列说法错误的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "unzip_LRU 中有 156 个页"
+      },
+      {
+        "key": "B",
+        "text": "LRU 列表不包含 unzip_LRU 中的页"
+      },
+      {
+        "key": "C",
+        "text": "LRU 列表共有 1539 个页"
+      },
+      {
+        "key": "D",
+        "text": "缓冲池命中率约为 999/1000"
+      }
+    ],
+    "answer": "B",
+    "explanation": "unzip_LRU 是相关 LRU 管理结构的一部分，因此“不包含”的说法错误。",
+    "knowledge_points": [
+      "数据库",
+      "InnoDB"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_011",
+    "question_type": "single_choice",
+    "content": "MySQL 中释放名称为 s1 的保存点，正确语句是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "DROP s1;"
+      },
+      {
+        "key": "B",
+        "text": "DROP SAVEPOINT s1;"
+      },
+      {
+        "key": "C",
+        "text": "RELEASE SAVEPOINT s1;"
+      },
+      {
+        "key": "D",
+        "text": "DELETE SAVEPOINT s1;"
+      }
+    ],
+    "answer": "C",
+    "explanation": "释放保存点使用 RELEASE SAVEPOINT savepoint_name。",
+    "knowledge_points": [
+      "数据库",
+      "MySQL",
+      "SAVEPOINT"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_012",
+    "question_type": "single_choice",
+    "content": "C++ 中 map 初始为 {{1,\"one\"},{2,\"two\"},{3,\"three\"}}，执行 find(2) 后 erase 该迭代器，再遍历输出，结果是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "1: one 3: three"
+      },
+      {
+        "key": "B",
+        "text": "1: one 2: two 3: three"
+      },
+      {
+        "key": "C",
+        "text": "1: one 2: two"
+      },
+      {
+        "key": "D",
+        "text": "运行错误"
+      }
+    ],
+    "answer": "A",
+    "explanation": "键 2 被删除，map 按键升序输出剩余键 1 和 3。",
+    "knowledge_points": [
+      "C++",
+      "map"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_013",
+    "question_type": "single_choice",
+    "content": "Java 中 Person 的 name 字段为 private，Test 类中执行 Person p=new Student(); System.out.println(p.name);，结果是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "输出 Person"
+      },
+      {
+        "key": "B",
+        "text": "输出 null"
+      },
+      {
+        "key": "C",
+        "text": "编译错误"
+      },
+      {
+        "key": "D",
+        "text": "运行错误"
+      }
+    ],
+    "answer": "C",
+    "explanation": "private 字段只能在声明它的类内部访问，因此编译错误。",
+    "knowledge_points": [
+      "Java",
+      "访问控制"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_014",
+    "question_type": "single_choice",
+    "content": "Java 字符串 str=\"hello#123#456#world\"，n、k、j 分别为第一个、第二个和最后一个 # 的位置。截取得到“123”的代码是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "str.substring(n+1,k)"
+      },
+      {
+        "key": "B",
+        "text": "str.substring(n,k)"
+      },
+      {
+        "key": "C",
+        "text": "str.substring(n,j)"
+      },
+      {
+        "key": "D",
+        "text": "str.substring(k,j)"
+      }
+    ],
+    "answer": "A",
+    "explanation": "substring 包含起始下标、不包含结束下标，因此应从 n+1 截取到 k。",
+    "knowledge_points": [
+      "Java",
+      "String"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_015",
+    "question_type": "single_choice",
+    "content": "Python 中列表、元组和字符串均使用索引访问。下列说法错误的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "列表和元组是序列类型，字符串不是"
+      },
+      {
+        "key": "B",
+        "text": "列表、元组和字符串都可通过索引访问"
+      },
+      {
+        "key": "C",
+        "text": "lst=[1,2,3] 时 lst[1] 为 2"
+      },
+      {
+        "key": "D",
+        "text": "相关索引访问不会抛出异常"
+      }
+    ],
+    "answer": "A",
+    "explanation": "字符串同样属于序列类型。",
+    "knowledge_points": [
+      "Python",
+      "序列类型"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_016",
+    "question_type": "multiple_choice",
+    "content": "Spark 中，以下属于 Transformation 类型的算子有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "collect()"
+      },
+      {
+        "key": "B",
+        "text": "mapPartitions()"
+      },
+      {
+        "key": "C",
+        "text": "distinct()"
+      },
+      {
+        "key": "D",
+        "text": "countByKey()"
+      }
+    ],
+    "answer": [
+      "B",
+      "C"
+    ],
+    "explanation": "mapPartitions 和 distinct 返回新的 RDD，属于 Transformation；collect 和 countByKey 属于 Action。",
+    "knowledge_points": [
+      "Spark",
+      "Transformation"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_017",
+    "question_type": "multiple_choice",
+    "content": "关于 Flink 中 KeyedStream 的说法，正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "可按指定键对数据流进行逻辑分区"
+      },
+      {
+        "key": "B",
+        "text": "可执行按键聚合和维护键控状态"
+      },
+      {
+        "key": "C",
+        "text": "只适用于无界流"
+      },
+      {
+        "key": "D",
+        "text": "可通过 KeySelector 提取分组键"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": "KeyedStream 支持按键分区、聚合和键控状态，适用于有界流与无界流。",
+    "knowledge_points": [
+      "Flink",
+      "KeyedStream"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_018",
+    "question_type": "multiple_choice",
+    "content": "下面关于 HDFS 的说法中，错误的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "NameNode 维护文件系统元数据并管理访问"
+      },
+      {
+        "key": "B",
+        "text": "HDFS 允许像普通本地文件系统一样随意覆盖已有文件内容"
+      },
+      {
+        "key": "C",
+        "text": "每个数据块在 DataNode 本地只对应数据文件，不存在校验元数据文件"
+      },
+      {
+        "key": "D",
+        "text": "SecondaryNameNode 应与 NameNode 部署在同一节点"
+      }
+    ],
+    "answer": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "HDFS 面向一次写入多次读取；块通常还有校验元数据；SecondaryNameNode 不宜与 NameNode 位于同一故障节点。",
+    "knowledge_points": [
+      "Hadoop",
+      "HDFS"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_019",
+    "question_type": "multiple_choice",
+    "content": "下面关于 MapReduce 工作流程的说法，正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "输入切片直接交给 ReduceTask"
+      },
+      {
+        "key": "B",
+        "text": "MapTask 读取切片、调用 map，并按 Reducer 数量分区后写本地磁盘"
+      },
+      {
+        "key": "C",
+        "text": "ReduceTask 从各 MapTask 拉取自己的分区，排序分组后调用 reduce"
+      },
+      {
+        "key": "D",
+        "text": "reduce 接收 key 与 value 集合，并可输出最终 key/value 到 HDFS"
+      }
+    ],
+    "answer": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "输入切片交给 MapTask；B、C、D 描述了标准 MapReduce 流程。",
+    "knowledge_points": [
+      "Hadoop",
+      "MapReduce"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_020",
+    "question_type": "multiple_choice",
+    "content": "MapReduce 中，以下哪些不是 Map 输出数据分区的主要目的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "减少 Shuffle 数据传输总量"
+      },
+      {
+        "key": "B",
+        "text": "对输出数据进行局部合并"
+      },
+      {
+        "key": "C",
+        "text": "控制 Reducer 执行顺序"
+      },
+      {
+        "key": "D",
+        "text": "保证相同 key 到同一个 Reducer"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": "分区的主要目的为决定数据由哪个 Reducer 处理，确保相同 key 到达同一 Reducer。",
+    "knowledge_points": [
+      "Hadoop",
+      "Partitioner"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "medium",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_021",
+    "question_type": "short_answer",
+    "content": "小红拥有 n 个小红书账号，同一个粉丝可能关注多个账号。已知每个账号的所有粉丝 ID，如何计算不同粉丝总数？请说明算法与复杂度。",
+    "options": [],
+    "answer": "使用哈希集合保存所有粉丝 ID。依次遍历每个账号的全部 ID 并插入集合，最终集合大小即不同粉丝总数。设输入 ID 总数为 M、不同 ID 数为 U，平均时间复杂度 O(M)，空间复杂度 O(U)。",
+    "explanation": "本题本质是求多个粉丝集合的并集大小。",
+    "knowledge_points": [
+      "哈希",
+      "集合",
+      "去重"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_022",
+    "question_type": "short_answer",
+    "content": "第 i 名粉丝点赞数为 like_i、收藏数为 collect_i，支持力度为 like_i+2*collect_i。选择支持力度最大的前 k 名；相同时收藏数多者优先，仍相同时编号小者优先。请设计算法。",
+    "options": [],
+    "answer": "为每名粉丝构造 (score,collect,id)，score=like+2*collect，按 score 降序、collect 降序、id 升序排序，输出前 k 个编号。时间复杂度 O(n log n)。若 k 很小，可用大小为 k 的堆优化为 O(n log k)。",
+    "explanation": "将题目优先级直接转换为多关键字排序规则即可。",
+    "knowledge_points": [
+      "排序",
+      "模拟",
+      "多关键字排序"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "easy",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaohongshu_data_engineering_023",
+    "question_type": "short_answer",
+    "content": "有 n 篇笔记，第 i 篇点赞数为 a_i、评论数为 b_i。选择恰好 k 篇，优秀度为点赞数之和乘以所选评论数最小值。请设计算法求最大优秀度。",
+    "options": [],
+    "answer": "按 b 从大到小排序。扫描时维护一个存放点赞数的最小堆及堆内点赞总和。加入当前 a，若堆大小超过 k 则弹出最小点赞数；当堆大小为 k 时，用 sumLikes*当前 b 更新答案。当前 b 是候选集合的最小评论数，而堆保留了此前点赞数最大的 k 篇。排序 O(n log n)，堆操作 O(n log k)，空间 O(k)。",
+    "explanation": "枚举最小评论数，并在满足评论数阈值的笔记中维护点赞数 Top-K。",
+    "knowledge_points": [
+      "堆",
+      "排序",
+      "贪心",
+      "Top-K"
+    ],
+    "company": "xiaohongshu",
+    "position": "data_engineering",
+    "difficulty": "hard",
+    "source": "用户提供的小红书数据工程类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  }
+]

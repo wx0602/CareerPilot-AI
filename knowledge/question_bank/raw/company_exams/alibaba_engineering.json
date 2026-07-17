@@ -1,0 +1,695 @@
+[
+  {
+    "question_id": "alibaba_engineering_001",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 HTTPS，以下哪项说法是错误的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "HTTPS 能够通过加密降低传输数据被窃听的风险"
+      },
+      {
+        "key": "B",
+        "text": "HTTPS 建立安全连接时需要通过 TLS 握手协商安全参数和密钥"
+      },
+      {
+        "key": "C",
+        "text": "在证书校验正确的前提下，HTTPS 可以验证服务器身份"
+      },
+      {
+        "key": "D",
+        "text": "与 HTTP 相比，HTTPS 通常消耗更少的服务器计算资源"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "网络基础",
+      "HTTPS",
+      "TLS"
+    ],
+    "explanation": "HTTPS 在 HTTP 之上引入 TLS，加密、身份验证和完整性校验会带来额外的握手、加解密与证书校验开销，因此通常不会比纯 HTTP 消耗更少的计算资源。A、B、C 均属于 HTTPS/TLS 的典型能力或过程。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_002",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "已知主串 S='ydysdssydddysysddssy'，模式串 t='ydydyy'。使用 KMP 匹配时，第一次失配发生在 i=j=3。下一次开始比较时 i 和 j 分别为？",
+    "options": [
+      {
+        "key": "A",
+        "text": "i=5, j=0"
+      },
+      {
+        "key": "B",
+        "text": "i=3, j=1"
+      },
+      {
+        "key": "C",
+        "text": "i=3, j=2"
+      },
+      {
+        "key": "D",
+        "text": "i=5, j=3"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "字符串",
+      "KMP",
+      "模式匹配"
+    ],
+    "explanation": "第一次失配时主串指针 i 不回退，模式串指针按照 next 数组回退。模式串 t 的 next 数组可写为 [0,0,1,2,3,1]，因此 j 从 3 回退到 next[3]=1，下一次比较为 i=3、j=1。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_003",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "对无向图 G=(V,E) 进行深度优先遍历，其中 V={1,2,3,4,5,6,7}，E={(3,7),(3,6),(3,4),(2,3),(1,2),(2,4),(4,5),(4,6)}。以下哪一个序列不可能是该图的深度优先遍历序列？",
+    "options": [
+      {
+        "key": "A",
+        "text": "4, 3, 7, 6, 2, 1, 5"
+      },
+      {
+        "key": "B",
+        "text": "5, 4, 3, 2, 6, 7, 1"
+      },
+      {
+        "key": "C",
+        "text": "1, 2, 3, 7, 6, 4, 5"
+      },
+      {
+        "key": "D",
+        "text": "6, 3, 7, 4, 2, 1, 5"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "图",
+      "深度优先搜索",
+      "DFS"
+    ],
+    "explanation": "从 5 开始只能先到 4。若随后从 4 到 3，再从 3 到 2，则顶点 2 仍有未访问邻接点 1，DFS 必须先访问 1 才能回溯，因此不能紧接着访问 6。故 B 不可能；其余序列可通过调整邻接点访问顺序得到。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_004",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关键字序列 [8,39,20,50,61,40,87,96] 是一个小根堆。插入关键字 54 并完成调整后，堆的顺序存储结果是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "[8,39,20,50,61,40,87,96,54]"
+      },
+      {
+        "key": "B",
+        "text": "[8,39,20,50,61,40,54,96,87]"
+      },
+      {
+        "key": "C",
+        "text": "[8,39,20,50,61,40,54,87,96]"
+      },
+      {
+        "key": "D",
+        "text": "[8,39,20,50,54,40,61,87,96]"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "堆",
+      "小根堆",
+      "插入调整"
+    ],
+    "explanation": "54 先插入数组末尾，成为原下标 3 节点 50 的右孩子。因为 54 大于父节点 50，仍满足小根堆性质，不需要上浮，结果为 [8,39,20,50,61,40,87,96,54]。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_005",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "某系统的物理内存包含 64 个物理块，每个块大小为 1KB。一个物理地址至少需要多少位二进制表示？",
+    "options": [
+      {
+        "key": "A",
+        "text": "12 位"
+      },
+      {
+        "key": "B",
+        "text": "13 位"
+      },
+      {
+        "key": "C",
+        "text": "15 位"
+      },
+      {
+        "key": "D",
+        "text": "16 位"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "操作系统",
+      "分页存储",
+      "物理地址"
+    ],
+    "explanation": "64 个物理块需要 6 位块号，因为 64=2^6；每块 1KB=2^10B，需要 10 位块内偏移。因此物理地址共需 6+10=16 位。题目中的逻辑页数量不影响物理地址位数。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_006",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "入栈序列为 2、4、6、1、3、5，且入栈和出栈可以交替进行。以下哪一个输出序列不可能得到？",
+    "options": [
+      {
+        "key": "A",
+        "text": "2, 4, 6, 1, 3, 5"
+      },
+      {
+        "key": "B",
+        "text": "2, 4, 5, 1, 6, 3"
+      },
+      {
+        "key": "C",
+        "text": "2, 4, 6, 3, 1, 5"
+      },
+      {
+        "key": "D",
+        "text": "2, 4, 6, 3, 5, 1"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "栈",
+      "出栈序列",
+      "后进先出"
+    ],
+    "explanation": "要在输出 2、4 后直接输出 5，必须先把 6、1、3、5 全部压栈并弹出 5。此时栈顶依次应为 3、1、6，不可能接着输出 1、6、3，因此 B 无法由该入栈序列产生。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_007",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "Linux 文件 names.txt 中包含若干行文本。以下哪个命令可以显示既不包含单词 tom、也不包含单词 lisi 的行？",
+    "options": [
+      {
+        "key": "A",
+        "text": "grep -c -e \"tom|lisi\" names.txt"
+      },
+      {
+        "key": "B",
+        "text": "grep -c -e \"tom\" -e \"lisi\" names.txt"
+      },
+      {
+        "key": "C",
+        "text": "grep -v -e \"tom|lisi\" names.txt"
+      },
+      {
+        "key": "D",
+        "text": "grep -v -e \"tom\" -e \"lisi\" names.txt"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "Linux",
+      "grep",
+      "文本过滤"
+    ],
+    "explanation": "-v 表示反向匹配，多个 -e 分别指定多个模式。D 会排除匹配 tom 或 lisi 的所有行。A、B 使用 -c 只输出行数；C 在未启用扩展正则时会把 tom|lisi 当作普通字符串模式。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_008",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "MySQL 8 中存在表 overtime_table(employee_name, department, hours)。要求为每条记录增加 longest_time_name 列，显示该记录所属部门中加班时长最长的员工姓名。以下 SQL 正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SELECT employee_name, department, hours, LAST_VALUE(employee_name) OVER (PARTITION BY department ORDER BY hours) AS longest_time_name FROM overtime_table;"
+      },
+      {
+        "key": "B",
+        "text": "SELECT employee_name, department, hours, LAST_VALUE(employee_name) OVER (PARTITION BY department ORDER BY hours DESC) AS longest_time_name FROM overtime_table;"
+      },
+      {
+        "key": "C",
+        "text": "SELECT employee_name, department, hours, FIRST_VALUE(employee_name) OVER (PARTITION BY department ORDER BY hours DESC) AS longest_time_name FROM overtime_table;"
+      },
+      {
+        "key": "D",
+        "text": "以上 SQL 均不能得到预期结果"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "SQL",
+      "MySQL",
+      "窗口函数",
+      "FIRST_VALUE"
+    ],
+    "explanation": "按 department 分区并按 hours 降序排列后，分区第一行就是加班时长最大的员工。FIRST_VALUE(employee_name) 会为分区内每一行返回该员工姓名。LAST_VALUE 在默认窗口帧下通常返回截至当前行的最后一个值，因此 A、B 不符合要求。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_009",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "multiple_choice",
+    "content": "关于 RESTful API，以下哪些表述是合理的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "客户端通过请求对资源状态进行读取或转换"
+      },
+      {
+        "key": "B",
+        "text": "不同类型的客户端可以通过统一接口访问相同资源"
+      },
+      {
+        "key": "C",
+        "text": "可以使用 URL 路径标识资源，并使用查询参数表达过滤、分页等条件"
+      },
+      {
+        "key": "D",
+        "text": "可以使用 HTTP 状态码与统一响应结构表达错误信息"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "网络基础",
+      "RESTful API",
+      "HTTP"
+    ],
+    "explanation": "REST 强调资源、统一接口和无状态通信。资源由 URI 标识，不同客户端可通过相同接口访问；路径与查询参数常用于资源定位、过滤和分页；HTTP 状态码及统一错误响应结构可用于表达失败原因。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_010",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "multiple_choice",
+    "content": "Linux 目录 /project_dir 需要设置为：所有者可读、写、执行；组用户可读、执行；其他用户无权限。以下哪些命令正确？",
+    "options": [
+      {
+        "key": "A",
+        "text": "chmod 755 /project_dir"
+      },
+      {
+        "key": "B",
+        "text": "chmod 750 /project_dir"
+      },
+      {
+        "key": "C",
+        "text": "chmod 760 /project_dir"
+      },
+      {
+        "key": "D",
+        "text": "chmod u=rwx,g=rx,o= /project_dir"
+      }
+    ],
+    "answer": [
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "Linux",
+      "chmod",
+      "文件权限"
+    ],
+    "explanation": "目标权限为 rwxr-x---，数字表示是 750，因此 B 正确；D 使用符号方式设置了相同权限。755 会给其他用户读和执行权限，760 会给组用户写权限但没有执行权限。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_011",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "multiple_choice",
+    "content": "关于数据库事务，以下哪些说法正确？",
+    "options": [
+      {
+        "key": "A",
+        "text": "事务是数据库进行一组相关操作时常用的逻辑工作单元"
+      },
+      {
+        "key": "B",
+        "text": "事务具有原子性、一致性、隔离性和持久性"
+      },
+      {
+        "key": "C",
+        "text": "部分数据库或应用框架支持嵌套事务，或使用保存点模拟部分嵌套效果"
+      },
+      {
+        "key": "D",
+        "text": "事务通常通过提交或回滚结束"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "数据库",
+      "事务",
+      "ACID",
+      "保存点"
+    ],
+    "explanation": "事务用于把一组操作作为整体执行，并满足 ACID 特性。成功时提交，失败时回滚。不同数据库对真正的嵌套事务支持不同，但部分系统或框架支持嵌套语义，也可借助 SAVEPOINT 实现局部回滚。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_012",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "multiple_choice",
+    "content": "关于排序算法，以下哪些说法正确？",
+    "options": [
+      {
+        "key": "A",
+        "text": "归并排序的最坏时间复杂度为 O(n log n)"
+      },
+      {
+        "key": "B",
+        "text": "直接插入排序是一种稳定排序算法"
+      },
+      {
+        "key": "C",
+        "text": "常见原地实现的希尔排序额外空间复杂度为 O(1)"
+      },
+      {
+        "key": "D",
+        "text": "堆排序的平均时间复杂度为 O(log n)"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "排序",
+      "归并排序",
+      "插入排序",
+      "希尔排序",
+      "堆排序"
+    ],
+    "explanation": "归并排序最坏时间复杂度为 O(n log n)；直接插入排序稳定；希尔排序通常原地完成，额外空间为 O(1)。堆排序的建堆加 n 次调整总时间复杂度为 O(n log n)，不是 O(log n)。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_013",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "hard",
+    "question_type": "multiple_choice",
+    "content": "长度为 10 的空散列表 M 使用散列函数 H(key)=key mod 6，并用线性探测处理冲突。依次插入 33、3、41、22、91、51、5、27、14。以下关键字中，成功查找长度小于 5 的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "22"
+      },
+      {
+        "key": "B",
+        "text": "51"
+      },
+      {
+        "key": "C",
+        "text": "27"
+      },
+      {
+        "key": "D",
+        "text": "5"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "knowledge_points": [
+      "哈希",
+      "散列表",
+      "线性探测",
+      "查找长度"
+    ],
+    "explanation": "按顺序插入后，22 从地址 4 开始探测，依次检查 4、5、6，查找长度为 3；51 从 3 探测到 7，长度为 5；5 从 5 探测到 8，长度为 4；27 从 3 探测到 9，长度为 7。因此小于 5 的是 22 和 5。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_014",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "关于进程和程序内存布局，以下哪些说法是错误的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "进程状态和进程优先级通常记录在 PCB 中"
+      },
+      {
+        "key": "B",
+        "text": "已初始化的全局变量存放在正文段，所有常量也都存放在正文段"
+      },
+      {
+        "key": "C",
+        "text": "未初始化的局部变量在栈中，而函数实参统一存放在堆中"
+      },
+      {
+        "key": "D",
+        "text": "动态内存分配发生在堆中，因此动态数组会分配在栈中"
+      }
+    ],
+    "answer": [
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "操作系统",
+      "进程",
+      "PCB",
+      "内存布局"
+    ],
+    "explanation": "A 正确。已初始化的全局变量通常在数据段，未初始化的全局变量在 BSS 段，因此 B 错。局部变量通常位于栈帧中，参数可能通过寄存器或栈传递，并非统一在堆中，因此 C 错。动态分配位于堆，不是栈，因此 D 错。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_015",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "easy",
+    "question_type": "multiple_choice",
+    "content": "以下哪些属于文件系统中外存空闲块的常见管理方式？",
+    "options": [
+      {
+        "key": "A",
+        "text": "空闲块表"
+      },
+      {
+        "key": "B",
+        "text": "空闲块链表"
+      },
+      {
+        "key": "C",
+        "text": "成组空闲块链表"
+      },
+      {
+        "key": "D",
+        "text": "位示图"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "knowledge_points": [
+      "操作系统",
+      "文件系统",
+      "空闲空间管理"
+    ],
+    "explanation": "外存空闲空间可以通过空闲块表、空闲块链表、成组链接法和位示图等方式管理。不同方法在空间开销、查找效率和连续块分配能力上各有特点。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理"
+  },
+  {
+    "question_id": "alibaba_engineering_016",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "有 n 个必须按顺序通过的关卡，第 i 个关卡正常通过需要 a[i] 个单位时间。每通过 k 个关卡会获得一个跳关道具；道具只能在获得后用于尚未通过的某个关卡，使该关卡耗时为 0。请设计一种算法，求通过全部 n 个关卡的最少总时间，并说明贪心依据与复杂度。",
+    "options": [],
+    "answer": "把问题转化为在满足前缀限制的条件下最大化被跳过关卡的耗时总和。通过前 i-1 个关卡后，最多获得 floor((i-1)/k) 个可用于前 i 个位置中未来决策的道具，因此任何前缀 [1,i] 内最终被跳过的关卡数不能超过 floor((i-1)/k)。从左到右扫描关卡，用一个小根堆维护当前前缀中计划跳过的关卡耗时。将 a[i] 加入堆，然后令容量 cap=floor((i-1)/k)；若堆大小超过 cap，就弹出最小耗时，表示该关卡不值得占用有限的跳关机会。扫描结束后，堆中元素之和是可跳过的最大总耗时，答案为 sum(a)-sum(heap)。时间复杂度 O(n log n)，空间复杂度 O(n)。",
+    "knowledge_points": [
+      "堆",
+      "贪心",
+      "前缀约束",
+      "优先队列"
+    ],
+    "explanation": "道具只能在获得后使用，因此前缀内可跳过的关卡数受到限制。对于相同数量的跳关机会，应优先保留耗时更大的关卡。小根堆在每个前缀中保留满足容量限制的最大若干个耗时；弹出最小值不会降低未来最优解，因为它可以由当前更大的耗时替换。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理",
+    "grading_points": [
+      {
+        "point": "指出目标等价于最大化被跳过关卡的耗时总和",
+        "score": 1
+      },
+      {
+        "point": "正确说明道具只能在获得后使用，并给出前缀跳过数量限制",
+        "score": 2
+      },
+      {
+        "point": "从左到右扫描关卡并使用优先队列维护候选",
+        "score": 2
+      },
+      {
+        "point": "使用小根堆，并在超过当前容量时弹出最小耗时",
+        "score": 2
+      },
+      {
+        "point": "正确给出答案为总耗时减去堆中保留值之和",
+        "score": 1
+      },
+      {
+        "point": "说明保留较大耗时的贪心正确性",
+        "score": 1
+      },
+      {
+        "point": "正确分析时间复杂度和空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "alibaba_engineering_017",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "给定长度为 n 的数字串 s。允许选择一次非空连续区间 [l,r] 并删除其中所有数字，要求删除后剩余数字串非空且表示的整数能被 3 整除。请设计 O(n) 算法，统计满足条件的删除区间数量，并说明如何处理删除整个字符串的情况。",
+    "options": [],
+    "answer": "利用一个整数能被 3 整除当且仅当其各位数字和能被 3 整除。设前缀数字和模 3 为 pre[i]，pre[0]=0，总数字和模 3 为 total=pre[n]。删除 [l,r] 后，剩余数字和模 3 为 total-(pre[r]-pre[l-1])，因此合法条件是 pre[r]-pre[l-1] ≡ total (mod 3)。从左到右枚举 r，用 cnt[0..2] 统计此前前缀 pre[l-1] 的余数出现次数；需要的余数为 (pre[r]-total+3) mod 3，将 cnt[need] 加入答案，再把 pre[r] 加入计数。这样统计所有 0≤l-1<r≤n 的区间。若题目要求删除后非空，则应排除删除整个字符串的区间 [1,n]，它一定满足同余条件但会留下空串。时间复杂度 O(n)，空间复杂度 O(1)。",
+    "knowledge_points": [
+      "数组",
+      "前缀和",
+      "模运算",
+      "计数"
+    ],
+    "explanation": "删除一个连续区间只会从总数字和中减去该区间的数字和。模 3 条件可由两个前缀余数确定，因此无须枚举所有 O(n²) 区间，只需维护三种前缀余数的出现次数。前导零不影响整除性，但空串是否允许必须按题意单独处理。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理",
+    "grading_points": [
+      {
+        "point": "指出整数能被 3 整除等价于各位数字和能被 3 整除",
+        "score": 1
+      },
+      {
+        "point": "定义前缀数字和模 3 和总余数",
+        "score": 2
+      },
+      {
+        "point": "正确推导删除区间和模 3 必须等于总余数",
+        "score": 2
+      },
+      {
+        "point": "使用长度为 3 的计数数组统计前缀余数",
+        "score": 2
+      },
+      {
+        "point": "正确计算需要匹配的前缀余数并累加答案",
+        "score": 1
+      },
+      {
+        "point": "说明需要排除删除整个字符串导致空串的方案",
+        "score": 1
+      },
+      {
+        "point": "正确分析 O(n) 时间与 O(1) 额外空间",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "alibaba_engineering_018",
+    "company": "alibaba",
+    "position": "engineering",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "给定正整数数组 a。若任选两个不同位置的数，它们的乘积都是完全平方数，则称该数组为好数组。一次操作可以选择一个元素并将其乘以任意正整数 x。请设计算法，求把数组变成好数组所需的最少操作次数，并说明关键数学性质与复杂度。",
+    "options": [],
+    "answer": "把每个正整数分解质因数，只保留指数为奇数的质因子乘积，称为它的平方自由核 kernel(a[i])。两个数的乘积是完全平方数，当且仅当它们的平方自由核相同。因此数组是好数组，当且仅当所有元素的平方自由核完全相同。一次操作可以把任意元素的核调整为目标核：对当前核与目标核中奇偶性不同的质因子各补乘一次即可，所以每个不匹配元素至多需要一次操作。统计各平方自由核出现次数，选择出现次数最多的核作为目标，保留这些元素不变，把其余元素各操作一次。最少操作数为 n-max_frequency。可通过试除分解每个数，时间复杂度约为 O(n√M)，M 为最大元素；使用素数表可进一步优化，哈希表空间复杂度为 O(n)。",
+    "knowledge_points": [
+      "数组",
+      "哈希",
+      "数论",
+      "质因数分解",
+      "完全平方数"
+    ],
+    "explanation": "完全平方数的每个质因数指数都是偶数。乘积 a[i]a[j] 为平方数，等价于两数质因数指数奇偶向量相同，也就是平方自由核相同。选取出现次数最多的核可使无需修改的元素数量最大，因此操作数最少。",
+    "source": "用户提供的阿里巴巴工程类笔试题整理",
+    "grading_points": [
+      {
+        "point": "定义或正确描述平方自由核/质因数指数奇偶向量",
+        "score": 2
+      },
+      {
+        "point": "证明两个数乘积为完全平方数当且仅当平方自由核相同",
+        "score": 2
+      },
+      {
+        "point": "指出好数组等价于所有元素具有相同平方自由核",
+        "score": 1
+      },
+      {
+        "point": "说明一个不匹配元素可以通过一次乘法操作改成任意目标核",
+        "score": 2
+      },
+      {
+        "point": "使用哈希表统计各核频次并选择最高频核",
+        "score": 1
+      },
+      {
+        "point": "正确得到最少操作数 n-max_frequency",
+        "score": 1
+      },
+      {
+        "point": "给出合理的质因数分解复杂度分析",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  }
+]

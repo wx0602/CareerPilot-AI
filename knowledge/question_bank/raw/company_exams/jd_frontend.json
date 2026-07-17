@@ -1,0 +1,889 @@
+[
+  {
+    "question_id": "jd_frontend_001",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在双向循环链表中，要在结点 p 之后插入结点 s，以下哪组指针操作正确？",
+    "options": [
+      {
+        "key": "A",
+        "text": "p->next=s; s->prior=p; p->next->prior=s; s->next=p->next"
+      },
+      {
+        "key": "B",
+        "text": "p->next->prior=s; p->next=s; s->prior=p; s->next=p->next"
+      },
+      {
+        "key": "C",
+        "text": "s->prior=p; s->next=p->next; p->next=s; p->next->prior=s"
+      },
+      {
+        "key": "D",
+        "text": "s->prior=p; s->next=p->next; p->next->prior=s; p->next=s"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "链表",
+      "双向循环链表"
+    ],
+    "explanation": "应先让 s 保存原后继结点并设置其前驱，再修改原后继结点的 prior，最后令 p->next 指向 s。D 的顺序不会丢失原来的 p->next，也能同时维护前驱和后继关系。C 在执行 p->next=s 后，p->next->prior 实际修改的是 s->prior，而不是原后继结点的 prior。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_002",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "一个栈初始为空。将元素 1、2、3、A、B、C 依次全部入栈后，再依次全部出栈，出栈顺序是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "1,2,3,A,B,C"
+      },
+      {
+        "key": "B",
+        "text": "C,B,A,1,2,3"
+      },
+      {
+        "key": "C",
+        "text": "C,B,A,3,2,1"
+      },
+      {
+        "key": "D",
+        "text": "1,2,3,C,B,A"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "栈",
+      "后进先出"
+    ],
+    "explanation": "栈遵循后进先出原则。最后入栈的 C 最先出栈，随后依次为 B、A、3、2、1。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_003",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "对序列 12,15,1,18,2,35,30,11 使用直接选择排序按升序排列，第 2 趟交换完成后的序列是哪个？",
+    "options": [
+      {
+        "key": "A",
+        "text": "11,1,2,12,35,18,30,15"
+      },
+      {
+        "key": "B",
+        "text": "1,2,12,18,15,35,30,11"
+      },
+      {
+        "key": "C",
+        "text": "1,2,12,15,18,35,30,11"
+      },
+      {
+        "key": "D",
+        "text": "1,2,11,12,15,18,35,30"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "排序",
+      "选择排序"
+    ],
+    "explanation": "第 1 趟选出最小值 1，与首元素 12 交换，得到 1,15,12,18,2,35,30,11。第 2 趟在剩余部分选出 2，与 15 交换，得到 1,2,12,18,15,35,30,11。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_004",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "下面函数的时间复杂度是多少？\n\nvoid foo(int n, int x, int y) {\n    int z = 0;\n    if (n <= 0) {\n        z = x + y;\n    } else {\n        foo(n - 1, x + 1, y);\n        foo(n - 1, x, y + 1);\n    }\n}",
+    "options": [
+      {
+        "key": "A",
+        "text": "O(2^n)"
+      },
+      {
+        "key": "B",
+        "text": "O(n)"
+      },
+      {
+        "key": "C",
+        "text": "O(log n)"
+      },
+      {
+        "key": "D",
+        "text": "O(n^2)"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "递归",
+      "时间复杂度",
+      "递推式"
+    ],
+    "explanation": "每次 n>0 时都会产生两个规模为 n-1 的递归调用，因此 T(n)=2T(n-1)+O(1)，T(0)=O(1)，解得 T(n)=O(2^n)。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_005",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在 TCP/IP 四层模型中，关于 TCP 与 UDP 的区别，以下描述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "TCP 提供面向连接、可靠的端到端通信机制"
+      },
+      {
+        "key": "B",
+        "text": "TCP 使用确认与重传等机制提高传输可靠性"
+      },
+      {
+        "key": "C",
+        "text": "在允许丢包的场景下，TCP 通常比 UDP 传输效率更高"
+      },
+      {
+        "key": "D",
+        "text": "UDP 对数据可靠性的保证通常弱于 TCP"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "网络基础",
+      "TCP",
+      "UDP"
+    ],
+    "explanation": "TCP 为保证可靠性需要连接管理、确认、重传、流量控制和拥塞控制等机制，额外开销通常大于 UDP。在允许少量丢包且追求低时延的场景中，UDP 往往效率更高。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_006",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "HTTPS 主要在 HTTP 与传输层之间使用哪种安全协议来实现加密通信与身份认证？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SSL/TLS"
+      },
+      {
+        "key": "B",
+        "text": "IPsec"
+      },
+      {
+        "key": "C",
+        "text": "PGP"
+      },
+      {
+        "key": "D",
+        "text": "SET"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "网络基础",
+      "HTTPS",
+      "TLS"
+    ],
+    "explanation": "HTTPS 是运行在 SSL/TLS 安全通道之上的 HTTP。现代 HTTPS 实际主要使用 TLS；SSL 是其历史前身。IPsec 工作在网络层，PGP 常用于邮件加密，SET 是早期安全电子交易协议。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_007",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "下列关于 MD5 的描述中，不正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "MD5 是一种散列算法"
+      },
+      {
+        "key": "B",
+        "text": "MD5 摘要长度为 128 位"
+      },
+      {
+        "key": "C",
+        "text": "MD5 是一种可逆加密算法"
+      },
+      {
+        "key": "D",
+        "text": "MD5 可用于检测数据是否发生变化"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "加密和安全",
+      "MD5",
+      "散列"
+    ],
+    "explanation": "MD5 是单向散列函数，不是可逆加密算法。它输出 128 位摘要，可用于完整性校验，但由于碰撞安全性已经不足，不适合密码安全或数字签名等高安全场景。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_008",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "使用 CSS Flexbox 布局时，以下哪种效果不能仅依靠常规 Flexbox 排列自然实现？",
+    "options": [
+      {
+        "key": "A",
+        "text": "三列布局，三列随容器宽度等宽伸缩"
+      },
+      {
+        "key": "B",
+        "text": "多列布局，各列在同一行中按最高列等高"
+      },
+      {
+        "key": "C",
+        "text": "三列布局，左列固定宽度，中、右两列等宽弹性伸缩"
+      },
+      {
+        "key": "D",
+        "text": "多个宽高不等元素形成纵向无缝瀑布流，后续元素自动填补上方空隙"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "CSS",
+      "Flexbox",
+      "布局"
+    ],
+    "explanation": "Flexbox 适合一维布局，可以实现弹性等宽、固定列加弹性列以及同一行拉伸等高。传统 Flexbox 按行或列顺序排布，不能像 Masonry 布局那样自动回填不同高度元素产生的纵向空隙。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_009",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "阅读下面代码，span 元素最终计算得到的 width 和 height 分别是多少？\n\n<div style=\"width:400px;height:200px;\">\n  <span style=\"float:left;width:auto;height:100%;\">\n    <i style=\"position:absolute;float:left;width:100px;height:50px;\">hello</i>\n  </span>\n</div>",
+    "options": [
+      {
+        "key": "A",
+        "text": "width=0px，height=0px"
+      },
+      {
+        "key": "B",
+        "text": "width=400px，height=200px"
+      },
+      {
+        "key": "C",
+        "text": "width=100px，height=50px"
+      },
+      {
+        "key": "D",
+        "text": "width=0px，height=200px"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "HTML",
+      "CSS",
+      "浮动",
+      "绝对定位"
+    ],
+    "explanation": "span 是浮动元素，width:auto 时采用 shrink-to-fit。其唯一子元素 i 为绝对定位元素，不参与普通文档流，无法撑开 span 的宽度，因此宽度为 0。span 的 height:100% 相对于明确高度为 200px 的父容器计算，所以高度为 200px。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_010",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 CSS position 定位，以下说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "relative 元素相对其原位置偏移后，原位置不再占据空间"
+      },
+      {
+        "key": "B",
+        "text": "fixed 元素可以相对于浏览器视口定位"
+      },
+      {
+        "key": "C",
+        "text": "absolute 元素通常相对于最近的已定位祖先元素进行偏移"
+      },
+      {
+        "key": "D",
+        "text": "fixed 元素脱离普通文档流，不占据原来的布局空间"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "CSS",
+      "position",
+      "定位"
+    ],
+    "explanation": "position:relative 只改变元素的视觉位置，元素在普通文档流中的原始空间仍然保留。fixed 和 absolute 通常脱离普通文档流。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_011",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 JavaScript 常见 DOM 事件，以下描述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "onmousedown：鼠标按钮被按下时触发"
+      },
+      {
+        "key": "B",
+        "text": "onkeypress：按下能够产生字符的键时触发；持续按住时可能重复触发"
+      },
+      {
+        "key": "C",
+        "text": "onblur：元素获得焦点时触发"
+      },
+      {
+        "key": "D",
+        "text": "onchange：表单控件的值发生更改并满足触发条件时触发"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "JavaScript",
+      "DOM事件",
+      "焦点事件"
+    ],
+    "explanation": "blur 表示元素失去焦点；元素获得焦点时对应 focus 事件。因此 C 错误。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_012",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "关于 JavaScript Promise，以下说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Promise.resolve(value) 和 Promise.reject(reason) 可分别创建已兑现或已拒绝的 Promise"
+      },
+      {
+        "key": "B",
+        "text": "Promise.resolve 和 Promise.reject 是 Promise 构造器提供的静态方法"
+      },
+      {
+        "key": "C",
+        "text": "then 或 catch 注册的回调会作为异步微任务执行，而不是在当前调用栈中同步执行"
+      },
+      {
+        "key": "D",
+        "text": "Promise 实例只有 then 方法，没有 catch 方法，拒绝结果只能通过 then 的第二个参数处理"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "JavaScript",
+      "Promise",
+      "异步编程"
+    ],
+    "explanation": "Promise 实例同时提供 then、catch 和 finally 等方法。catch(onRejected) 可以专门处理拒绝状态，本质上等价于 then(undefined, onRejected)。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_013",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 JavaScript 常见事件，以下描述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "onmousedown：鼠标按钮被按下时触发"
+      },
+      {
+        "key": "B",
+        "text": "onkeydown：键盘按键被按下时触发，持续按住时通常会重复触发"
+      },
+      {
+        "key": "C",
+        "text": "onblur：元素获得焦点时触发"
+      },
+      {
+        "key": "D",
+        "text": "onchange：表单控件的值发生变化并满足触发条件时触发"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "JavaScript",
+      "DOM事件",
+      "键盘事件"
+    ],
+    "explanation": "onblur 在元素失去焦点时触发，获得焦点对应 onfocus。因此 C 的描述错误。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_014",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在浏览器中执行下面 JavaScript 代码，alert 中显示什么？\n\nvar obj = {\"key\":\"1\", \"value\":\"2\"};\nvar newObj = obj;\nnewObj.value += obj.key;\nalert(obj.value);",
+    "options": [
+      {
+        "key": "A",
+        "text": "2"
+      },
+      {
+        "key": "B",
+        "text": "12"
+      },
+      {
+        "key": "C",
+        "text": "3"
+      },
+      {
+        "key": "D",
+        "text": "21"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "JavaScript",
+      "对象引用",
+      "类型转换",
+      "字符串拼接"
+    ],
+    "explanation": "newObj 与 obj 引用同一个对象。value 和 key 都是字符串，表达式 newObj.value += obj.key 等价于 \"2\"+\"1\"，结果为字符串 \"21\"，并写回同一个对象，因此 obj.value 也是 \"21\"。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_015",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "执行下面 JavaScript 代码，两次 alert 的输出依次是什么？\n\nvar bb = 1;\nfunction aa(bb) {\n    bb = 2;\n    alert(bb);\n}\naa(bb);\nalert(bb);",
+    "options": [
+      {
+        "key": "A",
+        "text": "1，1"
+      },
+      {
+        "key": "B",
+        "text": "1，2"
+      },
+      {
+        "key": "C",
+        "text": "2，1"
+      },
+      {
+        "key": "D",
+        "text": "2，2"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "JavaScript",
+      "作用域",
+      "函数参数"
+    ],
+    "explanation": "函数形参 bb 是函数局部变量，进入 aa 后被赋值为 2，因此第一次输出 2。外部变量 bb 不受该局部赋值影响，第二次输出仍为 1。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_016",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "以下哪一条 JavaScript 声明会产生语法错误？",
+    "options": [
+      {
+        "key": "A",
+        "text": "var obj = ();"
+      },
+      {
+        "key": "B",
+        "text": "var obj = [];"
+      },
+      {
+        "key": "C",
+        "text": "var obj = {};"
+      },
+      {
+        "key": "D",
+        "text": "var obj = / /;"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "JavaScript",
+      "语法",
+      "字面量"
+    ],
+    "explanation": "空圆括号不能单独作为有效表达式，因此 var obj=(); 会产生语法错误。[] 是数组字面量，{} 是对象字面量，/ / 是一个匹配空格的正则表达式字面量。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_017",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "执行下面代码，alert(txt) 的输出是什么？\n\nvar person={fname:\"John\",lname:\"Doe\",age:25};\nvar txt=\"\";\nfor (x in person) {\n  txt = txt + person[x];\n}\nalert(txt);",
+    "options": [
+      {
+        "key": "A",
+        "text": "JohnDoe25"
+      },
+      {
+        "key": "B",
+        "text": "fname:\"John\",lname:\"Doe\",age:25"
+      },
+      {
+        "key": "C",
+        "text": "fname:John,lname:Doe,age:25"
+      },
+      {
+        "key": "D",
+        "text": "fnamelnameage"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "JavaScript",
+      "对象遍历",
+      "for...in"
+    ],
+    "explanation": "for...in 遍历对象的可枚举属性名，person[x] 取得对应属性值。按照该对象的属性插入顺序，依次拼接 John、Doe 和 25，得到 JohnDoe25。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_018",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "执行下面两段代码，关于输出结果，哪项正确？\n\n①\nfor (var i=0; i<2; i++) {\n  setTimeout(function(){ console.log(i); }, 0);\n}\n\n②\nfor (var i=0; i<2; i++) {\n  (function(i){\n    setTimeout(function(){ console.log(i); }, 0);\n  }(i));\n}",
+    "options": [
+      {
+        "key": "A",
+        "text": "① 输出 0、1"
+      },
+      {
+        "key": "B",
+        "text": "① 输出 1、1"
+      },
+      {
+        "key": "C",
+        "text": "② 输出 0、1"
+      },
+      {
+        "key": "D",
+        "text": "② 输出 1、1"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "JavaScript",
+      "闭包",
+      "事件循环",
+      "var"
+    ],
+    "explanation": "① 中 var 声明的 i 为同一个函数级变量，定时器回调执行时循环已经结束，i=2，所以输出 2、2。② 使用立即执行函数把每次循环的 i 值复制到独立形参作用域，因此输出 0、1。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_019",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "给定 Vue 模板和数据，最终 div 元素的 class 属性值是什么？\n\n<div class=\"static\" v-bind:class=\"{ active: isActive, 'text-danger': hasError }\"></div>\n\ndata: { isActive: true, hasError: false }",
+    "options": [
+      {
+        "key": "A",
+        "text": "static isActive"
+      },
+      {
+        "key": "B",
+        "text": "static active"
+      },
+      {
+        "key": "C",
+        "text": "static hasError"
+      },
+      {
+        "key": "D",
+        "text": "isActive"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "Vue",
+      "class绑定",
+      "v-bind"
+    ],
+    "explanation": "静态类名 static 会保留。对象语法中，值为 true 的 active 被加入，值为 false 的 text-danger 不会加入，所以最终为 static active。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_020",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 Vue 的 v-for 指令，以下说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "v-for 可以基于数组渲染列表"
+      },
+      {
+        "key": "B",
+        "text": "常见语法为 item in items，其中 item 是当前元素的别名"
+      },
+      {
+        "key": "C",
+        "text": "v-for 不能用于遍历对象的属性"
+      },
+      {
+        "key": "D",
+        "text": "列表项通常应提供稳定且唯一的 key，尽量不要使用索引作为 key"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "Vue",
+      "v-for",
+      "列表渲染"
+    ],
+    "explanation": "v-for 不仅可以遍历数组，也可以遍历对象的属性值、属性名和索引。因此 C 错误。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_021",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在 React 类组件中，若希望组件第一次挂载完成后获取其 DOM 元素，应在哪个生命周期方法中进行？",
+    "options": [
+      {
+        "key": "A",
+        "text": "componentDidUpdate()"
+      },
+      {
+        "key": "B",
+        "text": "componentDidMount()"
+      },
+      {
+        "key": "C",
+        "text": "componentWillUnmount()"
+      },
+      {
+        "key": "D",
+        "text": "shouldComponentUpdate()"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "React",
+      "生命周期",
+      "DOM"
+    ],
+    "explanation": "componentDidMount 会在组件首次渲染并挂载到 DOM 后调用，此时可以通过 ref 获取真实 DOM。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_022",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "在 React 中将数组数据渲染成一组列表元素，通常使用哪个数组方法？",
+    "options": [
+      {
+        "key": "A",
+        "text": "map()"
+      },
+      {
+        "key": "B",
+        "text": "reduce()"
+      },
+      {
+        "key": "C",
+        "text": "createList()"
+      },
+      {
+        "key": "D",
+        "text": "every()"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "React",
+      "列表渲染",
+      "JavaScript数组"
+    ],
+    "explanation": "通常使用 map() 把数组中的每一项转换为 React 元素，并为每个元素提供稳定的 key。",
+    "source": "用户提供的京东前端类笔试题整理"
+  },
+  {
+    "question_id": "jd_frontend_023",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "easy",
+    "question_type": "short_answer",
+    "content": "给定 n 个仅包含小写字母的字符串，请按输入顺序筛选出长度为奇数的字符串，并将它们依次拼接后输出。请说明算法思路并分析时间复杂度。",
+    "options": [],
+    "answer": "按输入顺序逐个遍历字符串。若字符串长度 len(s) 为奇数，即 len(s)%2==1，就将其加入结果。实现时可把符合条件的字符串存入列表，最后使用一次 join 拼接，避免在循环中反复创建长字符串。设所有字符串的总字符数为 S，则检查长度和最终拼接的总时间复杂度为 O(n+S)，若读取字符串本身也计入处理，则可记为 O(S)；结果之外的额外空间为 O(S_result)。",
+    "knowledge_points": [
+      "字符串",
+      "遍历",
+      "拼接",
+      "复杂度"
+    ],
+    "explanation": "关键点是保持输入顺序，只筛选奇数长度字符串。使用列表收集并在最后 join，通常比循环中频繁执行字符串加法更高效。",
+    "source": "用户提供的京东前端类笔试题整理",
+    "grading_points": [
+      {
+        "point": "按输入顺序遍历全部 n 个字符串",
+        "score": 2
+      },
+      {
+        "point": "使用长度取模判断奇数长度",
+        "score": 2
+      },
+      {
+        "point": "只拼接符合条件的字符串且保持原顺序",
+        "score": 2
+      },
+      {
+        "point": "提出使用列表收集后统一 join，或等价高效实现",
+        "score": 2
+      },
+      {
+        "point": "给出合理的线性时间复杂度分析",
+        "score": 1
+      },
+      {
+        "point": "给出结果空间或额外空间分析",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "jd_frontend_024",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "给定长度为 n 的整数序列 a1,a2,…,an。在位置 p（1≤p<n）切割后，左侧为 a1…ap，右侧为 a(p+1)…an，切割代价等于两部分元素和的乘积。请设计算法求所有合法切割位置中的最小代价，并分析时间复杂度。",
+    "options": [],
+    "answer": "先计算整个序列的总和 total。随后从左到右枚举 p=1,…,n-1，并维护前缀和 prefix。当前位置的左侧元素和为 prefix，右侧元素和为 total-prefix，因此代价为 prefix×(total-prefix)。在扫描过程中维护最小代价即可。算法时间复杂度为 O(n)，额外空间复杂度为 O(1)。如果元素和或乘积可能较大，需要使用 64 位整数或更高精度类型避免溢出。",
+    "knowledge_points": [
+      "数组",
+      "前缀和",
+      "线性扫描",
+      "复杂度"
+    ],
+    "explanation": "总和固定后，每个切割位置的右侧和都可以用 total-prefix 得到，因此不需要重复计算两个子序列的和。",
+    "source": "用户提供的京东前端类笔试题整理",
+    "grading_points": [
+      {
+        "point": "计算整个数组总和 total",
+        "score": 1
+      },
+      {
+        "point": "从左到右维护前缀和 prefix",
+        "score": 2
+      },
+      {
+        "point": "正确写出代价 prefix×(total-prefix)",
+        "score": 3
+      },
+      {
+        "point": "只枚举 1≤p<n，保证两段非空",
+        "score": 1
+      },
+      {
+        "point": "扫描过程中维护全局最小值",
+        "score": 1
+      },
+      {
+        "point": "给出 O(n) 时间和 O(1) 额外空间复杂度",
+        "score": 1
+      },
+      {
+        "point": "考虑整数溢出问题",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "jd_frontend_025",
+    "company": "jd",
+    "position": "frontend",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "给定 n 个字符串，以及输入中指定的一套字符大小顺序。排序规则为：若一个字符串是另一个字符串的前缀，则较短字符串在前；否则比较第一个不同字符，并按照给定字符顺序决定大小。请说明如何实现该排序，并分析复杂度。",
+    "options": [],
+    "answer": "先根据输入的字符顺序建立映射 rank[ch]，表示每个字符的比较等级。实现自定义比较器比较字符串 s 和 t：从左到右扫描到 min(|s|,|t|)，遇到第一个不同字符时比较 rank[s[i]] 和 rank[t[i]]；若公共部分完全相同，则长度较短的字符串排在前面。随后使用支持自定义比较器的排序算法对全部字符串排序。设最大字符串长度为 L，比较排序进行 O(n log n) 次比较，每次最坏扫描 O(L)，因此最坏时间复杂度为 O(nL log n)，额外空间包括 rank 映射和排序所需空间。",
+    "knowledge_points": [
+      "字符串",
+      "排序",
+      "自定义比较器",
+      "字典序"
+    ],
+    "explanation": "该规则本质上是使用自定义字符表的字典序。实现时必须正确处理第一个不同字符和前缀两种情况。",
+    "source": "用户提供的京东前端类笔试题整理",
+    "grading_points": [
+      {
+        "point": "根据给定字符顺序建立 rank 映射",
+        "score": 2
+      },
+      {
+        "point": "从左到右扫描两个字符串的公共范围",
+        "score": 2
+      },
+      {
+        "point": "在第一个不同字符处使用 rank 比较",
+        "score": 2
+      },
+      {
+        "point": "公共部分相同时使较短字符串在前",
+        "score": 2
+      },
+      {
+        "point": "使用自定义比较器完成整体排序",
+        "score": 1
+      },
+      {
+        "point": "给出 O(nL log n) 或等价合理复杂度分析",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  }
+]

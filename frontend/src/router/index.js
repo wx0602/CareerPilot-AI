@@ -12,12 +12,14 @@ import SettingsPage from '../pages/SettingsPage.vue';
 import CareerAssessmentPage from '../pages/CareerAssessmentPage.vue';
 import SimulationInterviewPage from '../pages/SimulationInterviewPage.vue';
 import SceneIntroPage from '../pages/SceneIntroPage.vue';
+import CompanyExamPage from '../pages/CompanyExamPage.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', name: 'login', component: LoginPage },
   { path: '/dashboard', name: 'dashboard', component: DashboardPage },
   { path: '/study-plan', name: 'study-plan', component: StudyPlanPage },
+  { path: '/company-exams', name: 'company-exams', component: CompanyExamPage },
   { path: '/upload', name: 'upload', component: UploadPage },
   { path: '/exam', name: 'exam', component: WrittenExamPage },
   { path: '/interview', name: 'interview', component: TextInterviewPage },

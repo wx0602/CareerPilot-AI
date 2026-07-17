@@ -1,0 +1,801 @@
+[
+  {
+    "question_id": "xiaomi_algorithm_001",
+    "question_type": "multiple_choice",
+    "content": "下列哪些做法符合常见的 C++ 代码注释规范？",
+    "options": [
+      {
+        "key": "A",
+        "text": ".h 文件对所声明类的功能和用法作简要说明，.cc 文件可包含更多实现细节或算法说明"
+      },
+      {
+        "key": "B",
+        "text": "类的定义通常完全不需要注释"
+      },
+      {
+        "key": "C",
+        "text": "函数声明处描述函数功能，定义处说明重要实现细节"
+      },
+      {
+        "key": "D",
+        "text": "对代码中巧妙、晦涩、重要或容易误解的部分加以注释"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": "头文件应说明接口用途，源文件可解释实现细节；函数声明和定义处的注释关注点不同；复杂或容易误解的逻辑应有注释。类定义并非通常都不需要注释。",
+    "knowledge_points": [
+      "C++",
+      "代码规范",
+      "注释"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_002",
+    "question_type": "multiple_choice",
+    "content": "关于快速排序，下列说法正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "快速排序基于分治思想"
+      },
+      {
+        "key": "B",
+        "text": "平均时间复杂度为 O(n log n)"
+      },
+      {
+        "key": "C",
+        "text": "最坏时间复杂度为 O(n log n)"
+      },
+      {
+        "key": "D",
+        "text": "快速排序是稳定排序算法"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "explanation": "快速排序通过划分递归处理子数组，平均复杂度为 O(n log n)。极端划分时最坏为 O(n²)，且通常不稳定。",
+    "knowledge_points": [
+      "排序",
+      "快速排序",
+      "分治"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_003",
+    "question_type": "multiple_choice",
+    "content": "下列关于网络模型和协议的说法中，错误的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "OSI 网络层的主要功能是在通信实体之间传送以帧为单位的数据"
+      },
+      {
+        "key": "B",
+        "text": "HTTP 通信过程通常包括建立连接、发送请求、接收响应及连接管理"
+      },
+      {
+        "key": "C",
+        "text": "ARP/RARP 属于 TCP/IP 模型的应用层协议"
+      },
+      {
+        "key": "D",
+        "text": "TCP/IP 协议体系并不与 OSI 七层模型完全一一对应"
+      }
+    ],
+    "answer": [
+      "A",
+      "C"
+    ],
+    "explanation": "帧是数据链路层的数据单位，网络层处理分组；ARP/RARP 通常位于网络接口层与网际层之间，不属于应用层。D 正确。",
+    "knowledge_points": [
+      "网络基础",
+      "OSI",
+      "TCP/IP",
+      "ARP"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_004",
+    "question_type": "multiple_choice",
+    "content": "常用的降维或维数约简方法包括哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "MDS 多维缩放"
+      },
+      {
+        "key": "B",
+        "text": "PCA 主成分分析"
+      },
+      {
+        "key": "C",
+        "text": "LDA 线性判别分析"
+      },
+      {
+        "key": "D",
+        "text": "流形学习"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "MDS、PCA、LDA 以及 Isomap、LLE 等流形学习方法都可用于将高维数据映射到低维空间。",
+    "knowledge_points": [
+      "机器学习",
+      "降维",
+      "PCA",
+      "LDA",
+      "流形学习"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_005",
+    "question_type": "multiple_choice",
+    "content": "《Attention Is All You Need》原始 Transformer 中包含哪些结构？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Multi-Head Attention"
+      },
+      {
+        "key": "B",
+        "text": "Positional Encoding"
+      },
+      {
+        "key": "C",
+        "text": "Batch Normalization"
+      },
+      {
+        "key": "D",
+        "text": "Position-wise Feed-Forward Network"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": "原始 Transformer 使用多头注意力、位置编码和逐位置前馈网络，并使用 Layer Normalization，而不是 Batch Normalization。",
+    "knowledge_points": [
+      "深度学习",
+      "Transformer",
+      "注意力机制"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_006",
+    "question_type": "multiple_choice",
+    "content": "在深度学习中，哪些方法通常可以缓解过拟合？",
+    "options": [
+      {
+        "key": "A",
+        "text": "L1/L2 正则化"
+      },
+      {
+        "key": "B",
+        "text": "Early Stopping"
+      },
+      {
+        "key": "C",
+        "text": "Dropout"
+      },
+      {
+        "key": "D",
+        "text": "增加训练数据或数据增强"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "权重正则化、提前停止、Dropout 和增加数据都能在不同程度上降低模型对训练集的过度拟合。",
+    "knowledge_points": [
+      "深度学习",
+      "过拟合",
+      "正则化"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_007",
+    "question_type": "multiple_choice",
+    "content": "回归模型存在多重共线性时，为减少信息损失，可以采用哪些处理方法？",
+    "options": [
+      {
+        "key": "A",
+        "text": "剔除所有存在共线性的变量"
+      },
+      {
+        "key": "B",
+        "text": "在高度共线的变量中删除一个或进行特征选择"
+      },
+      {
+        "key": "C",
+        "text": "使用方差膨胀因子 VIF 检查共线性程度并采取措施"
+      },
+      {
+        "key": "D",
+        "text": "使用 Ridge 或 Lasso 等正则化方法"
+      }
+    ],
+    "answer": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": "直接删除全部相关变量会造成严重信息损失。可以删除部分冗余特征、使用 VIF 诊断，或通过正则化稳定参数估计。",
+    "knowledge_points": [
+      "机器学习",
+      "回归",
+      "多重共线性",
+      "VIF"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_008",
+    "question_type": "multiple_choice",
+    "content": "下列关于常见机器学习模型的说法中，正确的有哪些？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SVM 常采用 Hinge Loss，可使用 SMO 等算法训练"
+      },
+      {
+        "key": "B",
+        "text": "GBDT 属于 Bagging 方法"
+      },
+      {
+        "key": "C",
+        "text": "逻辑回归使用 Sigmoid，输出值严格位于开区间 (0,1)"
+      },
+      {
+        "key": "D",
+        "text": "多层感知器是前馈人工神经网络，可将输入向量映射为输出向量"
+      }
+    ],
+    "answer": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": "SVM 常使用 Hinge Loss；GBDT 属于 Boosting 而非 Bagging；Sigmoid 输出位于 (0,1)；MLP 是典型前馈网络。原题把 Sigmoid 写成 [0,1]，这里已规范为严格开区间。",
+    "knowledge_points": [
+      "机器学习",
+      "SVM",
+      "GBDT",
+      "逻辑回归",
+      "MLP"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_009",
+    "question_type": "single_choice",
+    "content": "某地区感染率为 5%。核酸检测假阳性率为 2%，假阴性率为 10%。某人检测结果为阳性，则其实际感染的概率约为多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "40%"
+      },
+      {
+        "key": "B",
+        "text": "55%"
+      },
+      {
+        "key": "C",
+        "text": "70%"
+      },
+      {
+        "key": "D",
+        "text": "90%"
+      },
+      {
+        "key": "E",
+        "text": "95%"
+      }
+    ],
+    "answer": "C",
+    "explanation": "灵敏度为 90%。根据贝叶斯公式，P(感染|阳性)=0.05×0.90/(0.05×0.90+0.95×0.02)=0.045/0.064≈70.31%。",
+    "knowledge_points": [
+      "概率论",
+      "贝叶斯公式",
+      "条件概率"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_010",
+    "question_type": "single_choice",
+    "content": "某二分类模型的 precision 为 0.8、recall 为 0.7，则其 F1 值约为多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "0.737"
+      },
+      {
+        "key": "B",
+        "text": "0.747"
+      },
+      {
+        "key": "C",
+        "text": "0.757"
+      },
+      {
+        "key": "D",
+        "text": "0.767"
+      }
+    ],
+    "answer": "B",
+    "explanation": "F1=2PR/(P+R)=2×0.8×0.7/(0.8+0.7)=1.12/1.5≈0.7467，因此选择 0.747。F1 不能由 accuracy 和 recall 单独计算，故将原题中的 accuracy 规范为 precision。",
+    "knowledge_points": [
+      "机器学习",
+      "分类指标",
+      "F1"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_011",
+    "question_type": "single_choice",
+    "content": "以下哪个算法属于无监督学习？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SVM"
+      },
+      {
+        "key": "B",
+        "text": "K-Means"
+      },
+      {
+        "key": "C",
+        "text": "KNN"
+      },
+      {
+        "key": "D",
+        "text": "GBDT"
+      }
+    ],
+    "answer": "B",
+    "explanation": "K-Means 是典型聚类算法，不依赖类别标签。其余选项通常用于监督学习。",
+    "knowledge_points": [
+      "机器学习",
+      "无监督学习",
+      "聚类"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_012",
+    "question_type": "single_choice",
+    "content": "一般情况下，训练 RNN 时不推荐直接使用哪种方法处理网络内部激活的归一化问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Layer Normalization"
+      },
+      {
+        "key": "B",
+        "text": "Dropout"
+      },
+      {
+        "key": "C",
+        "text": "Batch Normalization"
+      },
+      {
+        "key": "D",
+        "text": "L2 Regularization"
+      }
+    ],
+    "answer": "C",
+    "explanation": "标准 Batch Normalization 依赖批次统计量，在变长序列和不同时间步上使用较复杂。RNN 中通常更常使用 Layer Normalization；Dropout 和 L2 也可用于正则化。",
+    "knowledge_points": [
+      "深度学习",
+      "RNN",
+      "归一化"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_013",
+    "question_type": "single_choice",
+    "content": "某 0-1 分类任务训练逻辑回归时，只保留原负样本的 20%，正样本全部保留。在采样后的数据上模型输出正类概率为 p，则校正后的原始分布正类概率为多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "p/(6-5p)"
+      },
+      {
+        "key": "B",
+        "text": "p/(5-4p)"
+      },
+      {
+        "key": "C",
+        "text": "p/(6p-5)"
+      },
+      {
+        "key": "D",
+        "text": "以上都不正确"
+      }
+    ],
+    "answer": "B",
+    "explanation": "设负样本保留率 q=0.2。采样后概率满足 p_s/(1-p_s)=p_true/[q(1-p_true)]。解得 p_true=q p_s/(1-p_s+q p_s)=p_s/(5-4p_s)。",
+    "knowledge_points": [
+      "机器学习",
+      "负采样",
+      "概率校正",
+      "逻辑回归"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_014",
+    "question_type": "single_choice",
+    "content": "对于满足常见正则条件的无约束凸优化问题，L-BFGS 通常具有哪种局部收敛速度？",
+    "options": [
+      {
+        "key": "A",
+        "text": "二次收敛"
+      },
+      {
+        "key": "B",
+        "text": "超线性收敛"
+      },
+      {
+        "key": "C",
+        "text": "线性收敛"
+      },
+      {
+        "key": "D",
+        "text": "以上都不正确"
+      }
+    ],
+    "answer": "B",
+    "explanation": "拟牛顿方法在适当条件下通常可达到超线性收敛。L-BFGS 通过有限内存近似 Hessian 逆矩阵，兼顾收敛速度与存储开销。",
+    "knowledge_points": [
+      "优化算法",
+      "L-BFGS",
+      "凸优化"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_015",
+    "question_type": "single_choice",
+    "content": "整型数组 a={4,8,7,0,3,5,9,1} 使用最大堆进行原地升序堆排序。完成建堆，并进行第一轮“交换堆顶与末尾元素后重新调整剩余堆”后，数组为哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "8 4 7 0 5 3 9 1"
+      },
+      {
+        "key": "B",
+        "text": "7 8 4 0 9 1 3 5"
+      },
+      {
+        "key": "C",
+        "text": "8 3 7 1 0 5 4 9"
+      },
+      {
+        "key": "D",
+        "text": "8 4 7 0 1 5 9 3"
+      }
+    ],
+    "answer": "C",
+    "explanation": "建成最大堆后将根 9 与末尾元素交换，再对前 7 个元素向下调整，得到 8 3 7 1 0 5 4 9。",
+    "knowledge_points": [
+      "排序",
+      "堆排序",
+      "最大堆"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_016",
+    "question_type": "single_choice",
+    "content": "有向图 V={V1,V2,V3,V4,V5}，边集合为 V1→V4、V1→V2、V2→V4、V2→V3、V4→V3、V3→V5、V4→V5。下列哪个是合法拓扑序列？",
+    "options": [
+      {
+        "key": "A",
+        "text": "V1,V2,V3,V4,V5"
+      },
+      {
+        "key": "B",
+        "text": "V1,V2,V4,V3,V5"
+      },
+      {
+        "key": "C",
+        "text": "V1,V2,V3,V5,V4"
+      },
+      {
+        "key": "D",
+        "text": "V1,V2,V5,V3,V4"
+      }
+    ],
+    "answer": "B",
+    "explanation": "所有边的起点都必须出现在终点之前。V4 必须在 V3 之前，V3 和 V4 都必须在 V5 之前，因此 B 合法。",
+    "knowledge_points": [
+      "图",
+      "拓扑排序",
+      "有向无环图"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_017",
+    "question_type": "single_choice",
+    "content": "一个容量为 7、数组下标从 0 开始的循环队列，队头索引为 3，队尾索引为 6。若队尾指向下一次入队位置，先入队两个元素，再出队两个元素后，队头和队尾索引分别是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "5 和 1"
+      },
+      {
+        "key": "B",
+        "text": "1 和 5"
+      },
+      {
+        "key": "C",
+        "text": "4 和 2"
+      },
+      {
+        "key": "D",
+        "text": "2 和 4"
+      }
+    ],
+    "answer": "A",
+    "explanation": "入队两次使 tail=(6+2) mod 7=1；出队两次使 head=(3+2) mod 7=5，因此为 5 和 1。",
+    "knowledge_points": [
+      "队列",
+      "循环队列"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_018",
+    "question_type": "single_choice",
+    "content": "在双向链表中删除指针 p 指向的非首尾结点，需要执行哪组操作？",
+    "options": [
+      {
+        "key": "A",
+        "text": "p->next->prior=p->prior; p->prior->next=p->next"
+      },
+      {
+        "key": "B",
+        "text": "p->next=p->next->next; p->next->prior=p"
+      },
+      {
+        "key": "C",
+        "text": "p->prior->next=p; p->prior=p->prior->prior"
+      },
+      {
+        "key": "D",
+        "text": "p->prior=p->next->next; p->next=p->prior->prior"
+      }
+    ],
+    "answer": "A",
+    "explanation": "删除 p 时，需要让前驱结点的 next 指向 p 的后继，并让后继结点的 prior 指向 p 的前驱。",
+    "knowledge_points": [
+      "链表",
+      "双向链表"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_019",
+    "question_type": "single_choice",
+    "content": "某二叉树前序遍历为 a、e、b、d、c，后序遍历为 b、c、d、e、a。根结点 a 的孩子情况是怎样的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只有 e"
+      },
+      {
+        "key": "B",
+        "text": "一定有 e，可能还有 b"
+      },
+      {
+        "key": "C",
+        "text": "一定有 e，可能还有 c"
+      },
+      {
+        "key": "D",
+        "text": "无法确定"
+      }
+    ],
+    "answer": "A",
+    "explanation": "前序中根后第一个结点为 e，后序中根前最后一个结点也是 e，说明其余所有结点都属于以 e 为根的同一棵子树，因此 a 只有一个孩子 e。",
+    "knowledge_points": [
+      "树",
+      "二叉树遍历"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_020",
+    "question_type": "single_choice",
+    "content": "关于死锁，下列说法正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "破坏死锁必要条件的预防方法通常能同时保证较高资源利用率和吞吐量"
+      },
+      {
+        "key": "B",
+        "text": "银行家算法属于死锁预防算法"
+      },
+      {
+        "key": "C",
+        "text": "系统进入不安全状态后一定会立即发生死锁"
+      },
+      {
+        "key": "D",
+        "text": "互斥、请求并保持、不可剥夺、循环等待四个必要条件中，只要任意一个不成立，就不会产生死锁"
+      }
+    ],
+    "answer": "D",
+    "explanation": "死锁发生必须同时满足四个必要条件，破坏任一条件即可预防。银行家算法属于死锁避免；不安全状态表示可能死锁，但不一定已经死锁。",
+    "knowledge_points": [
+      "操作系统",
+      "死锁",
+      "银行家算法"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_021",
+    "question_type": "short_answer",
+    "content": "给定一个 n×m 的非负整数矩阵 A。定义 x[i,j] 为第 i 行除 a[i,j] 外的所有元素与第 j 列除 a[i,j] 外的所有元素的乘积。请设计算法求所有 x[i,j] 的最大值，要求正确处理矩阵中的 0。",
+    "options": [],
+    "answer": "分别预处理每一行和每一列的非零元素乘积，以及零元素个数。对单元格 (i,j)，计算行排除积 rowExcl：若该行零数>=2，则为0；若零数==1，则仅当 a[i][j]==0 时等于该行非零积，否则为0；若零数==0，则为 rowProduct[i]/a[i][j]。列排除积 colExcl 同理。由于 a[i][j] 在行积和列积中都被排除，x[i,j]=rowExcl*colExcl。遍历所有单元格更新最大值。预处理和枚举总时间复杂度 O(nm)，额外空间 O(n+m)。若输入范围可能溢出固定宽度整数，应使用大整数类型。",
+    "explanation": "不能直接使用总乘积除法，因为矩阵中可能含 0。记录每行、每列的零数量和非零乘积，就能在 O(1) 时间计算每个单元格的排除乘积。",
+    "knowledge_points": [
+      "矩阵",
+      "前缀思想",
+      "零元素处理",
+      "乘积"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "xiaomi_algorithm_022",
+    "question_type": "short_answer",
+    "content": "有 1×1、2×2、3×3、4×4、5×5、6×6 六种正方形产品，数量分别为 c1～c6。每个包裹底面为 6×6，产品不可切割且边与包裹平行。请使用尽量少的包裹装下全部产品，并说明贪心算法。",
+    "options": [],
+    "answer": "按尺寸从大到小贪心装箱。6×6：每个单独占一箱。5×5：每个占一箱，并最多用 11 个1×1填空。4×4：每个占一箱，剩余空间优先放最多5个2×2；若2×2不足，每缺1个2×2位置可放4个1×1。3×3：每箱最多4个；余数r为1、2、3时，新开一箱，分别最多再放5、3、1个2×2，使用实际可用数量后，剩余面积用1×1填充，数量为36-9r-4×used2。处理完大块后，剩余2×2每箱最多9个；若最后一箱未满，剩余面积可放 36-4×(c2 mod 9) 个1×1。最后剩余1×1每箱放36个。所有扣减均取不小于0，箱数使用向上取整。该算法只需常数次计算，时间和额外空间复杂度均为 O(1)。",
+    "explanation": "大尺寸产品的摆放方式基本固定，应先放置大块，再用较小产品填充剩余空间。经典 6×6 包裹问题可以按 6、5、4、3、2、1 的顺序得到最优方案。",
+    "knowledge_points": [
+      "贪心",
+      "模拟",
+      "装箱问题"
+    ],
+    "company": "xiaomi",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "source": "用户提供的小米算法类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  }
+]

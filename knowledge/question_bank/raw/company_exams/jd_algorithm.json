@@ -1,0 +1,832 @@
+[
+  {
+    "question_id": "jd_algorithm_001",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "一场考试的试卷分为 hard 和 easy 两类。抽到 hard 的概率为 0.8，抽到 easy 的概率为 0.2。若试卷为 hard，压轴题为超难题的概率为 0.9；若试卷为 easy，压轴题为超难题的概率为 0.15。某位学生抽到的试卷压轴题为超难题的概率是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "0.315"
+      },
+      {
+        "key": "B",
+        "text": "0.735"
+      },
+      {
+        "key": "C",
+        "text": "0.375"
+      },
+      {
+        "key": "D",
+        "text": "0.750"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "概率论与数理统计",
+      "全概率公式"
+    ],
+    "explanation": "设 H、E 分别表示抽到 hard、easy 试卷，A 表示压轴题为超难题。由全概率公式，P(A)=P(H)P(A|H)+P(E)P(A|E)=0.8×0.9+0.2×0.15=0.72+0.03=0.75，因此选择 D。原题解析中的“答案 B”属于笔误。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_002",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "连续抛掷一枚均匀硬币，一旦正面累计出现 3 次就停止。设随机变量 X 为总抛掷次数，则 P(X=5) 等于多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "1/16"
+      },
+      {
+        "key": "B",
+        "text": "2/16"
+      },
+      {
+        "key": "C",
+        "text": "3/16"
+      },
+      {
+        "key": "D",
+        "text": "4/16"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "概率论与数理统计",
+      "负二项分布",
+      "组合计数"
+    ],
+    "explanation": "要在第 5 次恰好停止，第 5 次必须为正面，前 4 次中必须恰好出现 2 次正面。概率为 C(4,2)×(1/2)^4×(1/2)=6/32=3/16。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_003",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "设 A、B、C 为三个事件，且 A 与 B 相互独立。以下结论中不一定正确的是哪一项？其中 AC 表示 A∩C，“A并C”表示 A∪C。",
+    "options": [
+      {
+        "key": "A",
+        "text": "若 P(C)=1，则 A∩C 与 B∩C 也独立"
+      },
+      {
+        "key": "B",
+        "text": "若 P(C)=1，则 A∪C 与 B 也独立"
+      },
+      {
+        "key": "C",
+        "text": "若 P(C)=0，则 A∪C 与 B 也独立"
+      },
+      {
+        "key": "D",
+        "text": "若 C⊆B，则 A 与 C 也独立"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "概率论与数理统计",
+      "事件独立性"
+    ],
+    "explanation": "概率为 1 的事件与概率为 0 的事件在概率意义上不会改变相应事件，因此 A、B、C 三项成立。仅由 C⊆B 不能推出 A 与 C 独立；C 可以选取为 B 中与 A 具有相关性的部分，所以 D 不一定正确。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_004",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "在双向循环链表中，要在结点 p 之后插入结点 s，以下哪组指针操作正确？",
+    "options": [
+      {
+        "key": "A",
+        "text": "p->next=s; s->prior=p; p->next->prior=s; s->next=p->next"
+      },
+      {
+        "key": "B",
+        "text": "p->next->prior=s; p->next=s; s->prior=p; s->next=p->next"
+      },
+      {
+        "key": "C",
+        "text": "s->prior=p; s->next=p->next; p->next=s; p->next->prior=s"
+      },
+      {
+        "key": "D",
+        "text": "s->prior=p; s->next=p->next; p->next->prior=s; p->next=s"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "链表",
+      "双向循环链表",
+      "指针操作"
+    ],
+    "explanation": "应先让 s 记录原来的后继结点：s->prior=p，s->next=p->next；再令原后继结点的 prior 指向 s，即 p->next->prior=s；最后令 p->next=s。该顺序不会丢失原链表中的连接关系，因此 D 正确。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_005",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "一个栈初始为空。将元素 1、2、3、A、B、C 依次全部入栈后，再依次全部出栈，出栈顺序是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "1,2,3,A,B,C"
+      },
+      {
+        "key": "B",
+        "text": "C,B,A,1,2,3"
+      },
+      {
+        "key": "C",
+        "text": "C,B,A,3,2,1"
+      },
+      {
+        "key": "D",
+        "text": "1,2,3,C,B,A"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "栈",
+      "后进先出"
+    ],
+    "explanation": "栈遵循后进先出原则。全部元素入栈后，栈顶到栈底依次为 C、B、A、3、2、1，因此出栈顺序为 C、B、A、3、2、1。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_006",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "对序列 12,15,1,18,2,35,30,11 使用直接选择排序按升序排列，第 2 趟交换完成后的序列是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "11,1,2,12,35,18,30,15"
+      },
+      {
+        "key": "B",
+        "text": "1,2,12,18,15,35,30,11"
+      },
+      {
+        "key": "C",
+        "text": "1,2,12,15,18,35,30,11"
+      },
+      {
+        "key": "D",
+        "text": "1,2,11,12,15,18,35,30"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "排序",
+      "选择排序"
+    ],
+    "explanation": "第 1 趟在全序列中选出最小值 1，与首元素 12 交换，得到 1,15,12,18,2,35,30,11。第 2 趟在剩余部分选出最小值 2，与 15 交换，得到 1,2,12,18,15,35,30,11。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_007",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "以下递归函数的时间复杂度是多少？\n\nvoid foo(int n, int x, int y) {\n    int z = 0;\n    if (n <= 0) {\n        z = x + y;\n    } else {\n        foo(n - 1, x + 1, y);\n        foo(n - 1, x, y + 1);\n    }\n}",
+    "options": [
+      {
+        "key": "A",
+        "text": "O(2^n)"
+      },
+      {
+        "key": "B",
+        "text": "O(n)"
+      },
+      {
+        "key": "C",
+        "text": "O(log n)"
+      },
+      {
+        "key": "D",
+        "text": "O(n^2)"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "递归",
+      "时间复杂度",
+      "递推式"
+    ],
+    "explanation": "x、y 不影响递归规模。设 T(n) 为运行时间，则 T(n)=2T(n-1)+O(1)，T(0)=O(1)。递归树共有约 2^(n+1)-1 个结点，因此时间复杂度为 O(2^n)。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_008",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "若一个进程请求了当前不能立即满足、必须等待某个事件完成的资源或条件，该进程通常会进入什么状态？",
+    "options": [
+      {
+        "key": "A",
+        "text": "退出状态"
+      },
+      {
+        "key": "B",
+        "text": "阻塞状态"
+      },
+      {
+        "key": "C",
+        "text": "挂起状态"
+      },
+      {
+        "key": "D",
+        "text": "就绪状态"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "操作系统",
+      "进程状态"
+    ],
+    "explanation": "进程因等待 I/O、资源或其他事件而暂时无法继续执行时，会由运行态进入阻塞态；等待条件满足后再转为就绪态。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_009",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "成绩表 myscore 中包含 paper_id 和 score 字段。要找出平均得分小于 90 的所有试卷，以下 SQL 正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "SELECT paper_id FROM myscore WHERE SUM(score) < 90 GROUP BY paper_id;"
+      },
+      {
+        "key": "B",
+        "text": "SELECT paper_id FROM myscore GROUP BY paper_id HAVING AVG(score) < 90;"
+      },
+      {
+        "key": "C",
+        "text": "SELECT paper_id FROM myscore WHERE AVG(score) < 90;"
+      },
+      {
+        "key": "D",
+        "text": "SELECT paper_id FROM myscore WHERE AVG(score) < 90 GROUP BY paper_id;"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "数据库",
+      "SQL",
+      "GROUP BY",
+      "HAVING"
+    ],
+    "explanation": "应先按 paper_id 分组，再使用 AVG(score) 计算每组平均分。聚合结果的筛选要使用 HAVING，而不是 WHERE，因此 B 正确。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_010",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "给定 Python 3 代码：\n\ndef bar(multiple):\n    def foo(n):\n        return multiple ** n\n    return foo\n\n以下调用结果正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "bar(2)(3) == 8"
+      },
+      {
+        "key": "B",
+        "text": "bar(2)(3) == 6"
+      },
+      {
+        "key": "C",
+        "text": "bar(3)(2) == 8"
+      },
+      {
+        "key": "D",
+        "text": "bar(3)(2) == 6"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "Python",
+      "闭包",
+      "高阶函数"
+    ],
+    "explanation": "bar(2) 返回一个记住 multiple=2 的闭包函数 foo，再调用该函数并传入 3，得到 2**3=8，因此 A 正确。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_011",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "执行以下 Python 3 代码后，关于 a、b、c、d 的描述错误的是哪一项？\n\nimport copy\na = [1, 2, 3, 4, ['a', 'b']]\nb = a\nc = copy.copy(a)\nd = copy.deepcopy(a)\na.append(5)\na[4].append('c')",
+    "options": [
+      {
+        "key": "A",
+        "text": "a == [1,2,3,4,['a','b','c'],5]"
+      },
+      {
+        "key": "B",
+        "text": "b == [1,2,3,4,['a','b','c'],5]"
+      },
+      {
+        "key": "C",
+        "text": "c == [1,2,3,4,['a','b','c']]"
+      },
+      {
+        "key": "D",
+        "text": "d == [1,2,3,4,['a','b','c']]"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "Python",
+      "赋值",
+      "浅拷贝",
+      "深拷贝"
+    ],
+    "explanation": "b 与 a 指向同一列表，因此 a 的两次修改都会反映到 b。c 是浅拷贝，外层列表独立，所以不会包含新增的 5；但内部列表仍与 a 共享，因此会包含 'c'。d 是深拷贝，内外层均独立，仍为 [1,2,3,4,['a','b']]，所以 D 的描述错误。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_012",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "以下机器学习模型中，通常在数据预处理时最不依赖特征归一化的是哪一个？",
+    "options": [
+      {
+        "key": "A",
+        "text": "逻辑回归"
+      },
+      {
+        "key": "B",
+        "text": "支持向量机"
+      },
+      {
+        "key": "C",
+        "text": "决策树模型"
+      },
+      {
+        "key": "D",
+        "text": "神经网络"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "机器学习",
+      "数据预处理",
+      "特征归一化",
+      "决策树"
+    ],
+    "explanation": "逻辑回归、SVM 和神经网络的训练通常受特征尺度影响，归一化有助于优化和距离计算。决策树根据特征阈值进行划分，单调缩放一般不会改变样本的相对次序和可选划分，因此通常不需要归一化。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_013",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "以下哪个函数是 ReLU（Rectified Linear Unit）激活函数？",
+    "options": [
+      {
+        "key": "A",
+        "text": "f(x)=x^2"
+      },
+      {
+        "key": "B",
+        "text": "f(x)=tanh(x)"
+      },
+      {
+        "key": "C",
+        "text": "f(x)=max(0,x)"
+      },
+      {
+        "key": "D",
+        "text": "f(x)=1/(1+e^(-x))"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "机器学习",
+      "深度学习",
+      "激活函数",
+      "ReLU"
+    ],
+    "explanation": "ReLU 的定义是 f(x)=max(0,x)：当 x<0 时输出 0，当 x≥0 时输出 x。D 是 sigmoid，B 是 tanh，A 是平方函数。原题依赖缺失的函数图像和公式，现已改写为等价的文本题。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_014",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "需要计算三个稠密矩阵 A、B、C 的乘积 ABC，矩阵尺寸分别为 m×n、n×p、p×q，且 m<n<p<q。以下哪种合法计算顺序的标量乘法次数更少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "A(BC)"
+      },
+      {
+        "key": "B",
+        "text": "(AB)C"
+      },
+      {
+        "key": "C",
+        "text": "(AC)B"
+      },
+      {
+        "key": "D",
+        "text": "所有顺序效率相同"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "机器学习",
+      "线性代数",
+      "矩阵链乘",
+      "复杂度"
+    ],
+    "explanation": "A(BC) 的代价为 npq+mnq；(AB)C 的代价为 mnp+mpq。由于 m<n<p<q，可比较得 (AB)C 更省。AC 因内维 n 与 p 不相等而不能直接相乘。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_015",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "K 近邻方法通常在哪种数据分布结构下效果较好？",
+    "options": [
+      {
+        "key": "A",
+        "text": "样本较多但典型性不好"
+      },
+      {
+        "key": "B",
+        "text": "样本呈团状或簇状分布"
+      },
+      {
+        "key": "C",
+        "text": "样本较少但典型性好"
+      },
+      {
+        "key": "D",
+        "text": "样本呈链状分布"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "机器学习",
+      "K近邻",
+      "数据分布"
+    ],
+    "explanation": "KNN 基于局部邻域内样本大多属于同类的假设。类内紧凑、类间分离的团状或簇状分布更符合这一假设；链状、稀疏或噪声较多的数据容易让邻域跨越类别边界。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_016",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "经典二分类器 SVM 通常不直接使用 0/1 损失，而采用 Hinge 损失等替代损失，主要原因是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "替代损失一定能够消除过拟合"
+      },
+      {
+        "key": "B",
+        "text": "替代损失能够无限扩大 SVM 的应用范围"
+      },
+      {
+        "key": "C",
+        "text": "0/1 损失非凸且不连续，难以直接优化"
+      },
+      {
+        "key": "D",
+        "text": "其余三项都不对"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "机器学习",
+      "SVM",
+      "损失函数",
+      "凸优化"
+    ],
+    "explanation": "0/1 损失既不连续又非凸，直接最小化通常是困难的组合优化问题。Hinge 损失是凸的，可与正则项组成易于求解的凸优化目标，因此被用作 0/1 损失的替代。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_017",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "训练神经网络时可能遇到训练目标迟迟不收敛。以下哪一项通常不是直接导致训练过程不收敛的原因？",
+    "options": [
+      {
+        "key": "A",
+        "text": "输入特征尺度差异很大且未归一化"
+      },
+      {
+        "key": "B",
+        "text": "网络很深但训练数据量较少"
+      },
+      {
+        "key": "C",
+        "text": "学习率设置过大"
+      },
+      {
+        "key": "D",
+        "text": "网络中存在大量梯度为 0 的区域"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "机器学习",
+      "神经网络",
+      "模型收敛",
+      "梯度"
+    ],
+    "explanation": "未归一化可能造成优化方向失衡；学习率过大可能振荡或发散；大量零梯度会使参数无法更新。网络深而数据少更常导致过拟合或泛化能力差，并不必然使训练损失无法收敛，因此选择 B。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_018",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "关于循环神经网络 RNN，以下说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "输入序列越长，越容易暴露长期依赖问题"
+      },
+      {
+        "key": "B",
+        "text": "梯度经过很多时间步传播时容易消失或爆炸"
+      },
+      {
+        "key": "C",
+        "text": "只要使用 ReLU 激活函数就可以解决长期依赖问题"
+      },
+      {
+        "key": "D",
+        "text": "Dropout 可以以适当方式应用于循环神经网络"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "深度学习",
+      "RNN",
+      "长期依赖",
+      "梯度消失"
+    ],
+    "explanation": "长期依赖与循环权重在多时间步反复相乘有关，仅替换为 ReLU 并不能从根本上解决梯度消失或爆炸。LSTM、GRU、梯度裁剪等方法更常用于缓解该问题。Dropout 可应用于输入、输出或采用时间一致的掩码，但需要谨慎处理循环连接。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_019",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "关于 Adam 优化器，以下说法错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "Adam 属于基于随机梯度的一阶优化算法"
+      },
+      {
+        "key": "B",
+        "text": "Adam 在所有深度学习任务中都必然优于 SGD、AdaGrad 和 RMSProp"
+      },
+      {
+        "key": "C",
+        "text": "Adam 的设计包含类似动量的一阶矩估计"
+      },
+      {
+        "key": "D",
+        "text": "Adam 结合了动量方法和 RMSProp 的部分思想"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "深度学习",
+      "Adam",
+      "优化算法",
+      "SGD"
+    ],
+    "explanation": "Adam 同时维护梯度的一阶矩和二阶矩估计，结合了动量与自适应学习率思想。但它并不保证在所有任务中都优于 SGD 等方法；在某些视觉分类和强调泛化性能的任务上，经过良好调参的 SGD 可能表现更好。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_020",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "关于 tanh 激活函数，以下表述错误的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "tanh(x)=(e^x-e^(-x))/(e^x+e^(-x))"
+      },
+      {
+        "key": "B",
+        "text": "tanh 的值域为 (-1,1)"
+      },
+      {
+        "key": "C",
+        "text": "tanh 被用于 LSTM 等网络结构"
+      },
+      {
+        "key": "D",
+        "text": "当输入趋于正无穷或负无穷时，tanh 会造成梯度爆炸"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "深度学习",
+      "激活函数",
+      "tanh",
+      "梯度消失"
+    ],
+    "explanation": "tanh 在输入绝对值很大时会饱和，其导数趋近于 0，主要风险是梯度消失而不是梯度爆炸。A、B、C 均正确。",
+    "source": "用户提供的京东算法类笔试题整理"
+  },
+  {
+    "question_id": "jd_algorithm_021",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "给定长度为 n 的整数序列 a1,a2,…,an。在位置 p（1≤p<n）切割后，左侧为 a1…ap，右侧为 a(p+1)…an，切割代价等于两部分元素和的乘积。请设计算法求所有合法切割位置中的最小代价，并分析时间复杂度。",
+    "options": [],
+    "answer": "先计算序列总和 total。随后从左到右枚举切割位置 p，并维护前缀和 prefix。位置 p 的左侧和为 prefix，右侧和为 total-prefix，代价为 prefix×(total-prefix)。对 p=1 到 n-1 依次计算并更新最小值即可。总和与扫描均为线性过程，因此时间复杂度为 O(n)，额外空间复杂度为 O(1)。若数据范围较大，应使用 64 位整数或更高精度类型避免乘法溢出。",
+    "knowledge_points": [
+      "数组",
+      "前缀和",
+      "线性扫描",
+      "复杂度"
+    ],
+    "explanation": "每个切割位置只需要左右两部分的元素和。总和固定后，右侧和可以由 total-prefix 直接得到，无需为每个位置重复求和。",
+    "source": "用户提供的京东算法类笔试题整理",
+    "grading_points": [
+      {
+        "point": "计算整个数组的总和 total",
+        "score": 1
+      },
+      {
+        "point": "从左到右维护前缀和 prefix",
+        "score": 2
+      },
+      {
+        "point": "正确写出代价 prefix×(total-prefix)",
+        "score": 3
+      },
+      {
+        "point": "只枚举 1≤p<n 的合法非空切割位置",
+        "score": 1
+      },
+      {
+        "point": "在扫描过程中维护全局最小值",
+        "score": 1
+      },
+      {
+        "point": "给出 O(n) 时间复杂度与 O(1) 额外空间复杂度",
+        "score": 1
+      },
+      {
+        "point": "考虑整数溢出并使用合适数值类型",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "jd_algorithm_022",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "short_answer",
+    "content": "给定 n 个字符串以及输入中指定的一套字符大小顺序。排序规则为：若一个字符串是另一个字符串的前缀，则较短字符串在前；否则比较第一个不同字符，并按照给定字符顺序决定大小。请说明如何实现该排序，并分析复杂度。",
+    "options": [],
+    "answer": "先根据输入的字符顺序建立映射 rank[ch]，表示每个字符的比较等级。自定义两个字符串 s、t 的比较器：从左到右扫描到 min(|s|,|t|)，遇到第一个不同字符时比较 rank[s[i]] 与 rank[t[i]]；若公共部分完全相同，则长度较短的字符串更小。然后使用支持自定义比较器的排序算法对 n 个字符串排序。设最大字符串长度为 L，单次比较最坏需要 O(L)，比较排序需要 O(n log n) 次比较，因此最坏时间复杂度为 O(nL log n)，额外空间主要为字符等级映射和排序开销。也可以先把字符串转换为等级序列，再使用同样的字典序规则排序。",
+    "knowledge_points": [
+      "字符串",
+      "排序",
+      "自定义比较器",
+      "字典序"
+    ],
+    "explanation": "题目的顺序本质上是使用自定义字符表的字典序。关键是先处理前缀关系，再在第一个不同位置使用 rank 映射比较字符。",
+    "source": "用户提供的京东算法类笔试题整理",
+    "grading_points": [
+      {
+        "point": "根据输入字符顺序建立 rank 映射",
+        "score": 2
+      },
+      {
+        "point": "从左到右比较两个字符串的公共范围",
+        "score": 2
+      },
+      {
+        "point": "在第一个不同字符处使用 rank 决定顺序",
+        "score": 2
+      },
+      {
+        "point": "公共部分相同时正确处理前缀，较短字符串在前",
+        "score": 2
+      },
+      {
+        "point": "使用自定义比较器完成整体排序",
+        "score": 1
+      },
+      {
+        "point": "给出合理的 O(nL log n) 最坏复杂度分析",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  },
+  {
+    "question_id": "jd_algorithm_023",
+    "company": "jd",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "给定一棵以 1 号结点为根、每个结点带有整数颜色的树。选择任意一个结点 u 后，考虑其整棵子树：先删除该子树中出现次数达到最大值的所有颜色对应的糖果（若有多个并列最多颜色，则全部删除），再把剩余糖果颜色逐个异或。请设计算法求所有子树中该异或值的最大值，并分析复杂度。",
+    "options": [],
+    "answer": "对每个子树，需要知道每种颜色的出现次数。设 freq[c] 为颜色 c 的次数，M=max_c freq[c]。子树全部颜色逐个异或的结果等价于所有出现次数为奇数的颜色值异或，记为 oddXor。删除所有出现次数为 M 的颜色后，若 M 为偶数，这些颜色原本对异或贡献为 0，结果仍为 oddXor；若 M 为奇数，需要再异或一次所有频次为 M 的颜色值。因此该子树答案为 oddXor XOR (M 为奇数时 bucketXor[M]，否则 0)，其中 bucketXor[f] 表示所有当前频次恰为 f 的颜色值异或。可使用树上启发式合并（small-to-large/DSU on tree）：每个结点维护颜色频次哈希表、各频次桶的颜色异或、oddXor 和 maxFreq。DFS 后将较小子树的频次表逐项合并到较大表；颜色 c 的频次从 old 变为 new 时，从 bucketXor[old] 中异或移除 c、加入 bucketXor[new]，若 old 与 new 奇偶性不同则 oddXor 异或 c，并更新 maxFreq。加入当前结点颜色后即可 O(1) 计算该子树结果并更新全局最大值。启发式合并使每个颜色记录被搬移 O(log n) 次，期望时间复杂度 O(n log n)，空间复杂度 O(n)。",
+    "knowledge_points": [
+      "树",
+      "DFS",
+      "启发式合并",
+      "哈希",
+      "位运算",
+      "异或"
+    ],
+    "explanation": "同一种颜色出现偶数次时异或贡献为 0，出现奇数次时贡献为该颜色值。因而只需维护奇偶频次异或和以及最高频率颜色集合的异或，而不必逐个模拟删除糖果。树上 small-to-large 合并能够高效得到每个子树的颜色统计。",
+    "source": "用户提供的京东算法类笔试题整理",
+    "grading_points": [
+      {
+        "point": "指出同色出现偶数次异或为 0、奇数次贡献颜色值",
+        "score": 1
+      },
+      {
+        "point": "定义每个子树的颜色频次与最大频次 M",
+        "score": 1
+      },
+      {
+        "point": "正确推导删除最高频颜色后的异或公式",
+        "score": 2
+      },
+      {
+        "point": "提出 DFS 统计每个结点子树信息",
+        "score": 1
+      },
+      {
+        "point": "使用 small-to-large 或 DSU on tree 合并颜色频次表",
+        "score": 2
+      },
+      {
+        "point": "维护 oddXor、maxFreq 和按频次分桶的颜色异或",
+        "score": 2
+      },
+      {
+        "point": "给出期望 O(n log n) 时间和 O(n) 空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
+  }
+]

@@ -13,7 +13,7 @@ router = APIRouter(prefix="/training-sessions", tags=["训练会话"])
 
 
 def _delete_existing_exam(db: Session, session_id: str) -> None:
-    """A module confirmation starts a fresh practice paper for this session."""
+    """A new module, company, or position starts a fresh paper for this session."""
 
     exam_id = db.scalar(select(Exam.id).where(Exam.session_id == session_id))
     if exam_id is None:
@@ -81,15 +81,22 @@ def update_training_session(
 ) -> TrainingSessionResponse:
     training = owned_training_session(session_id, db, token)
     module = get_learning_module(payload.learning_module) if payload.learning_module else None
-    if payload.learning_module is not None:
+    next_position = payload.position.strip() if payload.position else None
+    next_company = payload.company.strip() if payload.company else None
+    selection_changed = (
+        payload.learning_module is not None
+        or (payload.position is not None and next_position != training.position)
+        or (payload.company is not None and next_company != training.company)
+    )
+    if selection_changed:
         _delete_existing_exam(db, training.id)
         training.status = "created"
     if payload.position is not None:
-        training.position = payload.position.strip() if payload.position else None
+        training.position = next_position
     elif module and not training.position:
         training.position = module.default_position
     if payload.company is not None:
-        training.company = payload.company.strip() if payload.company else None
+        training.company = next_company
     if payload.learning_module is not None:
         training.learning_module = module.module_id if module else payload.learning_module
     if payload.learning_module_title is not None:

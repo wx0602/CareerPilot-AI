@@ -117,7 +117,7 @@ class GenerateExamRequest(BaseModel):
     position: str = Field(min_length=1, max_length=120)
     company: str | None = Field(default=None, max_length=120)
     difficulty: Difficulty = "medium"
-    question_count: int = Field(default=10, ge=1, le=20)
+    question_count: int = Field(default=10, ge=1, le=50)
     learning_module: str | None = Field(default=None, max_length=80)
     learning_module_title: str | None = Field(default=None, max_length=120)
     question_mix: QuestionMix | None = None

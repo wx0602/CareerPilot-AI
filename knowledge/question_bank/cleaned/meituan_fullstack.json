@@ -1,0 +1,426 @@
+[
+  {
+    "question_id": "meituan_fullstack_001",
+    "question_type": "single_choice",
+    "content": "在 RAG 系统中，如果文本切分时设置的 chunk 过大，更常见的风险是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "召回条数一定会变少，向量库无法返回足够文档"
+      },
+      {
+        "key": "B",
+        "text": "单个 chunk 中噪声和无关信息更多，生成模型更难抓住重点"
+      },
+      {
+        "key": "C",
+        "text": "重排模型会自动失效，无法对候选 chunk 打分"
+      },
+      {
+        "key": "D",
+        "text": "Embedding 会被截断，从而导致向量维度发生变化"
+      }
+    ],
+    "answer": "B",
+    "explanation": "chunk 过大会把更多主题和无关上下文混在同一个片段中，虽然可能保留更多局部上下文，但会降低检索粒度并增加噪声，使生成模型不易定位关键证据。向量维度由嵌入模型决定，不会因为文本长度变化而改变。",
+    "knowledge_points": [
+      "RAG",
+      "文本切分",
+      "向量检索"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_002",
+    "question_type": "single_choice",
+    "content": "进行 CLIP 式图文对齐预训练时，模型的单模态能力看起来正常，但“文本搜图”效果很差。以下哪项问题最值得优先排查？",
+    "options": [
+      {
+        "key": "A",
+        "text": "图像切分为 patch 的方式不正确，必须改成整图 CNN"
+      },
+      {
+        "key": "B",
+        "text": "图文正负样本对存在错配或噪声，导致对比学习目标失效"
+      },
+      {
+        "key": "C",
+        "text": "文本不应分词，必须按字符输入才能学到稳定表示"
+      },
+      {
+        "key": "D",
+        "text": "Embedding 维度偏小，只要翻倍就一定能明显提升检索效果"
+      }
+    ],
+    "answer": "B",
+    "explanation": "CLIP 依赖正确的图文配对和批内负样本进行对比学习。如果正样本错配或噪声过大，模型即使具有正常的单模态表示，也难以建立可靠的跨模态共享空间。",
+    "knowledge_points": [
+      "多模态学习",
+      "CLIP",
+      "对比学习",
+      "数据质量"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_003",
+    "question_type": "single_choice",
+    "content": "某电商平台使用多模态大模型实现“根据商品图片自动生成商品描述”。多模态模型在该场景中的核心价值是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "多模态模型的训练数据一定更多，因此一定更准确"
+      },
+      {
+        "key": "B",
+        "text": "能够结合图片中的颜色、版型等视觉特征与文本知识生成更准确的描述"
+      },
+      {
+        "key": "C",
+        "text": "多模态模型的推理速度一定比单模态模型更快"
+      },
+      {
+        "key": "D",
+        "text": "多模态模型只依靠多语言能力即可完成图片理解"
+      }
+    ],
+    "answer": "B",
+    "explanation": "图片转文字任务的关键是把视觉信息与语言知识联合建模。多模态模型可以识别商品的颜色、形状、版型和局部细节，并将其组织为自然语言描述。",
+    "knowledge_points": [
+      "多模态大模型",
+      "视觉语言模型",
+      "图像描述"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "easy",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_004",
+    "question_type": "single_choice",
+    "content": "设计基于大语言模型的 AI 代码助手时，为控制生成结果的随机性，使输出具有一定创造性但不过于发散，通常需要调整哪个参数？",
+    "options": [
+      {
+        "key": "A",
+        "text": "上下文窗口（Context Window）"
+      },
+      {
+        "key": "B",
+        "text": "温度（Temperature）"
+      },
+      {
+        "key": "C",
+        "text": "批处理大小（Batch Size）"
+      },
+      {
+        "key": "D",
+        "text": "学习率（Learning Rate）"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Temperature 会调整采样时概率分布的平滑程度。较低温度使输出更确定，较高温度增加随机性和多样性。上下文窗口、批处理大小和学习率不直接控制推理阶段的采样随机性。",
+    "knowledge_points": [
+      "大语言模型",
+      "文本生成",
+      "Temperature"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "easy",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_005",
+    "question_type": "single_choice",
+    "content": "某路径规划算法满足递推关系 T(n)=T(n-1)+5n^4（n>1），且 T(1)=O(1)。该算法的整体时间复杂度是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "O(n^5)"
+      },
+      {
+        "key": "B",
+        "text": "O(n^4)"
+      },
+      {
+        "key": "C",
+        "text": "O(n^4 log n)"
+      },
+      {
+        "key": "D",
+        "text": "O(n^3)"
+      }
+    ],
+    "answer": "A",
+    "explanation": "展开递推式可得 T(n)=T(1)+5×(2^4+3^4+…+n^4)。四次方和为 Θ(n^5)，因此总时间复杂度为 Θ(n^5)，选择 A。",
+    "knowledge_points": [
+      "算法复杂度",
+      "递推关系",
+      "级数求和"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_006",
+    "question_type": "single_choice",
+    "content": "关于 ES6 模块系统，以下说法正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "import 导入的是导出值的普通拷贝，导出方后续修改不会反映到导入方"
+      },
+      {
+        "key": "B",
+        "text": "在 ES 模块顶层作用域中，this 指向全局对象"
+      },
+      {
+        "key": "C",
+        "text": "可以在 if 分支中直接使用静态 import 语句按运行时条件加载模块"
+      },
+      {
+        "key": "D",
+        "text": "静态 import 会在编译或链接阶段被分析，依赖在模块代码执行前完成加载与链接"
+      }
+    ],
+    "answer": "D",
+    "explanation": "ES 模块的静态 import 具有静态结构，可在执行前完成依赖分析和链接。导入绑定是只读的实时绑定而非普通值拷贝；ES 模块顶层 this 为 undefined；条件加载应使用动态 import()。",
+    "knowledge_points": [
+      "JavaScript",
+      "ES6 Module",
+      "import"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_007",
+    "question_type": "single_choice",
+    "content": "关于因果语言建模（Causal Language Modeling，CLM），以下描述正确的是哪一项？",
+    "options": [
+      {
+        "key": "A",
+        "text": "GPT 系列模型通常采用从左到右的因果掩码，使当前位置只能关注自身及之前的 token"
+      },
+      {
+        "key": "B",
+        "text": "损失函数只计算序列最后一个 token 的预测误差"
+      },
+      {
+        "key": "C",
+        "text": "训练时必须使用模型采样得到的 token 作为下一步输入"
+      },
+      {
+        "key": "D",
+        "text": "CLM 原生只能用于分类任务，不能用于生成任务"
+      }
+    ],
+    "answer": "A",
+    "explanation": "CLM 使用因果掩码进行自回归预测，训练时通常对序列中多个位置计算下一个 token 的损失，并采用真实前缀作为输入。它天然适合文本生成。",
+    "knowledge_points": [
+      "大语言模型",
+      "因果语言建模",
+      "Transformer"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "easy",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_008",
+    "question_type": "single_choice",
+    "content": "从整体流程看，大模型训练通常可以概括为哪两个主要阶段？",
+    "options": [
+      {
+        "key": "A",
+        "text": "预训练（Pre-training）与微调（Fine-tuning）"
+      },
+      {
+        "key": "B",
+        "text": "数据增强（Data Augmentation）与正则化（Regularization）"
+      },
+      {
+        "key": "C",
+        "text": "监督学习（Supervised Learning）与强化学习（Reinforcement Learning）"
+      },
+      {
+        "key": "D",
+        "text": "前向传播（Forward Propagation）与反向传播（Backward Propagation）"
+      }
+    ],
+    "answer": "A",
+    "explanation": "大模型通常先通过大规模数据预训练获得通用能力，再通过监督微调、指令微调或其他后训练方法适配具体任务和行为目标。",
+    "knowledge_points": [
+      "大语言模型",
+      "预训练",
+      "微调"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "easy",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_009",
+    "question_type": "single_choice",
+    "content": "某二叉树的前序遍历为 b,c,a,e,f,d，后序遍历为 a,f,d,e,c,b。根结点 b 的孩子结点情况是怎样的？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只有 c"
+      },
+      {
+        "key": "B",
+        "text": "有 e、d"
+      },
+      {
+        "key": "C",
+        "text": "有 c、e"
+      },
+      {
+        "key": "D",
+        "text": "无法确定"
+      }
+    ],
+    "answer": "A",
+    "explanation": "前序遍历首结点和后序遍历末结点均为根 b。前序中根后第一个结点为 c，而后序中除根 b 外的最后一个结点也是 c，说明其余所有结点均位于以 c 为根的同一棵子树中，因此 b 只有一个孩子 c。虽然无法仅凭前序和后序唯一恢复整棵二叉树，但这里可以确定根的唯一孩子。",
+    "knowledge_points": [
+      "树",
+      "二叉树遍历",
+      "前序遍历",
+      "后序遍历"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_010",
+    "question_type": "single_choice",
+    "content": "以下哪一条 CSS 媒体查询符合常见语法规范？",
+    "options": [
+      {
+        "key": "A",
+        "text": "@media screen and width>800px {}"
+      },
+      {
+        "key": "B",
+        "text": "@media screen and (width>800px) {}"
+      },
+      {
+        "key": "C",
+        "text": "@media screen and (width>800) {}"
+      },
+      {
+        "key": "D",
+        "text": "@media screen and (min-width: 800px) {}"
+      }
+    ],
+    "answer": "D",
+    "explanation": "传统媒体查询使用带括号的媒体特性，并通过 min-width 或 max-width 表达阈值，长度值还需要带单位，因此 D 符合常见规范。",
+    "knowledge_points": [
+      "CSS",
+      "媒体查询",
+      "响应式布局"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "easy",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_011",
+    "question_type": "short_answer",
+    "content": "给定长度为 n 的整数数组 a，将该数组重复拼接 10^9+1 次形成新数组。请说明如何求新数组的最长严格递增子序列长度，并分析时间、空间复杂度。可以假设 n 远小于 10^9。",
+    "options": [],
+    "answer": "严格递增子序列中同一个数值最多出现一次，因此答案不会超过原数组中不同数值的个数 d。另一方面，把原数组中的所有不同数值从小到大排列为 v1<v2<...<vd。由于数组被重复了 10^9+1 次，且 n 远小于重复次数，可以在第 1 个副本中选择 v1 的任意一次出现，在第 2 个副本中选择 v2，依此类推。不同副本在整体序列中的位置天然递增，因此一定能够构造长度为 d 的严格递增子序列。故答案等于原数组中不同元素的个数。使用哈希集合统计去重后的元素数量即可，平均时间复杂度 O(n)，空间复杂度 O(n)；也可排序去重，时间复杂度 O(n log n)。",
+    "explanation": "重复次数极大时，副本之间可以消除原数组内部出现顺序的限制：每个更大的不同数值都可以放到更靠后的副本中选择。严格递增要求又决定了每种数值最多选择一次，因此答案恰好是不同值个数。",
+    "knowledge_points": [
+      "数组",
+      "最长递增子序列",
+      "哈希集合",
+      "构造证明"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_012",
+    "question_type": "short_answer",
+    "content": "给定一个偶数长度、仅包含 '(' 和 ')' 的字符串。每次操作可以交换相邻两个字符。请设计一种算法，计算将其变成平衡括号序列所需的最少相邻交换次数，并分析复杂度；如果左右括号数量不相等，还应说明如何处理。",
+    "options": [],
+    "answer": "相邻交换不能改变两种括号的数量，因此若 '(' 与 ')' 的数量不相等，则不存在可行方案，可返回 -1。数量相等时，先记录所有左括号的位置 positions。随后从左到右扫描字符串，维护当前前缀平衡值 balance：遇到 '(' 时 balance++，并移动左括号位置指针；遇到 ')' 时 balance--。如果 balance 变为负数，说明当前位置需要一个左括号。取尚未使用的最近一个左括号位置 j=positions[p]，将它通过相邻交换移动到当前位置 i，答案增加 j-i；交换后当前前缀相当于多出一个左括号，令 balance=1，同时更新位置记录并移动指针。每次都选择最近的可用左括号，交换距离最小，因此贪心最优。扫描和位置维护均为 O(n)，空间复杂度 O(n)。",
+    "explanation": "当前缀平衡值首次变负时，必须从右侧移动一个左括号过来。选择最近的左括号不会影响可行性，并使当前修复成本最小；逐次修复即可得到全局最小交换次数。",
+    "knowledge_points": [
+      "字符串",
+      "括号序列",
+      "贪心",
+      "相邻交换"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "medium",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  },
+  {
+    "question_id": "meituan_fullstack_013",
+    "question_type": "short_answer",
+    "content": "有一棵以 1 为根、节点值为 0 或 1 的树，需要支持两类操作：①将路径 u→v 上所有节点的 0/1 值反置；②按从 u 到 v 的顺序读取路径节点值形成二进制串，并输出其十进制值对 10^9+7 取模的结果。请设计数据结构和算法，并分析单次操作复杂度。",
+    "options": [],
+    "answer": "可使用重链剖分加带懒标记的线段树。先进行两次 DFS，求 parent、depth、size、heavy、top、dfn，并把树上路径拆成 O(log n) 个连续的 dfn 区间。预处理 pow2[i]=2^i mod MOD。线段树每个节点维护区间长度 len、按 dfn 正序读取的二进制值 forward、按逆序读取的值 reverse，以及区间反置懒标记 flip。合并左右区间时：forward=left.forward×2^(right.len)+right.forward；reverse=right.reverse×2^(left.len)+left.reverse。区间所有位反置后，新值等于 (2^len-1)-旧值，因此 forward 和 reverse 都更新为 (pow2[len]-1-value+MOD) mod MOD，并异或 flip 标记。路径反置操作通过重链剖分将 u-v 路径拆成若干区间并执行线段树区间反置。路径查询必须保持 u→v 的方向：维护左、右两个累加结果。处理 u 侧链段时使用区间 reverse 并追加到左结果；处理 v 侧链段时使用 forward 并前置到右结果；最后处理同一条重链上的中间区间，再按“左结果+右结果”的顺序合并。每条路径被拆成 O(log n) 段，每段在线段树上查询或更新需要 O(log n)，因此单次操作复杂度 O(log^2 n)，预处理 O(n)，空间 O(n)。",
+    "explanation": "难点有两个：路径在 dfn 序中被拆成多个区间，且查询结果具有方向；同时整段 0/1 反置可利用补码关系快速更新。在线段树中同时维护正序值和逆序值，就能正确拼接 u→v 的有序二进制串。",
+    "knowledge_points": [
+      "树",
+      "重链剖分",
+      "线段树",
+      "懒标记",
+      "路径查询",
+      "位运算"
+    ],
+    "company": "meituan",
+    "position": "fullstack",
+    "difficulty": "hard",
+    "source": "用户提供的美团全栈类笔试题整理",
+    "source_url": "",
+    "license": "original"
+  }
+]

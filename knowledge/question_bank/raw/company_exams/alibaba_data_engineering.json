@@ -1,6 +1,9 @@
 [
   {
     "question_id": "alibaba_data_engineering_001",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "medium",
     "question_type": "single_choice",
     "content": "Linux 中，文件 log.txt 当前权限为 -rw-r-x---。若要将其权限修改为 541（r-xr----x），以下哪个命令不能实现目标？",
     "options": [
@@ -22,21 +25,19 @@
       }
     ],
     "answer": "D",
-    "explanation": "目标权限 541 对应所有者 r-x、组用户 r--、其他用户 --x。A 直接设置为目标权限；B 在原权限上将所有者设为 rx、移除组执行权限并增加其他用户执行权限；C 在原权限上增加执行权限后移除所有者写权限和组执行权限，也能得到 541。D 会增加写权限并改变执行权限，不能得到目标权限。",
     "knowledge_points": [
       "Linux",
       "chmod",
       "文件权限"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "medium",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "目标权限 541 对应所有者 r-x、组用户 r--、其他用户 --x。A 直接设置为目标权限；B 在原权限上将所有者设为 rx、移除组执行权限并增加其他用户执行权限；C 在原权限上增加执行权限后移除所有者写权限和组执行权限，也能得到 541。D 会增加写权限并改变执行权限，不能得到目标权限。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_002",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "关于关系数据库中的关系及其性质，以下说法错误的是？",
     "options": [
@@ -58,22 +59,20 @@
       }
     ],
     "answer": "D",
-    "explanation": "关系模型要求同一属性的所有取值来自同一个域。原子性、元组不重复以及行对应元组均属于关系模型的基本性质，因此 D 错误。",
     "knowledge_points": [
       "数据库",
       "关系模型",
       "域",
       "第一范式"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "关系模型要求同一属性的所有取值来自同一个域。原子性、元组不重复以及行对应元组均属于关系模型的基本性质，因此 D 错误。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_003",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "关于数据库范式，以下说法不正确的是？",
     "options": [
@@ -95,22 +94,20 @@
       }
     ],
     "answer": "A",
-    "explanation": "通常范式级别越高，越能减少由函数依赖等问题导致的数据冗余。A 将第一范式和第五范式的冗余程度说反了；B、C 是 1NF 和 2NF 的典型描述，D 反映了规范化程度提高可能带来的表结构复杂化。",
     "knowledge_points": [
       "数据库",
       "数据库范式",
       "1NF",
       "2NF"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "通常范式级别越高，越能减少由函数依赖等问题导致的数据冗余。A 将第一范式和第五范式的冗余程度说反了；B、C 是 1NF 和 2NF 的典型描述，D 反映了规范化程度提高可能带来的表结构复杂化。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_004",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "medium",
     "question_type": "single_choice",
     "content": "已知球员表 info(id, name, weight) 和比赛表 game(id, person_id, count)。需要查询总进球数超过 25 且体重小于 50 的球员信息及其总进球数。以下 SQL 正确的是？",
     "options": [
@@ -132,7 +129,6 @@
       }
     ],
     "answer": "D",
-    "explanation": "体重是行级条件，应在 WHERE 中过滤；总进球数是聚合结果，应在 GROUP BY 后使用 HAVING 过滤。D 的连接、分组和过滤顺序均正确。A 将 WHERE 放在 GROUP BY 之后且错误引用聚合别名；B 缺少分组；C 使用 SELECT * 与分组字段不匹配，结果不规范。",
     "knowledge_points": [
       "SQL",
       "JOIN",
@@ -140,15 +136,14 @@
       "HAVING",
       "聚合函数"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "medium",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "体重是行级条件，应在 WHERE 中过滤；总进球数是聚合结果，应在 GROUP BY 后使用 HAVING 过滤。D 的连接、分组和过滤顺序均正确。A 将 WHERE 放在 GROUP BY 之后且错误引用聚合别名；B 缺少分组；C 使用 SELECT * 与分组字段不匹配，结果不规范。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_005",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "medium",
     "question_type": "single_choice",
     "content": "无向图 G 的顶点集为 {A,B,C,D,E,F,G,H,I,J}，边集为 {(A,B),(A,C),(B,D),(B,E),(C,F),(C,G),(D,H),(D,I),(E,J)}。从 A 开始进行深度优先搜索，以下遍历序列不可能出现的是？",
     "options": [
@@ -170,21 +165,19 @@
       }
     ],
     "answer": "D",
-    "explanation": "该图是一棵以 A 为根的树。DFS 先序遍历要求每个结点先于其子结点出现，并且一个子树的结点应形成连续区间。D 中 J 是 E 的子结点，却在 E 之前出现，因此不可能。",
     "knowledge_points": [
       "图",
       "深度优先搜索",
       "DFS"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "medium",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "该图是一棵以 A 为根的树。DFS 先序遍历要求每个结点先于其子结点出现，并且一个子树的结点应形成连续区间。D 中 J 是 E 的子结点，却在 E 之前出现，因此不可能。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_006",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "medium",
     "question_type": "single_choice",
     "content": "某栈的入栈序列为 a、a、c、h、o、n，要求出栈序列也为 a、a、c、h、o、n。最多有多少种不同的入栈/出栈操作序列可以实现？",
     "options": [
@@ -206,20 +199,18 @@
       }
     ],
     "answer": "B",
-    "explanation": "除前两个相同的 a 外，后续字符各不相同且输出顺序与输入一致，只能依次入栈后立即出栈。前两个 a 可以采用“入一出一、再入一出一”，也可以“连续入两个、再连续出两个”，共 2 种操作序列。",
     "knowledge_points": [
       "栈",
       "入栈出栈序列"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "medium",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "除前两个相同的 a 外，后续字符各不相同且输出顺序与输入一致，只能依次入栈后立即出栈。前两个 a 可以采用“入一出一、再入一出一”，也可以“连续入两个、再连续出两个”，共 2 种操作序列。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_007",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "Hive 表 t_view_log(uid, url, dt) 记录网页访问日志。要统计 2023-11-11 当天 www.taobao.com 的 PV 和 UV，以下 SQL 正确的是？",
     "options": [
@@ -241,7 +232,6 @@
       }
     ],
     "answer": "C",
-    "explanation": "PV 是满足条件的访问记录总数，可用 COUNT(1)；UV 是不同用户数，需要 COUNT(DISTINCT uid)。同时必须按日期和网站 URL 过滤，因此 C 正确。",
     "knowledge_points": [
       "Hive",
       "SQL",
@@ -249,15 +239,14 @@
       "UV",
       "COUNT DISTINCT"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "PV 是满足条件的访问记录总数，可用 COUNT(1)；UV 是不同用户数，需要 COUNT(DISTINCT uid)。同时必须按日期和网站 URL 过滤，因此 C 正确。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_008",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "使用 SVM 构建信用卡欺诈检测模型时，正常交易数量远大于欺诈交易数量。以下哪种策略最直接有助于缓解类别不平衡并改善模型学习效果？",
     "options": [
@@ -279,22 +268,20 @@
       }
     ],
     "answer": "B",
-    "explanation": "过采样少数类或欠采样多数类能够直接调整训练数据的类别分布，使模型获得更多有效的少数类学习信号。D 有助于更合理地评估模型，但不会直接改变模型训练；A、C 也不能针对性解决类别不平衡。",
     "knowledge_points": [
       "机器学习",
       "SVM",
       "类别不平衡",
       "采样"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "过采样少数类或欠采样多数类能够直接调整训练数据的类别分布，使模型获得更多有效的少数类学习信号。D 有助于更合理地评估模型，但不会直接改变模型训练；A、C 也不能针对性解决类别不平衡。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_009",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "对包含多个特征的数据集进行离群点检测时，以下哪项说法最合理？",
     "options": [
@@ -316,7 +303,6 @@
       }
     ],
     "answer": "D",
-    "explanation": "离群点的定义依赖数据分布。局部密度异常适合 LOF，距离明显异常可用 k-NN，聚类结构明显时可基于聚类检测，因此不存在对所有数据都最有效的单一方法。",
     "knowledge_points": [
       "数据挖掘",
       "离群点检测",
@@ -324,15 +310,14 @@
       "k-NN",
       "聚类"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "离群点的定义依赖数据分布。局部密度异常适合 LOF，距离明显异常可用 k-NN，聚类结构明显时可基于聚类检测，因此不存在对所有数据都最有效的单一方法。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_010",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "在经典均值假设检验场景中，以下哪种情况更适合使用 z 检验而不是 t 检验？",
     "options": [
@@ -354,22 +339,20 @@
       }
     ],
     "answer": "B",
-    "explanation": "总体标准差已知时可使用 z 统计量；样本量较大时样本均值还可借助中心极限定理近似正态。总体标准差未知且样本量较小时，通常使用 t 检验并要求总体近似正态。",
     "knowledge_points": [
       "概率论与数理统计",
       "假设检验",
       "z检验",
       "t检验"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "总体标准差已知时可使用 z 统计量；样本量较大时样本均值还可借助中心极限定理近似正态。总体标准差未知且样本量较小时，通常使用 t 检验并要求总体近似正态。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_011",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "medium",
     "question_type": "single_choice",
     "content": "Hadoop 2.6.5 集群在不修改默认配置的情况下存储 15 个大小均为 250 MB 的文件。按默认 128 MB 块大小和 3 副本计算，最终产生多少个数据块副本？",
     "options": [
@@ -391,22 +374,20 @@
       }
     ],
     "answer": "C",
-    "explanation": "每个 250 MB 文件需要 ceil(250/128)=2 个原始块；15 个文件共产生 30 个原始块。每个块保存 3 份副本，因此总块副本数为 30×3=90。",
     "knowledge_points": [
       "Hadoop",
       "HDFS",
       "数据块",
       "副本机制"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "medium",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "每个 250 MB 文件需要 ceil(250/128)=2 个原始块；15 个文件共产生 30 个原始块。每个块保存 3 份副本，因此总块副本数为 30×3=90。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_012",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "medium",
     "question_type": "single_choice",
     "content": "随机变量 X 的分布函数在 x=2 处满足 F(2)=1-e^{-2}，且左极限 F(2^-)=1/3。则 P(X=2) 等于多少？",
     "options": [
@@ -428,21 +409,19 @@
       }
     ],
     "answer": "A",
-    "explanation": "分布函数在某点的跳跃大小就是随机变量取该点的概率，因此 P(X=2)=F(2)-F(2^-)=1-e^{-2}-1/3=2/3-e^{-2}。",
     "knowledge_points": [
       "概率论与数理统计",
       "分布函数",
       "离散概率质量"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "medium",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "分布函数在某点的跳跃大小就是随机变量取该点的概率，因此 P(X=2)=F(2)-F(2^-)=1-e^{-2}-1/3=2/3-e^{-2}。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_013",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "在 Python 3 中读取一个非常大的文本文件时，以下哪种方式可以避免一次性将整个文件读入内存？",
     "options": [
@@ -464,24 +443,22 @@
       }
     ],
     "answer": "D",
-    "explanation": "文件对象本身是可迭代对象，使用 for line in file 只会按需逐行读取。read() 和 readlines() 通常会一次性加载大量内容；append() 是写入相关操作。",
     "knowledge_points": [
       "Python",
       "文件处理",
       "迭代器",
       "内存优化"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "文件对象本身是可迭代对象，使用 for line in file 只会按需逐行读取。read() 和 readlines() 通常会一次性加载大量内容；append() 是写入相关操作。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_014",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
-    "content": "执行以下 Python 3 程序，输出结果是什么？ def func(a, b): return a + b def new_func(a, b, func): return func(a, b) print(new_func(2, 1, func))",
+    "content": "执行以下 Python 3 程序，输出结果是什么？\n\ndef func(a, b):\n    return a + b\n\ndef new_func(a, b, func):\n    return func(a, b)\n\nprint(new_func(2, 1, func))",
     "options": [
       {
         "key": "A",
@@ -501,22 +478,20 @@
       }
     ],
     "answer": "A",
-    "explanation": "函数对象 func 被作为参数传入 new_func，随后执行 func(2,1)，返回 3，因此 print 输出 3。",
     "knowledge_points": [
       "Python",
       "函数",
       "高阶函数",
       "参数传递"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "函数对象 func 被作为参数传入 new_func，随后执行 func(2,1)，返回 3，因此 print 输出 3。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_015",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "easy",
     "question_type": "single_choice",
     "content": "执行 Python 3 程序 `f = lambda x: x * x; print(f(2))`。以下说法错误的是？",
     "options": [
@@ -538,26 +513,23 @@
       }
     ],
     "answer": "B",
-    "explanation": "lambda 表达式会创建函数对象，既可以赋值给变量，也可以作为参数传给其他函数。程序调用 f(2) 得到 4，不会抛出异常，因此错误说法是 B。",
     "knowledge_points": [
       "Python",
       "lambda",
       "函数对象"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "easy",
-    "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "explanation": "lambda 表达式会创建函数对象，既可以赋值给变量，也可以作为参数传给其他函数。程序调用 f(2) 得到 4，不会抛出异常，因此错误说法是 B。",
+    "source": "用户提供的阿里巴巴数据工程类笔试题整理"
   },
   {
     "question_id": "alibaba_data_engineering_016",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "hard",
     "question_type": "short_answer",
     "content": "现有 MySQL 8 数据表 customers(customer_id, customer_name, customer_email, customer_age)、products(product_id, product_name, unit_price) 和 orders(order_id, customer_id, product_id, quantity, order_date)。请编写 SQL，统计 2023 年每个产品的 product_id、total_sales、unit_price、total_quantity、avg_monthly_sales、max_monthly_quantity 和 customer_age_group。total_sales=总销量×单价，avg_monthly_sales=总销售额/12；customer_age_group 为该产品年度购买量最多客户的年龄段（1-10、11-20、21-30、31-40、41-50、51-60、61+），购买量并列时选择年龄更小的客户。结果按 total_sales 降序、product_id 升序，金额保留两位小数。请给出 SQL 并说明关键步骤。",
     "options": [],
-    "answer": "可先用 CTE 分别汇总产品年度销量、产品月销量以及每位客户对每个产品的年度购买量，再用 ROW_NUMBER 选择购买量最多且年龄更小的客户。参考 MySQL 8 SQL： WITH yearly_orders AS ( SELECT o.order_id, o.customer_id, o.product_id, o.quantity, o.order_date, c.customer_age FROM orders o JOIN customers c ON c.customer_id = o.customer_id WHERE o.order_date >= '2023-01-01' AND o.order_date < '2024-01-01' ), product_total AS ( SELECT product_id, SUM(quantity) AS total_quantity FROM yearly_orders GROUP BY product_id ), month_total AS ( SELECT product_id, DATE_FORMAT(order_date, '%Y-%m') AS ym, SUM(quantity) AS monthly_quantity FROM yearly_orders GROUP BY product_id, DATE_FORMAT(order_date, '%Y-%m') ), product_month_max AS ( SELECT product_id, MAX(monthly_quantity) AS max_monthly_quantity FROM month_total GROUP BY product_id ), customer_total AS ( SELECT product_id, customer_id, customer_age, SUM(quantity) AS customer_quantity FROM yearly_orders GROUP BY product_id, customer_id, customer_age ), customer_rank AS ( SELECT product_id, customer_id, customer_age, customer_quantity, ROW_NUMBER() OVER ( PARTITION BY product_id ORDER BY customer_quantity DESC, customer_age ASC, customer_id ASC ) AS rn FROM customer_total ) SELECT p.product_id, ROUND(COALESCE(pt.total_quantity, 0) * p.unit_price, 2) AS total_sales, p.unit_price, COALESCE(pt.total_quantity, 0) AS total_quantity, ROUND(COALESCE(pt.total_quantity, 0) * p.unit_price / 12, 2) AS avg_monthly_sales, COALESCE(pm.max_monthly_quantity, 0) AS max_monthly_quantity, CASE WHEN cr.customer_age BETWEEN 1 AND 10 THEN '1-10' WHEN cr.customer_age BETWEEN 11 AND 20 THEN '11-20' WHEN cr.customer_age BETWEEN 21 AND 30 THEN '21-30' WHEN cr.customer_age BETWEEN 31 AND 40 THEN '31-40' WHEN cr.customer_age BETWEEN 41 AND 50 THEN '41-50' WHEN cr.customer_age BETWEEN 51 AND 60 THEN '51-60' WHEN cr.customer_age >= 61 THEN '61+' ELSE NULL END AS customer_age_group FROM products p LEFT JOIN product_total pt ON pt.product_id = p.product_id LEFT JOIN product_month_max pm ON pm.product_id = p.product_id LEFT JOIN customer_rank cr ON cr.product_id = p.product_id AND cr.rn = 1 ORDER BY total_sales DESC, p.product_id ASC;",
-    "explanation": "年度过滤应使用左闭右开的日期范围；总销量、月销量和客户购买量需要在不同粒度上分别聚合。ROW_NUMBER 按购买量降序、年龄升序排序，可解决并列规则。最后从 products 出发使用 LEFT JOIN，能够保留 2023 年没有订单的产品。",
+    "answer": "可先用 CTE 分别汇总产品年度销量、产品月销量以及每位客户对每个产品的年度购买量，再用 ROW_NUMBER 选择购买量最多且年龄更小的客户。参考 MySQL 8 SQL：\n\nWITH yearly_orders AS (\n    SELECT o.order_id, o.customer_id, o.product_id, o.quantity, o.order_date,\n           c.customer_age\n    FROM orders o\n    JOIN customers c ON c.customer_id = o.customer_id\n    WHERE o.order_date >= '2023-01-01'\n      AND o.order_date <  '2024-01-01'\n),\nproduct_total AS (\n    SELECT product_id, SUM(quantity) AS total_quantity\n    FROM yearly_orders\n    GROUP BY product_id\n),\nmonth_total AS (\n    SELECT product_id, DATE_FORMAT(order_date, '%Y-%m') AS ym,\n           SUM(quantity) AS monthly_quantity\n    FROM yearly_orders\n    GROUP BY product_id, DATE_FORMAT(order_date, '%Y-%m')\n),\nproduct_month_max AS (\n    SELECT product_id, MAX(monthly_quantity) AS max_monthly_quantity\n    FROM month_total\n    GROUP BY product_id\n),\ncustomer_total AS (\n    SELECT product_id, customer_id, customer_age,\n           SUM(quantity) AS customer_quantity\n    FROM yearly_orders\n    GROUP BY product_id, customer_id, customer_age\n),\ncustomer_rank AS (\n    SELECT product_id, customer_id, customer_age, customer_quantity,\n           ROW_NUMBER() OVER (\n               PARTITION BY product_id\n               ORDER BY customer_quantity DESC, customer_age ASC, customer_id ASC\n           ) AS rn\n    FROM customer_total\n)\nSELECT p.product_id,\n       ROUND(COALESCE(pt.total_quantity, 0) * p.unit_price, 2) AS total_sales,\n       p.unit_price,\n       COALESCE(pt.total_quantity, 0) AS total_quantity,\n       ROUND(COALESCE(pt.total_quantity, 0) * p.unit_price / 12, 2) AS avg_monthly_sales,\n       COALESCE(pm.max_monthly_quantity, 0) AS max_monthly_quantity,\n       CASE\n         WHEN cr.customer_age BETWEEN 1 AND 10 THEN '1-10'\n         WHEN cr.customer_age BETWEEN 11 AND 20 THEN '11-20'\n         WHEN cr.customer_age BETWEEN 21 AND 30 THEN '21-30'\n         WHEN cr.customer_age BETWEEN 31 AND 40 THEN '31-40'\n         WHEN cr.customer_age BETWEEN 41 AND 50 THEN '41-50'\n         WHEN cr.customer_age BETWEEN 51 AND 60 THEN '51-60'\n         WHEN cr.customer_age >= 61 THEN '61+'\n         ELSE NULL\n       END AS customer_age_group\nFROM products p\nLEFT JOIN product_total pt ON pt.product_id = p.product_id\nLEFT JOIN product_month_max pm ON pm.product_id = p.product_id\nLEFT JOIN customer_rank cr ON cr.product_id = p.product_id AND cr.rn = 1\nORDER BY total_sales DESC, p.product_id ASC;",
     "knowledge_points": [
       "SQL",
       "MySQL 8",
@@ -566,40 +538,106 @@
       "聚合查询",
       "数据工程"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "hard",
+    "explanation": "年度过滤应使用左闭右开的日期范围；总销量、月销量和客户购买量需要在不同粒度上分别聚合。ROW_NUMBER 按购买量降序、年龄升序排序，可解决并列规则。最后从 products 出发使用 LEFT JOIN，能够保留 2023 年没有订单的产品。",
     "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "grading_points": [
+      {
+        "point": "正确过滤 2023 年订单，避免仅按字符串年份造成边界问题",
+        "score": 1
+      },
+      {
+        "point": "按产品汇总 total_quantity，并基于 unit_price 计算 total_sales",
+        "score": 1
+      },
+      {
+        "point": "按自然月汇总销量并计算 max_monthly_quantity",
+        "score": 2
+      },
+      {
+        "point": "按产品和客户汇总年度购买量",
+        "score": 1
+      },
+      {
+        "point": "使用窗口函数或等价方法选择购买量最多的客户",
+        "score": 1
+      },
+      {
+        "point": "正确处理购买量并列时年龄更小优先",
+        "score": 1
+      },
+      {
+        "point": "正确映射客户年龄段",
+        "score": 1
+      },
+      {
+        "point": "正确计算月平均销售额并保留两位小数",
+        "score": 1
+      },
+      {
+        "point": "按总销售额降序、产品 ID 升序排序，整体 SQL 可执行",
+        "score": 1
+      }
+    ],
+    "max_score": 10
   },
   {
     "question_id": "alibaba_data_engineering_017",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "hard",
     "question_type": "short_answer",
     "content": "小红与三位朋友共有 3n 天假期，每天恰好选择一位朋友一起玩，最终与每位朋友都恰好玩 n 天，并且不能连续两天选择同一位朋友。请设计动态规划算法计算满足条件的安排方案数，说明状态、转移、初始条件和时间复杂度。若题目要求取模，可在每次转移后取模。",
     "options": [],
     "answer": "设三位朋友编号为 0、1、2。定义 dp[i][j][k][last] 表示已经分别与三位朋友玩了 i、j、k 天，且最后一天选择 last 的方案数；也可以增加 last=3 表示尚未选择任何人。初始状态为 dp[0][0][0][3]=1。对于每个状态，若下一位朋友 p 不等于 last，且对应计数尚未达到 n，就把方案数转移到增加该朋友计数后的状态。例如 last!=0 且 i<n 时，dp[i+1][j][k][0] += dp[i][j][k][last]；另外两位同理。答案为 dp[n][n][n][0]+dp[n][n][n][1]+dp[n][n][n][2]。状态数为 O(n^3×4)，每个状态最多尝试 3 次转移，因此时间复杂度 O(n^3)，空间复杂度 O(n^3)；可按总天数滚动或使用哈希表压缩可达状态。",
-    "explanation": "每个合法安排只取决于三位朋友已使用的天数和上一天选择了谁，因此这些信息构成充分状态。转移时禁止选择 last，并保证每人的计数不超过 n，即可一一生成所有合法序列且不会重复。",
     "knowledge_points": [
       "动态规划",
       "组合数学",
       "计数DP",
       "状态设计"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "hard",
+    "explanation": "每个合法安排只取决于三位朋友已使用的天数和上一天选择了谁，因此这些信息构成充分状态。转移时禁止选择 last，并保证每人的计数不超过 n，即可一一生成所有合法序列且不会重复。",
     "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "grading_points": [
+      {
+        "point": "定义包含三位朋友已使用次数和上一位朋友的 DP 状态",
+        "score": 3
+      },
+      {
+        "point": "给出正确初始状态",
+        "score": 1
+      },
+      {
+        "point": "转移时禁止连续选择同一位朋友",
+        "score": 2
+      },
+      {
+        "point": "保证每位朋友最多选择 n 次",
+        "score": 1
+      },
+      {
+        "point": "正确汇总 dp[n][n][n][last] 得到答案",
+        "score": 1
+      },
+      {
+        "point": "说明计数无重复且无遗漏",
+        "score": 1
+      },
+      {
+        "point": "给出 O(n^3) 级别的时间和空间复杂度分析",
+        "score": 1
+      }
+    ],
+    "max_score": 10
   },
   {
     "question_id": "alibaba_data_engineering_018",
+    "company": "alibaba",
+    "position": "data_engineering",
+    "difficulty": "hard",
     "question_type": "short_answer",
     "content": "给定长度为 n 的整数数组 a，以及正费用 x、y。允许重复执行两种操作：删除数组第一个元素，费用为 x；将数组任意一个元素加 1 或减 1，费用为 y。要求最终数组至少保留一个元素，并使所有剩余元素相等。请设计算法求最小费用，并说明为什么中位数最优以及如何把复杂度优化到 O(n log n)。",
     "options": [],
     "answer": "删除操作只能从头部进行，因此最终保留的一定是某个后缀 a[i..n-1]，删除前 i 个元素的费用为 i*x。对固定后缀，若把所有元素调整为整数 v，调整费用为 y*Σ|a[j]-v|。绝对偏差和在 v 取该后缀中位数时最小。因此需要计算每个后缀到其中位数的绝对偏差和，并取 min(i*x + y*deviation(i))。可从右向左扫描数组，维护两个堆：lower 为大根堆保存较小的一半，upper 为小根堆保存较大的一半，同时维护两边元素和 sumLower、sumUpper，并保持 lower.size 等于 upper.size 或多 1。当前中位数 m 为 lower 堆顶，绝对偏差和为 m*|lower|-sumLower + sumUpper-m*|upper|。每插入一个元素后重平衡两个堆，O(log n) 得到当前后缀代价并更新答案。总时间复杂度 O(n log n)，空间复杂度 O(n)。",
-    "explanation": "因为只能删除首元素，所以枚举删除数量等价于枚举后缀。对于固定集合，函数 Σ|a[j]-v| 在任一中位数处取得最小值。双堆及两侧元素和可以动态维护后缀中位数和绝对偏差，从而避免对每个后缀重新排序。",
     "knowledge_points": [
       "数组",
       "堆",
@@ -607,11 +645,42 @@
       "中位数",
       "绝对偏差"
     ],
-    "company": "alibaba",
-    "position": "data_engineering",
-    "difficulty": "hard",
+    "explanation": "因为只能删除首元素，所以枚举删除数量等价于枚举后缀。对于固定集合，函数 Σ|a[j]-v| 在任一中位数处取得最小值。双堆及两侧元素和可以动态维护后缀中位数和绝对偏差，从而避免对每个后缀重新排序。",
     "source": "用户提供的阿里巴巴数据工程类笔试题整理",
-    "source_url": "",
-    "license": "original"
+    "grading_points": [
+      {
+        "point": "指出最终保留部分必然是某个非空后缀",
+        "score": 1
+      },
+      {
+        "point": "正确写出删除前 i 个元素的费用 i*x",
+        "score": 1
+      },
+      {
+        "point": "指出固定后缀的最优目标值是中位数",
+        "score": 2
+      },
+      {
+        "point": "说明绝对偏差和在中位数处最小",
+        "score": 1
+      },
+      {
+        "point": "提出从右向左枚举后缀",
+        "score": 1
+      },
+      {
+        "point": "使用大根堆与小根堆动态维护中位数",
+        "score": 2
+      },
+      {
+        "point": "维护两侧元素和并给出绝对偏差计算公式",
+        "score": 1
+      },
+      {
+        "point": "得到 O(n log n) 时间复杂度和 O(n) 空间复杂度",
+        "score": 1
+      }
+    ],
+    "max_score": 10
   }
 ]

@@ -1,0 +1,660 @@
+[
+  {
+    "question_id": "alibaba_algorithm_001",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "已知主串 S='uuluuululululuulppuu'，模式串 t='ululuu'。使用 KMP 匹配时，第一次出现失配的位置为 i=j=1（S[1]≠t[1]）。下一次开始比较时 i 和 j 分别为？",
+    "options": [
+      {
+        "key": "A",
+        "text": "i=4, j=0"
+      },
+      {
+        "key": "B",
+        "text": "i=1, j=0"
+      },
+      {
+        "key": "C",
+        "text": "i=3, j=1"
+      },
+      {
+        "key": "D",
+        "text": "i=8, j=2"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "字符串",
+      "KMP",
+      "模式匹配"
+    ],
+    "explanation": "KMP 失配时主串指针 i 不回退，模式串指针根据 next 数组回退。第一次失配发生在 i=1、j=1，且 next[1]=0，因此下一次比较为 i=1、j=0。该模式串可使用的 next 数组为 [0,0,1,2,3,1]。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_002",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "single_choice",
+    "content": "对无向图 G=(V,E) 进行深度优先遍历。V={1,2,3,4,5,6,7,8,9,10}，E={(5,7),(7,8),(2,6),(4,6),(4,7),(2,7),(2,4),(2,5),(1,8),(1,5),(5,10),(8,10),(1,3),(3,8),(7,9)}。以下哪一个序列不可能是该图的深度优先遍历序列？",
+    "options": [
+      {
+        "key": "A",
+        "text": "5, 7, 2, 1, 10, 8, 4, 9, 6, 3"
+      },
+      {
+        "key": "B",
+        "text": "9, 7, 5, 2, 6, 4, 1, 8, 10, 3"
+      },
+      {
+        "key": "C",
+        "text": "4, 6, 2, 7, 5, 1, 8, 10, 3, 9"
+      },
+      {
+        "key": "D",
+        "text": "8, 7, 5, 2, 6, 4, 1, 3, 10, 9"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "图",
+      "深度优先搜索",
+      "DFS"
+    ],
+    "explanation": "序列 A 在访问 5→7→2 后立即访问 1，但顶点 2 与顶点 1 不相邻；同时 2 仍有未访问邻接点，DFS 不能在此时回溯到其他分支后直接访问 1，因此该序列无法得到。其余序列可以通过选择合适的邻接点访问顺序产生。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_003",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "对数据 [70,59,12,89,3,35,48,64,99] 排序，前三趟结果分别为：第1趟 [59,12,70,3,35,48,64,89,99]；第2趟 [12,59,3,35,48,64,70,89,99]；第3趟 [12,3,35,48,59,64,70,89,99]。该排序方法最可能是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "冒泡排序"
+      },
+      {
+        "key": "B",
+        "text": "堆排序"
+      },
+      {
+        "key": "C",
+        "text": "选择排序"
+      },
+      {
+        "key": "D",
+        "text": "插入排序"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "排序",
+      "冒泡排序"
+    ],
+    "explanation": "每一趟都通过相邻元素比较与交换，将当前未排序区间中的较大元素逐步移动到右端。给出的三趟结果与从左向右进行的冒泡排序过程一致。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_004",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "图像分类模型对训练集中未包含的类别给出了高置信度错误预测。以下哪种方法最可能直接改善该问题？",
+    "options": [
+      {
+        "key": "A",
+        "text": "增加模型复杂度"
+      },
+      {
+        "key": "B",
+        "text": "只扩大原有类别的训练数据集"
+      },
+      {
+        "key": "C",
+        "text": "引入 OOD 检测机制"
+      },
+      {
+        "key": "D",
+        "text": "减小学习率"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "深度学习",
+      "OOD检测",
+      "开放集识别"
+    ],
+    "explanation": "OOD（分布外）检测用于识别与训练分布明显不同的输入，使系统能够拒识或降低未知类别的置信度。单纯增大模型、减小学习率或只增加原类别样本，不能直接解决未知类别上的高置信度误判。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_005",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "使用线性回归预测电商销售额时，加入更多预测变量后训练误差下降，但测试误差上升。最可能的原因是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "模型过拟合"
+      },
+      {
+        "key": "B",
+        "text": "模型欠拟合"
+      },
+      {
+        "key": "C",
+        "text": "线性回归一定不适用"
+      },
+      {
+        "key": "D",
+        "text": "一定是多重共线性"
+      }
+    ],
+    "answer": "A",
+    "knowledge_points": [
+      "机器学习",
+      "过拟合",
+      "泛化能力"
+    ],
+    "explanation": "训练误差持续下降而测试误差上升，是典型的过拟合表现。新增变量提高了模型拟合训练数据细节和噪声的能力，但降低了对未见数据的泛化能力。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_006",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "设非齐次线性方程组 Ax=b，其中 A 是 n×n 方阵。以下结论正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "若 b≠0 且 r(A)=r([A,b])<n，则方程组无解"
+      },
+      {
+        "key": "B",
+        "text": "若 b≠0 且 r(A)=r([A,b])=n，则方程组有无穷多解"
+      },
+      {
+        "key": "C",
+        "text": "若 b=0，则方程组必定有解"
+      },
+      {
+        "key": "D",
+        "text": "若 b≠0 且 r(A)≠r([A,b])，则方程组有无穷多解"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "线性代数",
+      "线性方程组",
+      "矩阵秩"
+    ],
+    "explanation": "当 b=0 时，方程组变为齐次方程组 Ax=0，至少存在零解，因此必定有解。若 r(A)=r([A,b])<n，则有无穷多解；若二者均为 n，则有唯一解；若秩不相等，则无解。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_007",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "元素按照 12、10、14、10、16、10 的顺序依次入栈。以下哪一个出栈序列违反栈的后进先出原则？",
+    "options": [
+      {
+        "key": "A",
+        "text": "10, 12, 10, 14, 10, 16"
+      },
+      {
+        "key": "B",
+        "text": "10, 14, 10, 12, 16, 10"
+      },
+      {
+        "key": "C",
+        "text": "10, 16, 12, 14, 10, 10"
+      },
+      {
+        "key": "D",
+        "text": "14, 10, 12, 10, 16, 10"
+      }
+    ],
+    "answer": "C",
+    "knowledge_points": [
+      "栈",
+      "出栈序列",
+      "数据结构"
+    ],
+    "explanation": "尝试生成序列 C：第一个 10 可以是第二个入栈元素；为了随后弹出 16，必须继续压入 14、10、16。弹出 16 后，栈顶是后压入的 10，而不是 12，因此不可能直接弹出 12。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_008",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "10 个人随机排成一列，其中有 3 个人是兄弟。恰好有两个兄弟相邻，而第三个兄弟与这两人均不相邻的概率是多少？",
+    "options": [
+      {
+        "key": "A",
+        "text": "8/15"
+      },
+      {
+        "key": "B",
+        "text": "7/15"
+      },
+      {
+        "key": "C",
+        "text": "11/20"
+      },
+      {
+        "key": "D",
+        "text": "9/20"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "概率论",
+      "排列组合",
+      "相邻问题"
+    ],
+    "explanation": "只考虑三兄弟所占的 3 个位置，所有位置集合共有 C(10,3)=120 种。若相邻的一对占据两端的相邻位置，第三人各有 7 个可选位置，共 2×7；若相邻对位于内部 7 个相邻位置，第三人各有 6 个可选位置，共 7×6。共有 56 种，概率为 56/120=7/15。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_009",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "有序表 X=(2,5,9,15,22,30,39,49,60)，采用二分查找，并假设表中每个关键字的查找概率相同。以下说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "查找一个 X 中不存在的关键字，查找次数最多是 5 次"
+      },
+      {
+        "key": "B",
+        "text": "查找一个 X 中存在的关键字，查找次数最多不超过 4 次"
+      },
+      {
+        "key": "C",
+        "text": "查找成功的平均查找长度为 30/9"
+      },
+      {
+        "key": "D",
+        "text": "查找失败的平均查找长度为 17/5"
+      }
+    ],
+    "answer": [
+      "B",
+      "D"
+    ],
+    "knowledge_points": [
+      "查找",
+      "二分查找",
+      "平均查找长度"
+    ],
+    "explanation": "9 个元素构成的二分判定树高度为 4，因此成功查找最多比较 4 次，B 正确。失败查找对应 10 个外部区间，其中 6 个需要 3 次比较、4 个需要 4 次比较，平均为 (6×3+4×4)/10=17/5，D 正确。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_010",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "multiple_choice",
+    "content": "二维数组 A[4][4] 按行优先存储，每个元素占 1 个存储单元，A[0][0] 的地址为 200。以下说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "A[3][3] 的存储地址是 215"
+      },
+      {
+        "key": "B",
+        "text": "A[1][1] 的存储地址是 205"
+      },
+      {
+        "key": "C",
+        "text": "A[3][3] 的存储地址是 216"
+      },
+      {
+        "key": "D",
+        "text": "A[1][1] 的存储地址是 203"
+      }
+    ],
+    "answer": [
+      "A",
+      "B"
+    ],
+    "knowledge_points": [
+      "数组",
+      "行优先存储",
+      "地址计算"
+    ],
+    "explanation": "按行优先存储时，A[i][j] 的偏移量为 i×4+j。A[3][3] 的偏移量为 15，地址为 215；A[1][1] 的偏移量为 5，地址为 205。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_011",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "将 n 个可区分的球独立、等概率地随机放入 N 个可区分的盒子中，且 N≥n。以下说法正确的是？",
+    "options": [
+      {
+        "key": "A",
+        "text": "指定的 n 个盒子各有 1 个球的概率为 n!/N^n"
+      },
+      {
+        "key": "B",
+        "text": "指定的 n 个盒子各有 1 个球的概率为 n/N^n"
+      },
+      {
+        "key": "C",
+        "text": "恰好有 n 个盒子各有 1 个球的概率为 n!/N^n"
+      },
+      {
+        "key": "D",
+        "text": "恰好有 n 个盒子各有 1 个球的概率为 C(N,n)·n!/N^n"
+      }
+    ],
+    "answer": [
+      "A",
+      "D"
+    ],
+    "knowledge_points": [
+      "概率论",
+      "排列组合",
+      "古典概型"
+    ],
+    "explanation": "全部放置方式共有 N^n 种。若指定 n 个盒子各放 1 球，需要把 n 个球排列到这 n 个盒子中，共 n! 种，概率为 n!/N^n。若只要求恰好有 n 个盒子各 1 球，还需先从 N 个盒子中选择 n 个，因此概率为 C(N,n)·n!/N^n。原题公式显示不完整，此处依据题意和解析恢复。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_012",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "使用 GAN 生成高分辨率图像时，以下哪些挑战通常成立？",
+    "options": [
+      {
+        "key": "A",
+        "text": "需要更大的模型或更多计算资源"
+      },
+      {
+        "key": "B",
+        "text": "更容易出现显存或内存不足"
+      },
+      {
+        "key": "C",
+        "text": "学习更复杂分布时可能增加模式崩溃风险"
+      },
+      {
+        "key": "D",
+        "text": "图像分辨率升高必然直接导致梯度消失"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "GAN",
+      "高分辨率生成"
+    ],
+    "explanation": "高分辨率图像包含更多像素和细节，通常需要更大的网络、更多计算与显存，也会提高对复杂数据分布建模的难度。梯度消失主要由网络结构、激活函数和优化过程决定，不能简单归因于分辨率升高。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_013",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "线性判别分析（LDA）在哪些情况下可能是合适的选择？",
+    "options": [
+      {
+        "key": "A",
+        "text": "进行多类别分类"
+      },
+      {
+        "key": "B",
+        "text": "类别可以通过线性判别边界较好地区分"
+      },
+      {
+        "key": "C",
+        "text": "需要监督式降维并进行可视化"
+      },
+      {
+        "key": "D",
+        "text": "数据包含大量噪声和异常值且不做处理"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "机器学习",
+      "LDA",
+      "分类",
+      "降维"
+    ],
+    "explanation": "LDA 可用于多类别分类，也可寻找最大化类间可分性的低维投影。它适合近似线性可分且类条件分布满足一定假设的数据；对大量噪声和异常值通常较敏感。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_014",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "easy",
+    "question_type": "single_choice",
+    "content": "大规模多模态预训练模型在某一种特定图像—文本组合上表现较差。最直接的改进方法是什么？",
+    "options": [
+      {
+        "key": "A",
+        "text": "仅增加模型参数量"
+      },
+      {
+        "key": "B",
+        "text": "任意更换模型架构"
+      },
+      {
+        "key": "C",
+        "text": "只扩大不相关训练数据"
+      },
+      {
+        "key": "D",
+        "text": "在训练数据中增加该类图文组合样本"
+      }
+    ],
+    "answer": "D",
+    "knowledge_points": [
+      "深度学习",
+      "多模态学习",
+      "数据分布"
+    ],
+    "explanation": "模型对特定输入组合表现差，通常意味着训练分布对该组合覆盖不足。增加有代表性的同类样本能够直接补足数据分布，使模型学习相应的跨模态关系。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_015",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "实现跨模态检索系统时，哪些特征融合策略通常有助于提高检索准确性？",
+    "options": [
+      {
+        "key": "A",
+        "text": "各模态独立编码后只做未经训练的简单拼接"
+      },
+      {
+        "key": "B",
+        "text": "将不同模态映射到共享嵌入空间进行比较"
+      },
+      {
+        "key": "C",
+        "text": "通过端到端训练自动学习跨模态融合方式"
+      },
+      {
+        "key": "D",
+        "text": "只依赖传统 SVM，且不建模模态之间的关联"
+      }
+    ],
+    "answer": [
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "跨模态检索",
+      "特征融合",
+      "共享嵌入空间"
+    ],
+    "explanation": "共享嵌入空间能够直接对齐不同模态的语义表示；端到端训练可以利用任务目标学习更有效的交互与融合方式。未经训练的简单拼接通常难以充分建模模态关联。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_016",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "给定由小写字母组成的字符串 s 和 t。一次操作可以把 s 中任意字符替换成字母表中相邻的字符，字母表首尾相邻，例如 a 可以替换为 b 或 z。求最少操作次数，使修改后的 s 成为 t 的连续子串。请说明算法思路。",
+    "options": [],
+    "answer": "枚举 t 中所有长度为 |s| 的连续窗口。对于窗口起点 p，位置 i 的最小修改代价为 d=min(|ord(s[i])-ord(t[p+i])|, 26-|ord(s[i])-ord(t[p+i])|)。窗口总代价为各位置代价之和，答案取所有窗口的最小值；若 |s|>|t|，则无可行窗口。直接实现复杂度为 O(|s|·(|t|-|s|+1))。",
+    "knowledge_points": [
+      "字符串",
+      "滑动窗口",
+      "模拟",
+      "循环距离"
+    ],
+    "explanation": "每次只能沿循环字母表移动一步，因此把一个字符改成另一个字符的最少次数就是两者在长度 26 环上的最短距离。s 成为 t 的子串意味着 s 必须与 t 的某个等长窗口对齐，分别计算并取最小代价即可。原题未给出完整输入输出格式，本条保留核心算法要求。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_017",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "n 个城市围成一圈，编号 0 到 n-1。城市 i 第一次到达时可获得 a[i] 枚金币。每一轮必须各使用一次跳跃 1、2、3、4 个城市的卡牌，四张牌的使用顺序可自行选择；用完后进入下一轮。从城市 0 出发，出发时不获得金币，经过 k 轮后最多能获得多少金币？请给出适合 n 较小时的算法思路。",
+    "options": [],
+    "answer": "可使用状态压缩动态规划。状态记录已访问城市集合 mask、当前城市 pos 和已经完成的轮数 round，值为当前最多金币。每轮枚举 1、2、3、4 的 24 种排列，依次更新位置 (pos+step) mod n，并把首次到达城市的 a[i] 加入收益、写入新 mask。对相同新状态保留最大值，完成 k 轮后取最大收益。",
+    "knowledge_points": [
+      "动态规划",
+      "状态压缩",
+      "位运算",
+      "排列枚举"
+    ],
+    "explanation": "每轮只存在 4!=24 种卡牌顺序，可以预先枚举。由于金币仅在第一次访问城市时获得，必须在状态中记录访问集合；因此当 n 较小时可用位掩码表示。原题未提供 n、k 的数据范围，若 n 很大则需要进一步利用周期、路径结构或收益性质优化。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_018",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "hard",
+    "question_type": "short_answer",
+    "content": "某银行使用决策树构建信用评分模型。请说明如何使用信息增益比，从多个申请者特征中选择最佳划分特征。",
+    "options": [],
+    "answer": "先计算当前样本集 D 的信息熵 H(D)。对每个候选特征 A，按其取值划分数据，计算条件熵 H(D|A)，得到信息增益 Gain(D,A)=H(D)-H(D|A)。再计算特征的固有值 IV(A)=-Σ_v (|D_v|/|D|)log2(|D_v|/|D|)，信息增益比为 GainRatio(D,A)=Gain(D,A)/IV(A)。通常先筛选信息增益不低于平均水平的特征，再选择增益比最大的特征。",
+    "knowledge_points": [
+      "机器学习",
+      "决策树",
+      "信息增益比",
+      "C4.5"
+    ],
+    "explanation": "信息增益偏好取值数量较多的特征，信息增益比通过除以特征划分的固有值进行校正。实际使用时还应处理连续变量分箱、缺失值，并避免 IV(A)=0 时除零。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_019",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "single_choice",
+    "content": "使用 GAN 生成图像时，生成结果模糊且训练不稳定。以下哪种方法最可能改善训练稳定性和生成质量？",
+    "options": [
+      {
+        "key": "A",
+        "text": "只增加判别器层数"
+      },
+      {
+        "key": "B",
+        "text": "使用 Wasserstein GAN"
+      },
+      {
+        "key": "C",
+        "text": "只增加生成器层数"
+      },
+      {
+        "key": "D",
+        "text": "单纯增大输入图像尺寸"
+      }
+    ],
+    "answer": "B",
+    "knowledge_points": [
+      "深度学习",
+      "GAN",
+      "Wasserstein GAN"
+    ],
+    "explanation": "Wasserstein GAN 使用 Wasserstein 距离思想改善生成分布与真实分布之间的优化信号，能够缓解原始 GAN 的训练不稳定和梯度问题。单纯增加网络层数或输入尺寸不能保证质量提升。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  },
+  {
+    "question_id": "alibaba_algorithm_020",
+    "company": "alibaba",
+    "position": "algorithm",
+    "difficulty": "medium",
+    "question_type": "multiple_choice",
+    "content": "在自动驾驶 LiDAR 点云中进行 3D 点云分割，以下哪些方法常用于一般场景或物体分割？",
+    "options": [
+      {
+        "key": "A",
+        "text": "基于体素的分割"
+      },
+      {
+        "key": "B",
+        "text": "基于图的分割"
+      },
+      {
+        "key": "C",
+        "text": "基于深度学习的分割"
+      },
+      {
+        "key": "D",
+        "text": "仅使用平面拟合完成所有车辆、行人和道路类别分割"
+      }
+    ],
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "knowledge_points": [
+      "深度学习",
+      "点云分割",
+      "LiDAR",
+      "三维视觉"
+    ],
+    "explanation": "体素方法将不规则点云转换为规则网格；图方法利用点之间的邻接关系；深度学习方法可直接或间接学习点云特征。平面拟合常用于提取地面等近似平面结构，但不足以独立完成所有类别的一般物体分割。",
+    "source": "用户提供的阿里巴巴笔试题整理"
+  }
+]
