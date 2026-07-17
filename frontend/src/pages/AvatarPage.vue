@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import LayoutShell from '../components/LayoutShell.vue';
 import { api, getSession, setSession } from '../api/client';
@@ -14,6 +14,7 @@ const messages = ref([]);
 const currentQuestion = ref(null);
 const answer = ref('');
 const loading = ref(false);
+const streaming = ref(false);
 const started = ref(false);
 const speaking = ref(false);
 const listening = ref(false);
@@ -37,6 +38,15 @@ const selectedCamera = ref('');
 const cameraResolution = ref('');
 let recognition = null;
 let cameraStream = null;
+let streamVersion = 0;
+
+const STREAM_INTERVAL = 32;
+
+function streamDelay(character) {
+  if (/[。！？!?]/.test(character)) return 140;
+  if (/[，、；：,;:]/.test(character)) return 70;
+  return STREAM_INTERVAL;
+}
 
 const isSimulation = computed(() =>
   ['group_interview', 'stress_interview'].includes(session.value?.mode)
@@ -123,6 +133,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+  streamVersion += 1;
   window.speechSynthesis?.cancel();
   if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = null;
   recognition?.abort();
@@ -256,17 +267,45 @@ function addMessage(role, text, meta = null, displayName = null) {
   scrollToLatest();
 }
 
-function addSimulationMessages(items) {
+function wait(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function streamMessage(role, content, meta = null, displayName = null) {
+  const version = ++streamVersion;
+  const message = reactive({
+    role,
+    text: '',
+    meta,
+    displayName,
+    streaming: true,
+    id: `${Date.now()}-${messages.value.length}`
+  });
+  messages.value.push(message);
+  streaming.value = true;
+
+  for (const character of Array.from(content || '')) {
+    if (version !== streamVersion) return;
+    message.text += character;
+    await scrollToLatest();
+    await wait(streamDelay(character));
+  }
+
+  message.streaming = false;
+  streaming.value = false;
+}
+
+async function addSimulationMessages(items) {
+  const spoken = [...(items || [])].reverse().find((item) => item.speaker === 'interviewer');
+  if (spoken) speak(spoken.content);
   for (const item of items || []) {
-    addMessage(
+    await streamMessage(
       item.speaker,
       item.content,
       item.reply_to ? '回应其他候选人' : stageLabels[simulationTurn.value?.stage],
       item.display_name
     );
   }
-  const spoken = [...(items || [])].reverse().find((item) => item.speaker === 'interviewer');
-  if (spoken) speak(spoken.content);
 }
 
 function speak(text) {
@@ -302,15 +341,15 @@ async function startInterview() {
       if (data.stress_level) stressLevel.value = data.stress_level;
       started.value = true;
       messages.value = [];
-      addSimulationMessages(data.messages);
+      await addSimulationMessages(data.messages);
       return;
     }
     const data = await api.interviewMessage({ session_id: currentSession.session_id });
     currentQuestion.value = data.next_question;
     started.value = true;
     messages.value = [];
-    addMessage('ai', data.next_question.question, data.is_followup ? '追问' : '面试问题');
     speak(data.next_question.question);
+    await streamMessage('ai', data.next_question.question, data.is_followup ? '追问' : '面试问题');
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -342,7 +381,7 @@ async function submitAnswer() {
       simulationStatus.value = data.status;
       if (data.stress_level) stressLevel.value = data.stress_level;
       answeredCount.value += 1;
-      addSimulationMessages(data.messages);
+      await addSimulationMessages(data.messages);
       return;
     }
     const data = await api.interviewMessage({
@@ -355,15 +394,15 @@ async function submitAnswer() {
       latestScore.value = data.evaluation.score;
       const strengths = data.evaluation.strengths?.join('、') || '回答切题';
       const weaknesses = data.evaluation.weaknesses?.join('、') || '暂无明显问题';
-      addMessage(
+      await streamMessage(
         'feedback',
         `本轮 ${data.evaluation.score} 分。亮点：${strengths}。建议改进：${weaknesses}。`,
         '即时反馈'
       );
     }
     currentQuestion.value = data.next_question;
-    addMessage('ai', data.next_question.question, data.is_followup ? '针对性追问' : '下一题');
     speak(data.next_question.question);
+    await streamMessage('ai', data.next_question.question, data.is_followup ? '针对性追问' : '下一题');
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -531,9 +570,9 @@ async function finishInterview() {
           <div ref="messageListRef" class="avatar-messages">
             <article v-for="message in messages" :key="message.id" :class="['avatar-message', message.role]">
               <span>{{ message.role === 'user' ? '我' : message.role === 'feedback' ? '评' : message.displayName?.slice(0, 1) || 'AI' }}</span>
-              <div><small>{{ message.displayName || message.meta }}</small><p>{{ message.text }}</p></div>
+              <div><small>{{ message.displayName || message.meta }}</small><p :class="{ streaming: message.streaming }">{{ message.text }}</p></div>
             </article>
-            <div v-if="loading" class="avatar-thinking"><i></i><i></i><i></i><span>正在分析你的回答</span></div>
+            <div v-if="loading && !streaming" class="avatar-thinking"><i></i><i></i><i></i><span>正在分析你的回答</span></div>
           </div>
 
           <form class="avatar-composer" @submit.prevent="submitAnswer">
@@ -844,6 +883,17 @@ async function finishInterview() {
 .avatar-message > div { min-width: 0; }
 .avatar-message small { display: block; margin: 0 0 5px 2px; color: #8996a9; font-size: 9px; font-weight: 700; letter-spacing: .5px; }
 .avatar-message p { margin: 0; border-radius: 4px 14px 14px; padding: 12px 15px; color: #425168; background: #eef2f7; font-size: 12px; line-height: 1.75; }
+.avatar-message p.streaming::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -2px;
+  background: currentColor;
+  animation: avatar-stream-cursor .65s steps(1) infinite;
+}
+@keyframes avatar-stream-cursor { 50% { opacity: 0; } }
 .avatar-message.user { flex-direction: row-reverse; margin-left: auto; }
 .avatar-message.user > span { color: #4e6078; background: #e7ebf1; }
 .avatar-message.user p { border-radius: 14px 4px 14px 14px; color: #fff; background: #246bda; }

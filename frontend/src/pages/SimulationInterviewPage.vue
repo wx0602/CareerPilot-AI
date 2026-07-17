@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import LayoutShell from '../components/LayoutShell.vue';
 import AppIcon from '../components/AppIcon.vue';
@@ -12,9 +12,23 @@ const turn = ref(null);
 const messages = ref([]);
 const input = ref('');
 const loading = ref(false);
+const streaming = ref(false);
 const started = ref(false);
 const error = ref('');
 const stressLevel = ref('medium');
+let streamVersion = 0;
+
+const STREAM_INTERVAL = 32;
+
+function wait(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+function streamDelay(character) {
+  if (/[。！？!?]/.test(character)) return 140;
+  if (/[，、；：,;:]/.test(character)) return 70;
+  return STREAM_INTERVAL;
+}
 
 const isGroup = computed(() => session.value?.mode === 'group_interview');
 const isStress = computed(() => session.value?.mode === 'stress_interview');
@@ -56,6 +70,10 @@ onMounted(() => {
   else start();
 });
 
+onBeforeUnmount(() => {
+  streamVersion += 1;
+});
+
 function roleInitial(role) {
   return role === 'user' ? '我' : role === 'interviewer' ? '面' : role === 'candidate_logic' ? '析' : role === 'candidate_collaboration' ? '和' : '问';
 }
@@ -65,9 +83,25 @@ async function scrollToBottom() {
   if (conversationRef.value) conversationRef.value.scrollTop = conversationRef.value.scrollHeight;
 }
 
-function appendMessages(items) {
-  messages.value.push(...(items || []));
-  scrollToBottom();
+async function appendMessages(items) {
+  const version = ++streamVersion;
+  streaming.value = true;
+
+  for (const item of items || []) {
+    const message = reactive({ ...item, content: '', streaming: true });
+    messages.value.push(message);
+
+    for (const character of Array.from(item.content || '')) {
+      if (version !== streamVersion) return;
+      message.content += character;
+      await scrollToBottom();
+      await wait(streamDelay(character));
+    }
+
+    message.streaming = false;
+  }
+
+  if (version === streamVersion) streaming.value = false;
 }
 
 async function start() {
@@ -86,7 +120,7 @@ async function start() {
     turn.value = data;
     if (data.stress_level) stressLevel.value = data.stress_level;
     messages.value = [];
-    appendMessages(data.messages);
+    await appendMessages(data.messages);
     started.value = true;
   } catch (err) {
     error.value = err.message;
@@ -116,7 +150,7 @@ async function sendMessage(forcedMessage = null) {
     });
     turn.value = data;
     if (data.stress_level) stressLevel.value = data.stress_level;
-    appendMessages(data.messages);
+    await appendMessages(data.messages);
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -172,9 +206,9 @@ async function finish() {
           <div ref="conversationRef" class="discussion-stream">
             <article v-for="message in messages" :key="message.message_id" :class="['discussion-message', message.speaker]">
               <b>{{ roleInitial(message.speaker) }}</b>
-              <div><header><strong>{{ message.display_name || roleNames[message.speaker] }}</strong><span v-if="message.reply_to">回应上一观点</span></header><p>{{ message.content }}</p></div>
+              <div><header><strong>{{ message.display_name || roleNames[message.speaker] }}</strong><span v-if="message.reply_to">回应上一观点</span></header><p :class="{ streaming: message.streaming }">{{ message.content }}</p></div>
             </article>
-            <div v-if="loading" class="text-thinking"><i></i><i></i><i></i><span>正在组织回应</span></div>
+            <div v-if="loading && !streaming" class="text-thinking"><i></i><i></i><i></i><span>正在组织回应</span></div>
           </div>
 
           <div v-if="isStress" class="stress-controls"><span>安全控制</span><button @click="sendMessage('降低压力')">降低压力</button><button @click="sendMessage('暂停')">暂停</button><button class="stop" @click="sendMessage('停止')">结束面试</button></div>
@@ -216,5 +250,7 @@ async function finish() {
 .text-thinking { display: flex; align-items: center; gap: 4px; padding: 8px 46px; color: #8b9992; font-size: 10px; }.text-thinking i { width: 5px; height: 5px; border-radius: 50%; background: #4b8d77; animation: dot .7s infinite alternate; }.text-thinking i:nth-child(2){animation-delay:.15s}.text-thinking i:nth-child(3){animation-delay:.3s;margin-right:6px}@keyframes dot{to{transform:translateY(-4px);opacity:.4}}
 .stress-controls { display: flex; align-items: center; gap: 8px; padding: 0 0 12px; }.stress-controls span { color: #8d817a; font-size: 10px; }.stress-controls button { border: 1px solid #e5d9d1; border-radius: 99px; padding: 6px 11px; color: #7a5d4e; background: #fffaf7; font-size: 10px; }.stress-controls button.stop { color: #b53f42; }
 .discussion-composer { border: 1px solid #dbe5df; border-radius: 15px; padding: 8px; box-shadow: 0 8px 24px rgba(36,64,51,.06); }.discussion-composer textarea { width: 100%; height: 74px; resize: none; border: 0; padding: 10px; outline: 0; font-family: inherit; }.discussion-composer > div { display: flex; align-items: center; border-top: 1px solid #edf1ef; padding: 7px 4px 0; }.discussion-composer span { flex: 1; color: #a3ada8; font-size: 9px; }.discussion-composer button { padding: 9px 16px; }.discussion-panel footer { display: flex; min-height: 42px; align-items: center; padding-top: 10px; }.discussion-panel footer span { flex: 1; }.discussion-panel footer p { margin: 0; }
+.discussion-message p.streaming::after { content: ''; display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: -2px; background: currentColor; animation: stream-cursor .65s steps(1) infinite; }
+@keyframes stream-cursor { 50% { opacity: 0; } }
 @media(max-width:900px){.simulation-page{height:100dvh;padding:20px 12px}.simulation-header{grid-template-columns:1fr auto}.simulation-header>div:nth-child(2){text-align:right}.session-state{display:none}.session-connecting{min-height:0;padding:35px 22px}.simulation-workspace{grid-template-columns:1fr;height:auto;min-height:0}.stage-rail{display:none}.discussion-panel{min-height:0;padding:20px 16px}.stress-interview-workspace .discussion-panel{padding-top:0}.discussion-message{max-width:92%}}
 </style>
