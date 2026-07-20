@@ -69,6 +69,8 @@ def generate_report(
     validated = ReportResponse.model_validate(generated)
     if validated.session_id != training.id or validated.mode != training.mode:
         raise api_error(502, "invalid_provider_response", "D 返回的报告会话或模式不一致")
+    if payload.nonverbal_score is not None and training.mode == "job":
+        validated = validated.model_copy(update={"nonverbal_score": payload.nonverbal_score})
     report = Report(session_id=training.id, payload_json=validated.model_dump())
     training.status = "completed"
     training.completed_at = utc_now()

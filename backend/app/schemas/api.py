@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 InterviewMode = Literal["job", "technical", "pitch", "group_interview", "stress_interview"]
@@ -264,8 +264,74 @@ class SimulationFinishResponse(BaseModel):
     evaluation: SimulationEvaluation
 
 
+NonverbalReason = Literal[
+    "camera_denied",
+    "camera_disabled",
+    "model_load_failed",
+    "answer_too_short",
+    "insufficient_face_samples",
+    "analysis_error",
+]
+NonverbalFeedback = Annotated[str, Field(min_length=1, max_length=200)]
+
+
+class NonverbalDimensions(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    camera_attention: Score
+    body_posture: Score
+    movement_stability: Score
+    interaction_state: Score
+    facial_dynamics: Score
+
+
+class NonverbalStatistics(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    question_count: int | None = Field(default=None, ge=0)
+    sample_count: int | None = Field(default=None, ge=0)
+    valid_face_samples: int | None = Field(default=None, ge=0)
+    analyzed_duration_seconds: float | None = Field(default=None, ge=0)
+    face_presence_ratio: float | None = Field(default=None, ge=0, le=1)
+    no_face_events: int | None = Field(default=None, ge=0)
+    head_deviation_events: int | None = Field(default=None, ge=0)
+    posture_events: int | None = Field(default=None, ge=0)
+    movement_events: int | None = Field(default=None, ge=0)
+    average_response_delay_seconds: float | None = Field(default=None, ge=0)
+
+
+class NonverbalScore(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    status: Literal["complete", "insufficient_data"]
+    reason: NonverbalReason | None = None
+    message: str | None = Field(default=None, max_length=300)
+    total_score: Score | None = None
+    dimensions: NonverbalDimensions | None = None
+    statistics: NonverbalStatistics | None = None
+    strengths: list[NonverbalFeedback] = Field(default_factory=list, max_length=5)
+    suggestions: list[NonverbalFeedback] = Field(default_factory=list, max_length=5)
+
+    @model_validator(mode="after")
+    def validate_status_payload(self) -> "NonverbalScore":
+        if self.status == "complete":
+            if self.total_score is None or self.dimensions is None:
+                raise ValueError("complete 状态必须包含 total_score 和完整五维分数")
+            if self.reason is not None:
+                raise ValueError("complete 状态不能包含 reason")
+        else:
+            if self.total_score is not None:
+                raise ValueError("insufficient_data 状态的 total_score 必须为 null")
+            if self.reason is None:
+                raise ValueError("insufficient_data 状态必须包含 reason")
+            if not self.message:
+                raise ValueError("insufficient_data 状态必须包含 message")
+        return self
+
+
 class ReportGenerateRequest(BaseModel):
     session_id: str
+    nonverbal_score: NonverbalScore | None = None
 
 
 class ReportResponse(BaseModel):
@@ -278,6 +344,7 @@ class ReportResponse(BaseModel):
     suggestions: list[str] = Field(default_factory=list)
     charts: dict[str, Any] = Field(default_factory=dict)
     summary: str
+    nonverbal_score: NonverbalScore | None = None
 
 
 class ReportListItem(ReportResponse):

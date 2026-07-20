@@ -19,6 +19,18 @@ const dimensions = computed(() => Object.entries(report.value?.dimension_scores 
   value: Math.max(0, Math.min(100, Number(value) || 0))
 })));
 
+const nonverbalDimensionLabels = {
+  camera_attention: '镜头关注度',
+  body_posture: '身体姿态',
+  movement_stability: '动作稳定性',
+  interaction_state: '互动状态',
+  facial_dynamics: '面部动态自然度'
+};
+const nonverbalScore = computed(() => report.value?.nonverbal_score || null);
+const nonverbalDimensions = computed(() => Object.entries(nonverbalScore.value?.dimensions || {}).map(
+  ([key, value]) => ({ key, label: nonverbalDimensionLabels[key] || key, value })
+));
+
 function polarPoint(index, total, radius) {
   const angle = -Math.PI / 2 + (Math.PI * 2 * index) / total;
   return {
@@ -204,6 +216,34 @@ async function loadReports() {
             </div>
           </article>
         </div>
+        <article v-if="nonverbalScore" class="nonverbal-report-card">
+          <template v-if="nonverbalScore.status === 'complete'">
+            <header>
+              <div><span>本地辅助反馈</span><h2>非语言表现</h2></div>
+              <strong>{{ nonverbalScore.total_score }}<small>/100</small></strong>
+            </header>
+            <div class="nonverbal-dimensions">
+              <div v-for="item in nonverbalDimensions" :key="item.key">
+                <span>{{ item.label }}</span><b>{{ item.value }}</b>
+              </div>
+            </div>
+            <div class="nonverbal-feedback">
+              <section v-if="nonverbalScore.strengths?.length">
+                <h3>表现较好</h3>
+                <p v-for="item in nonverbalScore.strengths" :key="item">{{ item }}</p>
+              </section>
+              <section v-if="nonverbalScore.suggestions?.length">
+                <h3>改进建议</h3>
+                <p v-for="item in nonverbalScore.suggestions" :key="item">{{ item }}</p>
+              </section>
+            </div>
+            <small class="nonverbal-note">该分数仅用于本地训练反馈，不计入综合得分和能力雷达图。</small>
+          </template>
+          <template v-else>
+            <h2>非语言表现</h2>
+            <p class="nonverbal-unavailable">{{ nonverbalScore.message }}</p>
+          </template>
+        </article>
         <div class="report-bottom-grid">
           <article class="insight-card strengths"><h2>♙ 优势亮点</h2><ul><li v-for="item in report.strengths" :key="item">{{ item }}</li></ul></article>
           <article class="insight-card weaknesses"><h2>※ 待提升项</h2><ul><li v-for="item in report.weaknesses" :key="item">{{ item }}</li></ul></article>
@@ -249,8 +289,25 @@ async function loadReports() {
 .radar-empty { display: grid; height: 160px; place-items: center; color: #929dad; font-size: 10px; }
 .real-chart i { min-height: 2px; border-top-color: #3475db; background: linear-gradient(to top,rgba(66,128,222,.04),rgba(66,128,222,.14)); }
 .real-chart i > span { position: absolute; left: 50%; top: -18px; color: #3971c6; font-size: 8px; transform: translateX(-50%); }
+.nonverbal-report-card { display: grid; gap: 18px; border: 1px solid #dbe6f5; border-radius: 16px; padding: 22px; background: #fff; box-shadow: 0 8px 24px rgba(36,76,139,.05); }
+.nonverbal-report-card > header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.nonverbal-report-card header div { display: grid; gap: 4px; }
+.nonverbal-report-card header span { color: #3475da; font-size: 9px; font-weight: 900; letter-spacing: 1.4px; }
+.nonverbal-report-card h2 { margin: 0; color: #263950; font-size: 19px; }
+.nonverbal-report-card header > strong { color: #2465c6; font-family: Georgia,serif; font-size: 34px; }
+.nonverbal-report-card header > strong small { color: #8794a8; font-size: 12px; }
+.nonverbal-dimensions { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 10px; }
+.nonverbal-dimensions > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-radius: 10px; padding: 12px; background: #f5f8fc; }
+.nonverbal-dimensions span { color: #53647b; font-size: 11px; }
+.nonverbal-dimensions b { color: #2465c6; font-size: 15px; }
+.nonverbal-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.nonverbal-feedback section { border-left: 3px solid #79a8e9; padding-left: 12px; }
+.nonverbal-feedback h3 { margin: 0 0 7px; color: #344860; font-size: 13px; }
+.nonverbal-feedback p { margin: 4px 0; color: #66768d; font-size: 11px; line-height: 1.6; }
+.nonverbal-note { color: #8a97a9; font-size: 10px; }
+.nonverbal-unavailable { margin: 0; color: #66768d; font-size: 12px; }
 @media(max-width:1100px){.report-top-grid{grid-template-columns:1fr 1fr}.trend-card{grid-column:1/-1}.history-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.report-top-grid{grid-template-columns:1fr}.trend-card{grid-column:auto}.history-library-head{align-items:flex-start;flex-direction:column}.current-report-label{margin-top:12px}.history-list{grid-template-columns:1fr}.history-list button{grid-template-columns:40px minmax(0,1fr) auto}}
+@media(max-width:760px){.report-top-grid{grid-template-columns:1fr}.trend-card{grid-column:auto}.history-library-head{align-items:flex-start;flex-direction:column}.current-report-label{margin-top:12px}.history-list{grid-template-columns:1fr}.history-list button{grid-template-columns:40px minmax(0,1fr) auto}.nonverbal-dimensions{grid-template-columns:1fr 1fr}.nonverbal-feedback{grid-template-columns:1fr}}
 @media(max-width:480px){.dimension-analysis{grid-template-columns:1fr}.dynamic-radar{height:220px}.radar-legend{grid-template-columns:1fr 1fr}}
 @media print{.sidebar,.report-library,.report-header>div:last-child{display:none!important}.app-shell{display:block}.report-page{max-width:none;padding:0}}
 </style>

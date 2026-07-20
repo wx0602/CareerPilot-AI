@@ -1,9 +1,10 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import LayoutShell from '../components/LayoutShell.vue';
 import { api, getSession, setSession } from '../api/client';
 import interviewerImage from '../assets/ai-interviewer-lin.png';
+import { createNonverbalAnalyzer } from '../services/nonverbalAnalyzer';
 
 const router = useRouter();
 const stageRef = ref(null);
@@ -36,9 +37,23 @@ const cameraError = ref('');
 const cameraDevices = ref([]);
 const selectedCamera = ref('');
 const cameraResolution = ref('');
+const nonverbalStatus = ref('idle');
+const currentQuestionAnalysisStarted = ref(false);
+const currentQuestionId = ref(null);
+const pendingAnalysisStart = ref(false);
 let recognition = null;
 let cameraStream = null;
 let streamVersion = 0;
+let questionPresentedAt = null;
+let pendingAnswerStartedAt = null;
+let pendingInputMode = 'text';
+let nonverbalFailureReason = null;
+
+const nonverbalAnalyzer = createNonverbalAnalyzer({
+  onStateChange(state) {
+    nonverbalStatus.value = state;
+  }
+});
 
 const STREAM_INTERVAL = 32;
 
@@ -53,6 +68,14 @@ const isSimulation = computed(() =>
 );
 const isGroupInterview = computed(() => session.value?.mode === 'group_interview');
 const isStressInterview = computed(() => session.value?.mode === 'stress_interview');
+const nonverbalEnabled = computed(() => session.value?.mode === 'job');
+const nonverbalStatusText = computed(() => ({
+  idle: '开启摄像头后可进行本地动作分析',
+  initializing: '动作分析正在初始化',
+  available: currentQuestionAnalysisStarted.value ? '正在本地分析动作与姿态' : '动作分析可用',
+  unavailable: '动作分析不可用，面试可继续',
+  destroyed: '动作分析已结束'
+}[nonverbalStatus.value] || '动作分析不可用'));
 
 const stageLabels = {
   case_intro: '案例介绍',
@@ -109,10 +132,16 @@ function setupRecognition() {
   recognition.lang = 'zh-CN';
   recognition.continuous = false;
   recognition.interimResults = true;
+  recognition.onstart = () => {
+    listening.value = true;
+    requestQuestionAnalysisStart('voice');
+  };
   recognition.onresult = (event) => {
-    answer.value = Array.from(event.results)
+    const transcript = Array.from(event.results)
       .map((result) => result[0].transcript)
       .join('');
+    if (transcript.trim()) requestQuestionAnalysisStart('voice');
+    answer.value = transcript;
   };
   recognition.onend = () => {
     listening.value = false;
@@ -137,19 +166,107 @@ onBeforeUnmount(() => {
   window.speechSynthesis?.cancel();
   if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = null;
   recognition?.abort();
+  nonverbalAnalyzer.destroy();
   cameraStream?.getTracks().forEach((track) => track.stop());
 });
 
+watch(answer, (value, previousValue) => {
+  if (!nonverbalEnabled.value) return;
+  if (!String(previousValue || '').trim() && String(value || '').trim()) {
+    requestQuestionAnalysisStart('text');
+  }
+});
+
+function prepareQuestionAnalysis(question) {
+  if (!nonverbalEnabled.value) return;
+  nonverbalAnalyzer.pause();
+  currentQuestionId.value = question?.question_id || null;
+  currentQuestionAnalysisStarted.value = false;
+  pendingAnalysisStart.value = false;
+  questionPresentedAt = null;
+  pendingAnswerStartedAt = null;
+  pendingInputMode = 'text';
+}
+
+function requestQuestionAnalysisStart(inputMode = 'text') {
+  if (!nonverbalEnabled.value || !currentQuestionId.value) return;
+  if (inputMode === 'voice') {
+    pendingInputMode = 'voice';
+    nonverbalAnalyzer.markVoiceInput();
+  }
+  if (currentQuestionAnalysisStarted.value) return;
+  if (pendingAnswerStartedAt === null) pendingAnswerStartedAt = Date.now();
+  if (
+    speaking.value
+    || questionPresentedAt === null
+    || !cameraReady.value
+    || nonverbalAnalyzer.getState() !== 'available'
+  ) {
+    pendingAnalysisStart.value = true;
+    return;
+  }
+  const didStart = nonverbalAnalyzer.startQuestion(currentQuestionId.value, {
+    inputMode: pendingInputMode,
+    presentedAt: questionPresentedAt,
+    answerStartedAt: pendingAnswerStartedAt
+  });
+  if (didStart) {
+    currentQuestionAnalysisStarted.value = true;
+    pendingAnalysisStart.value = false;
+  }
+}
+
+function markQuestionReadingFinished() {
+  if (!nonverbalEnabled.value || !currentQuestionId.value) return;
+  if (questionPresentedAt === null) questionPresentedAt = Date.now();
+  if (currentQuestionAnalysisStarted.value) {
+    nonverbalAnalyzer.startQuestion(currentQuestionId.value, { inputMode: pendingInputMode });
+  } else if (pendingAnalysisStart.value) {
+    requestQuestionAnalysisStart(pendingInputMode);
+  }
+}
+
+function finishCurrentQuestionAnalysis() {
+  if (!nonverbalEnabled.value || !currentQuestionId.value) return;
+  if (currentQuestionAnalysisStarted.value) {
+    nonverbalAnalyzer.finishQuestion({
+      questionId: currentQuestionId.value,
+      submittedAt: Date.now()
+    });
+  }
+  currentQuestionAnalysisStarted.value = false;
+  pendingAnalysisStart.value = false;
+  pendingAnswerStartedAt = null;
+}
+
+async function initializeNonverbalAnalysis() {
+  if (!nonverbalEnabled.value || !cameraReady.value || !videoRef.value) return;
+  const state = await nonverbalAnalyzer.initialize(videoRef.value);
+  if (state === 'available') {
+    nonverbalFailureReason = null;
+    if (currentQuestionAnalysisStarted.value) {
+      nonverbalAnalyzer.startQuestion(currentQuestionId.value, { inputMode: pendingInputMode });
+    } else if (pendingAnalysisStart.value) {
+      requestQuestionAnalysisStart(pendingInputMode);
+    }
+  } else if (state === 'unavailable') {
+    nonverbalFailureReason = 'model_load_failed';
+  }
+}
+
 async function startCamera() {
+  nonverbalAnalyzer.pause();
   cameraError.value = '';
   cameraReady.value = false;
   cameraResolution.value = '';
   if (!window.isSecureContext) {
     cameraError.value = '摄像头需要 HTTPS，或使用 localhost / 127.0.0.1 访问。';
+    if (nonverbalEnabled.value) nonverbalFailureReason = 'camera_disabled';
     return;
   }
   if (!navigator.mediaDevices?.getUserMedia) {
     cameraError.value = '当前浏览器不支持摄像头访问。';
+    if (nonverbalEnabled.value) nonverbalFailureReason = 'camera_disabled';
     return;
   }
   try {
@@ -167,16 +284,25 @@ async function startCamera() {
     selectedCamera.value = settings.deviceId || selectedCamera.value;
     cameraResolution.value = settings.width && settings.height ? `${settings.width} × ${settings.height}` : '';
     track.onended = () => {
+      nonverbalAnalyzer.pause();
       cameraActive.value = false;
       cameraReady.value = false;
+      if (nonverbalEnabled.value) nonverbalFailureReason = 'camera_disabled';
       cameraError.value = '摄像头连接已中断，请重新开启。';
     };
     track.onmute = () => {
+      nonverbalAnalyzer.pause();
       cameraReady.value = false;
       cameraError.value = '摄像头暂时没有输出画面，请检查是否被其他程序占用或物理遮挡。';
     };
     track.onunmute = () => {
       cameraError.value = '';
+      cameraReady.value = true;
+      if (currentQuestionAnalysisStarted.value) {
+        nonverbalAnalyzer.startQuestion(currentQuestionId.value, { inputMode: pendingInputMode });
+      } else if (pendingAnalysisStart.value) {
+        requestQuestionAnalysisStart(pendingInputMode);
+      }
     };
 
     cameraActive.value = true;
@@ -190,11 +316,16 @@ async function startCamera() {
     cameraReady.value = true;
     cameraDevices.value = (await navigator.mediaDevices.enumerateDevices())
       .filter((device) => device.kind === 'videoinput');
+    await initializeNonverbalAnalysis();
   } catch (err) {
     cameraStream?.getTracks().forEach((track) => track.stop());
     cameraStream = null;
     cameraActive.value = false;
     cameraReady.value = false;
+    nonverbalAnalyzer.pause();
+    if (nonverbalEnabled.value) {
+      nonverbalFailureReason = err?.name === 'NotAllowedError' ? 'camera_denied' : 'camera_disabled';
+    }
     cameraError.value = err?.name === 'NotAllowedError'
       ? '摄像头权限被拒绝，请在浏览器地址栏中允许摄像头后重试。'
       : err?.name === 'NotFoundError'
@@ -235,12 +366,14 @@ function markCameraReady() {
 }
 
 function stopCamera() {
+  nonverbalAnalyzer.pause();
   cameraStream?.getTracks().forEach((track) => track.stop());
   cameraStream = null;
   if (videoRef.value) videoRef.value.srcObject = null;
   cameraActive.value = false;
   cameraReady.value = false;
   cameraResolution.value = '';
+  if (nonverbalEnabled.value) nonverbalFailureReason = 'camera_disabled';
 }
 
 async function ensureSession() {
@@ -317,9 +450,11 @@ function speak(text) {
   utterance.voice = voices.value.find((voice) => voice.name === selectedVoice.value) || null;
   utterance.onstart = () => {
     speaking.value = true;
+    if (nonverbalEnabled.value) nonverbalAnalyzer.pause();
   };
   utterance.onend = utterance.onerror = () => {
     speaking.value = false;
+    markQuestionReadingFinished();
   };
   window.speechSynthesis.speak(utterance);
 }
@@ -346,10 +481,12 @@ async function startInterview() {
     }
     const data = await api.interviewMessage({ session_id: currentSession.session_id });
     currentQuestion.value = data.next_question;
+    prepareQuestionAnalysis(data.next_question);
     started.value = true;
     messages.value = [];
     speak(data.next_question.question);
     await streamMessage('ai', data.next_question.question, data.is_followup ? '追问' : '面试问题');
+    if (!speaking.value) markQuestionReadingFinished();
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -365,6 +502,7 @@ async function submitAnswer() {
     (isSimulation.value && simulationStatus.value === 'completed') ||
     (!isSimulation.value && !currentQuestion.value)
   ) return;
+  finishCurrentQuestionAnalysis();
   window.speechSynthesis?.cancel();
   addMessage('user', content);
   answer.value = '';
@@ -401,8 +539,10 @@ async function submitAnswer() {
       );
     }
     currentQuestion.value = data.next_question;
+    prepareQuestionAnalysis(data.next_question);
     speak(data.next_question.question);
     await streamMessage('ai', data.next_question.question, data.is_followup ? '针对性追问' : '下一题');
+    if (!speaking.value) markQuestionReadingFinished();
   } catch (err) {
     error.value = err.message;
   } finally {
@@ -421,7 +561,11 @@ function toggleListening() {
     listening.value = false;
     return;
   }
-  window.speechSynthesis?.cancel();
+  if (speaking.value) {
+    window.speechSynthesis?.cancel();
+    speaking.value = false;
+    markQuestionReadingFinished();
+  }
   recognition.start();
   listening.value = true;
 }
@@ -431,6 +575,7 @@ function toggleVoice() {
   if (!voiceEnabled.value) {
     window.speechSynthesis?.cancel();
     speaking.value = false;
+    markQuestionReadingFinished();
   } else if (currentPrompt.value) {
     speak(currentPrompt.value);
   }
@@ -459,7 +604,16 @@ async function finishInterview() {
       await router.push('/report');
       return;
     }
-    await api.generateReport({ session_id: session.value.session_id });
+    if (nonverbalEnabled.value) nonverbalAnalyzer.pause();
+    const nonverbalScore = nonverbalEnabled.value
+      ? nonverbalAnalyzer.generateFinalResult({
+        fallbackReason: nonverbalFailureReason || (!cameraActive.value ? 'camera_disabled' : null)
+      })
+      : null;
+    await api.generateReport({
+      session_id: session.value.session_id,
+      ...(nonverbalScore ? { nonverbal_score: nonverbalScore } : {})
+    });
     router.push('/report');
   } catch (err) {
     error.value = err.message;
@@ -530,6 +684,9 @@ async function finishInterview() {
               <button @click="stopCamera">关闭</button>
             </div>
           </div>
+          <small v-if="nonverbalEnabled" class="nonverbal-status" :class="nonverbalStatus">
+            {{ nonverbalStatusText }}
+          </small>
           <p v-if="cameraActive && cameraError" class="camera-live-error">{{ cameraError }}</p>
         </section>
 
@@ -815,6 +972,9 @@ async function finishInterview() {
 .camera-overlay select { max-width: 170px; height: 29px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 0 8px; color: #fff; background: rgba(7,18,33,.68); font-size: 9px; }
 .camera-overlay button { border: 1px solid rgba(255,255,255,.25); border-radius: 9px; padding: 7px 10px; color: #fff; background: rgba(255,255,255,.12); font-size: 9px; }
 .camera-live-error { position: absolute; top: 14px; right: 14px; left: 14px; z-index: 3; margin: 0; border: 1px solid rgba(255,189,171,.22); border-radius: 10px; padding: 10px 13px; color: #ffd3c7; background: rgba(74,24,18,.75); backdrop-filter: blur(10px); font-size: 10px; text-align: center; }
+.nonverbal-status { position: absolute; top: 12px; left: 12px; z-index: 2; border-radius: 99px; padding: 6px 9px; color: rgba(255,255,255,.82); background: rgba(7,18,33,.62); backdrop-filter: blur(10px); font-size: 9px; }
+.nonverbal-status.available { color: #baf6da; }
+.nonverbal-status.unavailable { color: #ffd3c7; }
 
 .avatar-console-header {
   display: flex;

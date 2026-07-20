@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BrandLogo from '../components/BrandLogo.vue';
 import AppIcon from '../components/AppIcon.vue';
-import { api, setToken } from '../api/client';
+import { api, clearSession, setToken } from '../api/client';
 
 const router = useRouter();
 const account = ref('');
@@ -26,6 +26,7 @@ async function enter(asGuest = false) {
         ? await api.register({ account: account.value, password: password.value })
         : await api.login({ account: account.value, password: password.value, remember_me: true });
     setToken(auth.access_token);
+    clearSession();
     router.push('/dashboard');
   } catch (error) {
     message.value = error.message;
