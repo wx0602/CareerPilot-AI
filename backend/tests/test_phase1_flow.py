@@ -129,6 +129,7 @@ def test_report_can_be_generated_from_exam_only(logged_in):
     )
     assert report.status_code == 200
     assert report.json()["overall_score"] == 100
+    assert report.json()["nonverbal_score"] is None
     saved_reports = client.get("/api/reports", headers=headers)
     assert saved_reports.status_code == 200
     assert saved_reports.json()[0]["session_id"] == session_id
@@ -159,6 +160,105 @@ def test_report_can_be_generated_from_interview_only(logged_in):
     )
     assert report.status_code == 200
     assert report.json()["overall_score"] > 0
+
+
+def _create_completed_job_interview(client, headers):
+    session_id = client.post(
+        "/api/training-sessions",
+        headers=headers,
+        json={"mode": "job", "position": "后端工程师"},
+    ).json()["session_id"]
+    question = client.post(
+        "/api/interviews/message", headers=headers, json={"session_id": session_id}
+    ).json()["next_question"]
+    response = client.post(
+        "/api/interviews/message",
+        headers=headers,
+        json={
+            "session_id": session_id,
+            "question_id": question["question_id"],
+            "answer": "我会先明确岗位目标，再用项目成果和数据说明自己的匹配度。",
+        },
+    )
+    assert response.status_code == 200
+    return session_id
+
+
+def _valid_nonverbal_score(total_score=86):
+    return {
+        "status": "complete",
+        "reason": None,
+        "message": None,
+        "total_score": total_score,
+        "dimensions": {
+            "camera_attention": 90,
+            "body_posture": 84,
+            "movement_stability": 85,
+            "interaction_state": 88,
+            "facial_dynamics": 80,
+        },
+        "statistics": {
+            "question_count": 1,
+            "sample_count": 40,
+            "valid_face_samples": 25,
+            "analyzed_duration_seconds": 10.2,
+            "face_presence_ratio": 0.96,
+            "no_face_events": 0,
+            "head_deviation_events": 0,
+            "posture_events": 0,
+            "movement_events": 0,
+            "average_response_delay_seconds": 2.4,
+        },
+        "strengths": ["大部分回答时间保持在摄像头画面内。"],
+        "suggestions": ["继续保持自然交流。"],
+    }
+
+
+def test_nonverbal_score_is_saved_read_and_not_overwritten(logged_in):
+    client, headers = logged_in
+    session_id = _create_completed_job_interview(client, headers)
+    original = _valid_nonverbal_score()
+    generated = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={"session_id": session_id, "nonverbal_score": original},
+    )
+    assert generated.status_code == 200
+    assert generated.json()["nonverbal_score"] == original
+    assert client.get(f"/api/reports/{session_id}", headers=headers).json()["nonverbal_score"] == original
+    listed = client.get("/api/reports", headers=headers)
+    assert listed.status_code == 200
+    assert listed.json()[0]["nonverbal_score"] == original
+
+    repeated = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={"session_id": session_id, "nonverbal_score": _valid_nonverbal_score(20)},
+    )
+    assert repeated.status_code == 200
+    assert repeated.json()["nonverbal_score"] == original
+
+
+def test_nonverbal_score_rejects_invalid_status_and_out_of_range_score(logged_in):
+    client, headers = logged_in
+    invalid_status = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={
+            "session_id": "validation-only",
+            "nonverbal_score": {**_valid_nonverbal_score(), "status": "unknown"},
+        },
+    )
+    assert invalid_status.status_code == 422
+
+    out_of_range = _valid_nonverbal_score()
+    out_of_range["dimensions"]["camera_attention"] = 101
+    invalid_score = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={"session_id": "validation-only", "nonverbal_score": out_of_range},
+    )
+    assert invalid_score.status_code == 422
 
 
 def test_openapi_contains_all_phase_one_routes(client: TestClient):

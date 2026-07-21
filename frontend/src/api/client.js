@@ -25,6 +25,10 @@ export function setSession(session) {
   save('careerpilot_session', session);
 }
 
+export function clearSession() {
+  localStorage.removeItem('careerpilot_session');
+}
+
 async function request(path, options = {}) {
   const token = getToken();
   const headers = {
