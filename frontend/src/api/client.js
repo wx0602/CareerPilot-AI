@@ -17,6 +17,20 @@ export function setToken(token) {
   save('careerpilot_token', token);
 }
 
+export function getAuthUser() {
+  return load('careerpilot_user');
+}
+
+export function setAuthUser(user) {
+  save('careerpilot_user', user);
+}
+
+export function clearAuth() {
+  localStorage.removeItem('careerpilot_token');
+  localStorage.removeItem('careerpilot_user');
+  localStorage.removeItem('careerpilot_session');
+}
+
 export function getSession() {
   return load('careerpilot_session');
 }
@@ -72,6 +86,15 @@ export const api = {
   },
   register(payload) {
     return request('/api/auth/register', { method: 'POST', body: JSON.stringify(payload) });
+  },
+  getMyProfile() {
+    return request('/api/auth/me');
+  },
+  updateMyProfile(payload) {
+    return request('/api/auth/me', { method: 'PATCH', body: JSON.stringify(payload) });
+  },
+  logout() {
+    return request('/api/auth/logout', { method: 'POST' });
   },
   createSession(payload) {
     return request('/api/training-sessions', { method: 'POST', body: JSON.stringify(payload) });
@@ -139,5 +162,23 @@ export const api = {
   },
   removeFavorite(questionId) {
     return request(`/api/favorites/${questionId}`, { method: 'DELETE' });
+  },
+  buildJobProfile(payload) {
+    return request('/api/job-recommendations/profile', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+  },
+  searchJobRecommendations(profile) {
+    return request('/api/job-recommendations/search', {
+      method: 'POST',
+      body: JSON.stringify({ profile })
+    });
+  },
+  startJobInterview(profile, job) {
+    return request('/api/job-recommendations/interview', {
+      method: 'POST',
+      body: JSON.stringify({ profile, job })
+    });
   }
 };

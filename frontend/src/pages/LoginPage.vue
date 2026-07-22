@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BrandLogo from '../components/BrandLogo.vue';
 import AppIcon from '../components/AppIcon.vue';
-import { api, setToken } from '../api/client';
+import { api, setAuthUser, setToken } from '../api/client';
 
 const router = useRouter();
 const account = ref('');
@@ -26,6 +26,7 @@ async function enter(asGuest = false) {
         ? await api.register({ account: account.value, password: password.value })
         : await api.login({ account: account.value, password: password.value, remember_me: true });
     setToken(auth.access_token);
+    setAuthUser(auth.user);
     router.push('/dashboard');
   } catch (error) {
     message.value = error.message;
@@ -40,11 +41,11 @@ async function enter(asGuest = false) {
     <section class="login-pitch">
       <BrandLogo />
       <div class="pitch-copy">
-        <p class="eyebrow">CAREER · PRACTICE · GROWTH</p>
-        <h1>你的 <em>AI</em> 面试备考助手</h1>
-        <p>智能练习 · 精准反馈 · 高效提升</p>
+        <p class="eyebrow">TECH CAREER · PRACTICE · GROWTH</p>
+        <h1>互联网技术与产品岗位 <em>AI</em> 求职训练平台</h1>
+        <p>专项题库 · 定向面试 · 能力提升</p>
         <ul class="feature-list">
-          <li><b>⌘</b><span><strong>全真场景模拟</strong><small>覆盖笔试、面试、路演答辩等真实场景</small></span></li>
+          <li><b>⌘</b><span><strong>技术求职场景</strong><small>覆盖专项笔试、岗位面试与项目路演</small></span></li>
           <li><b>♙</b><span><strong>AI 智能评估</strong><small>多维度分析反馈，给出个性化建议</small></span></li>
           <li><b>▤</b><span><strong>数据驱动提升</strong><small>追踪学习轨迹，持续优化备考策略</small></span></li>
         </ul>
@@ -57,7 +58,7 @@ async function enter(asGuest = false) {
         <BrandLogo />
         <div><h2>欢迎回来</h2><p>登录以继续你的备考之旅</p></div>
         <ul>
-          <li><b>▧</b><span><strong>个性化学习计划</strong><small>根据目标岗位定制学习路径</small></span></li>
+          <li><b>▧</b><span><strong>岗位专项学习计划</strong><small>围绕互联网技术与产品方向定制训练路径</small></span></li>
           <li><b>◇</b><span><strong>多维度能力评估</strong><small>科学分析，精准定位薄弱点</small></span></li>
           <li><b>☆</b><span><strong>全程智能同步</strong><small>学习进度云端保存，随时继续</small></span></li>
         </ul>

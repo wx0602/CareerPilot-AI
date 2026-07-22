@@ -169,6 +169,65 @@ class CandidateProfile(BaseModel):
     target_company: str | None = None
 
 
+# ============================================================
+# 岗位推荐共享模型
+# ============================================================
+
+JobProfileSource = Literal["resume", "recent_report", "combined"]
+SalaryPeriod = Literal["HOUR", "DAY", "WEEK", "MONTH", "YEAR"]
+
+
+class JobCandidateProfile(BaseModel):
+    """可编辑的求职画像；所有数组字段均经过后端去重。"""
+
+    target_position: str = Field(default="", max_length=120)
+    expected_city: str = Field(default="", max_length=120)
+    expected_salary_min: float | None = Field(default=None, ge=0)
+    expected_salary_max: float | None = Field(default=None, ge=0)
+    expected_salary_currency: str = Field(default="CNY", min_length=3, max_length=3)
+    expected_salary_period: SalaryPeriod = "MONTH"
+    education: str = Field(default="", max_length=200)
+    years_of_experience: float | None = Field(default=None, ge=0, le=80)
+    core_skills: list[str] = Field(default_factory=list)
+    project_experience: list[str] = Field(default_factory=list)
+    weak_skills: list[str] = Field(default_factory=list)
+    recent_report_score: Score | None = None
+    source: JobProfileSource = "resume"
+
+
+class CandidateProfileBuildInput(BaseModel):
+    mode: Literal["job_recommendation"] = "job_recommendation"
+    source: JobProfileSource
+    resume_text: str = ""
+    resume_structured: dict[str, Any] = Field(default_factory=dict)
+    recent_report: dict[str, Any] | None = None
+
+
+class RecommendationExplanationInput(BaseModel):
+    job_id: str
+    title: str
+    company_name: str
+    match_score: int = Field(ge=0, le=100)
+    matched_skills: list[str] = Field(default_factory=list)
+    missing_skills: list[str] = Field(default_factory=list)
+
+
+class RecommendationExplanation(BaseModel):
+    job_id: str
+    recommendation_reason: str
+    improvement_suggestions: list[str] = Field(default_factory=list)
+
+
+class RecommendationExplanationRequest(BaseModel):
+    mode: Literal["job_recommendation"] = "job_recommendation"
+    profile: JobCandidateProfile
+    jobs: list[RecommendationExplanationInput]
+
+
+class RecommendationExplanationResponse(BaseModel):
+    explanations: list[RecommendationExplanation] = Field(default_factory=list)
+
+
 class HistoryItem(BaseModel):
     """
     一轮历史问答。

@@ -30,6 +30,7 @@ Add every variable from `backend/.env.vercel.example` under Project Settings -> 
 - `LLM_API_KEY`
 - `LLM_BASE_URL`
 - `LLM_MODEL`
+- `JSEARCH_API_KEY`（OpenWeb Ninja 官方直连 JSearch 的服务端密钥，禁止添加 `VITE_` 前缀）
 
 The question database, Chroma directory, and uploaded source files use `/tmp` on Vercel. They are disposable runtime files. User accounts, parsed material contexts, answers, favorites, and reports are persisted in Postgres.
 

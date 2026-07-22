@@ -67,6 +67,9 @@ class Settings(BaseSettings):
     auth_token_ttl_hours: int = 24
     remember_token_ttl_days: int = 30
     guest_token_ttl_hours: int = 2
+    jsearch_api_key: str | None = None
+    jsearch_base_url: str = "https://api.openwebninja.com/jsearch/search-v2"
+    jsearch_timeout_seconds: float = 10.0
 
     model_config = SettingsConfigDict(
         env_file=str(BACKEND_DIR / ".env"),

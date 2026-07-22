@@ -13,12 +13,14 @@ import CareerAssessmentPage from '../pages/CareerAssessmentPage.vue';
 import SimulationInterviewPage from '../pages/SimulationInterviewPage.vue';
 import SceneIntroPage from '../pages/SceneIntroPage.vue';
 import CompanyExamPage from '../pages/CompanyExamPage.vue';
+import JobRecommendationsPage from '../pages/JobRecommendationsPage.vue';
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', name: 'login', component: LoginPage },
   { path: '/dashboard', name: 'dashboard', component: DashboardPage },
   { path: '/study-plan', name: 'study-plan', component: StudyPlanPage },
+  { path: '/job-recommendations', name: 'job-recommendations', component: JobRecommendationsPage },
   { path: '/company-exams', name: 'company-exams', component: CompanyExamPage },
   { path: '/upload', name: 'upload', component: UploadPage },
   { path: '/exam', name: 'exam', component: WrittenExamPage },
@@ -28,7 +30,8 @@ const routes = [
   { path: '/avatar', name: 'avatar', component: AvatarPage },
   { path: '/simulation-interview', name: 'simulation-interview', component: SimulationInterviewPage },
   { path: '/scene/:sceneId', name: 'scene-intro', component: SceneIntroPage },
-  { path: '/settings', name: 'settings', component: SettingsPage },
+  { path: '/me', name: 'me', component: SettingsPage },
+  { path: '/settings', redirect: '/me' },
   { path: '/career-assessment', name: 'career-assessment', component: CareerAssessmentPage },
   {
     path: '/career-assessment/:assessmentId',

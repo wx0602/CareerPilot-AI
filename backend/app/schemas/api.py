@@ -3,6 +3,12 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, Field, model_validator
 
+from models import (
+    JobCandidateProfile,
+    JobProfileSource,
+    SalaryPeriod,
+)
+
 
 InterviewMode = Literal["job", "technical", "pitch", "group_interview", "stress_interview"]
 SimulationMode = Literal["group_interview", "stress_interview"]
@@ -39,6 +45,31 @@ class UserInfo(BaseModel):
     user_id: str | None = None
     account: str | None = None
     is_guest: bool
+    nickname: str | None = None
+    avatar_preset: Literal["blue", "violet", "green", "orange"] = "blue"
+    target_position: str | None = None
+    career_stage: Literal["student", "new_grad", "experienced", "career_switch"] | None = None
+    created_at: datetime | None = None
+
+
+class UserProfileUpdate(BaseModel):
+    nickname: str = Field(min_length=2, max_length=20)
+    avatar_preset: Literal["blue", "violet", "green", "orange"] = "blue"
+    target_position: str | None = Field(default=None, max_length=120)
+    career_stage: Literal["student", "new_grad", "experienced", "career_switch"] | None = None
+
+
+class UserProfileStats(BaseModel):
+    completed_practices: int = 0
+    answered_questions: int = 0
+    favorite_questions: int = 0
+    report_count: int = 0
+    last_study_at: datetime | None = None
+
+
+class UserProfileResponse(BaseModel):
+    user: UserInfo
+    stats: UserProfileStats
 
 
 class LoginRequest(BaseModel):
@@ -298,3 +329,65 @@ class FavoriteQuestionResponse(BaseModel):
     content: str
     question: ExamQuestion
     created_at: datetime
+
+
+class JobProfileBuildRequest(BaseModel):
+    source: JobProfileSource
+    session_id: str | None = None
+
+
+class JobRecommendationSearchRequest(BaseModel):
+    profile: JobCandidateProfile
+
+
+class JobRecommendationItem(BaseModel):
+    job_id: str
+    title: str
+    company_name: str
+    city: str
+    description: str
+    employment_type: str | None = None
+    posted_at: str | None = None
+    salary_min: float | None = None
+    salary_max: float | None = None
+    salary_currency: str | None = None
+    salary_period: SalaryPeriod | None = None
+    salary_display: str = "薪资未公开"
+    apply_link: str
+    data_source: str
+    required_skills: list[str] = Field(default_factory=list)
+    match_score: int = Field(ge=0, le=100)
+    recommendation_reason: str
+    matched_skills: list[str] = Field(default_factory=list)
+    missing_skills: list[str] = Field(default_factory=list)
+    improvement_suggestions: list[str] = Field(default_factory=list)
+    match_mode: Literal[
+        "strict",
+        "relaxed_salary_experience",
+        "relaxed_city",
+        "expanded_synonyms",
+        "seed_fallback",
+    ] = "strict"
+    fallback: bool = False
+    fallback_reason: str | None = None
+    link_status: Literal["active", "inactive", "unknown"] = "unknown"
+
+
+class JobRecommendationSearchResponse(BaseModel):
+    query: str
+    jobs: list[JobRecommendationItem] = Field(default_factory=list)
+    match_mode: Literal[
+        "strict",
+        "relaxed_salary_experience",
+        "relaxed_city",
+        "expanded_synonyms",
+        "seed_fallback",
+        "no_match",
+    ] = "no_match"
+    fallback_reason: str | None = None
+    message: str | None = None
+
+
+class JobInterviewStartRequest(BaseModel):
+    profile: JobCandidateProfile
+    job: JobRecommendationItem

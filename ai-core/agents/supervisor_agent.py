@@ -26,10 +26,17 @@ class SupervisorAgent:
         "generate_report",
     }
 
+    JOB_RECOMMENDATION_TASKS = {
+        "build_candidate_profile",
+        "explain_job_recommendations",
+    }
+
     def __call__(self, state: dict[str, Any]) -> dict[str, Any]:
         task_type = state.get("task_type")
         request = state.get("request")
         mode = request.get("mode") if isinstance(request, dict) else getattr(request, "mode", None)
+        if task_type in self.JOB_RECOMMENDATION_TASKS and mode == "job_recommendation":
+            return {"next_agent": "job_recommendation_agent"}
         if task_type in self.SIMULATION_TASKS and mode in self.SIMULATION_ROUTES:
             return {"next_agent": self.SIMULATION_ROUTES[mode]}
         if task_type not in self.ROUTES:

@@ -40,6 +40,10 @@ class AIProvider(Protocol):
 
     def finish_session(self, request: dict[str, Any]) -> dict[str, Any]: ...
 
+    def build_candidate_profile(self, request: dict[str, Any]) -> dict[str, Any]: ...
+
+    def explain_job_recommendations(self, request: dict[str, Any]) -> dict[str, Any]: ...
+
 
 class StubKnowledgeProvider:
     """仅用于联调的材料解析占位实现。"""
@@ -418,6 +422,44 @@ class StubAIProvider:
             },
         }
 
+    def build_candidate_profile(self, request: dict[str, Any]) -> dict[str, Any]:
+        structured = request.get("resume_structured") or {}
+        report = request.get("recent_report") or {}
+        skills = list(dict.fromkeys(structured.get("skills") or []))
+        projects = list(dict.fromkeys(structured.get("project_experience") or []))
+        education_lines = structured.get("education") or []
+        return {
+            "target_position": request.get("target_position") or "",
+            "expected_city": "",
+            "expected_salary_min": None,
+            "expected_salary_max": None,
+            "expected_salary_currency": "CNY",
+            "expected_salary_period": "MONTH",
+            "education": "；".join(education_lines[:3]),
+            "years_of_experience": None,
+            "core_skills": skills,
+            "project_experience": projects,
+            "weak_skills": list(dict.fromkeys(report.get("weaknesses") or [])),
+            "recent_report_score": report.get("overall_score"),
+            "source": request["source"],
+        }
+
+    def explain_job_recommendations(self, request: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "explanations": [
+                {
+                    "job_id": item["job_id"],
+                    "recommendation_reason": (
+                        f"岗位方向与画像匹配，当前综合匹配度为 {item['match_score']}%。"
+                    ),
+                    "improvement_suggestions": [
+                        f"补充 {skill} 的项目实践" for skill in item.get("missing_skills", [])[:3]
+                    ],
+                }
+                for item in request.get("jobs", [])
+            ]
+        }
+
 
 class UnavailableKnowledgeProvider:
     def parse_material(self, path: Path, material_type: str) -> list[dict[str, Any]]:
@@ -450,6 +492,12 @@ class UnavailableAIProvider:
         self._raise()
 
     def finish_session(self, request: dict[str, Any]):
+        self._raise()
+
+    def build_candidate_profile(self, request: dict[str, Any]):
+        self._raise()
+
+    def explain_job_recommendations(self, request: dict[str, Any]):
         self._raise()
 
 
@@ -784,6 +832,18 @@ class RealAIProvider:
         from agents import finish_session
 
         response = finish_session(request)
+        return response.model_dump(mode="json")
+
+    def build_candidate_profile(self, request: dict[str, Any]) -> dict[str, Any]:
+        from agents import build_candidate_profile
+
+        response = build_candidate_profile(request)
+        return response.model_dump(mode="json")
+
+    def explain_job_recommendations(self, request: dict[str, Any]) -> dict[str, Any]:
+        from agents import explain_job_recommendations
+
+        response = explain_job_recommendations(request)
         return response.model_dump(mode="json")
 
 

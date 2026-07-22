@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import LayoutShell from '../components/LayoutShell.vue';
 import { api, getSession, setSession } from '../api/client';
@@ -7,14 +7,12 @@ import interviewerImage from '../assets/ai-interviewer-lin.png';
 
 const router = useRouter();
 const stageRef = ref(null);
-const messageListRef = ref(null);
 const videoRef = ref(null);
 const session = ref(getSession());
 const messages = ref([]);
 const currentQuestion = ref(null);
 const answer = ref('');
 const loading = ref(false);
-const streaming = ref(false);
 const started = ref(false);
 const speaking = ref(false);
 const listening = ref(false);
@@ -38,15 +36,6 @@ const selectedCamera = ref('');
 const cameraResolution = ref('');
 let recognition = null;
 let cameraStream = null;
-let streamVersion = 0;
-
-const STREAM_INTERVAL = 32;
-
-function streamDelay(character) {
-  if (/[。！？!?]/.test(character)) return 140;
-  if (/[，、；：,;:]/.test(character)) return 70;
-  return STREAM_INTERVAL;
-}
 
 const isSimulation = computed(() =>
   ['group_interview', 'stress_interview'].includes(session.value?.mode)
@@ -133,7 +122,6 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  streamVersion += 1;
   window.speechSynthesis?.cancel();
   if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = null;
   recognition?.abort();
@@ -255,44 +243,19 @@ async function ensureSession() {
   return created;
 }
 
-async function scrollToLatest() {
-  await nextTick();
-  if (messageListRef.value) {
-    messageListRef.value.scrollTop = messageListRef.value.scrollHeight;
-  }
-}
-
 function addMessage(role, text, meta = null, displayName = null) {
   messages.value.push({ role, text, meta, displayName, id: `${Date.now()}-${messages.value.length}` });
-  scrollToLatest();
-}
-
-function wait(ms) {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
 async function streamMessage(role, content, meta = null, displayName = null) {
-  const version = ++streamVersion;
-  const message = reactive({
+  messages.value.push({
     role,
-    text: '',
+    text: content || '',
     meta,
     displayName,
-    streaming: true,
+    streaming: false,
     id: `${Date.now()}-${messages.value.length}`
   });
-  messages.value.push(message);
-  streaming.value = true;
-
-  for (const character of Array.from(content || '')) {
-    if (version !== streamVersion) return;
-    message.text += character;
-    await scrollToLatest();
-    await wait(streamDelay(character));
-  }
-
-  message.streaming = false;
-  streaming.value = false;
 }
 
 async function addSimulationMessages(items) {
@@ -495,6 +458,23 @@ async function finishInterview() {
           </p>
         </div>
 
+        <div v-if="!started" class="avatar-start-card">
+          <span>READY</span>
+          <h1>{{ interviewTitle }}</h1>
+          <p>准备好后开始面试，问题会由左侧数字人朗读。</p>
+          <label v-if="isStressInterview">
+            初始压力
+            <select v-model="stressLevel">
+              <option value="light">轻度</option>
+              <option value="medium">中度</option>
+              <option value="high">高度</option>
+            </select>
+          </label>
+          <button class="start-interview-button" :disabled="loading" @click="startInterview">
+            {{ loading ? '正在连接面试官…' : '开始面试' }}
+          </button>
+        </div>
+
         <div class="avatar-controls">
           <button :class="{ active: listening }" :title="listening ? '停止录音' : '语音回答'" @click="toggleListening">{{ listening ? '■' : '●' }}</button>
           <button :class="{ muted: !voiceEnabled }" :title="voiceEnabled ? '关闭声音' : '打开声音'" @click="toggleVoice">{{ voiceEnabled ? '◖))' : '◖×' }}</button>
@@ -503,7 +483,7 @@ async function finishInterview() {
         </div>
       </div>
 
-      <aside class="avatar-console">
+      <aside class="human-panel">
         <section class="human-camera" :class="{ active: cameraActive }">
           <video
             v-show="cameraActive"
@@ -514,6 +494,19 @@ async function finishInterview() {
             @playing="markCameraReady"
             @loadeddata="markCameraReady"
           ></video>
+
+          <header class="human-stage-header">
+            <div class="human-identity">
+              <span class="camera-live-dot" :class="{ ready: cameraReady }"></span>
+              <div><strong>我的画面</strong><small>本地摄像头预览</small></div>
+            </div>
+            <div class="interview-metrics">
+              <span>已答 <b>{{ answeredCount }}</b></span>
+              <span v-if="latestScore !== null">本轮 <b>{{ latestScore }}</b></span>
+              <span v-if="isStressInterview">压力 <b>{{ { light: '轻', medium: '中', high: '高' }[stressLevel] }}</b></span>
+            </div>
+          </header>
+
           <div v-if="!cameraActive" class="camera-start-state">
             <span>LIVE CAMERA</span>
             <b>开启真人摄像头</b>
@@ -531,85 +524,29 @@ async function finishInterview() {
             </div>
           </div>
           <p v-if="cameraActive && cameraError" class="camera-live-error">{{ cameraError }}</p>
-        </section>
 
-        <header class="avatar-console-header">
-          <div><span>LIVE INTERVIEW</span><h1>{{ interviewTitle }}</h1></div>
-          <div class="interview-metrics">
-            <span>已答 <b>{{ answeredCount }}</b></span>
-            <span v-if="latestScore !== null">本轮 <b>{{ latestScore }}</b></span>
-            <span v-if="simulationTurn">阶段 <b>{{ stageLabels[simulationTurn.stage] }}</b></span>
-          </div>
-        </header>
-
-        <div v-if="!started" class="avatar-welcome">
-          <span class="welcome-mark">AI</span>
-          <h2>{{ isGroupInterview ? '进入五人无领导小组讨论' : isStressInterview ? '开始安全可控的压力面试' : '不再只是一个展示形象' }}</h2>
-          <p v-if="isGroupInterview">你将与逻辑分析型、协调合作型和质疑挑战型三名 AI 候选人共同讨论，AI 面试官负责推进流程。</p>
-          <p v-else-if="isStressInterview">面试官会针对空泛、矛盾和证据不足连续追问。你可以随时输入“停止”“暂停”或“降低压力”。</p>
-          <p v-else>林悦会调用真实面试服务，根据你的回答进行评分与追问，同时支持语音朗读和语音输入。</p>
-          <label v-if="isStressInterview" class="stress-level-picker">
-            初始压力等级
-            <select v-model="stressLevel">
-              <option value="light">轻度</option>
-              <option value="medium">中度</option>
-              <option value="high">高度</option>
-            </select>
-          </label>
-          <ul>
-            <li><span>01</span>岗位定向提问</li>
-            <li><span>02</span>回答即时分析</li>
-            <li><span>03</span>训练报告沉淀</li>
-          </ul>
-          <button class="primary-button avatar-start-button" :disabled="loading" @click="startInterview">
-            {{ loading ? '正在连接面试官...' : `开始${interviewTitle}` }}
-          </button>
-        </div>
-
-        <template v-else>
-          <div ref="messageListRef" class="avatar-messages">
-            <article v-for="message in messages" :key="message.id" :class="['avatar-message', message.role]">
-              <span>{{ message.role === 'user' ? '我' : message.role === 'feedback' ? '评' : message.displayName?.slice(0, 1) || 'AI' }}</span>
-              <div><small>{{ message.displayName || message.meta }}</small><p :class="{ streaming: message.streaming }">{{ message.text }}</p></div>
-            </article>
-            <div v-if="loading && !streaming" class="avatar-thinking"><i></i><i></i><i></i><span>正在分析你的回答</span></div>
-          </div>
-
-          <form class="avatar-composer" @submit.prevent="submitAnswer">
+          <form v-if="started" class="interview-dock" @submit.prevent="submitAnswer">
+            <div class="dock-status">
+              <span>{{ loading ? '正在分析回答…' : simulationStatus === 'completed' ? '面试已结束' : '请回答当前问题' }}</span>
+              <small v-if="simulationTurn">{{ stageLabels[simulationTurn.stage] }}</small>
+            </div>
             <textarea
               v-model="answer"
               :disabled="loading || simulationStatus === 'completed'"
               :placeholder="simulationStatus === 'completed' ? '面试已停止，请生成报告' : '输入回答，或点击麦克风使用语音输入…'"
               @keydown.enter.exact.prevent="submitAnswer"
             ></textarea>
-            <div>
+            <div class="dock-actions">
               <button type="button" class="voice-input-button" :class="{ recording: listening }" @click="toggleListening">
                 {{ listening ? '停止聆听' : '语音输入' }}
               </button>
               <span>{{ answer.length }}/10000</span>
+              <button type="button" class="finish-avatar-button" :disabled="loading || !answeredCount" @click="finishInterview">结束并生成报告</button>
               <button class="send-answer-button" type="submit" :disabled="!answer.trim() || loading || simulationStatus === 'completed'">发送回答 ↑</button>
             </div>
           </form>
-
-          <div class="avatar-session-actions">
-            <div class="avatar-voice-settings">
-              <template v-if="isStressInterview">
-                <label>压力</label>
-                <strong class="current-stress-level">{{ { light: '轻度', medium: '中度', high: '高度' }[stressLevel] }}</strong>
-              </template>
-              <label>声音</label>
-              <select v-model="selectedVoice" :disabled="!speechSupported">
-                <option v-if="!voices.length" value="">系统默认中文音色</option>
-                <option v-for="voice in voices" :key="voice.name" :value="voice.name">{{ voice.name }}</option>
-              </select>
-              <label>语速</label>
-              <input v-model="speechRate" type="range" min="0.8" max="1.4" step="0.1" />
-            </div>
-            <button class="finish-avatar-button" :disabled="loading || !answeredCount" @click="finishInterview">结束并生成报告</button>
-          </div>
-        </template>
-
-        <p v-if="error" class="avatar-error">{{ error }}</p>
+          <p v-if="error" class="avatar-error">{{ error }}</p>
+        </section>
       </aside>
     </section>
   </LayoutShell>
@@ -618,20 +555,23 @@ async function finishInterview() {
 <style scoped>
 .avatar-page {
   display: grid;
-  grid-template-columns: minmax(400px, 0.92fr) minmax(460px, 1.08fr);
-  min-height: 100vh;
-  padding: 22px;
-  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  height: 100vh;
+  gap: 14px;
+  overflow: hidden;
+  padding: 16px;
   background: #e9eef5;
 }
 
-.avatar-stage-full {
+.avatar-stage-full,
+.human-panel {
   position: relative;
-  display: block;
-  min-height: calc(100vh - 44px);
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
-  border-radius: 24px 0 0 24px;
+  border-radius: 22px;
   background: #111c2c;
+  box-shadow: 0 18px 48px rgba(24, 42, 67, .16);
   isolation: isolate;
 }
 
@@ -723,7 +663,7 @@ async function finishInterview() {
 .avatar-caption {
   position: absolute;
   right: 38px;
-  bottom: 96px;
+  bottom: 92px;
   left: 38px;
   z-index: 3;
   color: #fff;
@@ -746,6 +686,32 @@ async function finishInterview() {
   line-height: 1.65;
   text-shadow: 0 2px 18px rgba(0,0,0,.35);
 }
+
+.avatar-start-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  display: grid;
+  width: min(360px, calc(100% - 64px));
+  justify-items: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  padding: 26px;
+  color: #fff;
+  background: rgba(7,18,34,.58);
+  box-shadow: 0 20px 55px rgba(0,0,0,.2);
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+.avatar-start-card > span { color: #82b7ff; font-size: 9px; font-weight: 900; letter-spacing: 2px; }
+.avatar-start-card h1 { margin: 9px 0 7px; font-size: 23px; }
+.avatar-start-card p { margin: 0 0 18px; color: rgba(255,255,255,.68); font-size: 11px; line-height: 1.7; }
+.avatar-start-card label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: rgba(255,255,255,.76); font-size: 10px; }
+.avatar-start-card select { border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 7px 25px 7px 9px; color: #fff; background: rgba(255,255,255,.1); }
+.start-interview-button { border: 0; border-radius: 10px; padding: 11px 24px; color: #15345f; background: #fff; font-size: 11px; font-weight: 800; }
+.start-interview-button:disabled { opacity: .55; }
 
 .avatar-controls {
   position: absolute;
@@ -776,188 +742,78 @@ async function finishInterview() {
 .avatar-controls button.muted { color: #ff9d9d; }
 .avatar-controls button:disabled { opacity: .35; }
 
-.avatar-console {
-  position: relative;
-  display: grid;
-  grid-template-rows: minmax(360px, 48vh) auto minmax(0, 1fr) auto auto;
-  min-width: 0;
-  min-height: calc(100vh - 44px);
-  overflow: hidden;
-  border: 1px solid #dce3ec;
-  border-left: 0;
-  border-radius: 0 24px 24px 0;
-  padding: 30px 32px;
-  background: #fbfcfe;
-  box-shadow: 18px 16px 45px rgba(35,53,78,.1);
-}
-
 .human-camera {
   position: relative;
-  min-height: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  border-radius: 16px;
   background:
     radial-gradient(circle at 50% 35%, rgba(70, 106, 151, .28), transparent 28%),
     #111c2b;
 }
 .human-camera video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.human-camera:after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(7,15,29,.5), transparent 25%, transparent 62%, rgba(7,15,29,.78)); }
+.human-stage-header { position: absolute; top: 0; right: 0; left: 0; z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 26px 28px; color: #fff; }
+.human-identity { display: flex; align-items: center; gap: 11px; }
+.human-identity > div { display: grid; gap: 3px; }
+.human-identity strong { font-size: 14px; }
+.human-identity small { color: rgba(255,255,255,.6); font-size: 10px; }
+.camera-live-dot { width: 9px; height: 9px; border: 2px solid rgba(255,255,255,.5); border-radius: 50%; background: #8996a8; }
+.camera-live-dot.ready { background: #43d79a; box-shadow: 0 0 0 5px rgba(67,215,154,.14); }
+.interview-metrics { display: flex; gap: 7px; }
+.interview-metrics span { border: 1px solid rgba(255,255,255,.15); border-radius: 999px; padding: 7px 10px; color: rgba(255,255,255,.72); background: rgba(7,18,33,.42); font-size: 9px; backdrop-filter: blur(12px); }
+.interview-metrics b { color: #fff; font-size: 11px; }
 .camera-start-state { position: absolute; inset: 0; z-index: 2; display: grid; align-content: center; justify-items: center; padding: 40px; color: #fff; text-align: center; }
 .camera-start-state:before { content: ''; width: 70px; height: 52px; margin-bottom: 22px; border: 2px solid rgba(255,255,255,.48); border-radius: 17px; background: radial-gradient(circle, rgba(112,167,227,.9) 0 7px, transparent 8px); box-shadow: 0 0 50px rgba(83,143,211,.25); }
 .camera-start-state > span { color: #77aee9; font-size: 9px; font-weight: 900; letter-spacing: 2px; }
 .camera-start-state > b { margin-top: 8px; font-family: Georgia, 'Songti SC', serif; font-size: 24px; }
 .camera-start-state > p { max-width: 380px; margin: 10px 0 22px; color: rgba(255,255,255,.62); font-size: 11px; line-height: 1.7; }
 .camera-start-state > button { border: 1px solid rgba(255,255,255,.2); border-radius: 10px; padding: 11px 18px; color: #102238; background: #fff; font-size: 11px; font-weight: 800; }
-.camera-overlay { position: absolute; right: 14px; bottom: 12px; left: 14px; display: flex; align-items: center; justify-content: space-between; }
+.camera-overlay { position: absolute; top: 82px; right: 18px; left: 18px; z-index: 4; display: flex; align-items: center; justify-content: space-between; }
 .camera-overlay span { display: flex; align-items: center; gap: 7px; border-radius: 99px; padding: 7px 10px; color: #fff; background: rgba(7,18,33,.62); backdrop-filter: blur(10px); font-size: 9px; }
 .camera-overlay span i { width: 6px; height: 6px; border-radius: 50%; background: #8795a9; }
 .camera-overlay span i.ready { background: #45dc9b; box-shadow: 0 0 0 4px rgba(69,220,155,.15); }
 .camera-overlay > div { display: flex; align-items: center; gap: 7px; }
 .camera-overlay select { max-width: 170px; height: 29px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 0 8px; color: #fff; background: rgba(7,18,33,.68); font-size: 9px; }
 .camera-overlay button { border: 1px solid rgba(255,255,255,.25); border-radius: 9px; padding: 7px 10px; color: #fff; background: rgba(255,255,255,.12); font-size: 9px; }
-.camera-live-error { position: absolute; top: 14px; right: 14px; left: 14px; z-index: 3; margin: 0; border: 1px solid rgba(255,189,171,.22); border-radius: 10px; padding: 10px 13px; color: #ffd3c7; background: rgba(74,24,18,.75); backdrop-filter: blur(10px); font-size: 10px; text-align: center; }
+.camera-live-error { position: absolute; top: 130px; right: 18px; left: 18px; z-index: 5; margin: 0; border: 1px solid rgba(255,189,171,.22); border-radius: 10px; padding: 10px 13px; color: #ffd3c7; background: rgba(74,24,18,.75); backdrop-filter: blur(10px); font-size: 10px; text-align: center; }
 
-.avatar-console-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 18px;
-  border-bottom: 1px solid #e5eaf1;
-  padding: 20px 0 18px;
-}
-.avatar-console-header > div:first-child { display: grid; gap: 6px; }
-.avatar-console-header > div:first-child > span { color: #3475da; font-size: 9px; font-weight: 900; letter-spacing: 2px; }
-.avatar-console-header h1 { margin: 0; color: #17253a; font-size: 21px; }
-.interview-metrics { display: flex; gap: 8px; }
-.interview-metrics span { border-radius: 8px; padding: 8px 10px; color: #78869a; background: #f0f3f7; font-size: 10px; }
-.interview-metrics b { color: #236bd2; font-size: 14px; }
-
-.avatar-welcome {
-  display: grid;
-  max-width: 520px;
-  align-content: center;
-  justify-items: start;
-  margin: auto;
-  padding: 40px 18px;
-}
-.welcome-mark {
-  display: grid;
-  width: 48px;
-  height: 48px;
-  place-items: center;
-  border-radius: 14px;
-  color: #fff;
-  background: linear-gradient(135deg, #1a5fca, #5897ee);
-  box-shadow: 0 10px 25px rgba(36,104,207,.24);
-  font-size: 12px;
-  font-weight: 900;
-}
-.avatar-welcome h2 { margin: 22px 0 10px; color: #17253a; font-size: 24px; }
-.avatar-welcome p { margin: 0; color: #718096; font-size: 13px; line-height: 1.8; }
-.avatar-welcome ul { display: grid; width: 100%; gap: 0; margin: 25px 0; padding: 0; list-style: none; }
-.avatar-welcome li { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #edf0f4; padding: 12px 0; color: #47566c; font-size: 12px; }
-.avatar-welcome li span { color: #8ba2c2; font-family: Georgia, serif; font-size: 11px; }
-.avatar-start-button { min-width: 190px; padding: 13px 22px; }
-.stress-level-picker { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; color: #53647b; font-size: 11px; font-weight: 700; }
-.stress-level-picker select { border: 1px solid #dce3ec; border-radius: 8px; padding: 8px 28px 8px 10px; color: #34465f; background: #fff; }
-.current-stress-level { border-radius: 99px; padding: 5px 9px; color: #a4512d; background: #fff0e7; font-size: 9px; }
-
-.avatar-messages {
-  min-height: 0;
-  overflow-y: auto;
-  padding: 24px 5px 12px;
-  scrollbar-width: thin;
-  scrollbar-color: #d7dee8 transparent;
-}
-.avatar-message { display: flex; max-width: 88%; gap: 10px; margin: 0 0 18px; }
-.avatar-message > span {
-  display: grid;
-  flex: 0 0 30px;
-  height: 30px;
-  place-items: center;
-  border-radius: 10px;
-  color: #fff;
-  background: #203b63;
-  font-size: 10px;
-  font-weight: 800;
-}
-.avatar-message > div { min-width: 0; }
-.avatar-message small { display: block; margin: 0 0 5px 2px; color: #8996a9; font-size: 9px; font-weight: 700; letter-spacing: .5px; }
-.avatar-message p { margin: 0; border-radius: 4px 14px 14px; padding: 12px 15px; color: #425168; background: #eef2f7; font-size: 12px; line-height: 1.75; }
-.avatar-message p.streaming::after {
-  content: '';
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  margin-left: 3px;
-  vertical-align: -2px;
-  background: currentColor;
-  animation: avatar-stream-cursor .65s steps(1) infinite;
-}
-@keyframes avatar-stream-cursor { 50% { opacity: 0; } }
-.avatar-message.user { flex-direction: row-reverse; margin-left: auto; }
-.avatar-message.user > span { color: #4e6078; background: #e7ebf1; }
-.avatar-message.user p { border-radius: 14px 4px 14px 14px; color: #fff; background: #246bda; }
-.avatar-message.user small { text-align: right; }
-.avatar-message.feedback { max-width: 96%; }
-.avatar-message.feedback > span { color: #1b8c67; background: #dcf7ec; }
-.avatar-message.feedback p { border: 1px solid #dceee8; color: #386356; background: #f1faf7; }
-.avatar-message.candidate_logic > span { background: #1f5c9f; }
-.avatar-message.candidate_collaboration > span { background: #1b8a68; }
-.avatar-message.candidate_challenger > span { background: #b6652c; }
-.avatar-message.interviewer > span { background: #594d9d; }
-.avatar-message.candidate_logic p { background: #edf5ff; }
-.avatar-message.candidate_collaboration p { background: #edf9f5; }
-.avatar-message.candidate_challenger p { background: #fff5eb; }
-
-.avatar-thinking { display: flex; align-items: center; gap: 4px; padding: 8px 40px; color: #8a97a8; font-size: 10px; }
-.avatar-thinking i { width: 4px; height: 4px; border-radius: 50%; background: #5988d1; animation: thinking-dot .7s ease infinite alternate; }
-.avatar-thinking i:nth-child(2) { animation-delay: .15s; }
-.avatar-thinking i:nth-child(3) { animation-delay: .3s; margin-right: 5px; }
-@keyframes thinking-dot { to { transform: translateY(-4px); opacity: .35; } }
-
-.avatar-composer {
-  border: 1px solid #dbe2ec;
-  border-radius: 14px;
-  padding: 7px;
-  background: #fff;
-  box-shadow: 0 8px 25px rgba(36,58,91,.07);
-}
-.avatar-composer textarea { width: 100%; height: 72px; resize: none; border: 0; padding: 11px 12px; outline: 0; color: #35445b; background: transparent; font-family: inherit; font-size: 12px; line-height: 1.6; }
-.avatar-composer > div { display: flex; align-items: center; gap: 10px; border-top: 1px solid #eef1f5; padding: 7px 6px 0; }
-.avatar-composer > div > span { flex: 1; color: #a1abba; font-size: 9px; }
+.interview-dock { position: absolute; right: 22px; bottom: 22px; left: 22px; z-index: 4; border: 1px solid rgba(255,255,255,.16); border-radius: 16px; padding: 12px; background: rgba(7,18,33,.74); box-shadow: 0 18px 50px rgba(0,0,0,.26); backdrop-filter: blur(18px); }
+.dock-status { display: flex; align-items: center; justify-content: space-between; margin: 0 3px 8px; color: rgba(255,255,255,.72); font-size: 9px; }
+.dock-status small { color: #8dbdff; }
+.interview-dock textarea { width: 100%; height: 68px; resize: none; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 10px 12px; outline: 0; color: #fff; background: rgba(255,255,255,.08); font-family: inherit; font-size: 11px; line-height: 1.6; }
+.interview-dock textarea::placeholder { color: rgba(255,255,255,.45); }
+.interview-dock textarea:focus { border-color: rgba(126,180,255,.6); }
+.dock-actions { display: flex; align-items: center; gap: 8px; padding-top: 8px; }
+.dock-actions > span { flex: 1; color: rgba(255,255,255,.4); font-size: 8px; }
 .voice-input-button, .send-answer-button { border: 0; border-radius: 8px; padding: 9px 12px; font-size: 10px; font-weight: 700; }
-.voice-input-button { color: #5b6c83; background: #f1f4f8; }
-.voice-input-button.recording { color: #b83e48; background: #ffeaec; }
+.voice-input-button { color: #dce9fa; background: rgba(255,255,255,.12); }
+.voice-input-button.recording { color: #ffc1c6; background: rgba(213,64,78,.22); }
 .send-answer-button { color: #fff; background: #246bda; }
 .send-answer-button:disabled { opacity: .45; }
-
-.avatar-session-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 15px; }
-.avatar-voice-settings { display: flex; min-width: 0; align-items: center; gap: 7px; }
-.avatar-voice-settings label { color: #8a96a8; font-size: 9px; }
-.avatar-voice-settings select { max-width: 130px; height: 30px; border: 1px solid #e0e5ec; border-radius: 7px; padding: 0 7px; color: #5a687d; background: #fff; font-size: 9px; }
-.avatar-voice-settings input { width: 65px; accent-color: #246bda; }
-.finish-avatar-button { flex: 0 0 auto; border: 0; padding: 8px 0; color: #68778c; background: transparent; font-size: 10px; font-weight: 700; }
-.finish-avatar-button:hover { color: #246bda; }
-.finish-avatar-button:disabled { color: #b8c0cb; }
-.avatar-error { position: absolute; right: 32px; bottom: 7px; left: 32px; margin: 0; color: #c6424d; font-size: 10px; text-align: center; }
+.finish-avatar-button { flex: 0 0 auto; border: 0; padding: 8px 4px; color: rgba(255,255,255,.72); background: transparent; font-size: 9px; font-weight: 700; }
+.finish-avatar-button:hover { color: #fff; }
+.finish-avatar-button:disabled { color: rgba(255,255,255,.28); }
+.avatar-error { position: absolute; right: 22px; bottom: 176px; left: 22px; z-index: 6; margin: 0; border-radius: 9px; padding: 9px 12px; color: #ffd6da; background: rgba(113,25,37,.78); font-size: 10px; text-align: center; backdrop-filter: blur(12px); }
 
 @media (max-width: 1100px) {
-  .avatar-page { grid-template-columns: 1fr; }
-  .avatar-stage-full { min-height: 620px; border-radius: 22px 22px 0 0; }
-  .avatar-console { grid-template-rows: 420px auto minmax(400px, 1fr) auto auto; min-height: 1050px; border: 1px solid #dce3ec; border-top: 0; border-radius: 0 0 22px 22px; }
+  .avatar-page { height: auto; min-height: 100vh; grid-template-columns: 1fr; overflow: visible; }
+  .avatar-stage-full, .human-panel { min-height: 680px; }
 }
 
 @media (max-width: 760px) {
   .avatar-page { padding: 8px; }
-  .avatar-stage-full { min-height: 520px; border-radius: 18px 18px 0 0; }
+  .avatar-stage-full, .human-panel { min-height: 560px; border-radius: 18px; }
   .avatar-stage-header { padding: 20px; }
   .avatar-caption { right: 22px; bottom: 88px; left: 22px; }
   .avatar-caption p { font-size: 17px; }
   .avatar-controls { right: 18px; bottom: 18px; }
-  .avatar-console { grid-template-rows: 320px auto minmax(420px, 1fr) auto auto; min-height: 980px; border-radius: 0 0 18px 18px; padding: 18px; }
-  .avatar-console-header { align-items: flex-start; flex-direction: column; }
-  .avatar-session-actions { align-items: flex-start; flex-direction: column; }
-  .avatar-voice-settings { width: 100%; flex-wrap: wrap; }
-  .finish-avatar-button { align-self: flex-end; }
+  .human-stage-header { align-items: flex-start; padding: 20px; }
+  .interview-metrics { flex-wrap: wrap; justify-content: flex-end; }
+  .camera-overlay { top: 92px; align-items: flex-start; gap: 8px; }
+  .camera-overlay > div { flex-wrap: wrap; justify-content: flex-end; }
+  .interview-dock { right: 14px; bottom: 14px; left: 14px; }
+  .dock-actions { flex-wrap: wrap; }
+  .dock-actions > span { display: none; }
 }
 </style>

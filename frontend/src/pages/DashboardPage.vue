@@ -1,12 +1,30 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import LayoutShell from '../components/LayoutShell.vue';
-import { api, setSession } from '../api/client';
+import { api, getAuthUser, setAuthUser, setSession } from '../api/client';
 
 const router = useRouter();
 const loading = ref('');
 const error = ref('');
+const currentUser = ref(getAuthUser() || { is_guest: true, avatar_preset: 'blue' });
+
+const displayName = computed(() => {
+  if (currentUser.value?.nickname) return currentUser.value.nickname;
+  if (currentUser.value?.is_guest) return '游客用户';
+  return currentUser.value?.account?.split('@')[0] || 'CareerPilot 用户';
+});
+const avatarLetter = computed(() => displayName.value.trim().slice(0, 1).toUpperCase() || 'C');
+
+onMounted(async () => {
+  try {
+    const profile = await api.getMyProfile();
+    currentUser.value = profile.user;
+    setAuthUser(profile.user);
+  } catch {
+    // 顶部头像使用本地登录资料兜底，不影响首页场景入口。
+  }
+});
 
 const scenarios = [
   {
@@ -98,7 +116,15 @@ async function start(item) {
           <p>首页只做场景选择。企业笔试进入后再选择目标企业与应聘岗位。</p>
         </div>
         <div class="practice-summary">当前首页保持场景入口</div>
-        <div class="user-avatar">AI</div>
+        <button
+          :class="['user-avatar', currentUser?.avatar_preset || 'blue']"
+          type="button"
+          :aria-label="`查看${displayName}的个人资料`"
+          :title="displayName"
+          @click="router.push('/me')"
+        >
+          {{ avatarLetter }}
+        </button>
       </header>
 
       <p v-if="error" class="form-error">{{ error }}</p>

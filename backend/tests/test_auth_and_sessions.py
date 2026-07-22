@@ -55,6 +55,62 @@ def test_login_logout_and_invalid_password(client: TestClient):
     assert rejected.status_code == 401
 
 
+def test_user_profile_can_be_updated_and_includes_stats(client: TestClient):
+    registered = client.post(
+        "/api/auth/register",
+        json={"account": "profile@test.local", "password": "Secret123!"},
+    ).json()
+    headers = auth_headers(registered["access_token"])
+
+    initial = client.get("/api/auth/me", headers=headers)
+    assert initial.status_code == 200
+    assert initial.json()["user"]["nickname"] is None
+    assert initial.json()["stats"]["answered_questions"] == 0
+
+    updated = client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={
+            "nickname": "小林同学",
+            "avatar_preset": "violet",
+            "target_position": "Java 后端工程师",
+            "career_stage": "new_grad",
+        },
+    )
+    assert updated.status_code == 200
+    updated_user = updated.json()["user"]
+    assert updated_user["nickname"] == "小林同学"
+    assert updated_user["avatar_preset"] == "violet"
+    assert updated_user["target_position"] == "Java 后端工程师"
+    assert updated_user["career_stage"] == "new_grad"
+
+    question = {
+        "question_id": "profile-favorite",
+        "question_type": "true_false",
+        "content": "这是一道收藏统计测试题。",
+        "options": [],
+    }
+    assert client.post("/api/favorites", headers=headers, json={"question": question}).status_code == 201
+    refreshed = client.get("/api/auth/me", headers=headers).json()
+    assert refreshed["user"]["nickname"] == "小林同学"
+    assert refreshed["stats"]["favorite_questions"] == 1
+
+
+def test_guest_profile_is_read_only(client: TestClient):
+    guest = client.post("/api/auth/guest").json()
+    headers = auth_headers(guest["access_token"])
+    profile = client.get("/api/auth/me", headers=headers)
+    assert profile.status_code == 200
+    assert profile.json()["user"]["is_guest"] is True
+
+    rejected = client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={"nickname": "游客昵称", "avatar_preset": "blue"},
+    )
+    assert rejected.status_code == 403
+
+
 def test_guest_can_create_only_one_training_session(client: TestClient):
     guest = client.post("/api/auth/guest").json()
     headers = auth_headers(guest["access_token"])

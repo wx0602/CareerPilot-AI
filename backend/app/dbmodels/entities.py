@@ -19,6 +19,10 @@ class User(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
     account: Mapped[str] = mapped_column(String(254), unique=True, index=True)
     password_hash: Mapped[str] = mapped_column(String(255))
+    nickname: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    avatar_preset: Mapped[str] = mapped_column(String(20), default="blue")
+    target_position: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    career_stage: Mapped[str | None] = mapped_column(String(30), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)
 
 

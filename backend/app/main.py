@@ -7,17 +7,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import inspect, text
 
-from .api.routes import auth, exams, favorites, interviews, materials, reports, simulations, training_sessions
+from .api.routes import auth, exams, favorites, interviews, job_recommendations, materials, reports, simulations, training_sessions
 from .core.config import Settings, get_settings
 from .db.session import create_database_engine, create_session_factory
 from .services.auth import ensure_demo_user
 from .services.providers import AIProvider, KnowledgeProvider, build_providers
+from .services.job_recommendations import JobLinkChecker, JSearchJobSource, SeedJobSource
 
 
 def create_app(
     settings: Settings | None = None,
     knowledge_provider: KnowledgeProvider | None = None,
     ai_provider: AIProvider | None = None,
+    job_source: JSearchJobSource | None = None,
+    seed_job_source: SeedJobSource | None = None,
+    job_link_checker: JobLinkChecker | None = None,
 ) -> FastAPI:
     app_settings = settings or get_settings()
     engine = create_database_engine(app_settings.database_url)
@@ -26,6 +30,13 @@ def create_app(
         default_knowledge, default_ai = build_providers(app_settings.provider_mode)
         knowledge_provider = knowledge_provider or default_knowledge
         ai_provider = ai_provider or default_ai
+    job_source = job_source or JSearchJobSource(
+        api_key=app_settings.jsearch_api_key,
+        base_url=app_settings.jsearch_base_url,
+        timeout_seconds=app_settings.jsearch_timeout_seconds,
+    )
+    seed_job_source = seed_job_source or SeedJobSource()
+    job_link_checker = job_link_checker or JobLinkChecker()
 
     @asynccontextmanager
     async def lifespan(application: FastAPI):
@@ -48,6 +59,9 @@ def create_app(
     application.state.session_factory = session_factory
     application.state.knowledge_provider = knowledge_provider
     application.state.ai_provider = ai_provider
+    application.state.job_source = job_source
+    application.state.seed_job_source = seed_job_source
+    application.state.job_link_checker = job_link_checker
 
     application.add_middleware(
         CORSMiddleware,
@@ -90,6 +104,7 @@ def create_app(
         materials.router,
         exams.router,
         favorites.router,
+        job_recommendations.router,
         interviews.router,
         simulations.router,
         reports.router,
