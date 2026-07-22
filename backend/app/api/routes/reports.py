@@ -31,7 +31,21 @@ def generate_report(
     training = owned_training_session(payload.session_id, db, token)
     existing = db.scalar(select(Report).where(Report.session_id == training.id))
     if existing is not None:
-        return ReportResponse.model_validate(existing.payload_json)
+        saved = ReportResponse.model_validate(existing.payload_json)
+        saved_nonverbal = saved.nonverbal_score
+        incoming_nonverbal = payload.nonverbal_score
+        can_upgrade_nonverbal = (
+            training.mode == "job"
+            and incoming_nonverbal is not None
+            and incoming_nonverbal.status == "complete"
+            and (saved_nonverbal is None or saved_nonverbal.status == "insufficient_data")
+        )
+        if can_upgrade_nonverbal:
+            saved = saved.model_copy(update={"nonverbal_score": incoming_nonverbal})
+            existing.payload_json = saved.model_dump()
+            db.add(existing)
+            db.commit()
+        return saved
 
     exam = db.scalar(select(Exam).where(Exam.session_id == training.id))
     submission = (
