@@ -626,6 +626,22 @@ class RealAIProvider:
         )
 
     @staticmethod
+    def _invoke_agent(operation_name: str, *args, **kwargs):
+        try:
+            import agents
+            from agents.llm_client import LLMError
+        except ImportError as exc:
+            raise ProviderUnavailableError(
+                "缺少 AI Provider 依赖，请安装 ai-core/requirements.txt。"
+            ) from exc
+
+        try:
+            operation = getattr(agents, operation_name)
+            return operation(*args, **kwargs)
+        except LLMError as exc:
+            raise ProviderUnavailableError(str(exc)) from exc
+
+    @staticmethod
     def _question_target_count(request: dict[str, Any]) -> int:
         mix = request.get("question_mix")
         if mix:
@@ -769,10 +785,8 @@ class RealAIProvider:
         return self._select_questions(request, preferred, candidates)
 
     def generate_exam(self, request: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-        from agents import generate_exam
-
         question_bank = self._search_question_bank(request)
-        paper = generate_exam(request, question_bank)
+        paper = self._invoke_agent("generate_exam", request, question_bank)
         bank_by_id = {item["question_id"]: item for item in question_bank}
         grading_items = [
             bank_by_id[question.question_id]
@@ -786,52 +800,41 @@ class RealAIProvider:
         submission: dict[str, Any],
         grading_items: list[dict[str, Any]],
     ) -> dict[str, Any]:
-        from agents import grade_exam
-
         expected_ids = [item["question_id"] for item in grading_items]
-        result = grade_exam(submission, grading_items, expected_question_ids=expected_ids)
+        result = self._invoke_agent(
+            "grade_exam",
+            submission,
+            grading_items,
+            expected_question_ids=expected_ids,
+        )
         return result.model_dump(mode="json")
 
     def generate_question(self, request: dict[str, Any]) -> dict[str, Any]:
-        from agents import generate_question
-
-        response = generate_question(request)
+        response = self._invoke_agent("generate_question", request)
         return response.model_dump(mode="json")
 
     def evaluate_answer(self, request: dict[str, Any]) -> dict[str, Any]:
-        from agents import evaluate_answer
-
-        response = evaluate_answer(request)
+        response = self._invoke_agent("evaluate_answer", request)
         return response.model_dump(mode="json")
 
     def generate_report(self, request: dict[str, Any]) -> dict[str, Any]:
         if request.get("mode") in {"group_interview", "stress_interview"}:
-            from agents import generate_simulation_report
-
-            response = generate_simulation_report(request)
+            response = self._invoke_agent("generate_simulation_report", request)
             return response.model_dump(mode="json")
 
-        from agents import generate_report
-
-        response = generate_report(request)
+        response = self._invoke_agent("generate_report", request)
         return response.model_dump(mode="json")
 
     def start_session(self, request: dict[str, Any]) -> dict[str, Any]:
-        from agents import start_session
-
-        response = start_session(request)
+        response = self._invoke_agent("start_session", request)
         return response.model_dump(mode="json")
 
     def handle_user_message(self, request: dict[str, Any]) -> dict[str, Any]:
-        from agents import handle_user_message
-
-        response = handle_user_message(request)
+        response = self._invoke_agent("handle_user_message", request)
         return response.model_dump(mode="json")
 
     def finish_session(self, request: dict[str, Any]) -> dict[str, Any]:
-        from agents import finish_session
-
-        response = finish_session(request)
+        response = self._invoke_agent("finish_session", request)
         return response.model_dump(mode="json")
 
     def build_candidate_profile(self, request: dict[str, Any]) -> dict[str, Any]:

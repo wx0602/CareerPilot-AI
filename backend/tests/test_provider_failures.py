@@ -1,8 +1,9 @@
+import pytest
 from starlette.testclient import TestClient
 
 from app.db.base import Base
 from app.main import create_app
-from app.services.providers import RealAIProvider
+from app.services.providers import ProviderUnavailableError, RealAIProvider, _ensure_import_paths
 from tests.conftest import auth_headers
 
 
@@ -12,6 +13,52 @@ DEFAULT_MIX = {
     "multiple_choice": 2,
     "short_answer": 3,
 }
+
+
+def test_real_ai_provider_translates_missing_llm_config(monkeypatch, tmp_path):
+    _ensure_import_paths()
+    from agents import llm_client
+
+    for name in ("LLM_API_KEY", "LLM_BASE_URL", "LLM_MODEL"):
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setattr(llm_client, "ENV_PATH", tmp_path / "missing.env")
+    provider = object.__new__(RealAIProvider)
+
+    with pytest.raises(ProviderUnavailableError, match="缺少大模型配置"):
+        provider.generate_question({"session_id": "test", "mode": "job"})
+
+
+def test_real_interview_missing_llm_config_returns_503(settings, monkeypatch, tmp_path):
+    _ensure_import_paths()
+    from agents import llm_client
+
+    for name in ("LLM_API_KEY", "LLM_BASE_URL", "LLM_MODEL"):
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setattr(llm_client, "ENV_PATH", tmp_path / "missing.env")
+    real_settings = settings.model_copy(update={"provider_mode": "real"})
+    application = create_app(settings=real_settings)
+    Base.metadata.create_all(application.state.engine)
+
+    with TestClient(application) as client:
+        login = client.post(
+            "/api/auth/login",
+            json={"account": "demo@test.local", "password": "Demo123!"},
+        )
+        headers = auth_headers(login.json()["access_token"])
+        session_id = client.post(
+            "/api/training-sessions",
+            headers=headers,
+            json={"mode": "job"},
+        ).json()["session_id"]
+        response = client.post(
+            "/api/interviews/message",
+            headers=headers,
+            json={"session_id": session_id},
+        )
+
+    assert response.status_code == 503
+    assert response.json()["detail"]["code"] == "ai_provider_unavailable"
+    assert "缺少大模型配置" in response.json()["detail"]["message"]
 
 
 class RecordingQuestionBank:

@@ -31,6 +31,16 @@ alembic upgrade head
 uvicorn app.main:app --reload
 ```
 
+`requirements-dev.txt` 会同时安装后端、`ai-core` 和 `knowledge` 的仓库既有依赖。没有配置大模型密钥时，将 `backend/.env` 中的 `PROVIDER_MODE` 改为 `stub` 即可先跑通笔试、数字人面试和报告流程。使用 `PROVIDER_MODE=real` 时，还必须创建 `ai-core/.env`：
+
+```ini
+LLM_API_KEY=你的密钥
+LLM_BASE_URL=OpenAI兼容接口地址
+LLM_MODEL=模型名称
+```
+
+AI 依赖或配置不可用时，后端会返回结构化的 `503 ai_provider_unavailable`，不会再产生未处理异常堆栈。
+
 Linux/macOS：
 
 ```bash

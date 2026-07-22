@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "vite preview --host 0.0.0.0",
+    "test:nonverbal": "node --test tests/nonverbal.test.js"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "0.10.35",
     "vue": "^3.4.0",
     "vue-router": "^4.3.0"
   },
