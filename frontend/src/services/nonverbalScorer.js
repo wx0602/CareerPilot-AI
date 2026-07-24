@@ -128,12 +128,14 @@ export function scoreNonverbal(questionResults, fallbackReason = null) {
       : null
   };
 
-  if (total.analyzedDurationMs < 8000) {
+  if (total.questionCount === 0 || (total.analyzedDurationMs <= 0 && total.sampleCount === 0)) {
     return createInsufficientResult(fallbackReason || 'answer_too_short', statistics);
   }
-  if (total.validFaceSamples < 20) {
+  if (total.validFaceSamples === 0) {
     return createInsufficientResult(fallbackReason || 'insufficient_face_samples', statistics);
   }
+
+  const hasLimitedSamples = total.analyzedDurationMs < 8000 || total.validFaceSamples < 20;
 
   const facePresence = ratio(total.validFaceSamples, total.faceDetectionSamples);
   const headCentered = ratio(total.headCenteredSamples, total.validFaceSamples, 0.8);
@@ -186,6 +188,7 @@ export function scoreNonverbal(questionResults, fallbackReason = null) {
   if (!strengths.length) strengths.push('已完成有效的非语言表现采样。');
 
   const suggestions = [];
+  if (hasLimitedSamples) suggestions.push('本次采样较短，分数仅作基础参考；建议下次适当延长回答时间。');
   if (total.noFaceEvents) suggestions.push('部分回答曾持续离开画面，建议保持在摄像头取景范围内。');
   if (total.headDeviationEvents) suggestions.push('部分回答存在持续低头或转头，建议适当提高视线。');
   if (total.headTiltEvents || total.postureEvents) suggestions.push('可适当调整坐姿，使头部和肩膀保持自然平衡。');
@@ -194,7 +197,7 @@ export function scoreNonverbal(questionResults, fallbackReason = null) {
   return {
     status: 'complete',
     reason: null,
-    message: null,
+    message: hasLimitedSamples ? '本次样本较少，已生成基础参考评分。' : null,
     total_score: totalScore,
     dimensions,
     statistics,

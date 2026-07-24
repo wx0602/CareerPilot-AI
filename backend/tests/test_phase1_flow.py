@@ -214,6 +214,30 @@ def _valid_nonverbal_score(total_score=86):
     }
 
 
+def _insufficient_nonverbal_score():
+    return {
+        "status": "insufficient_data",
+        "reason": "answer_too_short",
+        "message": "有效回答视频时间过短，本次未生成可靠的非语言表现评分。",
+        "total_score": None,
+        "dimensions": None,
+        "statistics": {
+            "question_count": 0,
+            "sample_count": 0,
+            "valid_face_samples": 0,
+            "analyzed_duration_seconds": 0,
+            "face_presence_ratio": 0,
+            "no_face_events": 0,
+            "head_deviation_events": 0,
+            "posture_events": 0,
+            "movement_events": 0,
+            "average_response_delay_seconds": None,
+        },
+        "strengths": [],
+        "suggestions": [],
+    }
+
+
 def test_nonverbal_score_is_saved_read_and_not_overwritten(logged_in):
     client, headers = logged_in
     session_id = _create_completed_job_interview(client, headers)
@@ -237,6 +261,36 @@ def test_nonverbal_score_is_saved_read_and_not_overwritten(logged_in):
     )
     assert repeated.status_code == 200
     assert repeated.json()["nonverbal_score"] == original
+
+
+def test_insufficient_nonverbal_score_can_be_upgraded_once(logged_in):
+    client, headers = logged_in
+    session_id = _create_completed_job_interview(client, headers)
+    initial = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={"session_id": session_id, "nonverbal_score": _insufficient_nonverbal_score()},
+    )
+    assert initial.status_code == 200
+    assert initial.json()["nonverbal_score"]["status"] == "insufficient_data"
+
+    upgraded_score = _valid_nonverbal_score(73)
+    upgraded = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={"session_id": session_id, "nonverbal_score": upgraded_score},
+    )
+    assert upgraded.status_code == 200
+    assert upgraded.json()["nonverbal_score"] == upgraded_score
+    assert client.get(f"/api/reports/{session_id}", headers=headers).json()["nonverbal_score"] == upgraded_score
+
+    repeated = client.post(
+        "/api/reports/generate",
+        headers=headers,
+        json={"session_id": session_id, "nonverbal_score": _valid_nonverbal_score(10)},
+    )
+    assert repeated.status_code == 200
+    assert repeated.json()["nonverbal_score"] == upgraded_score
 
 
 def test_nonverbal_score_rejects_invalid_status_and_out_of_range_score(logged_in):

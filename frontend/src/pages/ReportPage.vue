@@ -30,6 +30,35 @@ const nonverbalScore = computed(() => report.value?.nonverbal_score || null);
 const nonverbalDimensions = computed(() => Object.entries(nonverbalScore.value?.dimensions || {}).map(
   ([key, value]) => ({ key, label: nonverbalDimensionLabels[key] || key, value })
 ));
+const nonverbalIndicators = computed(() => {
+  const statistics = nonverbalScore.value?.statistics;
+  if (!statistics) return [];
+  const toFiniteNumber = (value) => {
+    if (value === null || value === undefined || value === '') return null;
+    const numeric = Number(value);
+    return Number.isFinite(numeric) ? numeric : null;
+  };
+  const duration = toFiniteNumber(statistics.analyzed_duration_seconds);
+  const faceRatio = toFiniteNumber(statistics.face_presence_ratio);
+  const postureEvents = toFiniteNumber(statistics.posture_events);
+  return [
+    {
+      key: 'duration',
+      label: '有效分析时长',
+      value: duration === null ? '暂无数据' : `${duration.toFixed(duration % 1 ? 1 : 0)} 秒`
+    },
+    {
+      key: 'face-ratio',
+      label: '人脸在画比例',
+      value: faceRatio === null ? '暂无数据' : `${Math.round(faceRatio * 100)}%`
+    },
+    {
+      key: 'posture-events',
+      label: '姿态偏离次数',
+      value: postureEvents === null ? '暂无数据' : `${postureEvents} 次`
+    }
+  ];
+});
 
 function polarPoint(index, total, radius) {
   const angle = -Math.PI / 2 + (Math.PI * 2 * index) / total;
@@ -66,7 +95,7 @@ function selectReport(item) {
 }
 
 function reportTitle(item) {
-  return item.learning_module_title || item.position || '综合训练';
+  return item?.learning_module_title || item?.position || '综合训练';
 }
 
 function formatDate(value) {
@@ -115,10 +144,11 @@ async function loadReports() {
       }
     }
     reports.value = await api.listReports();
-    report.value =
-      reports.value.find((item) => item.session_id === session?.session_id) ||
-      reports.value[0] ||
-      null;
+    const currentReport = reports.value.find((item) => item.session_id === session?.session_id);
+    report.value = session ? currentReport || null : reports.value[0] || null;
+    if (session && !currentReport && !generationError) {
+      notice.value = '当前训练尚未生成报告，可从历史报告中手动选择查看。';
+    }
     error.value = generationError;
   } catch (err) {
     error.value = err.message;
@@ -154,7 +184,8 @@ async function loadReports() {
             <h2>历史报告</h2>
             <p>共 {{ reports.length }} 份独立报告，点击下方任意一份切换查看</p>
           </div>
-          <span class="current-report-label">正在查看：<b>{{ reportTitle(report) }}</b></span>
+          <span v-if="report" class="current-report-label">正在查看：<b>{{ reportTitle(report) }}</b></span>
+          <span v-else class="current-report-label">当前训练暂无报告</span>
         </div>
         <div class="report-list history-list">
           <button
@@ -222,11 +253,17 @@ async function loadReports() {
               <div><span>本地辅助反馈</span><h2>非语言表现</h2></div>
               <strong>{{ nonverbalScore.total_score }}<small>/100</small></strong>
             </header>
+            <p v-if="nonverbalScore.message" class="nonverbal-sample-note">{{ nonverbalScore.message }}</p>
             <div class="nonverbal-dimensions">
               <div v-for="item in nonverbalDimensions" :key="item.key">
                 <span>{{ item.label }}</span><b>{{ item.value }}</b>
               </div>
             </div>
+            <section v-if="nonverbalIndicators.length" class="nonverbal-indicators" aria-label="非语言分析关键指标">
+              <div v-for="item in nonverbalIndicators" :key="item.key">
+                <span>{{ item.label }}</span><b>{{ item.value }}</b>
+              </div>
+            </section>
             <div class="nonverbal-feedback">
               <section v-if="nonverbalScore.strengths?.length">
                 <h3>表现较好</h3>
@@ -300,14 +337,19 @@ async function loadReports() {
 .nonverbal-dimensions > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-radius: 10px; padding: 12px; background: #f5f8fc; }
 .nonverbal-dimensions span { color: #53647b; font-size: 11px; }
 .nonverbal-dimensions b { color: #2465c6; font-size: 15px; }
+.nonverbal-indicators { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 0; }
+.nonverbal-indicators > div { display: grid; gap: 5px; border-top: 2px solid #dce9fb; border-radius: 0 0 10px 10px; padding: 11px 13px; background: #f9fbfe; }
+.nonverbal-indicators span { color: #75849a; font-size: 10px; }
+.nonverbal-indicators b { color: #344860; font-size: 14px; }
 .nonverbal-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .nonverbal-feedback section { border-left: 3px solid #79a8e9; padding-left: 12px; }
 .nonverbal-feedback h3 { margin: 0 0 7px; color: #344860; font-size: 13px; }
 .nonverbal-feedback p { margin: 4px 0; color: #66768d; font-size: 11px; line-height: 1.6; }
 .nonverbal-note { color: #8a97a9; font-size: 10px; }
 .nonverbal-unavailable { margin: 0; color: #66768d; font-size: 12px; }
+.nonverbal-sample-note { margin: -8px 0 0; border-radius: 9px; padding: 9px 11px; color: #6c5a29; background: #fff8df; font-size: 10px; }
 @media(max-width:1100px){.report-top-grid{grid-template-columns:1fr 1fr}.trend-card{grid-column:1/-1}.history-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.report-top-grid{grid-template-columns:1fr}.trend-card{grid-column:auto}.history-library-head{align-items:flex-start;flex-direction:column}.current-report-label{margin-top:12px}.history-list{grid-template-columns:1fr}.history-list button{grid-template-columns:40px minmax(0,1fr) auto}.nonverbal-dimensions{grid-template-columns:1fr 1fr}.nonverbal-feedback{grid-template-columns:1fr}}
+@media(max-width:760px){.report-top-grid{grid-template-columns:1fr}.trend-card{grid-column:auto}.history-library-head{align-items:flex-start;flex-direction:column}.current-report-label{margin-top:12px}.history-list{grid-template-columns:1fr}.history-list button{grid-template-columns:40px minmax(0,1fr) auto}.nonverbal-dimensions{grid-template-columns:1fr 1fr}.nonverbal-indicators{grid-template-columns:1fr}.nonverbal-feedback{grid-template-columns:1fr}}
 @media(max-width:480px){.dimension-analysis{grid-template-columns:1fr}.dynamic-radar{height:220px}.radar-legend{grid-template-columns:1fr 1fr}}
 @media print{.sidebar,.report-library,.report-header>div:last-child{display:none!important}.app-shell{display:block}.report-page{max-width:none;padding:0}}
 </style>

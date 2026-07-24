@@ -183,7 +183,7 @@
 
 B 从数据库加载笔试和面试数据后构造 D 的 `ReportRequest`，前端不能传入或覆盖内容评分。普通 `job` 数字人面试可额外提交经过明确 Schema 校验的本地辅助字段 `nonverbal_score`；其状态仅允许 `complete | insufficient_data`，五个维度分数限制为 `0～100`，且不参与 `overall_score`。至少完成笔试或一轮面试，否则返回 `409 no_training_result`。
 
-响应遵循公共 `ReportResponse`：`session_id`、`mode`、`overall_score`、`dimension_scores`、`strengths`、`weaknesses`、`suggestions`、`charts`、`summary`，以及可选的 `nonverbal_score`。非语言结果只随新报告写入现有 `reports.payload_json`；已有报告仍直接返回原值，不补写或覆盖。
+响应遵循公共 `ReportResponse`：`session_id`、`mode`、`overall_score`、`dimension_scores`、`strengths`、`weaknesses`、`suggestions`、`charts`、`summary`，以及可选的 `nonverbal_score`。新报告直接写入现有 `reports.payload_json`；已有完整非语言分数保持原值，只有字段缺失或状态为 `insufficient_data` 时允许用新的 `complete` 结果补齐一次。
 
 ### `GET /api/reports/{session_id}`
 

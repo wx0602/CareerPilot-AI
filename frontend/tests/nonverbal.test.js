@@ -82,11 +82,34 @@ test('文字回答不因嘴部没有动态而扣分', () => {
   assert.equal(stillScore.total_score, movingScore.total_score);
 });
 
-test('总有效分析时间不足返回明确的数据不足结果', () => {
-  const result = scoreNonverbal([createIdealQuestion({ durationMs: 7900 })]);
-  assert.equal(result.status, 'insufficient_data');
-  assert.equal(result.reason, 'answer_too_short');
-  assert.equal(result.total_score, null);
+test('回答时间较短但有人脸样本时仍生成基础参考评分', () => {
+  const question = createQuestionMetrics('short-answer');
+  question.durationMs = 1000;
+  recordFaceObservation(question, {
+    detected: true,
+    headDeviation: false,
+    headTilt: false,
+    facialDynamic: false,
+    mouthMeasured: true,
+    mouthDynamic: false
+  }, 0);
+  const result = scoreNonverbal([question]);
+  assert.equal(result.status, 'complete');
+  assert.ok(result.total_score >= 0 && result.total_score <= 100);
+  assert.match(result.message, /基础参考评分/);
+});
+
+test('完全没有完成题目或有效样本时不伪造评分', () => {
+  const noQuestion = scoreNonverbal([]);
+  assert.equal(noQuestion.status, 'insufficient_data');
+  assert.equal(noQuestion.reason, 'answer_too_short');
+
+  const noFace = createQuestionMetrics('no-valid-face');
+  noFace.durationMs = 3000;
+  recordFaceObservation(noFace, { detected: false }, 0);
+  const noFaceResult = scoreNonverbal([noFace]);
+  assert.equal(noFaceResult.status, 'insufficient_data');
+  assert.equal(noFaceResult.reason, 'insufficient_face_samples');
 });
 
 test('同一道题重复开始不会清空或重复完成本题数据', async () => {
