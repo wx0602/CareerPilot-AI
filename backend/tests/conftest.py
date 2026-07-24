@@ -17,6 +17,7 @@ def settings(tmp_path: Path) -> Settings:
         provider_mode="stub",
         demo_account="demo@test.local",
         demo_password="Demo123!",
+        log_to_file=False,
     )
 
 

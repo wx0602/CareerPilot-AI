@@ -70,6 +70,14 @@ class Settings(BaseSettings):
     jsearch_api_key: str | None = None
     jsearch_base_url: str = "https://api.openwebninja.com/jsearch/search-v2"
     jsearch_timeout_seconds: float = 10.0
+    database_busy_timeout_ms: int = 5000
+    slow_query_ms: int = 500
+    log_level: str = "INFO"
+    log_to_file: bool = not IS_SERVERLESS
+    log_dir: Path = RUNTIME_DIR / "logs"
+    log_max_bytes: int = 5 * 1024 * 1024
+    log_backup_count: int = 5
+    slow_request_ms: int = 1000
 
     model_config = SettingsConfigDict(
         env_file=str(BACKEND_DIR / ".env"),
@@ -84,6 +92,7 @@ class Settings(BaseSettings):
 
     @field_validator(
         "upload_dir",
+        "log_dir",
         "knowledge_database_path",
         "knowledge_chroma_dir",
         "knowledge_raw_dir",
@@ -94,6 +103,42 @@ class Settings(BaseSettings):
     def normalize_paths(cls, value: str | Path) -> Path | str:
         resolved = _resolve_backend_relative_path(value)
         return resolved if isinstance(value, Path) else str(resolved)
+
+    @field_validator("database_busy_timeout_ms")
+    @classmethod
+    def validate_database_busy_timeout(cls, value: int) -> int:
+        if not 100 <= value <= 60_000:
+            raise ValueError("DATABASE_BUSY_TIMEOUT_MS 必须在 100 到 60000 之间")
+        return value
+
+    @field_validator("slow_query_ms", "slow_request_ms")
+    @classmethod
+    def validate_slow_threshold(cls, value: int) -> int:
+        if value < 0:
+            raise ValueError("慢操作阈值不能为负数")
+        return value
+
+    @field_validator("log_max_bytes")
+    @classmethod
+    def validate_log_max_bytes(cls, value: int) -> int:
+        if value < 1024:
+            raise ValueError("LOG_MAX_BYTES 不能小于 1024")
+        return value
+
+    @field_validator("log_backup_count")
+    @classmethod
+    def validate_log_backup_count(cls, value: int) -> int:
+        if not 1 <= value <= 100:
+            raise ValueError("LOG_BACKUP_COUNT 必须在 1 到 100 之间")
+        return value
+
+    @field_validator("log_level")
+    @classmethod
+    def normalize_log_level(cls, value: str) -> str:
+        normalized = value.strip().upper()
+        if normalized not in {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"}:
+            raise ValueError("LOG_LEVEL 必须是 DEBUG、INFO、WARNING、ERROR 或 CRITICAL")
+        return normalized
 
     @model_validator(mode="after")
     def validate_production_database(self) -> "Settings":

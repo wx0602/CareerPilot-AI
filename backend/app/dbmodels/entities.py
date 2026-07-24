@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Any
 from uuid import uuid4
 
-from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
+from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Index, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from ..core.security import utc_now
@@ -42,6 +42,10 @@ class AuthToken(Base):
 
 class TrainingSession(Base):
     __tablename__ = "training_sessions"
+    __table_args__ = (
+        Index("ix_training_sessions_owner_created", "owner_user_id", "created_at"),
+        Index("ix_training_sessions_token_created", "created_by_token_id", "created_at"),
+    )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
     owner_user_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"), nullable=True, index=True)
@@ -60,6 +64,9 @@ class TrainingSession(Base):
 
 class Material(Base):
     __tablename__ = "materials"
+    __table_args__ = (
+        Index("ix_materials_session_type", "session_id", "material_type"),
+    )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
     session_id: Mapped[str] = mapped_column(ForeignKey("training_sessions.id"), index=True)
@@ -148,7 +155,10 @@ class InterviewTurn(Base):
 
 class Report(Base):
     __tablename__ = "reports"
-    __table_args__ = (UniqueConstraint("session_id", name="uq_reports_session_id"),)
+    __table_args__ = (
+        UniqueConstraint("session_id", name="uq_reports_session_id"),
+        Index("ix_reports_generated_at", "generated_at"),
+    )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
     session_id: Mapped[str] = mapped_column(ForeignKey("training_sessions.id"), index=True)

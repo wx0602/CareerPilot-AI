@@ -1,12 +1,12 @@
 # 第一阶段数据库结构
 
-数据库由 B 维护，使用 SQLAlchemy 2.x、SQLite 和 Alembic。当前迁移版本为 `20260714_0001`。
+数据库由 B 维护，使用 SQLAlchemy 2.x、SQLite 和 Alembic。当前迁移版本为 `20260724_0005`。
 
 ## 表结构
 
 | 表 | 用途 | 关键字段与约束 |
 | --- | --- | --- |
-| `users` | 登录用户 | `account` 唯一，密码只保存 Argon2 哈希 |
+| `users` | 登录用户与基础画像 | `account` 唯一，密码只保存 Argon2 哈希，保存昵称、头像预设和求职目标 |
 | `auth_tokens` | 登录/游客令牌 | 只保存 SHA-256 令牌哈希，记录过期和撤销时间 |
 | `training_sessions` | 一次完整训练 | 保存所有者、创建令牌、`mode`、岗位、企业和状态 |
 | `materials` | 简历/JD 文件 | 保存安全路径、文件元数据、解析状态和上下文 JSON |
@@ -16,6 +16,7 @@
 | `interviews` | 文本面试 | 每个训练会话最多一次，保存模式和状态 |
 | `interview_turns` | 面试问答轮次 | 轮次和问题编号在面试内唯一，保存回答和评价 JSON |
 | `reports` | 综合报告 | 每个训练会话最多一份，保存完整报告 JSON 快照 |
+| `favorite_questions` | 用户收藏题目 | 所有者与题号组合唯一，保存用于回显的题目快照 |
 
 ## 关系与所有权
 
@@ -27,6 +28,7 @@ training_sessions ──1 exams ──< exam_questions
 exams ──1 exam_submissions
 training_sessions ──1 interviews ──< interview_turns
 training_sessions ──1 reports
+users/guest token ──< favorite_questions（通过 owner_key 隔离）
 ```
 
 - 登录用户的资源通过 `owner_user_id` 校验。
@@ -35,12 +37,22 @@ training_sessions ──1 reports
 - UUID 字符串作为业务主键；时间统一按 UTC 写入。
 - AI/RAG 输出使用 JSON 快照，避免外部模型升级后旧记录无法读取。
 
+## 连接可靠性与查询性能
+
+- SQLite 每个连接强制启用 `foreign_keys=ON`，避免产生无效外键数据。
+- 本地文件库启用 WAL 和 `synchronous=NORMAL`，读写并发时减少相互阻塞。
+- `busy_timeout` 默认 5000ms，可通过 `DATABASE_BUSY_TIMEOUT_MS` 调整。
+- API 请求发生异常时统一回滚当前 SQLAlchemy 事务，防止失败请求残留未提交状态。
+- 历史会话按用户/游客令牌和创建时间建立复合索引；材料按会话/类型、报告按生成时间建立索引。
+- 超过 `SLOW_QUERY_MS` 的查询会记录操作类型和耗时，但不会记录 SQL 参数。
+
 ## 数据安全
 
 - 原始访问令牌不会写入数据库，数据库只保存 SHA-256 哈希。
 - 试卷公开题目与正确答案分列保存，API 只读取 `public_payload`。
 - 上传文件使用 UUID 文件名，原文件名只作为显示元数据。
 - SQLite 文件、数据库文件和实际上传文件均已加入 `.gitignore`。
+- `backend/logs` 已加入 `.gitignore`；日志不保存密码、访问令牌、请求正文和上传内容。
 
 ## 迁移命令
 
@@ -53,6 +65,8 @@ alembic downgrade base
 ```
 
 首次启动必须先运行 `alembic upgrade head`。应用不会在启动时绕过迁移自动建表；若数据库尚未迁移，会提示执行迁移命令。
+
+升级到本版本后，`alembic current` 应显示 `20260724_0005 (head)`。
 
 ## 第二阶段扩展原则
 

@@ -14,6 +14,7 @@ htmlcov/
 *.db
 !knowledge/question_bank/questions.sqlite3
 backend/uploads/*
+backend/logs/*
 knowledge/chroma_store/*
 knowledge/question_bank/materials.jsonl
 !backend/uploads/README.md
